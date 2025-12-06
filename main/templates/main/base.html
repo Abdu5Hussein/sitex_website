@@ -47,6 +47,7 @@
         --success: #10b981;
         --warning: #f59e0b;
         --danger: #ef4444;
+        --bg-search: #e2e8f0;
 
         /* THEME VARIABLES – LIGHT DEFAULT */
         --bg-color: #ffffff;
@@ -69,15 +70,16 @@
 
       /* DARK THEME OVERRIDES */
       html[data-theme="dark"] {
-        --primary: #2563eb;
-        --primary-dark: #1843b9ff;
+        --primary: #fcca26ff;
+        --primary-dark: rgb(231, 148, 15);
         --secondary: #e6e6e6ff;
-        --accent: #c5810dff;
+        --accent: rgb(231, 231, 14);
         --light: #e4e4e4ff;
         --dark: #1e293b;
         --success: #0d8f63ff;
         --warning: #d18809ff;
         --danger: #ca3b3bff;
+        --bg-search: #abc8f4;
 
         --bg-color: #020617; /* slate-950 */
         --text-color: #e5e7eb; /* slate-200 */
@@ -115,6 +117,8 @@
         direction: ltr;
         text-align: left;
       }
+
+      
 
       body.rtl {
         direction: rtl;
@@ -918,6 +922,7 @@
           display: block;
         }
       }
+      
 
       /* Desktop - keep modal visible normally */
       @media (min-width: 769px) {
@@ -1785,57 +1790,57 @@
 
       // ========= SWIPE TO CLOSE FUNCTIONALITY =========
       function setupSwipeToClose() {
-        const cartModal = document.getElementById("cartModal");
-        if (!cartModal || window.innerWidth >= 769) return;
+  const cartModal = document.getElementById("cartModal");
+  if (!cartModal || window.innerWidth >= 769) return;
 
-        let startY = 0;
-        let currentY = 0;
-        let isSwiping = false;
+  let startY = 0;
+  let currentY = 0;
+  let isSwiping = false;
 
-        cartModal.addEventListener(
-          "touchstart",
-          (e) => {
-            startY = e.touches[0].clientY;
-            currentY = startY;
-            isSwiping = true;
-          },
-          { passive: true }
-        );
+  cartModal.addEventListener(
+    "touchstart",
+    (e) => {
+      startY = e.touches[0].clientY;
+      currentY = startY;
+      isSwiping = true;
+    },
+    { passive: true }
+  );
 
-        cartModal.addEventListener(
-          "touchmove",
-          (e) => {
-            if (!isSwiping) return;
+  cartModal.addEventListener(
+    "touchmove",
+    (e) => {
+      if (!isSwiping) return;
 
-            currentY = e.touches[0].clientY;
-            const diff = currentY - startY;
+      currentY = e.touches[0].clientY;
+      const diff = currentY - startY;
 
-            // Only allow swipe down to close
-            if (diff > 0) {
-              cartModal.style.transform = `translateY(${diff}px)`;
-            }
-          },
-          { passive: true }
-        );
-
-        cartModal.addEventListener("touchend", () => {
-          if (!isSwiping) return;
-
-          const diff = currentY - startY;
-          const threshold = 100; // Minimum swipe distance to close
-
-          if (diff > threshold) {
-            hideCart();
-          }
-
-          // Reset transform
-          cartModal.style.transform = cartModal.classList.contains("active")
-            ? "translateY(0)"
-            : "translateY(100%)";
-
-          isSwiping = false;
-        });
+      // Only swipe down
+      if (diff > 0) {
+        cartModal.style.transform = `translateY(${diff}px)`;
       }
+    },
+    { passive: true }
+  );
+
+  cartModal.addEventListener("touchend", () => {
+    if (!isSwiping) return;
+
+    const diff = currentY - startY;
+    const threshold = 100; // min swipe to close
+
+    if (diff > threshold) {
+      // Use same hideCart as X button
+      hideCart();
+    }
+
+    // Reset transform so next time it opens normally
+    cartModal.style.transform = "translateY(0)";
+
+    isSwiping = false;
+  });
+}
+
 
       // ========= OTHER FUNCTIONS =========
       function addToWishlist(productId) {

@@ -209,3 +209,8 @@ def get_product_api(request, product_id):
         }
     }
     return JsonResponse(data)
+
+
+
+def t404_view(request, exception=None):
+    return render(request, 'main/404.html', status=404)

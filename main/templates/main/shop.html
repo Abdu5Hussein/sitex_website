@@ -1,7 +1,35 @@
 <!-- templates/main/shop.html -->
 <!-- prettier-ignore -->
-{% extends 'main/base.html' %} {% load static i18n %} {% block title %}{% trans "Shop - Browse Products" %}{% endblock %} {% block extra_head %}
+{% extends 'main/base.html' %}
+{% load static i18n %}
+
+{% block title %}{% trans "Shop - Browse Products" %}{% endblock %}
+
+{% block extra_css %}
 <style>
+  /* Add shop-specific CSS variables to your theme */
+  :root {
+    --shop-primary: var(--primary);
+    --shop-primary-dark: var(--primary-dark);
+    --shop-secondary: var(--secondary);
+    --shop-accent: var(--accent);
+    --shop-light: var(--light);
+    --shop-dark: var(--dark);
+    --shop-text: var(--text-color);
+    --shop-text-light: var(--secondary);
+    --shop-bg: var(--bg-color);
+    --shop-card-bg: var(--card-bg);
+    --shop-card-border: var(--card-border-color);
+    --shop-border: rgba(148, 163, 184, 0.2);
+  }
+
+  /* Dark theme overrides for shop */
+  html[data-theme="dark"] {
+    --shop-primary: #fcca26ff; /* Keep shop primary yellow in dark mode */
+    --shop-primary-dark: #fdda64;
+    --shop-border: rgba(148, 163, 184, 0.3);
+  }
+
   /* Shop Layout */
   .shop-container {
     display: grid;
@@ -12,20 +40,20 @@
 
   /* Filter Sidebar */
   .filter-sidebar {
-    background: var(--card-bg);
+    background: var(--shop-card-bg);
     border-radius: 16px;
     padding: 25px;
     height: fit-content;
     position: sticky;
     top: 100px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-    border: 1px solid var(--card-border-color);
+    border: 1px solid var(--shop-card-border);
   }
 
   .filter-section {
     margin-bottom: 30px;
     padding-bottom: 25px;
-    border-bottom: 1px solid var(--card-border-color);
+    border-bottom: 1px solid var(--shop-border);
   }
 
   .filter-section:last-child {
@@ -37,7 +65,7 @@
   .filter-title {
     font-size: 1.1rem;
     font-weight: 700;
-    color: var(--text-color);
+    color: var(--shop-text);
     margin-bottom: 20px;
     display: flex;
     justify-content: space-between;
@@ -46,12 +74,12 @@
   }
 
   .filter-title:hover .collapse-icon {
-    color: var(--primary);
+    color: var(--shop-primary);
   }
 
   .collapse-icon {
     transition: transform 0.3s ease;
-    color: var(--secondary);
+    color: var(--shop-secondary);
   }
 
   .collapse-icon.rotated {
@@ -87,13 +115,13 @@
   }
 
   .category-item:hover {
-    background: rgba(252, 202, 38, 0.05); /* use primary color with opacity */
-    color: var(--primary);
+    background: rgba(252, 202, 38, 0.05);
+    color: var(--shop-primary);
   }
 
   .category-item.active {
     background: rgba(252, 202, 38, 0.1);
-    color: var(--primary);
+    color: var(--shop-primary);
     font-weight: 600;
   }
 
@@ -104,8 +132,8 @@
   }
 
   .category-count {
-    background: var(--card-border-color);
-    color: var(--secondary);
+    background: var(--shop-border);
+    color: var(--shop-secondary);
     padding: 2px 8px;
     border-radius: 12px;
     font-size: 0.8rem;
@@ -114,7 +142,7 @@
   }
 
   .category-item.active .category-count {
-    background: var(--primary);
+    background: var(--shop-primary);
     color: white;
   }
 
@@ -132,22 +160,22 @@
   .price-input {
     flex: 1;
     padding: 10px 15px;
-    border: 2px solid var(--card-border-color);
+    border: 2px solid var(--shop-border);
     border-radius: 8px;
     font-size: 0.9rem;
     transition: all 0.3s ease;
-    color: var(--text-color);
-    background: var(--card-bg);
+    color: var(--shop-text);
+    background: var(--shop-card-bg);
   }
 
   .price-input:focus {
     outline: none;
-    border-color: var(--primary);
+    border-color: var(--shop-primary);
   }
 
   .price-slider {
     height: 6px;
-    background: var(--card-border-color);
+    background: var(--shop-border);
     border-radius: 3px;
     position: relative;
     margin: 20px 0;
@@ -156,7 +184,7 @@
   .price-slider .track {
     position: absolute;
     height: 100%;
-    background: var(--primary);
+    background: var(--shop-primary);
     border-radius: 3px;
   }
 
@@ -166,8 +194,8 @@
     transform: translateY(-50%);
     width: 20px;
     height: 20px;
-    background: var(--bg-color);
-    border: 2px solid var(--primary);
+    background: var(--shop-bg);
+    border: 2px solid var(--shop-primary);
     border-radius: 50%;
     cursor: pointer;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
@@ -198,7 +226,7 @@
   .custom-checkbox {
     width: 20px;
     height: 20px;
-    border: 2px solid var(--card-border-color);
+    border: 2px solid var(--shop-border);
     border-radius: 4px;
     position: relative;
     transition: all 0.2s ease;
@@ -206,8 +234,8 @@
   }
 
   .checkbox-item input:checked + .custom-checkbox {
-    background: var(--primary);
-    border-color: var(--primary);
+    background: var(--shop-primary);
+    border-color: var(--shop-primary);
   }
 
   .custom-checkbox::after {
@@ -233,7 +261,7 @@
   }
 
   .checkbox-label {
-    color: var(--text-color);
+    color: var(--shop-text);
     flex-grow: 1;
   }
 
@@ -244,26 +272,26 @@
     align-items: center;
     margin-bottom: 30px;
     padding: 20px;
-    background: var(--card-bg);
+    background: var(--shop-card-bg);
     border-radius: 16px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-    border: 1px solid var(--card-border-color);
+    border: 1px solid var(--shop-card-border);
   }
 
   .results-info {
     font-size: 1rem;
-    color: var(--text-color);
+    color: var(--shop-text);
   }
 
   .results-info strong {
-    color: var(--primary);
+    color: var(--shop-primary);
   }
 
   .sort-select {
     padding: 12px 20px;
-    border: 2px solid var(--card-border-color);
-    background: var(--card-bg);
-    color: var(--text-color);
+    border: 2px solid var(--shop-border);
+    background: var(--shop-card-bg);
+    color: var(--shop-text);
     border-radius: 12px;
     font-size: 0.95rem;
     min-width: 200px;
@@ -273,10 +301,14 @@
 
   .sort-select:focus {
     outline: none;
-    border-color: var(--primary);
+    border-color: var(--shop-primary);
   }
 
-  /* Product Grid */
+  /* =========================================== */
+  /* PRODUCT GRIDS - DIFFERENT FOR MOBILE & DESKTOP */
+  /* =========================================== */
+  
+  /* Desktop/Computer View - 3-4 column grid */
   .product-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -285,14 +317,14 @@
   }
 
   .product-card {
-    background: var(--card-bg);
+    background: var(--shop-card-bg);
     border-radius: 16px;
     overflow: hidden;
     position: relative;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-    border: 1px solid var(--card-border-color);
-    color: var(--text-color);
+    border: 1px solid var(--shop-card-border);
+    color: var(--shop-text);
   }
 
   .product-card:hover {
@@ -304,11 +336,9 @@
     position: relative;
     height: 320px;
     overflow: hidden;
-    background: var(--light);
+    background: var(--shop-light);
     cursor: pointer;
   }
-
-  /* ... continue for all other elements, replacing hardcoded colors with appropriate vars */
 
   .media-slider {
     position: relative;
@@ -558,7 +588,7 @@
     color: #ff4444;
   }
 
-  /* Product actions row: Qty + Add to Cart + eye */
+  /* Product actions */
   .product-actions {
     display: flex;
     flex-wrap: nowrap;
@@ -566,27 +596,6 @@
     align-items: stretch;
   }
 
-  /* Prevent flex children from forcing overflow */
-  .product-actions * {
-    min-width: 0;
-  }
-
-  /* Qty box */
-  .product-actions .product-qty-group {
-    flex: 0 0 70px; /* small fixed width */
-  }
-
-  .product-actions .product-qty-group .input-group-text {
-    font-size: 0.75rem;
-    padding-inline: 6px;
-  }
-
-  .product-actions .product-qty-group .form-control {
-    padding-inline: 6px;
-    text-align: center;
-  }
-
-  /* Add to Cart button */
   .btn-add-cart {
     flex: 1 1 auto;
     padding: 10px;
@@ -647,7 +656,7 @@
     width: 40px;
     height: 40px;
     border: 2px solid var(--shop-border);
-    background: white;
+    background: var(--shop-card-bg);
     border-radius: 10px;
     display: flex;
     align-items: center;
@@ -769,76 +778,277 @@
     transform: rotate(90deg);
   }
 
-  /* Mobile Responsive */
+  /* =========================================== */
+  /* MOBILE FILTER TOGGLE BUTTON */
+  /* =========================================== */
+  .filter-mobile-toggle {
+    display: none;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 20px;
+    background: var(--shop-card-bg);
+    border: 1px solid var(--shop-card-border);
+    border-radius: 12px;
+    margin-bottom: 15px;
+    cursor: pointer;
+    color: var(--shop-text);
+    font-weight: 600;
+    transition: all 0.3s ease;
+  }
+
+  .filter-mobile-toggle:hover {
+    border-color: var(--shop-primary);
+    color: var(--shop-primary);
+  }
+
+  .filter-mobile-toggle i {
+    font-size: 1.1rem;
+  }
+
+  /* =========================================== */
+  /* RESPONSIVE DESIGN - MOBILE & TABLET */
+  /* =========================================== */
+
+  /* Tablet View (1024px and below) */
   @media (max-width: 1024px) {
     .shop-container {
       grid-template-columns: 1fr;
+      gap: 20px;
     }
 
     .filter-sidebar {
       position: static;
+      margin-bottom: 20px;
+      display: none; /* Hide by default on mobile */
+    }
+
+    .filter-sidebar.mobile-open {
+      display: block;
+      animation: slideDown 0.3s ease;
     }
 
     .filter-mobile-toggle {
       display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 12px 20px;
-      background: var(--bg-color);
-      color: white;
-      border: none;
-      border-radius: 10px;
-      font-weight: 600;
-      cursor: pointer;
-      margin-bottom: 20px;
+    }
+
+    /* Tablet grid - 2-3 columns */
+    .product-grid {
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .product-media-container {
+      height: 250px;
+    }
+
+    .category-list {
+      max-height: 200px;
+      overflow-y: auto;
     }
   }
 
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Mobile/Phone View (768px and below) */
   @media (max-width: 768px) {
     .shop-header {
       flex-direction: column;
       gap: 15px;
       align-items: stretch;
+      padding: 15px;
     }
 
     .sort-select {
       width: 100%;
+      min-width: auto;
     }
 
+    /* Mobile grid - 2 columns */
     .product-grid {
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      grid-template-columns: repeat(2, 1fr);
       gap: 15px;
     }
 
     .product-media-container {
-      height: 280px;
-    }
-  }
-
-  @media (max-width: 480px) {
-    .product-grid {
-      grid-template-columns: repeat(2, 1fr);
-      gap: 10px;
-    }
-
-    .product-media-container {
-      height: 220px;
+      height: 180px; /* Shorter on mobile */
     }
 
     .product-info {
       padding: 15px;
     }
+
+    .product-title {
+      font-size: 0.95rem;
+      height: 2.6em; /* Shorter title on mobile */
+    }
+
+    .current-price {
+      font-size: 1.1rem;
+    }
+
+    .product-actions {
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .btn-add-cart {
+      width: 100%;
+    }
+
+    .btn-quick-view {
+      width: 100%;
+      height: 38px;
+    }
+
+    /* Mobile pagination */
+    .pagination {
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .page-btn {
+      width: 36px;
+      height: 36px;
+      font-size: 0.9rem;
+    }
+
+    /* Mobile category list */
+    .category-list {
+      max-height: 250px;
+    }
+
+    .category-item {
+      padding: 8px 0;
+      font-size: 0.95rem;
+    }
+
+    /* Mobile price inputs */
+    .price-inputs {
+      flex-direction: column;
+    }
+
+    .price-slider {
+      margin: 15px 0;
+    }
+  }
+
+  /* Small Mobile View (576px and below) */
+  @media (max-width: 576px) {
+    /* Mobile grid - Single column for very small screens */
+    .product-grid {
+      grid-template-columns: 1fr;
+      gap: 15px;
+    }
+
+    .product-media-container {
+      height: 220px; /* Taller for single column */
+    }
+
+    .product-info {
+      padding: 12px;
+    }
+
+    .product-title {
+      font-size: 0.9rem;
+      height: 2.4em;
+    }
+
+    .btn-add-cart {
+      font-size: 0.85rem;
+      padding: 8px;
+    }
+
+    .filter-sidebar {
+      padding: 20px;
+    }
+
+    /* Single column layout for product card */
+    .product-card {
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Adjust filter sections for small screens */
+    .filter-section {
+      margin-bottom: 20px;
+      padding-bottom: 20px;
+    }
+  }
+
+  /* Extra Small Mobile View (400px and below) */
+  @media (max-width: 400px) {
+    .product-grid {
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+
+    .product-media-container {
+      height: 200px;
+    }
+
+    .price-inputs {
+      flex-direction: column;
+    }
+
+    .product-actions {
+      flex-direction: column;
+    }
+
+    .btn-add-cart,
+    .btn-quick-view {
+      width: 100%;
+    }
+
+    /* Adjust badge sizes for very small screens */
+    .badge {
+      padding: 4px 8px;
+      font-size: 0.7rem;
+    }
+
+    /* Smaller text for very small screens */
+    .product-category {
+      font-size: 0.75rem;
+    }
+
+    .product-stock {
+      font-size: 0.8rem;
+    }
+  }
+
+  /* Landscape mobile optimization */
+  @media (max-height: 500px) and (orientation: landscape) {
+    .filter-sidebar {
+      position: relative;
+      top: auto;
+      max-height: 300px;
+      overflow-y: auto;
+    }
+
+    .product-media-container {
+      height: 150px;
+    }
   }
 </style>
+{% endblock %}
 
-{% endblock %} {% block content %}
+{% block content %}
 <!-- Loading Overlay -->
 <div class="loading-overlay" id="loadingOverlay">
   <div class="loading-spinner"></div>
 </div>
 
 <!-- Shop Container -->
-<div class="container-fluid px-4 py-4">
+<div class="container-fluid px-3 px-md-4 py-4">
   <div class="shop-container">
     <!-- Filter Sidebar -->
     <aside class="filter-sidebar" id="filterSidebar">
@@ -888,10 +1098,7 @@
       <div class="filter-section">
         <div class="filter-title" onclick="toggleFilter('availability')">
           <span>{% trans "Availability" %}</span>
-          <i
-            class="fas fa-chevron-down collapse-icon"
-            id="availabilityIcon"
-          ></i>
+          <i class="fas fa-chevron-down collapse-icon" id="availabilityIcon"></i>
         </div>
         <div class="filter-content" id="availabilityContent">
           <label class="checkbox-item">
@@ -909,7 +1116,7 @@
       <button
         class="btn-add-cart"
         onclick="clearFilters()"
-        style="margin-top: 20px"
+        style="margin-top: 20px; width: 100%;"
       >
         <i class="fas fa-times"></i> {% trans "Clear All Filters" %}
       </button>
@@ -917,6 +1124,9 @@
 
     <!-- Main Content -->
     <main class="shop-main">
+      <!-- Mobile Filter Toggle Button (hidden on desktop) -->
+      <div id="mobileFilterToggleContainer"></div>
+      
       <!-- Shop Header -->
       <div class="shop-header">
         <div class="results-info" id="resultsInfo">
@@ -929,17 +1139,13 @@
           <option value="price_high">{% trans "Price: High to Low" %}</option>
           <option value="name">{% trans "Name A-Z" %}</option>
           <option value="popular">{% trans "Most Popular" %}</option>
-          <option value="rating">{% trans "Highest Rated" %}</option>
         </select>
       </div>
 
       <!-- Products Grid -->
       <div class="product-grid" id="productsGrid">
         <!-- Products will be loaded here -->
-        <div
-          class="loading-placeholder"
-          style="text-align: center; padding: 50px"
-        >
+        <div class="loading-placeholder" style="text-align: center; padding: 50px; grid-column: 1 / -1;">
           <div class="spinner-border text-primary" role="status">
             <span class="visually-hidden">{% trans "Loading..." %}</span>
           </div>
@@ -965,7 +1171,9 @@
     </video>
   </div>
 </div>
-{% endblock %} {% block extra_js %}
+{% endblock %}
+
+{% block extra_js %}
 <script>
   // Shop page specific JavaScript
   // No cart functions here - they're in base.html
@@ -992,12 +1200,14 @@
       max: 1000,
     },
     mediaTimers: {}, // Store timers for auto-scrolling galleries
+    mobileFiltersOpen: false, // Track mobile filter state
   };
 
   // Initialize on page load
   document.addEventListener("DOMContentLoaded", async function () {
     await loadShopData();
     setupEventListeners();
+    setupMobileFilters();
 
     // Close modals with ESC
     document.addEventListener("keydown", function (e) {
@@ -1005,6 +1215,67 @@
         closeVideoModal();
       }
     });
+  });
+
+  // Setup mobile filters toggle
+  function setupMobileFilters() {
+    if (window.innerWidth <= 1024) {
+      const toggleContainer = document.getElementById('mobileFilterToggleContainer');
+      const filterToggleBtn = document.createElement('button');
+      filterToggleBtn.className = 'filter-mobile-toggle';
+      filterToggleBtn.id = 'mobileFilterToggle';
+      filterToggleBtn.innerHTML = `
+        <span>{% trans "Filters" %}</span>
+        <i class="fas fa-filter"></i>
+      `;
+      filterToggleBtn.onclick = toggleMobileFilters;
+      
+      toggleContainer.appendChild(filterToggleBtn);
+      
+      // Initially hide filters on mobile
+      document.getElementById('filterSidebar').style.display = 'none';
+    }
+  }
+
+  // Toggle mobile filters
+  function toggleMobileFilters() {
+    const filterSidebar = document.getElementById('filterSidebar');
+    const toggleBtn = document.getElementById('mobileFilterToggle');
+    
+    shopState.mobileFiltersOpen = !shopState.mobileFiltersOpen;
+    
+    if (shopState.mobileFiltersOpen) {
+      filterSidebar.classList.add('mobile-open');
+      filterSidebar.style.display = 'block';
+      toggleBtn.innerHTML = `
+        <span>{% trans "Hide Filters" %}</span>
+        <i class="fas fa-times"></i>
+      `;
+      
+      // Scroll to filters
+      filterSidebar.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+      filterSidebar.classList.remove('mobile-open');
+      filterSidebar.style.display = 'none';
+      toggleBtn.innerHTML = `
+        <span>{% trans "Filters" %}</span>
+        <i class="fas fa-filter"></i>
+      `;
+    }
+  }
+
+  // Handle window resize
+  window.addEventListener('resize', function() {
+    if (window.innerWidth > 1024) {
+      // On desktop, always show filters
+      document.getElementById('filterSidebar').style.display = 'block';
+      shopState.mobileFiltersOpen = false;
+    } else {
+      // On mobile, hide filters if they were open
+      if (!shopState.mobileFiltersOpen) {
+        document.getElementById('filterSidebar').style.display = 'none';
+      }
+    }
   });
 
   // Load shop data
@@ -1090,7 +1361,7 @@
 
     html += `
     <li class="category-item ${isAllActive ? "active" : ""}"
-        onclick="filterByCategory('all')">
+        onclick="filterByCategory('all'); closeMobileFiltersIfOpen();">
         <span class="category-name">
             <i class="fas fa-boxes"></i>
             {% trans "All Categories" %}
@@ -1104,7 +1375,7 @@
       const isActive = shopState.filters.category === category.slug;
       html += `
                   <li class="category-item ${isActive ? "active" : ""}"
-                      onclick="filterByCategory('${category.slug}')">
+                      onclick="filterByCategory('${category.slug}'); closeMobileFiltersIfOpen();">
                       <span class="category-name">
                           <i class="fas fa-folder"></i>
                           ${category.name}
@@ -1115,6 +1386,13 @@
     });
 
     container.innerHTML = html;
+  }
+
+  // Close mobile filters after selecting a category (mobile only)
+  function closeMobileFiltersIfOpen() {
+    if (window.innerWidth <= 1024 && shopState.mobileFiltersOpen) {
+      toggleMobileFilters();
+    }
   }
 
   // Update products grid - uses base.html's cart functions
@@ -1177,8 +1455,6 @@
       }
       // ============================================================
 
-      const rating = product.rating || 4.5;
-      const stars = generateStars(rating);
 
       const hasVideo =
         product.media_items &&
@@ -1332,7 +1608,7 @@
               }
               ${
                 !inStock
-                  ? '<span class="badge badge-sale">{% trans "Out of Stock" %}</span>'
+                  ? '<span class="badge badge-sale">{% trans "Cannot Order" %}</span>'
                   : ""
               }
             </div>
@@ -1348,25 +1624,25 @@
               <h3 class="product-title">${product.name}</h3>
             </a>
 
-            <div class="product-rating">
-              <div class="stars">${stars}</div>
-              <span class="rating-count">(${product.review_count || 0})</span>
-            </div>
+
 
             <div class="product-price">
               ${priceHtml}
             </div>
 
             <div class="product-stock ${inStock ? "stock-in" : "stock-out"}">
-              <i class="fas ${
-                inStock ? "fa-check-circle" : "fa-times-circle"
-              }"></i>
-              ${
-                inStock
-                  ? `${product.quantity_available || 0} {% trans "in stock" %}`
-                  : '{% trans "Out of stock" %}'
-              }
-            </div>
+  <i class="fas ${inStock ? "fa-check-circle" : "fa-times-circle"}"></i>
+  ${
+    inStock
+      ? `${
+          product.show_quantity
+            ? `${product.quantity_available || 0} {% trans "in stock" %}`
+            : `{% trans "In stock" %}`
+        }`
+      : '{% trans "Cannot Order" %}'
+  }
+</div>
+
 
             <div class="product-actions">
               ${actionHtml}
@@ -1425,12 +1701,12 @@
       <div class="cart-qty-control" data-product-id="${productId}"
            style="display:flex;justify-content:center;align-items:center;gap:12px;margin-top:10px;width:100%;">
         <button class="qty-btn minus"
-                style="background:#ff6b6b;color:white;border:none;border-radius:50%;width:36px;height:36px;font-weight:bold;font-size:1.2rem;cursor:pointer;box-shadow:0 2px 5px rgba(0,0,0,0.2);display:flex;align-items:center;justify-content:center;"
-                onclick="event.stopPropagation(); changeCartQuantity(${productId}, -1)">-</button>
+                    style="background:#ff6b6b;color:white;border:none;border-radius:50%;width:36px;height:36px;font-weight:bold;font-size:1.2rem;cursor:pointer;box-shadow:0 2px 5px rgba(0,0,0,0.2);display:flex;align-items:center;justify-content:center;"
+                    onclick="event.stopPropagation(); changeCartQuantity(${productId}, -1)">-</button>
         <span class="qty-display" style="font-weight:bold;font-size:1.1rem;min-width:30px;text-align:center;">${qtyInCart}</span>
         <button class="qty-btn plus"
-                style="background:#4caf50;color:white;border:none;border-radius:50%;width:36px;height:36px;font-weight:bold;font-size:1.2rem;cursor:pointer;box-shadow:0 2px 5px rgba(0,0,0,0.2);display:flex;align-items:center;justify-content:center;"
-                onclick="event.stopPropagation(); changeCartQuantity(${productId}, 1)">+</button>
+                    style="background:#4caf50;color:white;border:none;border-radius:50%;width:36px;height:36px;font-weight:bold;font-size:1.2rem;cursor:pointer;box-shadow:0 2px 5px rgba(0,0,0,0.2);display:flex;align-items:center;justify-content:center;"
+                    onclick="event.stopPropagation(); changeCartQuantity(${productId}, 1)">+</button>
       </div>
     `;
   }
@@ -1752,6 +2028,11 @@
         updatePagination();
         updateResultsInfo();
         updateCategories();
+        
+        // Close mobile filters if open
+        if (window.innerWidth <= 1024 && shopState.mobileFiltersOpen) {
+          toggleMobileFilters();
+        }
       }
     } catch (error) {
       console.error("Error applying filters:", error);
@@ -2238,23 +2519,7 @@
   }
 
   // Helper function for star rating
-  function generateStars(rating) {
-    let stars = "";
-    const fullStars = Math.floor(rating);
-    const hasHalfStar = rating % 1 >= 0.5;
-
-    for (let i = 1; i <= 5; i++) {
-      if (i <= fullStars) {
-        stars += '<i class="fas fa-star"></i>';
-      } else if (i === fullStars + 1 && hasHalfStar) {
-        stars += '<i class="fas fa-star-half-alt"></i>';
-      } else {
-        stars += '<i class="far fa-star"></i>';
-      }
-    }
-
-    return stars;
-  }
+  
 
   // Setup event listeners
   function setupEventListeners() {
@@ -2289,5 +2554,7 @@
   window.goToMedia = goToMedia;
   window.openProduct = openProduct;
   window.changeCartQuantity = changeCartQuantity;
+  window.toggleMobileFilters = toggleMobileFilters;
+  window.closeMobileFiltersIfOpen = closeMobileFiltersIfOpen;
 </script>
 {% endblock %}

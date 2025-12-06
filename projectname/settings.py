@@ -27,8 +27,12 @@ SECRET_KEY = 'django-insecure-@v&qxtrk1@372)1wolmf_85_8(04t*azx!9v%+7wpydywlp)d5
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+handler404 = 'main.views.t404_view'
 
-ALLOWED_HOSTS = []
+
+ALLOWED_HOSTS = [
+    '192.168.0.37',
+]
 
 
 # Application definition
