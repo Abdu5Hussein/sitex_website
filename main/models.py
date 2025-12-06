@@ -50,6 +50,15 @@ class Product(models.Model):
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, blank=True, related_name='products')
     discount_percentage = models.DecimalField(max_digits=5, decimal_places=2, null=True, blank=True,default=0.00)  # New field
 
+    @property
+    def discounted_price(self):
+        """
+        Returns price after applying discount_percentage.
+        If no valid discount, returns the original price.
+        """
+        if self.price and self.discount_percentage and 0 < self.discount_percentage < 100:
+            return self.price * (Decimal('1') - Decimal(self.discount_percentage) / Decimal('100'))
+        return self.price
 
     def __str__(self):
         return self.name

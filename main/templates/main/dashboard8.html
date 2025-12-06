@@ -1,4 +1,4 @@
-{% extends 'main/base.html' %} {% load static i18n %}
+{% extends 'main/base.html' %} {% load i18n %}
 <!-- prettier-ignore -->
 {% block title %}{% trans "Admin Dashboard - AWFERLK Solutions" %}{% endblock %}
 
@@ -244,12 +244,6 @@
                 >
                   {% trans "View Items" %}
                 </button>
-                <button
-                  class="btn btn-sm btn-outline-success ms-2"
-                  onclick="printInvoice({{ invoice.id }})"
-                >
-                  {% trans "Print" %}
-                </button>
               </td>
             </tr>
 
@@ -286,10 +280,7 @@
                         <!-- prettier-ignore -->
                         <td>
                           {% if item.discount_percentage %}
-                          {{ item.discount_percentage }}%
-                          {% else %}
-                           0%
-                          {% endif %}
+                          {{ item.discount_percentage }}% {% else %} 0% {% endif %}
                         </td>
                         <!-- prettier-ignore -->
                         {# Discounted price per unit (already stored in item.price) #}
@@ -2246,126 +2237,6 @@
     </div>
   </div>
 </div>
-<div id="printableArea" style="display: none">
-  {% load static %} {% for invoice in invoices %}
-  <div
-    id="invoice-{{ invoice.id }}"
-    style="
-      padding: 20px;
-      font-family: Arial, sans-serif;
-      direction: rtl;
-      text-align: right;
-      background: #fff;
-      color: #333;
-    "
-  >
-    <!-- Header -->
-    <div
-      style="
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 20px;
-      "
-    >
-      <img
-        src="{{ request.scheme }}://{{ request.get_host }}{% static 'main/img/awferlek-logo-no-bg.png' %}"
-        alt="Logo"
-        style="height: 60px"
-      />
-      <div style="text-align: right">
-        <h2 style="margin: 0">فاتورة</h2>
-        <p style="margin: 0">#{{ invoice.id }}</p>
-      </div>
-    </div>
-
-    <!-- Customer Info -->
-    <div style="margin-bottom: 20px; line-height: 1.5">
-      <p><strong>الاسم:</strong> {{ invoice.name|default:"ضيف" }}</p>
-      <p><strong>المدينة:</strong> {{ invoice.city }}</p>
-      <p><strong>العنوان:</strong> {{ invoice.address }}</p>
-      <p><strong>الهاتف:</strong> {{ invoice.phone }}</p>
-    </div>
-
-    <!-- Items Table -->
-    <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px">
-      <thead>
-        <tr style="background: #f5f5f5; text-align: center">
-          <th style="border: 1px solid #ccc; padding: 8px">المنتج</th>
-          <th style="border: 1px solid #ccc; padding: 8px">رقم المنتج</th>
-          <th style="border: 1px solid #ccc; padding: 8px">الكمية</th>
-          <th style="border: 1px solid #ccc; padding: 8px">السعر الأصلي</th>
-          <th style="border: 1px solid #ccc; padding: 8px">نسبة الخصم %</th>
-          <th style="border: 1px solid #ccc; padding: 8px">السعر بعد الخصم</th>
-          <th style="border: 1px solid #ccc; padding: 8px">المجموع</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for item in invoice.items.all %}
-        <tr style="text-align: center">
-          <td style="border: 1px solid #ccc; padding: 6px">
-            {{ item.name|default:"-" }}
-          </td>
-          <td style="border: 1px solid #ccc; padding: 6px">
-            {{ item.product_id }}
-          </td>
-          <td style="border: 1px solid #ccc; padding: 6px">
-            {{ item.quantity }}
-          </td>
-          <td style="border: 1px solid #ccc; padding: 6px">
-            ${{ item.original_price }}
-          </td>
-          <!-- prettier-ignore -->
-          <td style="border: 1px solid #ccc; padding: 6px">
-            {% if item.discount_percentage %}
-            {{ item.discount_percentage }}%
-            {% else %}0%{% endif %}
-          </td>
-          <td style="border: 1px solid #ccc; padding: 6px">
-            ${{ item.price }}
-          </td>
-          <td style="border: 1px solid #ccc; padding: 6px">
-            ${{ item.subtotal }}
-          </td>
-        </tr>
-        {% endfor %}
-        <!-- prettier-ignore -->
-        {% if invoice.delivery_fee and invoice.delivery_fee|floatformat:2 != '0.00' %}
-        <tr style="text-align: center; background: #fffbdd">
-          <td style="border: 1px solid #ccc; padding: 6px">رسوم التوصيل</td>
-          <td style="border: 1px solid #ccc; padding: 6px">—</td>
-          <td style="border: 1px solid #ccc; padding: 6px">1</td>
-          <td style="border: 1px solid #ccc; padding: 6px">
-            ${{ invoice.delivery_fee }}
-          </td>
-          <td style="border: 1px solid #ccc; padding: 6px">0%</td>
-          <td style="border: 1px solid #ccc; padding: 6px">
-            ${{ invoice.delivery_fee }}
-          </td>
-          <td style="border: 1px solid #ccc; padding: 6px">
-            ${{ invoice.delivery_fee }}
-          </td>
-        </tr>
-        {% endif %}
-      </tbody>
-    </table>
-
-    <!-- Total -->
-    <div
-      style="
-        text-align: right;
-        font-weight: bold;
-        font-size: 16px;
-        margin-bottom: 20px;
-      "
-    >
-      المجموع الكلي: ${{ invoice.total }}
-    </div>
-
-    <hr style="border: 1px dashed #ccc; margin: 20px 0" />
-  </div>
-  {% endfor %}
-</div>
 
 <!-- Confirmation Modal -->
 <div
@@ -3397,36 +3268,6 @@
 
     bannerManager.init();
   });
-
-  function printInvoice(invoiceId) {
-    // Get the invoice HTML
-    var content = document.getElementById("invoice-" + invoiceId).innerHTML;
-
-    // Open new window for printing
-    var printWindow = window.open("", "", "height=600,width=800");
-    printWindow.document.write('<html dir="rtl"><head><title>فاتورة</title>');
-    printWindow.document.write("<style>");
-    printWindow.document.write(
-      "body { font-family: Arial, sans-serif; direction: rtl; text-align: right; }"
-    );
-    printWindow.document.write(
-      "table { width: 100%; border-collapse: collapse; margin-top: 10px; }"
-    );
-    printWindow.document.write(
-      "th, td { border: 1px solid #aaa; padding: 5px; }"
-    );
-    printWindow.document.write("th { background-color: #f5f5f5; }");
-    printWindow.document.write("</style>");
-    printWindow.document.write("</head><body>");
-    printWindow.document.write(content);
-    printWindow.document.write("</body></html>");
-    printWindow.document.close();
-
-    // Wait a bit then print
-    printWindow.focus();
-    printWindow.print();
-    //printWindow.close();
-  }
 </script>
 
 <style>

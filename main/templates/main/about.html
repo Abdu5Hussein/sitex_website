@@ -1,6 +1,8 @@
 {% extends 'main/base.html' %} {% load i18n %}
 <!-- prettier-ignore -->
-{% block title %}{% trans "About Us - AWFERLK Solutions" %}{% endblock %} {% block content %}
+{% block title %}
+{% trans "About Us - AWFERLK" %}{% endblock %} {% block content %}
+
 <!-- Page Header -->
 <section class="py-5 bg-primary text-white">
   <div class="container">
@@ -10,7 +12,7 @@
         <p class="lead mb-0">
           <!-- prettier-ignore -->
           {% blocktrans %}
-          Pioneering the future of technology solutions since 2019
+          Your trusted destination for modern, reliable, and affordable online shopping.
           {% endblocktrans %}
         </p>
       </div>
@@ -28,44 +30,44 @@
         <p class="text-muted mb-4">
           <!-- prettier-ignore -->
           {% blocktrans %}
-          Founded in 2019, AWFERLK Solutions emerged from a simple vision:
-          to bridge the gap between cutting-edge technology and business needs.
-          What started as a small team of passionate developers has grown into
-          a full-service technology partner for businesses worldwide.
+          AWFERLK began with one simple belief: shopping should be easy, fast, and enjoyable.
+          Since 2020, we have grown from a small online shop into a trusted marketplace,
+          offering customers a seamless shopping experience with quality products, great prices,
+          and reliable service.
           {% endblocktrans %}
         </p>
 
         <p class="text-muted mb-4">
           <!-- prettier-ignore -->
           {% blocktrans %}
-          We believe that technology should empower businesses, not complicate
-          them. Our approach combines deep technical expertise with a clear
-          understanding of business objectives to deliver solutions that drive
-          real results.
+          Today, AWFERLK connects thousands of customers with fashion, electronics,
+          accessories, home essentials, beauty products, and more—handpicked to ensure
+          quality and value. Our mission is to make online shopping convenient, trustworthy,
+          and accessible for everyone.
           {% endblocktrans %}
         </p>
-
+        <!--
         <div class="d-flex gap-3 flex-wrap">
           <div class="text-center">
-            <h4 class="fw-bold text-primary">5+</h4>
-            <p class="text-muted mb-0">{% trans "Years Experience" %}</p>
+            <h4 class="fw-bold text-primary">4+</h4>
+            <p class="text-muted mb-0">{% trans "Years of Service" %}</p>
           </div>
           <div class="text-center">
-            <h4 class="fw-bold text-primary">150+</h4>
-            <p class="text-muted mb-0">{% trans "Projects" %}</p>
+            <h4 class="fw-bold text-primary">10,000+</h4>
+            <p class="text-muted mb-0">{% trans "Products" %}</p>
           </div>
           <div class="text-center">
-            <h4 class="fw-bold text-primary">50+</h4>
-            <p class="text-muted mb-0">{% trans "Clients" %}</p>
+            <h4 class="fw-bold text-primary">5,000+</h4>
+            <p class="text-muted mb-0">{% trans "Happy Customers" %}</p>
           </div>
-        </div>
+        </div>-->
       </div>
 
       <div class="col-lg-6" data-aos="fade-left">
         <div class="modern-card p-4">
           <img
-            src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-            alt="{% trans 'Our Team' %}"
+            src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=800&q=80"
+            alt="{% trans 'Shopping Experience' %}"
             class="img-fluid rounded-3"
           />
         </div>
@@ -78,37 +80,38 @@
 <section class="py-5 section-alt">
   <div class="container">
     <div class="row g-4">
+      <!-- Mission -->
       <div class="col-lg-6" data-aos="fade-up">
         <div class="modern-card h-100 p-4">
           <div class="text-center mb-4">
-            <i class="fas fa-bullseye fa-3x text-primary mb-3"></i>
+            <i class="fas fa-shopping-cart fa-3x text-primary mb-3"></i>
             <h3 class="fw-bold">{% trans "Our Mission" %}</h3>
           </div>
           <p class="text-muted">
             <!-- prettier-ignore -->
             {% blocktrans %}
-            To empower businesses with innovative, scalable, and secure
-            technology solutions that drive growth, efficiency, and competitive
-            advantage in the digital age.
+            To provide a fast, secure, and enjoyable online shopping experience where customers
+            can find everything they need—delivered with quality, affordability, and trust.
             {% endblocktrans %}
           </p>
           <ul class="list-unstyled text-muted">
             <li class="mb-2">
               <i class="fas fa-check-circle text-success me-2"></i>
-              {% trans "Deliver exceptional value" %}
+              {% trans "High-quality products" %}
             </li>
             <li class="mb-2">
               <i class="fas fa-check-circle text-success me-2"></i>
-              {% trans "Foster innovation" %}
+              {% trans "Competitive and fair prices" %}
             </li>
             <li class="mb-2">
               <i class="fas fa-check-circle text-success me-2"></i>
-              {% trans "Ensure client success" %}
+              {% trans "Exceptional customer care" %}
             </li>
           </ul>
         </div>
       </div>
 
+      <!-- Vision -->
       <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
         <div class="modern-card h-100 p-4">
           <div class="text-center mb-4">
@@ -118,23 +121,22 @@
           <p class="text-muted">
             <!-- prettier-ignore -->
             {% blocktrans %}
-            To be the leading technology partner for businesses seeking digital
-            transformation, recognized for our innovation, reliability, and
-            commitment to client success.
+            To become the region’s most loved online shopping destination—known for innovation,
+            trust, and a world-class customer experience.
             {% endblocktrans %}
           </p>
           <ul class="list-unstyled text-muted">
             <li class="mb-2">
               <i class="fas fa-star text-warning me-2"></i>
-              {% trans "Global technology leadership" %}
+              {% trans "Trusted Shopping Platform" %}
             </li>
             <li class="mb-2">
               <i class="fas fa-star text-warning me-2"></i>
-              {% trans "Sustainable innovation" %}
+              {% trans "Continuous Innovation" %}
             </li>
             <li class="mb-2">
               <i class="fas fa-star text-warning me-2"></i>
-              {% trans "Industry transformation" %}
+              {% trans "Expanding Product Variety" %}
             </li>
           </ul>
         </div>
@@ -151,7 +153,7 @@
       <p class="lead text-muted">
         <!-- prettier-ignore -->
         {% blocktrans %}
-        The principles that guide everything we do
+        The values that define our brand and guide every shopping experience.
         {% endblocktrans %}
       </p>
     </div>
@@ -159,13 +161,12 @@
     <div class="row g-4">
       <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
         <div class="modern-card h-100 p-4 text-center">
-          <i class="fas fa-lightbulb fa-2x text-warning mb-3"></i>
-          <h5 class="fw-bold mb-3">{% trans "Innovation" %}</h5>
+          <i class="fas fa-gem fa-2x text-warning mb-3"></i>
+          <h5 class="fw-bold mb-3">{% trans "Quality" %}</h5>
           <p class="text-muted">
             <!-- prettier-ignore -->
             {% blocktrans %}
-            We constantly push boundaries and explore new technologies to
-            deliver cutting-edge solutions.
+            We carefully select every product to ensure the best quality for our customers.
             {% endblocktrans %}
           </p>
         </div>
@@ -174,12 +175,11 @@
       <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
         <div class="modern-card h-100 p-4 text-center">
           <i class="fas fa-handshake fa-2x text-success mb-3"></i>
-          <h5 class="fw-bold mb-3">{% trans "Integrity" %}</h5>
+          <h5 class="fw-bold mb-3">{% trans "Trust" %}</h5>
           <p class="text-muted">
             <!-- prettier-ignore -->
             {% blocktrans %}
-            We build trust through transparency, honesty, and delivering on our
-            promises.
+            From product descriptions to delivery, we believe in transparency and honesty.
             {% endblocktrans %}
           </p>
         </div>
@@ -188,12 +188,11 @@
       <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
         <div class="modern-card h-100 p-4 text-center">
           <i class="fas fa-users fa-2x text-primary mb-3"></i>
-          <h5 class="fw-bold mb-3">{% trans "Collaboration" %}</h5>
+          <h5 class="fw-bold mb-3">{% trans "Customer First" %}</h5>
           <p class="text-muted">
             <!-- prettier-ignore -->
             {% blocktrans %}
-            We work as partners with our clients, fostering strong relationships
-            for mutual success.
+            Your satisfaction comes first. Our team is always ready to help and support.
             {% endblocktrans %}
           </p>
         </div>
@@ -207,22 +206,24 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-8 mx-auto" data-aos="zoom-in">
-        <h3 class="fw-bold mb-3">{% trans "Join Our Journey" %}</h3>
+        <h3 class="fw-bold mb-3">{% trans "Shop with Confidence" %}</h3>
         <p class="lead mb-4">
           <!-- prettier-ignore -->
           {% blocktrans %}
-          Be part of our success story. Let's build something amazing together.
+          Join thousands of customers who trust AWFERLK for quality, convenience, and great value.
+          Your next favorite product is just a click away!
           {% endblocktrans %}
         </p>
         <a
-          href="{% url 'contact' %}"
+          href="{% url 'shop' %}"
           class="btn btn-primary-modern btn-lg btn-modern"
         >
-          <i class="fas fa-paper-plane me-2"></i>
-          {% trans "Get Started" %}
+          <i class="fas fa-shopping-bag me-2"></i>
+          {% trans "Start Shopping" %}
         </a>
       </div>
     </div>
   </div>
 </section>
+
 {% endblock %}

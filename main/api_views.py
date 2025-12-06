@@ -41,8 +41,7 @@ def create_product(request):
             status=status.HTTP_403_FORBIDDEN
         )
 
-    # --- Make a plain mutable dict from request.data (no file lists) ---
-    # request.data is a DRF QueryDict-like; this turns it into a normal dict of scalars
+    # --- Make a plain dict from request.data ---
     data = {k: v for k, v in request.data.items()}
 
     # --- Category handling ---
@@ -52,46 +51,36 @@ def create_product(request):
             category_instance = Category.objects.get(id=int(category_id))
             data['category'] = category_instance.id
         except Category.DoesNotExist:
-            return Response(
-                {'error': 'Invalid category'},
-                status=status.HTTP_400_BAD_REQUEST
-            )
+            return Response({'error': 'Invalid category'}, status=status.HTTP_400_BAD_REQUEST)
 
-    # --- Images handling (from request.FILES only) ---
+    # --- Images handling ---
     uploaded_images = request.FILES.getlist('images')
+    main_image_file = uploaded_images[0] if uploaded_images else None
+    extra_image_files = uploaded_images[1:] if uploaded_images else []
 
-    main_image_file = None
-    extra_image_files = []
+    # --- Video handling (optional) ---
+    video_file = request.FILES.get('video')  # will be None if not provided
 
-    if uploaded_images:
-        main_image_file = uploaded_images[0]
-        extra_image_files = uploaded_images[1:]
-
-    # IMPORTANT: make sure "images" is NOT in data (it's not, because we built data manually)
-    # If you're paranoid, you can still do:
     data.pop('images', None)
+    data.pop('video', None)  # remove if serializer doesn't expect it
 
     serializer = ProductSerializer(data=data)
 
     with transaction.atomic():
         if serializer.is_valid():
-            # Pass the main image explicitly to save()
-            if main_image_file is not None:
-                product = serializer.save(image=main_image_file)
-            else:
-                product = serializer.save()
+            product_kwargs = {}
+            if main_image_file:
+                product_kwargs['image'] = main_image_file
+            if video_file:
+                product_kwargs['video'] = video_file  # only pass if present
 
-            # Create additional image records
+            product = serializer.save(**product_kwargs)
+
+            # Extra images
             for img_file in extra_image_files:
                 images.objects.create(product=product, image=img_file)
 
-            return Response(
-                {
-                    'success': True,
-                    'id': product.id,
-                },
-                status=status.HTTP_201_CREATED,
-            )
+            return Response({'success': True, 'id': product.id}, status=status.HTTP_201_CREATED)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
@@ -1007,6 +996,7 @@ def shop_page_data(request):
                 'sold_count': 125,
                 'is_new': product.id > Product.objects.count() - 50,  # Last 50 products are new
                 'discount': None,
+                'discount_percentage': float(getattr(product, 'discount_percentage', 0) or 0),
             })
 
         # Serialize categories

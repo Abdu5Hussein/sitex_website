@@ -1,6 +1,8 @@
 <!-- templates/main/home.html -->
-{% extends 'main/base.html' %} {% load static i18n %} {% block title %}{% trans
-"AWFERLK - Modern Online Shopping" %}{% endblock %} {% block extra_head %}
+<!-- prettier-ignore -->
+{% extends 'main/base.html' %} {% load static i18n %}
+{% block title %}{% trans "AWFERLK - Modern Online Shopping" %}
+{% endblock %} {% block extra_head %}
 <style>
   :root {
     /* Modern Color Palette */
@@ -196,13 +198,17 @@
     margin: 40px 0;
   }
 
+  /* Product Card */
+  /* Product Card */
   .product-card {
-    background: white;
+    background: var(--card-bg);
     border-radius: var(--radius-lg);
     overflow: hidden;
     position: relative;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     box-shadow: var(--shadow-sm);
+    border: 1px solid var(--card-border-color);
+    color: var(--text-color); /* dynamic text color */
   }
 
   .product-card:hover {
@@ -210,11 +216,12 @@
     box-shadow: var(--shadow-xl);
   }
 
+  /* Image Container */
   .product-image-container {
     position: relative;
     height: 320px;
     overflow: hidden;
-    background: var(--gray-100);
+    background: var(--card-bg); /* dynamic */
   }
 
   .product-image {
@@ -228,6 +235,7 @@
     transform: scale(1.05);
   }
 
+  /* Badges */
   .product-badges {
     position: absolute;
     top: 15px;
@@ -236,6 +244,194 @@
     flex-direction: column;
     gap: 5px;
     z-index: 2;
+  }
+
+  .badge {
+    padding: 6px 12px;
+    border-radius: var(--radius-full);
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .badge-new {
+    background: #00c853;
+  }
+
+  .badge-sale {
+    background: var(--primary);
+  }
+
+  .badge-hot {
+    background: var(--warning);
+  }
+
+  /* Product Info */
+
+  .product-category {
+    font-size: 0.85rem;
+    color: var(--text-color);
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .product-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-color);
+    margin-bottom: 10px;
+    line-height: 1.4;
+    height: 2.8em;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+
+  /* Price */
+  .product-price {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+  }
+
+  .current-price {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--primary);
+  }
+
+  .original-price {
+    font-size: 1rem;
+    color: var(--text-color);
+    text-decoration: line-through;
+  }
+
+  /* Add to Cart Button */
+  .add-to-cart-btn {
+    width: 100%;
+    padding: 12px;
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .add-to-cart-btn:hover:not(:disabled) {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+  }
+
+  .add-to-cart-btn:disabled {
+    background: var(--secondary);
+    cursor: not-allowed;
+  }
+
+  .badge {
+    padding: 6px 12px;
+    border-radius: var(--radius-full);
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .badge-new {
+    background: var(--success);
+  }
+
+  .badge-sale {
+    background: var(--primary);
+  }
+
+  .badge-hot {
+    background: var(--warning);
+  }
+
+  /* Product Info */
+  .product-info {
+    padding: 20px;
+    color: var(--text-color); /* dynamic text color */
+    background-color: var(--bg-color);
+  }
+
+  .product-category {
+    font-size: 0.85rem;
+    color: var(--text-color);
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .product-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-color);
+    margin-bottom: 10px;
+    line-height: 1.4;
+    height: 2.8em;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+
+  .product-price {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+  }
+
+  .current-price {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--primary);
+  }
+
+  .original-price {
+    font-size: 1rem;
+    color: var(--text-color);
+    text-decoration: line-through;
+  }
+
+  /* Add to Cart Button */
+  .add-to-cart-btn {
+    width: 100%;
+    padding: 12px;
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .add-to-cart-btn:hover:not(:disabled) {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+  }
+
+  .add-to-cart-btn:disabled {
+    background: var(--secondary);
+    cursor: not-allowed;
   }
 
   .badge {
@@ -300,89 +496,6 @@
 
   .product-info {
     padding: 20px;
-  }
-
-  .product-category {
-    font-size: 0.85rem;
-    color: var(--gray-500);
-    margin-bottom: 5px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-  }
-
-  .product-title {
-    font-size: 1rem;
-    font-weight: 600;
-    color: var(--gray-800);
-    margin-bottom: 10px;
-    line-height: 1.4;
-    height: 2.8em;
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-  }
-
-  .product-rating {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    margin-bottom: 10px;
-  }
-
-  .stars {
-    color: #ffc107;
-    font-size: 0.9rem;
-  }
-
-  .rating-count {
-    font-size: 0.85rem;
-    color: var(--gray-500);
-  }
-
-  .product-price {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 15px;
-  }
-
-  .current-price {
-    font-size: 1.3rem;
-    font-weight: 700;
-    color: var(--primary);
-  }
-
-  .original-price {
-    font-size: 1rem;
-    color: var(--gray-400);
-    text-decoration: line-through;
-  }
-
-  .add-to-cart-btn {
-    width: 100%;
-    padding: 12px;
-    background: var(--primary);
-    color: white;
-    border: none;
-    border-radius: var(--radius-md);
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-  }
-
-  .add-to-cart-btn:hover:not(:disabled) {
-    background: var(--primary-dark);
-    transform: translateY(-2px);
-  }
-
-  .add-to-cart-btn:disabled {
-    background: var(--gray-300);
-    cursor: not-allowed;
   }
 
   /* Modern Search Bar */
@@ -530,13 +643,30 @@
     margin: 60px 0 40px;
   }
 
+  .section-bg {
+    background-color: var(--section-bg, #f8f9fa); /* default light */
+    color: var(--section-text, #000);
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  /* Dark theme overrides */
+  html[data-theme="dark"] .section-bg {
+    --section-bg: #1e293b; /* dark background */
+    --section-text: #fff; /* light text */
+  }
+
   .section-title {
     font-size: 2.5rem;
     font-weight: 800;
-    color: var(--gray-900);
+    color: var(--section-title-color, var(--gray-900));
     margin-bottom: 15px;
     position: relative;
     display: inline-block;
+    transition: color 0.3s ease;
+  }
+
+  html[data-theme="dark"] .section-title {
+    --section-title-color: #f8f8f8;
   }
 
   .section-title::after {
@@ -553,12 +683,17 @@
 
   .section-subtitle {
     font-size: 1.1rem;
-    color: var(--gray-600);
+    color: var(--section-subtitle-color, var(--gray-600));
     max-width: 600px;
     margin: 0 auto;
+    transition: color 0.3s ease;
   }
 
-  /* Product actions row: Qty + Add to Cart (home page) */
+  html[data-theme="dark"] .section-subtitle {
+    --section-subtitle-color: #cfd5e0;
+  }
+
+  /* Product Actions Row (Home page) */
   .product-actions-row {
     display: flex;
     flex-wrap: nowrap;
@@ -681,7 +816,7 @@
 </section>
 
 <!-- Featured Products -->
-<section class="bg-light py-5">
+<section class="section-bg py-5">
   <div class="container">
     <div class="section-header">
       <h2 class="section-title">{% trans "Featured Products" %}</h2>
@@ -916,7 +1051,6 @@
               <button class="qty-btn minus"
                       style="background:#ff6b6b;color:white;border:none;border-radius:50%;width:36px;height:36px;font-weight:bold;font-size:1.2rem;cursor:pointer;box-shadow:0 2px 5px rgba(0,0,0,0.2);display:flex;align-items:center;justify-content:center;"
                       onclick="event.stopPropagation(); changeCartQuantity(${product.id}, -1)">-</button>
-              <span style="font-weight:bold;font-size:1.1rem;min-width:30px;text-align:center;">${qtyInCart}</span>
               <button class="qty-btn plus"
                       style="background:#4caf50;color:white;border:none;border-radius:50%;width:36px;height:36px;font-weight:bold;font-size:1.2rem;cursor:pointer;box-shadow:0 2px 5px rgba(0,0,0,0.2);display:flex;align-items:center;justify-content:center;"
                       onclick="event.stopPropagation(); changeCartQuantity(${product.id}, 1)">+</button>
@@ -950,7 +1084,7 @@
                style="border-radius:10px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.1);transition:transform 0.2s;display:flex;flex-direction:column;background:white;">
 
             <a href="/product/${product.id}/" class="product-image-container"
-               style="position:relative;overflow:hidden;display:block;text-decoration:none;color:inherit;">
+               style="position:relative;overflow:hidden;display:block;text-decoration:none;">
               <img src="${image}"
                    alt="${product.name || ""}"
                    class="product-image"
@@ -958,32 +1092,26 @@
               <div class="product-badges" style="position:absolute;top:10px;left:10px;display:flex;gap:5px;">
                 ${
                   inStock
-                    ? '<span style="background:#28a745;color:white;padding:3px 7px;border-radius:5px;font-size:0.7rem;">New</span>'
+                    ? '<span style="background:#28a745;;padding:3px 7px;border-radius:5px;font-size:0.7rem;">New</span>'
                     : ""
                 }
-                <span style="background:#dc3545;color:white;padding:3px 7px;border-radius:5px;font-size:0.7rem;">Hot</span>
               </div>
             </a>
 
             <div class="product-info" style="padding:15px;flex:1;display:flex;flex-direction:column;">
-              <a href="/product/${
-                product.id
-              }/" style="text-decoration:none;color:inherit;">
-                <div class="product-category" style="font-size:0.8rem;color:#888;margin-bottom:5px;">${category}</div>
-                <h3 class="product-title" style="font-size:1rem;font-weight:600;margin:5px 0;height:2.8em;overflow:hidden;line-height:1.4;">
-                  ${product.name || ""}
-                </h3>
+              <a href="/product/${product.id}/" style="text-decoration:none;">
+<div class="product-category" style="font-size:0.8rem; margin-bottom:5px;">
+  ${category}
+</div>
+<h3 class="product-title" style="font-size:1rem; font-weight:600; margin:5px 0; height:2.8em; overflow:hidden; line-height:1.4;">
+  ${product.name || ""}
+</h3>
+
               </a>
 
-              <div class="product-rating" style="display:flex;align-items:center;gap:5px;margin:8px 0;">
-                <div class="stars">${stars}</div>
-                <span style="font-size:0.8rem;color:#555;">(${
-                  product.rating_count || 24
-                })</span>
-              </div>
 
               <div class="product-price" style="margin:8px 0;">
-                <span class="current-price" style="font-size:1.2rem;font-weight:700;color:#6a11cb;">
+                <span class="current-price" style="font-size:1.2rem;font-weight:700;">
                   ${price}
                 </span>
                 ${

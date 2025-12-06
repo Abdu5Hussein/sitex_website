@@ -1,4 +1,4 @@
-{% extends 'main/base.html' %} {% load static %}
+{% extends 'main/base.html' %} {% load static i18n %}
 <!-- prettier-ignore -->
 {# templates/main/product_detail.html #} {% block title %}{{ product.name }} - AWFERLK{% endblock %} {% block extra_css %}
 <style>
@@ -204,7 +204,7 @@
   }
 
   .current-price {
-    font-size: 36px;
+    font-size: 18px;
     font-weight: 700;
     color: var(--primary);
   }
@@ -480,7 +480,7 @@
     }
 
     .current-price {
-      font-size: 28px;
+      font-size: 18px;
     }
 
     .product-actions {
@@ -616,41 +616,41 @@
         >
           <img src="{{ product.image.url }}" alt="{{ product.name }}" />
         </div>
-        {% else %} <div class="thumbnail active"
-        onclick="showImageFromThumb(this, '{% static
-        "main/img/product-default.jpg" %}')">
-        <img
-          src="{% static 'main/img/product-default.jpg' %}"
-          alt="{{ product.name }}"
-        />
-      </div>
-      {% endif %} {# Extra images thumbnails #} {% for img in extra_images %}
-      <div
-        class="thumbnail"
-        onclick="showImageFromThumb(this, '{{ img.image.url }}')"
-      >
-        <img src="{{ img.image.url }}" alt="{{ product.name }} extra image" />
-      </div>
-      {% endfor %} {# Video thumb #} {% if product.video %}
-      <div class="thumbnail" onclick="showVideo()">
+        {% else %}
+        <!-- prettier-ignore -->
+        <div class="thumbnail active"
+            onclick="showImageFromThumb(this, '{% static 'main/img/product-default.jpg' %}')">
+          <img
+            src="{% static 'main/img/product-default.jpg' %}"
+            alt="{{ product.name }}"
+          />
+        </div>
+        {% endif %} {# Extra images thumbnails #} {% for img in extra_images %}
         <div
-          style="
-            width: 100%;
-            height: 100%;
-            background: #000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-          "
+          class="thumbnail"
+          onclick="showImageFromThumb(this, '{{ img.image.url }}')"
         >
-          <i class="fas fa-play-circle" style="font-size: 24px"></i>
+          <img src="{{ img.image.url }}" alt="{{ product.name }} extra image" />
         </div>
+        {% endfor %} {# Video thumb #} {% if product.video %}
+        <div class="thumbnail" onclick="showVideo()">
+          <div
+            style="
+              width: 100%;
+              height: 100%;
+              background: #000;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              color: white;
+            "
+          >
+            <i class="fas fa-play-circle" style="font-size: 24px"></i>
+          </div>
+        </div>
+        {% endif %}
       </div>
-      {% endif %}
     </div>
-        </div>
-
 
     <!-- Product Information -->
     <div class="product-info">
@@ -675,7 +675,13 @@
         <span class="rating-text">4.5 (24 reviews)</span>
       </div>
 
-      <div class="product-price">
+      <div
+        class="product-price"
+        id="productPriceBlock"
+        data-base-price="{{ product.price|default_if_none:'0' }}"
+        data-discount="{{ product.discount_percentage|default_if_none:'0' }}"
+        data-show-price="{{ product.show_price|yesno:'1,0' }}"
+      >
         {% if product.show_price and product.price %}
         <span class="current-price">${{ product.price|floatformat:2 }}</span>
         {% else %}
@@ -707,19 +713,16 @@
         {{ product.description|linebreaks }}
       </div>
 
-
-
       <div class="product-actions">
-  <div id="productCartActions" style="flex: 1 1 auto;"></div>
+        <div id="productCartActions" style="flex: 1 1 auto"></div>
 
-  <button
-    class="btn-secondary"
-    onclick="addToWishlist('{{ product.id }}')"
-  >
-    <i class="far fa-heart"></i> Wishlist
-  </button>
-</div>
-
+        <button
+          class="btn-secondary"
+          onclick="addToWishlist('{{ product.id }}')"
+        >
+          <i class="far fa-heart"></i> Wishlist
+        </button>
+      </div>
 
       <div class="product-meta">
         <div class="meta-item">
@@ -757,7 +760,25 @@
           <h3 class="similar-product-name">{{ similar.name }}</h3>
           {% if similar.show_price and similar.price %}
           <div class="similar-product-price">
-            ${{ similar.price|floatformat:2 }}
+            {% if similar.discount_percentage %}
+            <span class="current-price">
+              ${{ similar.discounted_price|floatformat:2 }}
+            </span>
+            <span
+              class="original-price"
+              style="
+                text-decoration: line-through;
+                font-size: 0.9rem;
+                color: #6b7280;
+                margin-left: 6px;
+              "
+            >
+              ${{ similar.price|floatformat:2 }}
+            </span>
+            <span class="badge bg-danger ms-2" style="font-size: 0.75rem">
+              -{{ similar.discount_percentage }}%
+            </span>
+            {% else %} ${{ similar.price|floatformat:2 }} {% endif %}
           </div>
           {% else %}
           <div class="text-muted">Price on request</div>
@@ -777,12 +798,14 @@
 </div>
 {% endblock %} {% block extra_js %}
 <script>
-  // --- Product variables (from Django context) ---
+  // ========= Product Detail JS (aligned with Shop page cart logic) =========
+
+  // --- Product variables from Django context ---
   const productId = Number('{{ product.id }}');
   const productName = '{{ product.name|escapejs }}';
 
   const rawProductPrice = '{{ product.price|default_if_none:"0" }}';
-  const productPrice = (function () {
+  const productBasePrice = (function () {
     const p = parseFloat(rawProductPrice);
     return isNaN(p) ? 0 : p;
   })();
@@ -793,53 +816,108 @@
   const canOrder = {% if can_order %}true{% else %}false{% endif %};
   const maxQuantity = Number('{% if product.show_quantity %}{{ product.quantity_available|default:99 }}{% else %}99{% endif %}');
 
+  // Discount percentage from Django
+  const discountPercentage = Number('{{ product.discount_percentage|default_if_none:"0" }}') || 0;
+
+  // ========== INIT ==========
   document.addEventListener('DOMContentLoaded', function () {
-    // Init global cart from base.html if available
+    // Always initialize cart if possible (loads from localStorage, etc.)
     if (typeof window.initCart === 'function') {
       window.initCart();
+    } else if (typeof window.cart === 'undefined') {
+      window.cart = [];
     }
 
-    // Render initial Add/Qty UI according to cart content
-    renderProductCartActions();
-
-    // Video controls
-    setupVideoControls();
+    renderProductCartActions();      // If in cart → show [- qty +], else Add button
+    setupVideoControls();            // Video + thumbnails
+    renderDiscountedPriceBlock();    // Price + discount
   });
 
-  // 🔁 Decide between "Add to Cart" and "[- qty +]" based on cart content
-  function renderProductCartActions() {
-    const actionsContainer = document.getElementById('productCartActions');
-    if (!actionsContainer) return;
+  // ========== CART HELPERS ==========
 
-    // If cart is not defined yet, show Add button
-    if (typeof window.cart === 'undefined') {
-      actionsContainer.innerHTML = buildAddButtonHTML();
+  // Get current quantity of this product in cart
+  function getQtyInCart() {
+    // Prefer the same helper used in shop page if it exists
+    if (typeof window.getCartItemQuantity === 'function') {
+      const q = window.getCartItemQuantity(productId);
+      return Number(q || 0);
+    }
+
+    // Fallback: scan window.cart
+    if (!Array.isArray(window.cart)) {
+      return 0;
+    }
+
+    const item = window.cart.find(it => Number(it.id) === productId);
+    return item ? Number(item.quantity || 0) : 0;
+  }
+
+  // Show discounted price in the price block (same logic as shop)
+  function renderDiscountedPriceBlock() {
+    const priceBlock = document.getElementById('productPriceBlock');
+    if (!priceBlock) return;
+
+    const basePrice = parseFloat(priceBlock.dataset.basePrice || '0');
+    const discount = discountPercentage;
+    const showPrice = priceBlock.dataset.showPrice === '1';
+
+    if (!showPrice || !basePrice) {
+      priceBlock.innerHTML = '<span class="price-hidden">Price on request</span>';
       return;
     }
 
-    const cartItem = window.cart.find(item => Number(item.id) === productId);
+    // No or invalid discount
+    if (!discount || discount <= 0 || discount >= 100) {
+      priceBlock.innerHTML = `
+        <span class="current-price">$${basePrice.toFixed(2)}</span>
+      `;
+      return;
+    }
 
-    if (cartItem && cartItem.quantity > 0) {
-      actionsContainer.innerHTML = buildQtyControlsHTML(cartItem.quantity);
+    const effective = basePrice * (1 - discount / 100);
+
+    priceBlock.innerHTML = `
+      <span class="current-price">$${effective.toFixed(2)}</span>
+      <span class="original-price">$${basePrice.toFixed(2)}</span>
+      <span style="margin-left:8px;font-size:0.9rem;color:#e11d48;font-weight:bold;">
+        -${discount}%
+      </span>
+    `;
+  }
+
+  // Decide between "Add to Cart" and "[- qty +]" (same logic as shop)
+  function renderProductCartActions() {
+    const container = document.getElementById('productCartActions');
+    if (!container) return;
+
+    if (typeof window.cart === 'undefined') {
+      window.cart = [];
+    }
+
+    const qtyInCart = getQtyInCart();
+
+    if (qtyInCart > 0) {
+      container.innerHTML = buildQtyControlsHTML(qtyInCart);
     } else {
-      actionsContainer.innerHTML = buildAddButtonHTML();
+      container.innerHTML = buildAddButtonHTML();
     }
   }
 
-  // HTML for "Add to Cart" button
+  // HTML for Add to Cart button (copied style from shop card)
   function buildAddButtonHTML() {
     return `
-      <button class="btn-primary"
+      <button class="btn-add-cart"
               id="addToCartBtnDetail"
               onclick="handleAddToCartDetail()"
-              ${!canOrder ? 'disabled' : ''}>
+              ${!canOrder ? 'disabled' : ''}
+              style="display:block;margin:15px auto;padding:12px 24px;background:linear-gradient(135deg,#6a11cb,#2575fc);color:white;border:none;border-radius:25px;font-weight:bold;cursor:pointer;box-shadow:0 4px 10px rgba(0,0,0,0.2);width:100%;">
         <i class="fas fa-cart-plus"></i>
-        ${canOrder ? 'Add to Cart' : 'Cannot Order'}
+        ${canOrder ? '{% trans "Add to Cart" %}' : '{% trans "Cannot Order" %}'}
       </button>
     `;
   }
 
-  // HTML for "[- qty +]" controls
+  // HTML for [- qty +] controls (exact same structure/styles as shop)
   function buildQtyControlsHTML(qty) {
     return `
       <div class="cart-qty-control" data-product-id="${productId}"
@@ -856,101 +934,97 @@
     `;
   }
 
-  // ✅ "Add to Cart" logic:
-  // - If item not in cart → add EXACTLY 1, then show [- 1 +]
-  // - If already in cart (edge case) → behave like pressing "+"
+  // ========== ADD TO CART FROM DETAIL PAGE (same logic as shop.handleAddToCart) ==========
+
   function handleAddToCartDetail() {
     if (!canOrder) {
       if (typeof window.showNotification === 'function') {
-        window.showNotification('This product cannot be ordered', 'error');
+        window.showNotification('{% trans "This product cannot be ordered" %}', 'error');
       } else {
         alert('This product cannot be ordered');
       }
       return;
     }
 
-    // Ensure cart exists
-    if (typeof window.cart === 'undefined' && typeof window.initCart === 'function') {
+    if (typeof window.initCart === 'function') {
       window.initCart();
+    } else if (typeof window.cart === 'undefined') {
+      window.cart = [];
     }
 
-    const existingItem = window.cart
-      ? window.cart.find(item => Number(item.id) === productId)
-      : null;
-
-    // If item already exists → just behave like "+" (add one)
-    if (existingItem) {
-      changeDetailCartQuantity(1);
+    if (typeof window.addToCart !== 'function') {
+      console.error('Global addToCart function not found!');
+      alert('Error: Cart functionality not available. Please refresh the page.');
       return;
     }
 
-    // Item does NOT exist → add exactly ONE
-    const priceToUse = !isNaN(productPrice) ? productPrice : 0;
+    // Same signature as shop: addToCart(id, name, basePrice, image, canOrder, qty, discount%)
+    window.addToCart(
+      productId,
+      productName,
+      productBasePrice,
+      productImage,
+      canOrder,
+      1,
+      discountPercentage
+    );
 
-    if (typeof window.addToCart === 'function') {
+    const addBtn = document.getElementById('addToCartBtnDetail');
+
+    if (addBtn) {
+      const originalHTML = addBtn.innerHTML;
+      addBtn.innerHTML = '<i class="fas fa-check"></i> {% trans "Added!" %}';
+      addBtn.classList.add('btn-success-animation');
+
+      setTimeout(() => {
+        addBtn.classList.remove('btn-success-animation');
+        renderProductCartActions();  // Now show [- qty +] with real quantity
+      }, 500);
+    } else {
+      renderProductCartActions();
+    }
+
+    showCartSyncNotification();
+  }
+
+  // Change quantity one by one with [-] / [+] (same logic as shop.changeCartQuantity)
+  function changeDetailCartQuantity(change) {
+    if (typeof window.initCart === 'function') {
+      window.initCart();
+    } else if (typeof window.cart === 'undefined') {
+      return;
+    }
+
+    let cartItem = Array.isArray(window.cart)
+      ? window.cart.find(item => Number(item.id) === productId)
+      : null;
+
+    // If not in cart & user presses + → add 1
+    if (!cartItem && change > 0 && typeof window.addToCart === 'function') {
       window.addToCart(
         productId,
         productName,
-        priceToUse,
+        productBasePrice,
         productImage,
         canOrder,
-        1
+        1,
+        discountPercentage
       );
-
-      // Button feedback
-      const addBtn = document.getElementById('addToCartBtnDetail');
-      if (addBtn) {
-        const originalHTML = addBtn.innerHTML;
-        addBtn.innerHTML = '<i class="fas fa-check"></i> Added!';
-        addBtn.classList.add('btn-success-animation');
-
-        setTimeout(() => {
-          addBtn.innerHTML = originalHTML;
-          addBtn.classList.remove('btn-success-animation');
-          // After animation → switch to qty controls
-          renderProductCartActions();
-        }, 800);
-      } else {
-        renderProductCartActions();
-      }
-
-      showCartSyncNotification();
-    } else {
-      console.error('Global addToCart function not found!');
-      alert('Error: Cart functionality not available. Please refresh the page.');
-    }
-  }
-
-  // 🔼🔽 Change quantity ONE BY ONE via [-] / [+]
-  function changeDetailCartQuantity(change) {
-    if (typeof window.cart === 'undefined') return;
-
-    let cartItem = window.cart.find(item => Number(item.id) === productId);
-
-    if (!cartItem && change > 0) {
-      // First time user presses "+" (no item yet)
-      if (typeof window.addToCart === 'function') {
-        const priceToUse = !isNaN(productPrice) ? productPrice : 0;
-
-        window.addToCart(
-          productId,
-          productName,
-          priceToUse,
-          productImage,
-          canOrder,
-          1
-        );
-        cartItem = window.cart.find(item => Number(item.id) === productId);
-      }
+      cartItem = Array.isArray(window.cart)
+        ? window.cart.find(item => Number(item.id) === productId)
+        : null;
     } else if (cartItem) {
-      cartItem.quantity += change;
+      let newQty = Number(cartItem.quantity || 0) + change;
 
-      if (cartItem.quantity < 1) {
-        // Remove from cart completely
-        const index = window.cart.indexOf(cartItem);
-        if (index > -1) window.cart.splice(index, 1);
-      } else if (cartItem.quantity > maxQuantity) {
-        cartItem.quantity = maxQuantity;
+      if (newQty <= 0) {
+        // Remove from cart
+        const idx = window.cart.indexOf(cartItem);
+        if (idx > -1) window.cart.splice(idx, 1);
+      } else {
+        if (!isNaN(maxQuantity) && maxQuantity > 0) {
+          newQty = Math.min(newQty, maxQuantity);
+        }
+        cartItem.quantity = newQty;
       }
 
       if (typeof window.saveCart === 'function') window.saveCart();
@@ -958,23 +1032,24 @@
       if (typeof window.updateCartUI === 'function') window.updateCartUI();
     }
 
-    // Re-render Add button / qty controls (and qty number)
+    // Re-render based on latest qty
     renderProductCartActions();
   }
 
-  // Notification like in product page
+  // ========== NOTIFICATION ==========
+
   function showCartSyncNotification() {
     const notification = document.getElementById('cartSyncNotification');
-    if (notification) {
-      notification.classList.add('show');
+    if (!notification) return;
 
-      setTimeout(() => {
-        notification.classList.remove('show');
-      }, 3000);
-    }
+    notification.classList.add('show');
+    setTimeout(() => {
+      notification.classList.remove('show');
+    }, 3000);
   }
 
-  // --- Video controls (same as before, just wrapped) ---
+  // ========== VIDEO & THUMBNAILS (unchanged) ==========
+
   function setupVideoControls() {
     const video = document.getElementById('productVideo');
     const playBtn = document.getElementById('playVideoBtn');
@@ -1022,46 +1097,53 @@
       document.querySelectorAll('.thumbnail').forEach(thumb => {
         thumb.classList.remove('active');
       });
-      event.currentTarget.classList.add('active');
+
+      if (typeof event !== 'undefined' && event.currentTarget) {
+        event.currentTarget.classList.add('active');
+      }
     };
   }
 
-  // Wishlist functionality - unchanged
+  // ========== WISHLIST ==========
+
   function addToWishlist(productId) {
     if (typeof window.addToWishlist === 'function') {
       window.addToWishlist(productId);
+      return;
+    }
+
+    // LocalStorage fallback
+    let wishlist = JSON.parse(localStorage.getItem('innovatech_wishlist') || '[]');
+
+    if (!wishlist.includes(productId)) {
+      wishlist.push(productId);
+      localStorage.setItem('innovatech_wishlist', JSON.stringify(wishlist));
+
+      const wishlistBtn = event.currentTarget;
+      const originalHTML = wishlistBtn.innerHTML;
+      wishlistBtn.innerHTML = '<i class="fas fa-heart"></i> {% trans "Saved!" %}';
+      wishlistBtn.style.color = 'var(--primary)';
+
+      setTimeout(() => {
+        wishlistBtn.innerHTML = originalHTML;
+        wishlistBtn.style.color = '';
+      }, 2000);
+
+      if (typeof window.showNotification === 'function') {
+        window.showNotification('{% trans "Added to wishlist" %}', 'info');
+      }
     } else {
-      let wishlist = JSON.parse(localStorage.getItem('innovatech_wishlist') || '[]');
-
-      if (!wishlist.includes(productId)) {
-        wishlist.push(productId);
-        localStorage.setItem('innovatech_wishlist', JSON.stringify(wishlist));
-
-        const wishlistBtn = event.currentTarget;
-        const originalHTML = wishlistBtn.innerHTML;
-        wishlistBtn.innerHTML = '<i class="fas fa-heart"></i> Saved!';
-        wishlistBtn.style.color = 'var(--primary)';
-
-        setTimeout(() => {
-          wishlistBtn.innerHTML = originalHTML;
-          wishlistBtn.style.color = '';
-        }, 2000);
-
-        if (typeof window.showNotification === 'function') {
-          window.showNotification('Added to wishlist', 'info');
-        }
-      } else {
-        if (typeof window.showNotification === 'function') {
-          window.showNotification('Already in wishlist', 'info');
-        }
+      if (typeof window.showNotification === 'function') {
+        window.showNotification('{% trans "Already in wishlist" %}', 'info');
       }
     }
   }
 
-  // Expose some helpers (optional)
-  window.changeDetailCartQuantity = changeDetailCartQuantity;
+  // ========== EXPORT HELPERS TO WINDOW ==========
+
   window.handleAddToCartDetail = handleAddToCartDetail;
+  window.changeDetailCartQuantity = changeDetailCartQuantity;
   window.syncProductPageWithCart = renderProductCartActions;
+  window.addToWishlist = addToWishlist;
 </script>
 {% endblock %}
-\
