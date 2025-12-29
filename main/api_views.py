@@ -1,9 +1,9 @@
 from rest_framework import status
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
-from rest_framework.permissions import IsAuthenticated
-from .models import Product, Branch, Category ,Invoice ,InvoiceItem,Banner,City
-from .serializers import ProductSerializer,ProductSerializer1, BranchSerializer ,InquirySerializer,CategorySerializer
+from rest_framework.permissions import IsAuthenticated, AllowAny, IsAuthenticatedOrReadOnly
+from .models import Product, Branch, Category ,Invoice ,InvoiceItem,Banner,City,images,brand,Inquiry,Project
+from .serializers import ProductSerializer,ProductSerializer1, BranchSerializer ,InquirySerializer,CategorySerializer,ProjectSerializer
 from rest_framework.permissions import AllowAny
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404
@@ -31,6 +31,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from django.db import transaction
 from .utils import send_wa_message
+from rest_framework import viewsets, filters
 
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
@@ -561,6 +562,18 @@ def home_data(request):
             for brand in brands_qs
         ]
 
+        projects = Project.objects.all().order_by('-created_at')[:6]
+        projects_data = [
+            {
+                'id': project.id,
+                'title': project.title,
+                'description': project.description,
+                'image': project.image.url if project.image else None,
+                'url': project.url,
+            }
+            for project in projects
+        ]
+
 
         response_data = {
             'success': True,
@@ -569,6 +582,7 @@ def home_data(request):
             'popular_categories': popular_categories_data,
             'brands': brands_data,  # ✅ added brands
             'banners': banners,
+            'projects': projects_data,
             'stats': {
                 'total_products': Product.objects.count(),
                 'total_categories': Category.objects.count(),
@@ -1450,3 +1464,30 @@ def get_brands(request):
         })
 
     return JsonResponse({"brands": data})
+
+
+class ProjectViewSet(viewsets.ModelViewSet):
+    """
+    CRUD:
+    - GET /api/projects/
+    - POST /api/projects/
+    - GET /api/projects/{id}/
+    - PUT/PATCH /api/projects/{id}/
+    - DELETE /api/projects/{id}/
+    """
+    serializer_class = ProjectSerializer
+
+    queryset = Project.objects.all()
+
+    # Optional filters/search
+    filter_backends = [filters.SearchFilter, filters.OrderingFilter]
+    search_fields = ["title", "description", "project_type", "stack", "industry", "slug"]
+    ordering_fields = ["created_at", "sort_order", "year", "title"]
+    ordering = ["sort_order", "-created_at"]
+
+    def get_queryset(self):
+        qs = super().get_queryset()
+        # Public users see only public projects
+        if not self.request.user.is_authenticated:
+            qs = qs.filter(is_public=True)
+        return qs

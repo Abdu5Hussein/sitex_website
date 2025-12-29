@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect , get_object_or_404
 from django.contrib.auth import authenticate, login, logout
-from .models import Product, Branch, Inquiry,Invoice, ContactMessage,Banner, Category, City , brand
+from .models import Product, Branch, Inquiry,Invoice, ContactMessage,Banner, Category, City, Project , brand
 from django.http import JsonResponse
 from django.views.decorators.http import require_GET
 
@@ -21,6 +21,10 @@ def products(request):
     products = Product.objects.all()
     return render(request, 'main/products.html', {'products': products})
 
+def categories(request):
+    categories = Category.objects.all()
+    return render(request, 'main/categories.html', {'categories': categories})
+
 def contact(request):
     if request.method == 'POST':
         email = request.POST.get('email')
@@ -38,8 +42,10 @@ def contact(request):
     return render(request, 'main/contact.html', {
         'branches': branches
     })
+
 def clients(request):
-    return render(request, 'main/clients.html')
+    projects = Project.objects.filter(is_public=True).order_by("sort_order", "-created_at")[:12]
+    return render(request, "main/clients.html", {"projects": projects})
 
 def login_view(request):
     if request.method == 'POST':

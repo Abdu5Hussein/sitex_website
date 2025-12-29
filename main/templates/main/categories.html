@@ -1,0 +1,191 @@
+{% extends 'main/base.html' %} {% load static i18n %} {% block title %}{% trans
+"Categories - SITEX" %}{% endblock %} {% block content %}
+
+<!-- Page Header -->
+<section class="py-5 bg-primary text-white mt-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 mx-auto text-center" data-aos="fade-up">
+        <h1 class="display-4 fw-bold mb-4">{% trans "Our Services" %}</h1>
+        <!-- prettier-ignore -->
+        <p class="lead mb-0">
+          {% trans "Explore SITEX services — websites, systems, integrations, and more." %}
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Categories Grid -->
+<section class="py-5">
+  <div class="container">
+    <!-- Optional: Search -->
+    <div class="row mb-4">
+      <div class="col-lg-6 mx-auto" data-aos="fade-up">
+        <div class="modern-card p-3">
+          <div class="d-flex align-items-center gap-2">
+            <i class="fas fa-magnifying-glass text-muted"></i>
+            <input
+              id="catSearch"
+              class="form-control form-control-modern border-0"
+              placeholder="{% trans 'Search services...' %}"
+              type="text"
+              autocomplete="off"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row g-4" id="categoriesGrid">
+      {% for category in categories %}
+      <div
+        class="col-lg-4 col-md-6 category-item"
+        data-name="{{ category.name|lower }}"
+        data-aos="fade-up"
+        data-aos-delay="{{ forloop.counter0|add:100 }}"
+      >
+        <div class="modern-card h-100 category-card">
+          <a
+            href="{% url 'products' %}?category={{ category.slug }}"
+            class="text-decoration-none"
+          >
+            <div class="category-image-container">
+              {% if category.image %}
+              <img
+                src="{{ category.image.url }}"
+                class="category-image"
+                alt="{{ category.name }}"
+                loading="lazy"
+              />
+              {% else %}
+              <div
+                class="category-fallback d-flex align-items-center justify-content-center"
+              >
+                <div class="text-center px-4">
+                  <div class="fallback-icon mb-3">
+                    <i class="fas fa-layer-group"></i>
+                  </div>
+                  <div class="text-muted small">{% trans "No image" %}</div>
+                </div>
+              </div>
+              {% endif %}
+            </div>
+
+            <div class="p-4">
+              <div
+                class="d-flex align-items-start justify-content-between gap-3"
+              >
+                <h5 class="fw-bold mb-2 category-title">{{ category.name }}</h5>
+                <span class="badge badge-primary-modern">
+                  <i class="fas fa-code fa-sm"></i>
+                </span>
+              </div>
+
+              {% if category.description %}
+              <p class="text-muted mb-0">
+                {{ category.description|truncatewords:25 }}
+              </p>
+              {% else %}
+              <!-- prettier-ignore -->
+              <p class="text-muted mb-0">
+                {% trans "Explore this category to discover SITEX solutions and related services." %}
+              </p>
+              {% endif %}
+            </div>
+          </a>
+        </div>
+      </div>
+      {% empty %}
+      <div class="col-12 text-center" data-aos="fade-up">
+        <div class="modern-card p-5">
+          <i class="fas fa-layer-group fa-3x text-muted mb-3"></i>
+          <h4 class="text-muted">{% trans "No Categories Available" %}</h4>
+          <p class="text-muted">{% trans "Please check back later." %}</p>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<script>
+  // Simple client-side filter (optional)
+  document.addEventListener("DOMContentLoaded", () => {
+    const input = document.getElementById("catSearch");
+    const items = document.querySelectorAll(".category-item");
+
+    if (!input) return;
+
+    input.addEventListener("input", () => {
+      const q = (input.value || "").trim().toLowerCase();
+
+      items.forEach((el) => {
+        const name = el.getAttribute("data-name") || "";
+        el.style.display = name.includes(q) ? "" : "none";
+      });
+    });
+  });
+</script>
+
+<style>
+  /* Similar style to your products page */
+
+  .category-image-container {
+    position: relative;
+    overflow: hidden;
+    height: 250px;
+    border-radius: 16px 16px 0 0;
+    background: rgba(37, 99, 235, 0.06);
+  }
+
+  .category-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.35s ease;
+    display: block;
+  }
+
+  .category-fallback {
+    width: 100%;
+    height: 100%;
+  }
+
+  .fallback-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 14px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(37, 99, 235, 0.12);
+    color: var(--primary);
+    font-size: 1.25rem;
+  }
+
+  .category-card:hover .category-image {
+    transform: scale(1.06);
+  }
+
+  .category-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.65);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+  }
+
+  .category-card:hover .category-overlay {
+    opacity: 1;
+  }
+
+  .category-title {
+    color: var(--text-color);
+  }
+</style>
+
+{% endblock %}

@@ -37,14 +37,14 @@ class Category(models.Model):
             # self.slug = slugify(self.name)
         super().save(*args, **kwargs)
 
-        
+
 class brand(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField(blank=True, null=True)
     image = models.ImageField(upload_to='brands/', blank=True, null=True)
 
     def __str__(self):
-        return self.name        
+        return self.name
 # Product
 class Product(models.Model):
     name = models.CharField(max_length=255)
@@ -190,3 +190,44 @@ class images(models.Model):
 
     def __str__(self):
         return f"Image for {self.product.name}"
+
+
+class Project(models.Model):
+    # Optional: link to a Client model if you have one later
+    # client = models.ForeignKey("Client", on_delete=models.SET_NULL, null=True, blank=True, related_name="projects")
+
+    title = models.CharField(max_length=255)
+    slug = models.SlugField(unique=True, blank=True)  # allow blank for auto
+    description = models.TextField(blank=True, null=True)
+
+    # Used in your "Selected Projects" cards
+    image = models.ImageField(upload_to="projects/", blank=True, null=True)
+
+    # Public link to project (optional)
+    url = models.URLField(blank=True, null=True)
+
+    # Badges shown in the UI
+    project_type = models.CharField(max_length=120, blank=True, null=True)  # e.g. Website, Dashboard, Integration
+    stack = models.CharField(max_length=255, blank=True, null=True)         # e.g. Django, DRF, React, PostgreSQL
+    industry = models.CharField(max_length=120, blank=True, null=True)      # e.g. Banking, Retail, Logistics
+    year = models.PositiveIntegerField(blank=True, null=True)
+
+    # Nice ordering + filtering
+    is_featured = models.BooleanField(default=False)
+    is_public = models.BooleanField(default=True)
+    sort_order = models.PositiveIntegerField(default=0)
+
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ["sort_order", "-created_at"]
+
+    def __str__(self) -> str:
+        return self.title
+
+    def save(self, *args, **kwargs):
+        # Keep Arabic slugs allowed (like your Category model)
+        if not self.slug:
+            self.slug = self.title
+        super().save(*args, **kwargs)

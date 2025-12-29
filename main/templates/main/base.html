@@ -8,10 +8,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Premium heavy-duty truck parts and equipment supplies">
-    <title>
-      {% block title %}{% trans "Heavy Duty Parts Hub" %}{% endblock %}
-    </title>
+    <meta
+      name="description"
+      content='{{ WEBSITE_DESCRIPTION|default:"Website" }}'
+    />
+    <title>{% block title %}{% trans "SITEX" %}{% endblock %}</title>
 
     <!-- Bootstrap 5 CSS -->
     <link
@@ -60,7 +61,11 @@
         --gradient-primary: linear-gradient(135deg, #2563eb, #1d4ed8);
         --gradient-dark: linear-gradient(135deg, #0f172a, #1e293b);
         --gradient-accent: linear-gradient(135deg, #f59e0b, #d97706);
-        --gradient-glass: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
+        --gradient-glass: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.1),
+          rgba(255, 255, 255, 0.05)
+        );
 
         /* Theme Variables */
         --bg-color: #ffffff;
@@ -74,8 +79,10 @@
 
         --card-bg: #ffffff;
         --card-border-color: rgba(226, 232, 240, 0.8);
-        --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-        --card-shadow-hover: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+          0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        --card-shadow-hover: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+          0 10px 10px -5px rgba(0, 0, 0, 0.04);
 
         --footer-bg: #0f172a;
         --footer-text-color: #f8fafc;
@@ -129,7 +136,7 @@
       }
 
       body {
-        font-family: 'Inter', sans-serif;
+        font-family: "Inter", sans-serif;
         line-height: 1.6;
         color: var(--text-color);
         background-color: var(--bg-color);
@@ -138,8 +145,13 @@
         -moz-osx-font-smoothing: grayscale;
       }
 
-      h1, h2, h3, h4, h5, h6 {
-        font-family: 'Plus Jakarta Sans', sans-serif;
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-family: "Inter", sans-serif;
         font-weight: 700;
         color: var(--dark);
         letter-spacing: -0.025em;
@@ -167,12 +179,13 @@
       .navbar.scrolled {
         height: 56px;
         background: var(--navbar-bg-scrolled) !important;
-        box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+        box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1),
+          0 1px 2px 0 rgba(0, 0, 0, 0.06);
       }
 
       /* Brand Logo - Minimal 2025 */
       .navbar-brand {
-        font-family: 'Plus Jakarta Sans', sans-serif;
+        font-family: "Inter", sans-serif;
         font-weight: 800;
         font-size: 1.25rem;
         color: var(--primary) !important;
@@ -182,9 +195,10 @@
         padding: 0;
         letter-spacing: -0.025em;
       }
-      
+
       .navbar-brand::before {
-        content: '⚙️';
+        /*content: "⚙️";*/
+        font-family: "Inter", sans-serif;
         font-size: 1.25rem;
       }
 
@@ -214,7 +228,7 @@
 
       /* Indicator for active state */
       .nav-link.active::after {
-        content: '';
+        content: "";
         position: absolute;
         bottom: -8px;
         left: 50%;
@@ -240,7 +254,7 @@
         border-radius: 10px;
         padding: 0.25rem;
       }
-      
+
       .lang-switcher .btn {
         padding: 0.25rem 0.75rem;
         border-radius: 8px;
@@ -249,18 +263,18 @@
         transition: all 0.2s ease;
         border: none;
       }
-      
+
       .lang-switcher .btn.active {
         background: var(--primary);
         color: white;
         box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
       }
-      
+
       .lang-switcher .btn:not(.active) {
         background: transparent;
         color: var(--text-secondary);
       }
-      
+
       .lang-switcher .btn:not(.active):hover {
         color: var(--primary);
         background: rgba(37, 99, 235, 0.1);
@@ -279,13 +293,21 @@
         color: var(--primary);
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       }
-      
+
       #themeToggle:hover {
         transform: rotate(15deg);
         background: var(--primary);
         color: white;
         border-color: var(--primary);
         box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+      }
+
+      .text-muted {
+        color: var(--text-secondary) !important;
+      }
+
+      .bg-primary {
+        background: var(--gradient-primary) !important;
       }
 
       /* User/Auth buttons */
@@ -295,19 +317,19 @@
         font-size: 0.875rem;
         font-weight: 500;
       }
-      
+
       .auth-buttons .btn-login {
         color: var(--primary);
         border: 1px solid var(--border-color);
       }
-      
+
       .auth-buttons .btn-register {
         background: var(--gradient-primary);
         color: white;
         border: none;
         box-shadow: 0 2px 8px rgba(37, 99, 235, 0.2);
       }
-      
+
       .auth-buttons .btn-register:hover {
         transform: translateY(-1px);
         box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
@@ -319,11 +341,11 @@
           height: 60px;
           padding: 0;
         }
-        
+
         .navbar-container {
           padding: 0 1rem;
         }
-        
+
         .navbar-toggler {
           width: 36px;
           height: 36px;
@@ -332,11 +354,11 @@
           border-radius: 8px;
           background: rgba(37, 99, 235, 0.08);
         }
-        
+
         .navbar-toggler:focus {
           box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
         }
-        
+
         .navbar-toggler-icon {
           background-image: none;
           position: relative;
@@ -345,10 +367,10 @@
           background: var(--navbar-text-color);
           transition: all 0.3s ease;
         }
-        
+
         .navbar-toggler-icon::before,
         .navbar-toggler-icon::after {
-          content: '';
+          content: "";
           position: absolute;
           width: 18px;
           height: 2px;
@@ -356,29 +378,29 @@
           left: 0;
           transition: all 0.3s ease;
         }
-        
+
         .navbar-toggler-icon::before {
           top: -6px;
         }
-        
+
         .navbar-toggler-icon::after {
           top: 6px;
         }
-        
+
         .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
           background: transparent;
         }
-        
+
         .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon::before {
           transform: rotate(45deg);
           top: 0;
         }
-        
+
         .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon::after {
           transform: rotate(-45deg);
           top: 0;
         }
-        
+
         /* Mobile Menu */
         .navbar-collapse {
           position: fixed;
@@ -397,21 +419,21 @@
           visibility: hidden;
           transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        
+
         .navbar-collapse.show {
           transform: translateY(0);
           opacity: 1;
           visibility: visible;
         }
-        
+
         .navbar-nav {
           gap: 0.25rem;
         }
-        
+
         .nav-item {
           width: 100%;
         }
-        
+
         .nav-link {
           padding: 0.75rem 1rem !important;
           margin: 0;
@@ -420,12 +442,12 @@
           align-items: center;
           gap: 0.75rem;
         }
-        
+
         .nav-link i {
           width: 20px;
           font-size: 0.875rem;
         }
-        
+
         .nav-link.active::after {
           left: 1rem;
           bottom: 50%;
@@ -433,15 +455,15 @@
           width: 3px;
           height: 16px;
         }
-        
+
         /* Mobile controls */
         .mobile-controls {
           display: flex;
           align-items: center;
           gap: 0.75rem;
-          margin-left: auto;
+          /*margin-left: auto;*/
         }
-        
+
         .mobile-auth {
           margin-top: 1rem;
           padding-top: 1rem;
@@ -452,7 +474,7 @@
       /* ========== MAIN CONTENT ========== */
       .main-content {
         min-height: calc(100vh - 200px);
-        padding: 2rem 0;
+        padding: 2rem 0 0 0;
       }
 
       /* ========== MODERN CARDS ========== */
@@ -465,9 +487,9 @@
         overflow: hidden;
         position: relative;
       }
-      
+
       .modern-card::before {
-        content: '';
+        content: "";
         position: absolute;
         top: 0;
         left: 0;
@@ -477,13 +499,13 @@
         opacity: 0;
         transition: opacity 0.3s ease;
       }
-      
+
       .modern-card:hover {
         transform: translateY(-8px);
         box-shadow: var(--card-shadow-hover);
         border-color: var(--primary-light);
       }
-      
+
       .modern-card:hover::before {
         opacity: 1;
       }
@@ -493,7 +515,7 @@
         padding: 0.75rem 1.5rem;
         border-radius: 10px;
         font-weight: 600;
-        font-family: 'Inter', sans-serif;
+        font-family: "Inter", sans-serif;
         font-size: 0.875rem;
         letter-spacing: 0.025em;
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -501,9 +523,9 @@
         position: relative;
         overflow: hidden;
       }
-      
+
       .btn-modern::before {
-        content: '';
+        content: "";
         position: absolute;
         top: 50%;
         left: 50%;
@@ -514,33 +536,33 @@
         transform: translate(-50%, -50%);
         transition: width 0.6s, height 0.6s;
       }
-      
+
       .btn-modern:hover::before {
         width: 300px;
         height: 300px;
       }
-      
+
       .btn-modern:active {
         transform: scale(0.98);
       }
-      
+
       .btn-primary-modern {
         background: var(--gradient-primary);
         color: white;
         box-shadow: 0 4px 15px rgba(37, 99, 235, 0.2);
       }
-      
+
       .btn-primary-modern:hover {
         box-shadow: 0 8px 25px rgba(37, 99, 235, 0.3);
         transform: translateY(-2px);
       }
-      
+
       .btn-outline-modern {
         background: transparent;
         border: 1.5px solid var(--primary);
         color: var(--primary);
       }
-      
+
       .btn-outline-modern:hover {
         background: var(--primary);
         color: white;
@@ -555,23 +577,23 @@
         background: var(--card-bg);
         color: var(--text-color);
         transition: all 0.3s ease;
-        font-family: 'Inter', sans-serif;
+        font-family: "Inter", sans-serif;
         font-size: 0.875rem;
       }
-      
+
       .form-control-modern:focus {
         border-color: var(--primary);
         box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
         outline: none;
       }
-      
+
       .form-label {
         font-weight: 600;
         color: var(--dark);
         margin-bottom: 0.5rem;
         font-size: 0.875rem;
       }
-      
+
       html[data-theme="dark"] .form-label {
         color: var(--light);
       }
@@ -584,9 +606,9 @@
         margin-top: 4rem;
         position: relative;
       }
-      
+
       .footer::before {
-        content: '';
+        content: "";
         position: absolute;
         top: 0;
         left: 0;
@@ -594,23 +616,24 @@
         height: 3px;
         background: var(--gradient-primary);
       }
-      
-      .footer h5, .footer h6 {
+
+      .footer h5,
+      .footer h6 {
         color: white !important;
-        font-family: 'Plus Jakarta Sans', sans-serif;
+        font-family: "Inter", sans-serif;
       }
-      
+
       .footer a {
         color: var(--gray-light);
         text-decoration: none;
         transition: color 0.3s ease;
         font-size: 0.875rem;
       }
-      
+
       .footer a:hover {
         color: var(--primary-light);
       }
-      
+
       .social-icons a {
         display: inline-flex;
         align-items: center;
@@ -623,7 +646,7 @@
         margin-right: 0.5rem;
         transition: all 0.3s ease;
       }
-      
+
       .social-icons a:hover {
         background: var(--primary);
         transform: translateY(-2px);
@@ -636,13 +659,13 @@
         -webkit-text-fill-color: transparent;
         background-clip: text;
       }
-      
+
       .glass-effect {
         background: rgba(255, 255, 255, 0.1);
         backdrop-filter: blur(10px);
         border: 1px solid rgba(255, 255, 255, 0.2);
       }
-      
+
       .badge-modern {
         padding: 0.25rem 0.75rem;
         border-radius: 20px;
@@ -650,7 +673,7 @@
         font-weight: 600;
         letter-spacing: 0.025em;
       }
-      
+
       .badge-primary-modern {
         background: var(--gradient-primary);
         color: white;
@@ -680,15 +703,21 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg fixed-top">
       <div class="container-fluid navbar-container">
-        <a class="navbar-brand" href="{% url 'home' %}">
-          <span>HD<span class="text-gradient">Parts</span></span>
+        <a class="navbar-brand mx-3" href="{% url 'home' %}">
+          {{ WEBSITE_NAME|default:"Website" }}
         </a>
-        
+
         <!-- Mobile controls -->
         <div class="mobile-controls d-lg-none">
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" 
-                  data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
-                  aria-label="Toggle navigation">
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
             <span class="navbar-toggler-icon"></span>
           </button>
         </div>
@@ -697,90 +726,116 @@
           <!-- Navigation Menu -->
           <ul class="navbar-nav mx-auto">
             <li class="nav-item">
-              <a class="nav-link {% if request.path == '/' %}active{% endif %}" 
-                 href="{% url 'home' %}">
-                <i class="fas fa-home fa-sm"></i>
+              <a
+                class="nav-link {% if request.path == '/' %}active{% endif %}"
+                href="{% url 'home' %}"
+              >
+                <i class="fas fa-house fa-sm"></i>
                 {% trans "Home" %}
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link {% if 'about' in request.path %}active{% endif %}" 
-                 href="{% url 'about' %}">
-                <i class="fas fa-info-circle fa-sm"></i>
-                {% trans "About" %}
+              <a
+                class="nav-link {% if 'about' in request.path %}active{% endif %}"
+                href="{% url 'about' %}"
+              >
+                <i class="fas fa-circle-info fa-sm"></i>
+                {% trans "About SITEX" %}
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link {% if 'products' in request.path %}active{% endif %}" 
-                 href="{% url 'products' %}">
-                <i class="fas fa-cogs fa-sm"></i>
-                {% trans "Parts" %}
+              <a
+                class="nav-link {% if 'our-services' in request.path %}active{% endif %}"
+                href="{% url 'categories' %}"
+              >
+                <i class="fas fa-code fa-sm"></i>
+                {% trans "Our Services" %}
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link {% if 'categories' in request.path %}active{% endif %}" 
-                 href="#">
-                <i class="fas fa-truck fa-sm"></i>
-                {% trans "Brands" %}
+              <a
+                class="nav-link {% if 'clients' in request.path %}active{% endif %}"
+                href="{% url 'clients' %}"
+              >
+                <i class="fas fa-handshake fa-sm"></i>
+                {% trans "Our Clients" %}
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link {% if 'clients' in request.path %}active{% endif %}" 
-                 href="{% url 'clients' %}">
-                <i class="fas fa-users fa-sm"></i>
-                {% trans "Clients" %}
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link {% if 'contact' in request.path %}active{% endif %}" 
-                 href="{% url 'contact' %}">
+              <a
+                class="nav-link {% if 'contact' in request.path %}active{% endif %}"
+                href="{% url 'contact' %}"
+              >
                 <i class="fas fa-phone-alt fa-sm"></i>
-                {% trans "Contact" %}
+                {% trans "Contact Us" %}
               </a>
             </li>
           </ul>
 
           <!-- Right side controls -->
-          <div class="navbar-controls">
+          <div class="navbar-controls mt-2">
             <!-- Language switcher -->
-            <div class="lang-switcher d-none d-lg-flex">
+            <div class="lang-switcher d-lg-flex d-sm-flex">
               <form action="{% url 'set_language' %}" method="post">
                 {% csrf_token %}
-                <input type="hidden" name="next" value="{{ request.get_full_path }}" />
-                <button type="submit" name="language" value="ar"
-                  class="btn {% if request.LANGUAGE_CODE == 'ar' %}active{% endif %}">
+                <input
+                  type="hidden"
+                  name="next"
+                  value="{{ request.get_full_path }}"
+                />
+                <button
+                  type="submit"
+                  name="language"
+                  value="ar"
+                  class="btn {% if request.LANGUAGE_CODE == 'ar' %}active{% endif %}"
+                >
                   ع
                 </button>
-                <button type="submit" name="language" value="en"
-                  class="btn {% if request.LANGUAGE_CODE == 'en' %}active{% endif %}">
+                <button
+                  type="submit"
+                  name="language"
+                  value="en"
+                  class="btn {% if request.LANGUAGE_CODE == 'en' %}active{% endif %}"
+                >
                   EN
                 </button>
               </form>
             </div>
-            
+
             <!-- Theme toggle -->
-            <button type="button" id="themeToggle" class="btn" aria-label="Toggle theme">
+            <button
+              type="button"
+              id="themeToggle"
+              class="btn"
+              aria-label="Toggle theme"
+            >
               <i class="fas fa-moon"></i>
             </button>
-            
+
             <!-- Auth buttons -->
             <div class="auth-buttons d-none d-lg-flex">
               {% if user.is_authenticated %}
-                <a href="{% url 'dashboard' %}" class="btn btn-modern btn-outline-modern me-2">
-                  <i class="fas fa-tachometer-alt fa-sm me-1"></i>
-                  {% trans "Dashboard" %}
-                </a>
-                <a href="{% url 'logout' %}" class="btn btn-modern btn-outline-modern">
-                  <i class="fas fa-sign-out-alt fa-sm me-1"></i>
-                  {% trans "Logout" %}
-                </a>
+              <a
+                href="{% url 'dashboard' %}"
+                class="btn btn-modern btn-outline-modern mx-2"
+              >
+                <i class="fas fa-tachometer-alt fa-sm mx-1"></i>
+                {% trans "Dashboard" %}
+              </a>
+              <a
+                href="{% url 'logout' %}"
+                class="btn btn-modern btn-outline-modern"
+              >
+                <i class="fas fa-sign-out-alt fa-sm mx-1"></i>
+                {% trans "Logout" %}
+              </a>
               {% else %}
-                <a href="{% url 'login' %}" class="btn btn-modern btn-login me-2">
-                  {% trans "Login" %}
-                </a>
-                <a href="#" class="btn btn-modern btn-register">
-                  {% trans "Register" %}
-                </a>
+              <a href="{% url 'login' %}" class="btn btn-modern btn-login mx-2">
+                {% trans "Login" %}
+              </a>
+              <a href="#" class="btn btn-modern btn-register">
+                {% trans "Register" %}
+              </a>
               {% endif %}
             </div>
           </div>
@@ -801,9 +856,7 @@
 
     <!-- Main Content -->
     <div class="main-content mt-5 pt-3">
-      <div class="container">
-        {% block content %}{% endblock %}
-      </div>
+      <div class="container">{% block content %}{% endblock %}</div>
     </div>
 
     <!-- Footer -->
@@ -812,102 +865,121 @@
         <div class="row g-4">
           <div class="col-lg-4 mb-4">
             <h5 class="mb-3">
-              <i class="fas fa-truck me-2"></i>
-              HeavyDuty<span class="text-gradient">Parts</span>
+              <i class="fas fa-code mx-2"></i>
+              {{ WEBSITE_NAME|default:"Website" }}
             </h5>
-            <p class="text-light mb-4" style="opacity: 0.8; font-size: 0.875rem;">
-              {% trans "Premium heavy-duty truck parts and equipment. Quality guaranteed for every major brand." %}
+            <!-- prettier-ignore -->
+            <p
+              class="text-light mb-4"
+              style="opacity: 0.8; font-size: 0.875rem"
+            >
+              {% if request.LANGUAGE_CODE == 'ar' %}{{ WEBSITE_DESCRIPTION_AR|default:"No description" }}{% else %}{{ WEBSITE_DESCRIPTION|default:"No description" }}{% endif %}
             </p>
             <div class="social-icons">
-              <a href="#" class="facebook">
+              <a href="#" class="facebook" target="_blank" rel="noopener">
                 <i class="fab fa-facebook-f"></i>
               </a>
-              <a href="#" class="instagram">
+              <a href="#" class="instagram" target="_blank" rel="noopener">
                 <i class="fab fa-instagram"></i>
               </a>
-              <a href="#" class="linkedin">
+              <a href="#" class="linkedin" target="_blank" rel="noopener">
                 <i class="fab fa-linkedin-in"></i>
               </a>
-              <a href="#" class="youtube">
+              <a href="#" class="youtube" target="_blank" rel="noopener">
                 <i class="fab fa-youtube"></i>
               </a>
             </div>
           </div>
-          
+
           <div class="col-lg-2 col-md-6 mb-4">
-            <h6 class="mb-3" style="font-size: 0.875rem;">{% trans "Company" %}</h6>
+            <h6 class="mb-3" style="font-size: 0.875rem">
+              {% trans "Company" %}
+            </h6>
             <ul class="list-unstyled">
               {% for item in footer_links %}
               <li class="mb-2">
-                <a href="{{ item.url }}" class="text-light d-flex align-items-center gap-2">
+                <a
+                  href="{{ item.url }}"
+                  class="text-light d-flex align-items-center gap-2"
+                >
                   <i class="fas fa-chevron-right fa-xs"></i>
-                  <span style="font-size: 0.875rem;">{{ item.title }}</span>
+                  <span style="font-size: 0.875rem">{{ item.title }}</span>
                 </a>
               </li>
               {% empty %}
               <li class="mb-2">
-                <a href="{% url 'about' %}" class="text-light d-flex align-items-center gap-2">
+                <a
+                  href="{% url 'about' %}"
+                  class="text-light d-flex align-items-center gap-2"
+                >
                   <i class="fas fa-chevron-right fa-xs"></i>
-                  <span style="font-size: 0.875rem;">{% trans "About Us" %}</span>
+                  <span style="font-size: 0.875rem"
+                    >{% trans "About Us" %}</span
+                  >
                 </a>
               </li>
               <li class="mb-2">
-                <a href="{% url 'products' %}" class="text-light d-flex align-items-center gap-2">
+                <a
+                  href="{% url 'products' %}"
+                  class="text-light d-flex align-items-center gap-2"
+                >
                   <i class="fas fa-chevron-right fa-xs"></i>
-                  <span style="font-size: 0.875rem;">{% trans "Products" %}</span>
+                  <span style="font-size: 0.875rem"
+                    >{% trans "Products" %}</span
+                  >
                 </a>
               </li>
               {% endfor %}
             </ul>
           </div>
-          
+
           <div class="col-lg-3 col-md-6 mb-4">
-            <h6 class="mb-3" style="font-size: 0.875rem;">{% trans "Contact" %}</h6>
-            <ul class="list-unstyled text-light" style="opacity: 0.8;">
+            <h6 class="mb-3" style="font-size: 0.875rem">
+              {% trans "Contact" %}
+            </h6>
+            <ul class="list-unstyled text-light" style="opacity: 0.8">
               <li class="mb-3 d-flex align-items-start gap-2">
                 <i class="fas fa-map-marker-alt fa-xs mt-1"></i>
-                <span style="font-size: 0.875rem;" id="footerAddress">
-                  {% trans "Industrial Zone, Dubai, UAE" %}
+                <span style="font-size: 0.875rem" id="footerAddress">
+                  {% trans "not set" %}
                 </span>
               </li>
               <li class="mb-3 d-flex align-items-center gap-2">
                 <i class="fas fa-phone fa-xs"></i>
-                <span style="font-size: 0.875rem;" id="footerPhone">
-                  +971 4 123 4567
+                <span style="font-size: 0.875rem" id="footerPhone">
+                  not set
                 </span>
               </li>
               <li class="mb-3 d-flex align-items-center gap-2">
                 <i class="fas fa-envelope fa-xs"></i>
-                <span style="font-size: 0.875rem;" id="footerEmail">
-                  info@heavydutyparts.ae
+                <span style="font-size: 0.875rem" id="footerEmail">
+                  not set
                 </span>
               </li>
             </ul>
           </div>
-          
+
           <div class="col-lg-3 col-md-6 mb-4">
-            <h6 class="mb-3" style="font-size: 0.875rem;">{% trans "Top Brands" %}</h6>
-            <div class="d-flex flex-wrap gap-2">
-              <span class="badge badge-primary-modern">Caterpillar</span>
-              <span class="badge badge-primary-modern">Mercedes</span>
-              <span class="badge badge-primary-modern">Volvo</span>
-              <span class="badge badge-primary-modern">MAN</span>
-              <span class="badge badge-primary-modern">Scania</span>
-              <span class="badge badge-primary-modern">DAF</span>
+            <h6 class="mb-3" style="font-size: 0.875rem">
+              {% trans "Top Brands" %}
+            </h6>
+            <div class="d-flex flex-wrap gap-2" id="footerBrands">
+              <span class="badge badge-primary-modern">Loading</span>
             </div>
           </div>
         </div>
-        
+
         <div class="row mt-4 pt-4 border-top border-gray-800">
           <div class="col-md-6 mb-3 mb-md-0">
-            <p class="mb-0" style="font-size: 0.75rem; opacity: 0.6;">
-              &copy; {% now "Y" %} HeavyDuty Parts. {% trans "All rights reserved." %}
+            <!-- prettier-ignore -->
+            <p class="mb-0" style="font-size: 0.75rem; opacity: 0.6">
+              &copy; {% now "Y" %} {{ WEBSITE_NAME|default:"Website" }} {% trans "All rights reserved." %}
             </p>
           </div>
           <div class="col-md-6 text-md-end">
-            <div style="font-size: 0.75rem; opacity: 0.6;">
-              <a href="#" class="text-light me-3">{% trans "Privacy" %}</a>
-              <a href="#" class="text-light me-3">{% trans "Terms" %}</a>
+            <div style="font-size: 0.75rem; opacity: 0.6">
+              <a href="#" class="text-light mx-3">{% trans "Privacy" %}</a>
+              <a href="#" class="text-light mx-3">{% trans "Terms" %}</a>
               <a href="#" class="text-light">{% trans "Support" %}</a>
             </div>
           </div>
@@ -925,33 +997,33 @@
       // ========= 2025 THEME MANAGER =========
       (function () {
         const htmlEl = document.documentElement;
-        const themeToggle = document.getElementById('themeToggle');
-        const STORAGE_KEY = 'hdparts-theme-2025';
+        const themeToggle = document.getElementById("themeToggle");
+        const STORAGE_KEY = "hdparts-theme-2025";
 
         // Get current theme
         function getCurrentTheme() {
           const stored = localStorage.getItem(STORAGE_KEY);
           if (stored) return stored;
-          
-          if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-            return 'dark';
+
+          if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+            return "dark";
           }
-          return 'light';
+          return "light";
         }
 
         // Set theme
         function setTheme(theme) {
-          htmlEl.setAttribute('data-theme', theme);
+          htmlEl.setAttribute("data-theme", theme);
           localStorage.setItem(STORAGE_KEY, theme);
-          
+
           // Update toggle icon
           if (themeToggle) {
-            if (theme === 'dark') {
+            if (theme === "dark") {
               themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
-              themeToggle.setAttribute('aria-label', 'Switch to light mode');
+              themeToggle.setAttribute("aria-label", "Switch to light mode");
             } else {
               themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
-              themeToggle.setAttribute('aria-label', 'Switch to dark mode');
+              themeToggle.setAttribute("aria-label", "Switch to dark mode");
             }
           }
         }
@@ -961,77 +1033,82 @@
 
         // Toggle theme
         if (themeToggle) {
-          themeToggle.addEventListener('click', () => {
-            const current = htmlEl.getAttribute('data-theme') || 'light';
-            const next = current === 'dark' ? 'light' : 'dark';
+          themeToggle.addEventListener("click", () => {
+            const current = htmlEl.getAttribute("data-theme") || "light";
+            const next = current === "dark" ? "light" : "dark";
             setTheme(next);
           });
         }
 
         // Listen for system theme changes
-        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-          if (!localStorage.getItem(STORAGE_KEY)) {
-            setTheme(e.matches ? 'dark' : 'light');
-          }
-        });
+        window
+          .matchMedia("(prefers-color-scheme: dark)")
+          .addEventListener("change", (e) => {
+            if (!localStorage.getItem(STORAGE_KEY)) {
+              setTheme(e.matches ? "dark" : "light");
+            }
+          });
 
         // ========= NAVBAR SCROLL EFFECT =========
-        const navbar = document.querySelector('.navbar');
+        const navbar = document.querySelector(".navbar");
         let lastScroll = 0;
 
-        window.addEventListener('scroll', () => {
+        window.addEventListener("scroll", () => {
           const currentScroll = window.pageYOffset;
-          
+
           // Add/remove scrolled class
           if (currentScroll > 50) {
-            navbar.classList.add('scrolled');
+            navbar.classList.add("scrolled");
           } else {
-            navbar.classList.remove('scrolled');
+            navbar.classList.remove("scrolled");
           }
 
           // Hide/show on scroll (optional)
           if (currentScroll > lastScroll && currentScroll > 100) {
-            navbar.style.transform = 'translateY(-100%)';
+            navbar.style.transform = "translateY(-100%)";
           } else {
-            navbar.style.transform = 'translateY(0)';
+            navbar.style.transform = "translateY(0)";
           }
-          
+
           lastScroll = currentScroll;
         });
 
         // ========= SMOOTH SCROLLING =========
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-          anchor.addEventListener('click', function (e) {
+        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+          anchor.addEventListener("click", function (e) {
             e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
+            const target = document.querySelector(this.getAttribute("href"));
             if (target) {
               target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
+                behavior: "smooth",
+                block: "start",
               });
             }
           });
         });
 
         // ========= MOBILE MENU ENHANCEMENTS =========
-        const navbarCollapse = document.getElementById('navbarNav');
+        const navbarCollapse = document.getElementById("navbarNav");
         if (navbarCollapse) {
           // Close mobile menu when clicking outside
-          document.addEventListener('click', (e) => {
-            if (window.innerWidth < 992 && 
-                navbarCollapse.classList.contains('show') &&
-                !e.target.closest('.navbar') &&
-                !e.target.closest('.navbar-toggler')) {
+          document.addEventListener("click", (e) => {
+            if (
+              window.innerWidth < 992 &&
+              navbarCollapse.classList.contains("show") &&
+              !e.target.closest(".navbar") &&
+              !e.target.closest(".navbar-toggler")
+            ) {
               const bsCollapse = bootstrap.Collapse.getInstance(navbarCollapse);
               if (bsCollapse) bsCollapse.hide();
             }
           });
 
           // Close mobile menu when clicking a link
-          navbarCollapse.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', () => {
+          navbarCollapse.querySelectorAll(".nav-link").forEach((link) => {
+            link.addEventListener("click", () => {
               if (window.innerWidth < 992) {
-                const bsCollapse = bootstrap.Collapse.getInstance(navbarCollapse);
+                const bsCollapse =
+                  bootstrap.Collapse.getInstance(navbarCollapse);
                 if (bsCollapse) bsCollapse.hide();
               }
             });
@@ -1043,65 +1120,136 @@
           duration: 600,
           once: true,
           offset: 50,
-          easing: 'ease-out-cubic'
+          easing: "ease-out-cubic",
         });
 
         // ========= FETCH DYNAMIC CONTENT =========
-        async function fetchBranchData() {
+
+        // ✅ 1) Primary Branch (Footer Contact + Social)
+        async function fetchPrimaryBranch() {
           try {
-            const response = await fetch('/api/branch/primary/');
-            if (response.ok) {
-              const data = await response.json();
-              updateFooterContact(data);
-            }
+            const response = await fetch("{% url 'get_primary_branch' %}");
+            if (!response.ok) throw new Error("Primary branch not found");
+
+            const data = await response.json();
+            updateFooterFromBranch(data);
           } catch (error) {
-            console.log('Using default contact information');
+            console.warn("Primary branch fallback:", error);
           }
         }
 
-        function updateFooterContact(data) {
-          const elements = {
-            footerAddress: data.address,
-            footerPhone: data.phone,
-            footerEmail: data.email
+        function updateFooterFromBranch(data) {
+          const setText = (id, value) => {
+            const el = document.getElementById(id);
+            if (el && value && value !== "Not Set") el.textContent = value;
           };
 
-          Object.entries(elements).forEach(([id, value]) => {
-            const element = document.getElementById(id);
-            if (element && value) {
-              element.textContent = value;
-            }
-          });
+          // ✅ match your API keys exactly
+          setText("footerAddress", data.address);
+          setText("footerPhone", data.phone_number);
+          setText("footerEmail", data.Email_Adress);
+
+          // ✅ social links (optional, because you currently have href="#")
+          const setHref = (selector, value) => {
+            const el = document.querySelector(selector);
+            if (el && value && value !== "#" && value !== "Not Set")
+              el.href = value;
+          };
+
+          setHref(".social-icons a.facebook", data.facbook_link);
+          setHref(".social-icons a.instagram", data.instagram_link);
+          setHref(".social-icons a.linkedin", data.linkdin_link);
+          setHref(".social-icons a.youtube", data.twitter_link); // لو عندك youtube_link بدلها
         }
 
-        // Fetch on load
-        fetchBranchData();
+        // ✅ 2) Brands
+        async function fetchBrands() {
+          const container = document.getElementById("footerBrands");
+          if (!container) return;
+
+          try {
+            const response = await fetch("{% url 'get_brands' %}");
+            if (!response.ok) throw new Error("Failed to fetch brands");
+
+            const payload = await response.json();
+            const brands = Array.isArray(payload)
+              ? payload
+              : payload.brands || [];
+
+            if (!brands.length) {
+              container.innerHTML = `
+        <div class="col-12 text-center py-4">
+          <p class="text-muted">{% trans "No brands available." %}</p>
+        </div>
+      `;
+              return;
+            }
+
+            container.innerHTML = "";
+
+            brands.forEach((brand, index) => {
+              const delay = index * 60;
+
+              const name = brand.name || brand.title || "Brand";
+              const description = brand.description || "";
+              const image =
+                brand.image ||
+                brand.logo ||
+                brand.logo_url ||
+                brand.image_url ||
+                null;
+
+              container.insertAdjacentHTML(
+                "beforeend",
+                '<span class="badge badge-primary-modern" data-aos="fade-up" data-aos-delay="' +
+                  delay +
+                  '">' +
+                  name +
+                  "</span>"
+              );
+            });
+          } catch (err) {
+            console.error("fetchBrands error:", err);
+            container.innerHTML = `
+      <div class="col-12 text-center py-4">
+        <p class="text-danger mb-0">
+          <i class="fas fa-exclamation-triangle mx-2"></i>
+          {% trans "Failed to load brands. Please try again later." %}
+        </p>
+      </div>
+    `;
+          }
+        }
+
+        // ✅ run on load
+        fetchPrimaryBranch();
+        fetchBrands();
 
         // ========= ADD INTERACTIVE EFFECTS =========
-        document.addEventListener('DOMContentLoaded', () => {
+        document.addEventListener("DOMContentLoaded", () => {
           // Add hover effects to cards
-          document.querySelectorAll('.modern-card').forEach(card => {
-            card.addEventListener('mouseenter', () => {
-              card.style.transform = 'translateY(-8px)';
+          document.querySelectorAll(".modern-card").forEach((card) => {
+            card.addEventListener("mouseenter", () => {
+              card.style.transform = "translateY(-8px)";
             });
-            card.addEventListener('mouseleave', () => {
-              card.style.transform = 'translateY(0)';
+            card.addEventListener("mouseleave", () => {
+              card.style.transform = "translateY(0)";
             });
           });
 
           // Add ripple effect to buttons
-          document.querySelectorAll('.btn-modern').forEach(button => {
-            button.addEventListener('click', function(e) {
+          document.querySelectorAll(".btn-modern").forEach((button) => {
+            button.addEventListener("click", function (e) {
               const x = e.clientX - e.target.getBoundingClientRect().left;
               const y = e.clientY - e.target.getBoundingClientRect().top;
-              
-              const ripple = document.createElement('span');
-              ripple.style.left = x + 'px';
-              ripple.style.top = y + 'px';
-              ripple.classList.add('ripple');
-              
+
+              const ripple = document.createElement("span");
+              ripple.style.left = x + "px";
+              ripple.style.top = y + "px";
+              ripple.classList.add("ripple");
+
               this.appendChild(ripple);
-              
+
               setTimeout(() => {
                 ripple.remove();
               }, 600);

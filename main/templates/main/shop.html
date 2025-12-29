@@ -794,7 +794,7 @@
   }
 
   /* ===== RESPONSIVE BREAKPOINTS ===== */
-  
+
   /* Tablet (768px and up) */
   @media (min-width: 768px) {
     .shop-container {
@@ -1003,9 +1003,7 @@
     border-radius: 3px;
   }
 </style>
-{% endblock %}
-
-{% block content %}
+{% endblock %} {% block content %}
 <!-- Loading Overlay -->
 <div class="loading-overlay" id="loadingOverlay">
   <div class="loading-spinner"></div>
@@ -1017,20 +1015,34 @@
   <div class="mobile-filter-header" id="mobileFilterHeader">
     <h1 class="shop-title">{% trans "Shop" %}</h1>
     <div class="mobile-filter-actions">
-      <button class="mobile-filter-btn" id="sortBtn" onclick="toggleSortModal()">
+      <button
+        class="mobile-filter-btn"
+        id="sortBtn"
+        onclick="toggleSortModal()"
+      >
         <i class="fas fa-sort-amount-down"></i>
       </button>
-      <button class="mobile-filter-btn" id="filterBtn" onclick="toggleFilterModal()">
+      <button
+        class="mobile-filter-btn"
+        id="filterBtn"
+        onclick="toggleFilterModal()"
+      >
         <i class="fas fa-filter"></i>
       </button>
     </div>
   </div>
 
   <!-- Desktop Filter Sidebar -->
-  <aside class="flutter-filter-sidebar d-none d-lg-block" id="desktopFilterSidebar">
+  <aside
+    class="flutter-filter-sidebar d-none d-lg-block"
+    id="desktopFilterSidebar"
+  >
     <!-- Categories Section -->
     <div class="flutter-filter-section">
-      <h3 class="filter-section-title" onclick="toggleFilterSection('desktop-categories')">
+      <h3
+        class="filter-section-title"
+        onclick="toggleFilterSection('desktop-categories')"
+      >
         <span>{% trans "Categories" %}</span>
         <i class="fas fa-chevron-down icon"></i>
       </h3>
@@ -1043,7 +1055,10 @@
 
     <!-- Price Range Section -->
     <div class="flutter-filter-section">
-      <h3 class="filter-section-title" onclick="toggleFilterSection('desktop-price')">
+      <h3
+        class="filter-section-title"
+        onclick="toggleFilterSection('desktop-price')"
+      >
         <span>{% trans "Price Range" %}</span>
         <i class="fas fa-chevron-down icon"></i>
       </h3>
@@ -1066,13 +1081,20 @@
 
     <!-- Availability Section -->
     <div class="flutter-filter-section">
-      <h3 class="filter-section-title" onclick="toggleFilterSection('desktop-availability')">
+      <h3
+        class="filter-section-title"
+        onclick="toggleFilterSection('desktop-availability')"
+      >
         <span>{% trans "Availability" %}</span>
         <i class="fas fa-chevron-down icon"></i>
       </h3>
       <div class="flutter-filter-content" id="desktop-availability-content">
         <label class="flutter-checkbox">
-<input type="checkbox" id="desktopInStockCheckbox" onchange="handleInStockChange('desktop')">
+          <input
+            type="checkbox"
+            id="desktopInStockCheckbox"
+            onchange="handleInStockChange('desktop')"
+          />
           <span class="checkbox"></span>
           <span class="label">{% trans "In Stock Only" %}</span>
         </label>
@@ -1080,7 +1102,11 @@
     </div>
 
     <!-- Clear Filters Button -->
-    <button class="flutter-cart-btn" onclick="clearFilters()" style="margin-top: 20px;">
+    <button
+      class="flutter-cart-btn"
+      onclick="clearFilters()"
+      style="margin-top: 20px"
+    >
       <i class="fas fa-times"></i> {% trans "Clear Filters" %}
     </button>
   </aside>
@@ -1114,7 +1140,10 @@
   <div class="filter-modal-content">
     <!-- Categories Section -->
     <div class="flutter-filter-section">
-      <h3 class="filter-section-title active" onclick="toggleFilterSection('mobile-categories')">
+      <h3
+        class="filter-section-title active"
+        onclick="toggleFilterSection('mobile-categories')"
+      >
         <span>{% trans "Categories" %}</span>
         <i class="fas fa-chevron-down icon"></i>
       </h3>
@@ -1127,7 +1156,10 @@
 
     <!-- Price Range Section -->
     <div class="flutter-filter-section">
-      <h3 class="filter-section-title active" onclick="toggleFilterSection('mobile-price')">
+      <h3
+        class="filter-section-title active"
+        onclick="toggleFilterSection('mobile-price')"
+      >
         <span>{% trans "Price Range" %}</span>
         <i class="fas fa-chevron-down icon"></i>
       </h3>
@@ -1150,13 +1182,20 @@
 
     <!-- Availability Section -->
     <div class="flutter-filter-section">
-      <h3 class="filter-section-title active" onclick="toggleFilterSection('mobile-availability')">
+      <h3
+        class="filter-section-title active"
+        onclick="toggleFilterSection('mobile-availability')"
+      >
         <span>{% trans "Availability" %}</span>
         <i class="fas fa-chevron-down icon"></i>
       </h3>
       <div class="flutter-filter-content" id="mobile-availability-content">
         <label class="flutter-checkbox">
-<input type="checkbox" id="mobileInStockCheckbox" onchange="handleInStockChange('mobile')">
+          <input
+            type="checkbox"
+            id="mobileInStockCheckbox"
+            onchange="handleInStockChange('mobile')"
+          />
           <span class="checkbox"></span>
           <span class="label">{% trans "In Stock Only" %}</span>
         </label>
@@ -1168,7 +1207,10 @@
     <button class="filter-btn filter-clear-btn" onclick="clearFilterModal()">
       {% trans "Clear All" %}
     </button>
-    <button class="filter-btn filter-apply-btn" onclick="applyFiltersFromModal()">
+    <button
+      class="filter-btn filter-apply-btn"
+      onclick="applyFiltersFromModal()"
+    >
       {% trans "Apply Filters" %}
     </button>
   </div>
@@ -1187,28 +1229,54 @@
     <div class="flutter-filter-section">
       <div class="sort-options">
         <label class="flutter-checkbox">
-          <input type="radio" name="sort" value="newest" checked onchange="handleSortChange('newest')">
-          <span class="checkbox" style="border-radius: 50%;"></span>
+          <input
+            type="radio"
+            name="sort"
+            value="newest"
+            checked
+            onchange="handleSortChange('newest')"
+          />
+          <span class="checkbox" style="border-radius: 50%"></span>
           <span class="label">{% trans "Newest First" %}</span>
         </label>
         <label class="flutter-checkbox">
-          <input type="radio" name="sort" value="price_low" onchange="handleSortChange('price_low')">
-          <span class="checkbox" style="border-radius: 50%;"></span>
+          <input
+            type="radio"
+            name="sort"
+            value="price_low"
+            onchange="handleSortChange('price_low')"
+          />
+          <span class="checkbox" style="border-radius: 50%"></span>
           <span class="label">{% trans "Price: Low to High" %}</span>
         </label>
         <label class="flutter-checkbox">
-          <input type="radio" name="sort" value="price_high" onchange="handleSortChange('price_high')">
-          <span class="checkbox" style="border-radius: 50%;"></span>
+          <input
+            type="radio"
+            name="sort"
+            value="price_high"
+            onchange="handleSortChange('price_high')"
+          />
+          <span class="checkbox" style="border-radius: 50%"></span>
           <span class="label">{% trans "Price: High to Low" %}</span>
         </label>
         <label class="flutter-checkbox">
-          <input type="radio" name="sort" value="name" onchange="handleSortChange('name')">
-          <span class="checkbox" style="border-radius: 50%;"></span>
+          <input
+            type="radio"
+            name="sort"
+            value="name"
+            onchange="handleSortChange('name')"
+          />
+          <span class="checkbox" style="border-radius: 50%"></span>
           <span class="label">{% trans "Name A-Z" %}</span>
         </label>
         <label class="flutter-checkbox">
-          <input type="radio" name="sort" value="popular" onchange="handleSortChange('popular')">
-          <span class="checkbox" style="border-radius: 50%;"></span>
+          <input
+            type="radio"
+            name="sort"
+            value="popular"
+            onchange="handleSortChange('popular')"
+          />
+          <span class="checkbox" style="border-radius: 50%"></span>
           <span class="label">{% trans "Most Popular" %}</span>
         </label>
       </div>
@@ -1221,9 +1289,7 @@
     </button>
   </div>
 </div>
-{% endblock %}
-
-{% block extra_js %}
+{% endblock %} {% block extra_js %}
 <script>
   // Shop state
   let shopState = {
@@ -1245,93 +1311,112 @@
     priceRange: {
       min: 0,
       max: 1000,
-    }
+    },
   };
 
   // Initialize on page load
   document.addEventListener("DOMContentLoaded", async function () {
     // Initialize cart from base.html
-    if (typeof initCart === 'function') {
+    if (typeof initCart === "function") {
       initCart();
     }
     initFiltersFromURL();
     await loadShopData();
     setupEventListeners();
-      initPriceSliders();
-
+    initPriceSliders();
   });
-function initPriceSliders() {
-  const sliders = [
-    { minThumb: 'desktopMinThumb', maxThumb: 'desktopMaxThumb', minValueEl: 'desktopMinPriceValue', maxValueEl: 'desktopMaxPriceValue' },
-    { minThumb: 'mobileMinThumb', maxThumb: 'mobileMaxThumb', minValueEl: 'mobileMinPriceValue', maxValueEl: 'mobileMaxPriceValue' },
-  ];
+  function initPriceSliders() {
+    const sliders = [
+      {
+        minThumb: "desktopMinThumb",
+        maxThumb: "desktopMaxThumb",
+        minValueEl: "desktopMinPriceValue",
+        maxValueEl: "desktopMaxPriceValue",
+      },
+      {
+        minThumb: "mobileMinThumb",
+        maxThumb: "mobileMaxThumb",
+        minValueEl: "mobileMinPriceValue",
+        maxValueEl: "mobileMaxPriceValue",
+      },
+    ];
 
-  sliders.forEach(slider => {
-    const minThumb = document.getElementById(slider.minThumb);
-    const maxThumb = document.getElementById(slider.maxThumb);
+    sliders.forEach((slider) => {
+      const minThumb = document.getElementById(slider.minThumb);
+      const maxThumb = document.getElementById(slider.maxThumb);
+      const minValueEl = document.getElementById(slider.minValueEl);
+      const maxValueEl = document.getElementById(slider.maxValueEl);
+
+      if (!minThumb || !maxThumb) return;
+
+      // Add drag/move listeners to update values live
+      [minThumb, maxThumb].forEach((thumb) => {
+        thumb.addEventListener("mousemove", () =>
+          updatePriceFromSlider(slider)
+        );
+        thumb.addEventListener("touchmove", () =>
+          updatePriceFromSlider(slider)
+        );
+
+        // Also update on mouseup/touchend to ensure final value
+        thumb.addEventListener("mouseup", () => updatePriceFromSlider(slider));
+        thumb.addEventListener("touchend", () => updatePriceFromSlider(slider));
+      });
+    });
+  }
+
+  function updatePriceFromSlider(slider) {
     const minValueEl = document.getElementById(slider.minValueEl);
     const maxValueEl = document.getElementById(slider.maxValueEl);
 
-    if (!minThumb || !maxThumb) return;
+    const min =
+      Number(minValueEl.textContent.replace("$", "")) ||
+      shopState.priceRange.min;
+    const max =
+      Number(maxValueEl.textContent.replace("$", "")) ||
+      shopState.priceRange.max;
 
-    // Add drag/move listeners to update values live
-    [minThumb, maxThumb].forEach(thumb => {
-      thumb.addEventListener('mousemove', () => updatePriceFromSlider(slider));
-      thumb.addEventListener('touchmove', () => updatePriceFromSlider(slider));
+    shopState.filters.minPrice = min;
+    shopState.filters.maxPrice = max;
 
-      // Also update on mouseup/touchend to ensure final value
-      thumb.addEventListener('mouseup', () => updatePriceFromSlider(slider));
-      thumb.addEventListener('touchend', () => updatePriceFromSlider(slider));
-    });
-  });
-}
-
-function updatePriceFromSlider(slider) {
-  const minValueEl = document.getElementById(slider.minValueEl);
-  const maxValueEl = document.getElementById(slider.maxValueEl);
-
-  const min = Number(minValueEl.textContent.replace('$','')) || shopState.priceRange.min;
-  const max = Number(maxValueEl.textContent.replace('$','')) || shopState.priceRange.max;
-
-  shopState.filters.minPrice = min;
-  shopState.filters.maxPrice = max;
-
-  applyFilters(); // Apply immediately
-}
-
-
-function updatePriceFromSlider(slider) {
-  const minValueEl = document.getElementById(slider.minValueEl);
-  const maxValueEl = document.getElementById(slider.maxValueEl);
-
-  // Get numbers from displayed values (strip $)
-  const min = Number(minValueEl.textContent.replace('$','')) || shopState.priceRange.min;
-  const max = Number(maxValueEl.textContent.replace('$','')) || shopState.priceRange.max;
-
-  shopState.filters.minPrice = min;
-  shopState.filters.maxPrice = max;
-
-  applyFilters(); // Automatically apply filters
-}
-
-  function handleInStockChange(type) {
-  const desktopCheckbox = document.getElementById('desktopInStockCheckbox');
-  const mobileCheckbox = document.getElementById('mobileInStockCheckbox');
-
-  // Update shopState.filters based on which checkbox changed
-  if (type === 'desktop') {
-    shopState.filters.inStock = desktopCheckbox.checked;
-  } else if (type === 'mobile') {
-    shopState.filters.inStock = mobileCheckbox.checked;
+    applyFilters(); // Apply immediately
   }
 
-  // Sync both checkboxes
-  desktopCheckbox.checked = shopState.filters.inStock;
-  mobileCheckbox.checked = shopState.filters.inStock;
+  function updatePriceFromSlider(slider) {
+    const minValueEl = document.getElementById(slider.minValueEl);
+    const maxValueEl = document.getElementById(slider.maxValueEl);
 
-  applyFilters();
-}
+    // Get numbers from displayed values (strip $)
+    const min =
+      Number(minValueEl.textContent.replace("$", "")) ||
+      shopState.priceRange.min;
+    const max =
+      Number(maxValueEl.textContent.replace("$", "")) ||
+      shopState.priceRange.max;
 
+    shopState.filters.minPrice = min;
+    shopState.filters.maxPrice = max;
+
+    applyFilters(); // Automatically apply filters
+  }
+
+  function handleInStockChange(type) {
+    const desktopCheckbox = document.getElementById("desktopInStockCheckbox");
+    const mobileCheckbox = document.getElementById("mobileInStockCheckbox");
+
+    // Update shopState.filters based on which checkbox changed
+    if (type === "desktop") {
+      shopState.filters.inStock = desktopCheckbox.checked;
+    } else if (type === "mobile") {
+      shopState.filters.inStock = mobileCheckbox.checked;
+    }
+
+    // Sync both checkboxes
+    desktopCheckbox.checked = shopState.filters.inStock;
+    mobileCheckbox.checked = shopState.filters.inStock;
+
+    applyFilters();
+  }
 
   // Load shop data
   async function loadShopData() {
@@ -1381,16 +1466,21 @@ function updatePriceFromSlider(slider) {
           totalPages: data.pagination.total_pages || 1,
           totalItems: data.stats.total_products || 0,
         };
-        shopState.priceRange = data.filters.price_range || { min: 0, max: 1000 };
+        shopState.priceRange = data.filters.price_range || {
+          min: 0,
+          max: 1000,
+        };
 
         // Update UI
         updateCategories();
         updateProducts();
         updatePagination();
         updatePriceSliders();
-        
+
         // Set active sort radio button
-        document.querySelector(`input[name="sort"][value="${shopState.filters.sortBy}"]`).checked = true;
+        document.querySelector(
+          `input[name="sort"][value="${shopState.filters.sortBy}"]`
+        ).checked = true;
       }
     } catch (error) {
       console.error("Error loading shop data:", error);
@@ -1403,25 +1493,26 @@ function updatePriceFromSlider(slider) {
   // Update categories
   function updateCategories() {
     const totalCount = shopState.pagination.totalItems;
-    
+
     // Update desktop categories
-    const desktopChips = document.getElementById('desktopCategoryChips');
+    const desktopChips = document.getElementById("desktopCategoryChips");
     if (desktopChips) {
-      desktopChips.innerHTML = createCategoryChipsHTML('desktop');
+      desktopChips.innerHTML = createCategoryChipsHTML("desktop");
     }
-    
+
     // Update mobile categories
-    const mobileChips = document.getElementById('mobileCategoryChips');
+    const mobileChips = document.getElementById("mobileCategoryChips");
     if (mobileChips) {
-      mobileChips.innerHTML = createCategoryChipsHTML('mobile');
+      mobileChips.innerHTML = createCategoryChipsHTML("mobile");
     }
   }
 
   function createCategoryChipsHTML(type) {
-    const isAllActive = shopState.filters.category === "all" || !shopState.filters.category;
-    
+    const isAllActive =
+      shopState.filters.category === "all" || !shopState.filters.category;
+
     let html = `
-      <button class="category-chip ${isAllActive ? 'active' : ''}"
+      <button class="category-chip ${isAllActive ? "active" : ""}"
               onclick="filterByCategory('all', '${type}')">
         <i class="fas fa-boxes"></i>
         <span>{% trans "All" %}</span>
@@ -1432,7 +1523,7 @@ function updatePriceFromSlider(slider) {
     shopState.categories.forEach((category) => {
       const isActive = shopState.filters.category === category.slug;
       html += `
-        <button class="category-chip ${isActive ? 'active' : ''}"
+        <button class="category-chip ${isActive ? "active" : ""}"
                 onclick="filterByCategory('${category.slug}', '${type}')">
           <i class="fas fa-folder"></i>
           <span>${category.name}</span>
@@ -1471,7 +1562,7 @@ function updatePriceFromSlider(slider) {
       const canOrder = product.can_order;
       const basePrice = Number(product.price) || 0;
       const discountPct = Number(product.discount_percentage) || 0;
-      
+
       let effectivePrice = basePrice;
       if (discountPct > 0 && discountPct <= 100) {
         effectivePrice = basePrice * (1 - discountPct / 100);
@@ -1480,11 +1571,15 @@ function updatePriceFromSlider(slider) {
       // Price HTML
       let priceHtml = "";
       if (basePrice) {
-        priceHtml += `<span class="flutter-current-price">د.ل${effectivePrice.toFixed(2)}</span>`;
-        
+        priceHtml += `<span class="flutter-current-price">د.ل${effectivePrice.toFixed(
+          2
+        )}</span>`;
+
         if (discountPct > 0 && discountPct <= 100) {
           priceHtml += `
-            <span class="flutter-original-price">د.ل${basePrice.toFixed(2)}</span>
+            <span class="flutter-original-price">د.ل${basePrice.toFixed(
+              2
+            )}</span>
             <span class="flutter-discount-badge">-${discountPct}%</span>
           `;
         }
@@ -1494,14 +1589,16 @@ function updatePriceFromSlider(slider) {
 
       // Stock HTML
       const stockHtml = `
-        <div class="flutter-stock-info ${inStock ? 'stock-in' : 'stock-out'}">
-          <i class="fas ${inStock ? 'fa-check-circle' : 'fa-times-circle'}"></i>
+        <div class="flutter-stock-info ${inStock ? "stock-in" : "stock-out"}">
+          <i class="fas ${inStock ? "fa-check-circle" : "fa-times-circle"}"></i>
           <span>
-            ${inStock 
-              ? (product.show_quantity 
+            ${
+              inStock
+                ? product.show_quantity
                   ? `${product.quantity_available || 0} {% trans "in stock" %}`
-                  : '{% trans "In stock" %}')
-              : '{% trans "Cannot Order" %}'}
+                  : '{% trans "In stock" %}'
+                : '{% trans "Cannot Order" %}'
+            }
           </span>
         </div>
       `;
@@ -1509,20 +1606,26 @@ function updatePriceFromSlider(slider) {
       // Badges HTML
       let badgesHtml = "";
       if (product.is_new) {
-        badgesHtml += '<span class="flutter-badge badge-new">{% trans "New" %}</span>';
+        badgesHtml +=
+          '<span class="flutter-badge badge-new">{% trans "New" %}</span>';
       }
       if (product.video_url) {
-        badgesHtml += '<span class="flutter-badge badge-video">{% trans "Video" %}</span>';
+        badgesHtml +=
+          '<span class="flutter-badge badge-video">{% trans "Video" %}</span>';
       }
       if (!inStock) {
-        badgesHtml += '<span class="flutter-badge badge-out">{% trans "Out of stock" %}</span>';
+        badgesHtml +=
+          '<span class="flutter-badge badge-out">{% trans "Out of stock" %}</span>';
       }
 
       // Main image
-      const mainImage = product.image_url || product.media_items?.[0]?.url || '/static/main/img/product-default.jpg';
+      const mainImage =
+        product.image_url ||
+        product.media_items?.[0]?.url ||
+        "/static/main/img/product-default.jpg";
 
       // Check if product is in cart
-      const cartItem = cart.find(item => item.id === product.id);
+      const cartItem = cart.find((item) => item.id === product.id);
       const quantityInCart = cartItem ? cartItem.quantity : 0;
       const safeName = (product.name || "").replace(/'/g, "\\'");
 
@@ -1551,9 +1654,13 @@ function updatePriceFromSlider(slider) {
             '${mainImage}',
             ${canOrder},
             ${discountPct}
-          )" ${!canOrder ? 'disabled' : ''}>
+          )" ${!canOrder ? "disabled" : ""}>
             <i class="fas fa-cart-plus"></i>
-            ${canOrder ? '{% trans "Add to Cart" %}' : '{% trans "Cannot Order" %}'}
+            ${
+              canOrder
+                ? '{% trans "Add to Cart" %}'
+                : '{% trans "Cannot Order" %}'
+            }
           </button>
         `;
       }
@@ -1565,29 +1672,31 @@ function updatePriceFromSlider(slider) {
              data-product-price="${basePrice}"
              data-product-discount="${discountPct}"
              data-product-image="${mainImage}"
-             data-product-can-order="${canOrder ? '1' : '0'}"
+             data-product-can-order="${canOrder ? "1" : "0"}"
              onclick="window.location.href='/product/${product.id}/'"
 >
 
           <div class="flutter-product-image">
-            <img src="${mainImage}" alt="${product.name}" loading="lazy" 
+            <img src="${mainImage}" alt="${product.name}" loading="lazy"
                  onerror="this.src='/static/main/img/product-default.jpg'">
-            
+
             <div class="flutter-badge-container">
               ${badgesHtml}
             </div>
           </div>
-          
+
           <div class="flutter-product-info">
-            <div class="flutter-product-category">${product.category?.name || '{% trans "Uncategorized" %}'}</div>
+            <div class="flutter-product-category">${
+              product.category?.name || '{% trans "Uncategorized" %}'
+            }</div>
             <h3 class="flutter-product-title">${product.name}</h3>
-            
+
             <div class="flutter-price-container">
               ${priceHtml}
             </div>
-            
+
             ${stockHtml}
-            
+
             ${actionHtml}
           </div>
         </div>
@@ -1627,7 +1736,9 @@ function updatePriceFromSlider(slider) {
     );
     if (!card) return;
 
-    const actionContainer = card.querySelector('.flutter-product-info > :last-child');
+    const actionContainer = card.querySelector(
+      ".flutter-product-info > :last-child"
+    );
     if (!actionContainer) return;
 
     const cartItem = cart.find((item) => item.id === productId);
@@ -1683,7 +1794,9 @@ function updatePriceFromSlider(slider) {
     );
     if (!card) return;
 
-    const actionContainer = card.querySelector('.flutter-product-info > :last-child');
+    const actionContainer = card.querySelector(
+      ".flutter-product-info > :last-child"
+    );
     if (!actionContainer) return;
 
     const updatedItem = cart.find((item) => item.id === productId);
@@ -1709,294 +1822,322 @@ function updatePriceFromSlider(slider) {
           '${image}',
           ${canOrder},
           ${discountPct}
-        )" ${!canOrder ? 'disabled' : ''}>
+        )" ${!canOrder ? "disabled" : ""}>
           <i class="fas fa-cart-plus"></i>
-          ${canOrder ? '{% trans "Add to Cart" %}' : '{% trans "Cannot Order" %}'}
+          ${
+            canOrder
+              ? '{% trans "Add to Cart" %}'
+              : '{% trans "Cannot Order" %}'
+          }
         </button>
       `;
     }
   }
-// ==============================
-// Filter by category
-// ==============================
-function filterByCategory(categorySlug, type) {
-  shopState.filters.category = categorySlug;
-  shopState.pagination.currentPage = 1;
+  // ==============================
+  // Filter by category
+  // ==============================
+  function filterByCategory(categorySlug, type) {
+    shopState.filters.category = categorySlug;
+    shopState.pagination.currentPage = 1;
 
-  if (type === 'mobile') {
+    if (type === "mobile") {
+      closeFilterModal();
+    }
+
+    applyFilters();
+  }
+
+  // ==============================
+  // Apply filters
+  // ==============================
+  async function applyFilters() {
+    showLoading(true);
+
+    // Sync desktop checkbox
+    const desktopCheckbox = document.getElementById("desktopInStockCheckbox");
+    if (desktopCheckbox) {
+      desktopCheckbox.checked = shopState.filters.inStock;
+    }
+
+    // Sync mobile checkbox if exists
+    const mobileCheckbox = document.getElementById("mobileInStockCheckbox");
+    if (mobileCheckbox) {
+      mobileCheckbox.checked = shopState.filters.inStock;
+    }
+
+    await loadShopData();
+    updateURL();
+  }
+
+  // ==============================
+  // Apply filters from modal (mobile)
+  // ==============================
+  function applyFiltersFromModal() {
+    const mobileCheckbox = document.getElementById("mobileInStockCheckbox");
+    if (mobileCheckbox) {
+      shopState.filters.inStock = mobileCheckbox.checked;
+    }
+
     closeFilterModal();
+    applyFilters();
   }
 
-  applyFilters();
-}
+  // ==============================
+  // Clear all filters
+  // ==============================
+  function clearFilters() {
+    shopState.filters = {
+      category: "all",
+      minPrice: shopState.priceRange.min,
+      maxPrice: shopState.priceRange.max,
+      inStock: false,
+      sortBy: "newest",
+      search: "",
+    };
 
-// ==============================
-// Apply filters
-// ==============================
-async function applyFilters() {
-  showLoading(true);
+    shopState.pagination.currentPage = 1;
 
-  // Sync desktop checkbox
-  const desktopCheckbox = document.getElementById('desktopInStockCheckbox');
-  if (desktopCheckbox) {
-    desktopCheckbox.checked = shopState.filters.inStock;
+    // Reset UI checkboxes
+    const mobileCheckbox = document.getElementById("mobileInStockCheckbox");
+    const desktopCheckbox = document.getElementById("desktopInStockCheckbox");
+    if (mobileCheckbox) mobileCheckbox.checked = false;
+    if (desktopCheckbox) desktopCheckbox.checked = false;
+
+    // Reset price sliders
+    updatePriceSliders();
+
+    applyFilters();
   }
 
-  // Sync mobile checkbox if exists
-  const mobileCheckbox = document.getElementById('mobileInStockCheckbox');
-  if (mobileCheckbox) {
-    mobileCheckbox.checked = shopState.filters.inStock;
+  // ==============================
+  // Clear filter modal (mobile only)
+  // ==============================
+  function clearFilterModal() {
+    const mobileCheckbox = document.getElementById("mobileInStockCheckbox");
+    if (mobileCheckbox) mobileCheckbox.checked = false;
+
+    shopState.filters.minPrice = shopState.priceRange.min;
+    shopState.filters.maxPrice = shopState.priceRange.max;
+
+    updatePriceSliders();
   }
 
-  await loadShopData();
-  updateURL();
-}
+  // ==============================
+  // Update URL based on current filters
+  // ==============================
+  function updateURL() {
+    const params = new URLSearchParams();
 
-// ==============================
-// Apply filters from modal (mobile)
-// ==============================
-function applyFiltersFromModal() {
-  const mobileCheckbox = document.getElementById('mobileInStockCheckbox');
-  if (mobileCheckbox) {
-    shopState.filters.inStock = mobileCheckbox.checked;
+    if (shopState.filters.category && shopState.filters.category !== "all") {
+      params.set("category", shopState.filters.category);
+    }
+
+    if (shopState.filters.search) {
+      params.set("search", shopState.filters.search);
+    }
+
+    if (
+      shopState.filters.minPrice !== null &&
+      shopState.filters.minPrice > shopState.priceRange.min
+    ) {
+      params.set("min_price", shopState.filters.minPrice);
+    }
+
+    if (
+      shopState.filters.maxPrice !== null &&
+      shopState.filters.maxPrice < shopState.priceRange.max
+    ) {
+      params.set("max_price", shopState.filters.maxPrice);
+    }
+
+    // Handle inStock properly
+    if (shopState.filters.inStock) {
+      params.set("in_stock", "true");
+    } else {
+      params.delete("in_stock");
+    }
+
+    if (shopState.filters.sortBy && shopState.filters.sortBy !== "newest") {
+      params.set("sort_by", shopState.filters.sortBy);
+    }
+
+    const newUrl = `${window.location.pathname}${
+      params.toString() ? "?" + params.toString() : ""
+    }`;
+    window.history.pushState({}, "", newUrl);
   }
 
-  closeFilterModal();
-  applyFilters();
-}
+  // ==============================
+  // Pagination update
+  // ==============================
+  function updatePagination() {
+    const container = document.getElementById("flutterPagination");
+    const { currentPage, totalPages } = shopState.pagination;
 
-// ==============================
-// Clear all filters
-// ==============================
-function clearFilters() {
-  shopState.filters = {
-    category: "all",
-    minPrice: shopState.priceRange.min,
-    maxPrice: shopState.priceRange.max,
-    inStock: false,
-    sortBy: "newest",
-    search: "",
-  };
+    if (totalPages <= 1) {
+      container.innerHTML = "";
+      return;
+    }
 
-  shopState.pagination.currentPage = 1;
+    let html = "";
 
-  // Reset UI checkboxes
-  const mobileCheckbox = document.getElementById('mobileInStockCheckbox');
-  const desktopCheckbox = document.getElementById('desktopInStockCheckbox');
-  if (mobileCheckbox) mobileCheckbox.checked = false;
-  if (desktopCheckbox) desktopCheckbox.checked = false;
-
-  // Reset price sliders
-  updatePriceSliders();
-
-  applyFilters();
-}
-
-// ==============================
-// Clear filter modal (mobile only)
-// ==============================
-function clearFilterModal() {
-  const mobileCheckbox = document.getElementById('mobileInStockCheckbox');
-  if (mobileCheckbox) mobileCheckbox.checked = false;
-
-  shopState.filters.minPrice = shopState.priceRange.min;
-  shopState.filters.maxPrice = shopState.priceRange.max;
-
-  updatePriceSliders();
-}
-
-// ==============================
-// Update URL based on current filters
-// ==============================
-function updateURL() {
-  const params = new URLSearchParams();
-
-  if (shopState.filters.category && shopState.filters.category !== "all") {
-    params.set("category", shopState.filters.category);
-  }
-
-  if (shopState.filters.search) {
-    params.set("search", shopState.filters.search);
-  }
-
-  if (shopState.filters.minPrice !== null && shopState.filters.minPrice > shopState.priceRange.min) {
-    params.set("min_price", shopState.filters.minPrice);
-  }
-
-  if (shopState.filters.maxPrice !== null && shopState.filters.maxPrice < shopState.priceRange.max) {
-    params.set("max_price", shopState.filters.maxPrice);
-  }
-
-  // Handle inStock properly
-  if (shopState.filters.inStock) {
-    params.set("in_stock", "true");
-  } else {
-    params.delete("in_stock");
-  }
-
-  if (shopState.filters.sortBy && shopState.filters.sortBy !== "newest") {
-    params.set("sort_by", shopState.filters.sortBy);
-  }
-
-  const newUrl = `${window.location.pathname}${params.toString() ? "?" + params.toString() : ""}`;
-  window.history.pushState({}, "", newUrl);
-}
-
-// ==============================
-// Pagination update
-// ==============================
-function updatePagination() {
-  const container = document.getElementById("flutterPagination");
-  const { currentPage, totalPages } = shopState.pagination;
-
-  if (totalPages <= 1) {
-    container.innerHTML = "";
-    return;
-  }
-
-  let html = "";
-
-  // Previous button
-  html += `
-    <button class="pagination-btn" ${currentPage === 1 ? "disabled" : ""} onclick="goToPage(${currentPage - 1})">
+    // Previous button
+    html += `
+    <button class="pagination-btn" ${
+      currentPage === 1 ? "disabled" : ""
+    } onclick="goToPage(${currentPage - 1})">
       <i class="fas fa-chevron-left"></i>
     </button>
   `;
 
-  const maxVisible = window.innerWidth < 768 ? 3 : 5;
-  let startPage = Math.max(1, currentPage - Math.floor(maxVisible / 2));
-  let endPage = Math.min(totalPages, startPage + maxVisible - 1);
+    const maxVisible = window.innerWidth < 768 ? 3 : 5;
+    let startPage = Math.max(1, currentPage - Math.floor(maxVisible / 2));
+    let endPage = Math.min(totalPages, startPage + maxVisible - 1);
 
-  if (endPage - startPage + 1 < maxVisible) {
-    startPage = Math.max(1, endPage - maxVisible + 1);
-  }
+    if (endPage - startPage + 1 < maxVisible) {
+      startPage = Math.max(1, endPage - maxVisible + 1);
+    }
 
-  // First page
-  if (startPage > 1) {
-    html += `<button class="pagination-btn" onclick="goToPage(1)">1</button>`;
-    if (startPage > 2) html += `<span class="pagination-dots">...</span>`;
-  }
+    // First page
+    if (startPage > 1) {
+      html += `<button class="pagination-btn" onclick="goToPage(1)">1</button>`;
+      if (startPage > 2) html += `<span class="pagination-dots">...</span>`;
+    }
 
-  // Visible pages
-  for (let i = startPage; i <= endPage; i++) {
-    html += `
-      <button class="pagination-btn ${i === currentPage ? "active" : ""}" onclick="goToPage(${i})">
+    // Visible pages
+    for (let i = startPage; i <= endPage; i++) {
+      html += `
+      <button class="pagination-btn ${
+        i === currentPage ? "active" : ""
+      }" onclick="goToPage(${i})">
         ${i}
       </button>
     `;
-  }
+    }
 
-  // Last page
-  if (endPage < totalPages) {
-    if (endPage < totalPages - 1) html += `<span class="pagination-dots">...</span>`;
-    html += `<button class="pagination-btn" onclick="goToPage(${totalPages})">${totalPages}</button>`;
-  }
+    // Last page
+    if (endPage < totalPages) {
+      if (endPage < totalPages - 1)
+        html += `<span class="pagination-dots">...</span>`;
+      html += `<button class="pagination-btn" onclick="goToPage(${totalPages})">${totalPages}</button>`;
+    }
 
-  // Next button
-  html += `
-    <button class="pagination-btn" ${currentPage === totalPages ? "disabled" : ""} onclick="goToPage(${currentPage + 1})">
+    // Next button
+    html += `
+    <button class="pagination-btn" ${
+      currentPage === totalPages ? "disabled" : ""
+    } onclick="goToPage(${currentPage + 1})">
       <i class="fas fa-chevron-right"></i>
     </button>
   `;
 
-  container.innerHTML = html;
-}
-
-// ==============================
-// Go to page
-// ==============================
-function goToPage(page) {
-  if (page < 1 || page > shopState.pagination.totalPages) return;
-
-  shopState.pagination.currentPage = page;
-  applyFilters();
-
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-// ==============================
-// Load shop data
-// ==============================
-async function loadShopData() {
-  showLoading(true);
-
-  try {
-    const urlParams = new URLSearchParams(window.location.search);
-    const category = urlParams.get("category") || "all";
-    const search = urlParams.get("search") || "";
-
-    let apiUrl = `/api/shop-page-data/?page=${shopState.pagination.currentPage}`;
-
-    if (shopState.filters.category && shopState.filters.category !== "all") {
-  apiUrl += `&category=${shopState.filters.category}`;
-}
-
-
-    if (search) {
-      apiUrl += `&search=${encodeURIComponent(search)}`;
-      shopState.filters.search = search;
-    }
-
-    // Filters
-    if (shopState.filters.minPrice !== null) apiUrl += `&min_price=${shopState.filters.minPrice}`;
-    if (shopState.filters.maxPrice !== null) apiUrl += `&max_price=${shopState.filters.maxPrice}`;
-    if (shopState.filters.inStock) apiUrl += `&in_stock=true`;
-    if (shopState.filters.sortBy) apiUrl += `&sort_by=${shopState.filters.sortBy}`;
-
-    const response = await fetch(apiUrl);
-    const data = await response.json();
-
-    if (data.success) {
-      shopState.products = data.products;
-      shopState.categories = data.filters.categories;
-      shopState.pagination = {
-        currentPage: data.pagination.current_page || 1,
-        totalPages: data.pagination.total_pages || 1,
-        totalItems: data.stats.total_products || 0,
-      };
-      shopState.priceRange = data.filters.price_range || { min: 0, max: 1000 };
-
-      updateCategories();
-      updateProducts();
-      updatePagination();
-      updatePriceSliders();
-
-      const sortRadio = document.querySelector(`input[name="sort"][value="${shopState.filters.sortBy}"]`);
-      if (sortRadio) sortRadio.checked = true;
-    }
-  } catch (error) {
-    console.error("Error loading shop data:", error);
-    showNotification("Error loading products", "error");
+    container.innerHTML = html;
   }
 
-  showLoading(false);
-}
-function initFiltersFromURL() {
-  const urlParams = new URLSearchParams(window.location.search);
+  // ==============================
+  // Go to page
+  // ==============================
+  function goToPage(page) {
+    if (page < 1 || page > shopState.pagination.totalPages) return;
 
-  shopState.filters.category = urlParams.get("category") || "all";
-  shopState.filters.search = urlParams.get("search") || "";
-  shopState.filters.minPrice = urlParams.get("min_price") 
-    ? Number(urlParams.get("min_price")) 
-    : shopState.priceRange.min;
-  shopState.filters.maxPrice = urlParams.get("max_price") 
-    ? Number(urlParams.get("max_price")) 
-    : shopState.priceRange.max;
-  shopState.filters.inStock = urlParams.get("in_stock") === "true";
-  shopState.filters.sortBy = urlParams.get("sort_by") || "newest";
-}
+    shopState.pagination.currentPage = page;
+    applyFilters();
+
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  // ==============================
+  // Load shop data
+  // ==============================
+  async function loadShopData() {
+    showLoading(true);
+
+    try {
+      const urlParams = new URLSearchParams(window.location.search);
+      const category = urlParams.get("category") || "all";
+      const search = urlParams.get("search") || "";
+
+      let apiUrl = `/api/shop-page-data/?page=${shopState.pagination.currentPage}`;
+
+      if (shopState.filters.category && shopState.filters.category !== "all") {
+        apiUrl += `&category=${shopState.filters.category}`;
+      }
+
+      if (search) {
+        apiUrl += `&search=${encodeURIComponent(search)}`;
+        shopState.filters.search = search;
+      }
+
+      // Filters
+      if (shopState.filters.minPrice !== null)
+        apiUrl += `&min_price=${shopState.filters.minPrice}`;
+      if (shopState.filters.maxPrice !== null)
+        apiUrl += `&max_price=${shopState.filters.maxPrice}`;
+      if (shopState.filters.inStock) apiUrl += `&in_stock=true`;
+      if (shopState.filters.sortBy)
+        apiUrl += `&sort_by=${shopState.filters.sortBy}`;
+
+      const response = await fetch(apiUrl);
+      const data = await response.json();
+
+      if (data.success) {
+        shopState.products = data.products;
+        shopState.categories = data.filters.categories;
+        shopState.pagination = {
+          currentPage: data.pagination.current_page || 1,
+          totalPages: data.pagination.total_pages || 1,
+          totalItems: data.stats.total_products || 0,
+        };
+        shopState.priceRange = data.filters.price_range || {
+          min: 0,
+          max: 1000,
+        };
+
+        updateCategories();
+        updateProducts();
+        updatePagination();
+        updatePriceSliders();
+
+        const sortRadio = document.querySelector(
+          `input[name="sort"][value="${shopState.filters.sortBy}"]`
+        );
+        if (sortRadio) sortRadio.checked = true;
+      }
+    } catch (error) {
+      console.error("Error loading shop data:", error);
+      showNotification("Error loading products", "error");
+    }
+
+    showLoading(false);
+  }
+  function initFiltersFromURL() {
+    const urlParams = new URLSearchParams(window.location.search);
+
+    shopState.filters.category = urlParams.get("category") || "all";
+    shopState.filters.search = urlParams.get("search") || "";
+    shopState.filters.minPrice = urlParams.get("min_price")
+      ? Number(urlParams.get("min_price"))
+      : shopState.priceRange.min;
+    shopState.filters.maxPrice = urlParams.get("max_price")
+      ? Number(urlParams.get("max_price"))
+      : shopState.priceRange.max;
+    shopState.filters.inStock = urlParams.get("in_stock") === "true";
+    shopState.filters.sortBy = urlParams.get("sort_by") || "newest";
+  }
 
   // Update price sliders
   function updatePriceSliders() {
     const { min, max } = shopState.priceRange;
-    const minPrice = shopState.filters.minPrice !== null ? shopState.filters.minPrice : min;
-    const maxPrice = shopState.filters.maxPrice !== null ? shopState.filters.maxPrice : max;
+    const minPrice =
+      shopState.filters.minPrice !== null ? shopState.filters.minPrice : min;
+    const maxPrice =
+      shopState.filters.maxPrice !== null ? shopState.filters.maxPrice : max;
 
     // Update desktop slider
-    updateSlider('desktop', minPrice, maxPrice, min, max);
-    
+    updateSlider("desktop", minPrice, maxPrice, min, max);
+
     // Update mobile slider
-    updateSlider('mobile', minPrice, maxPrice, min, max);
+    updateSlider("mobile", minPrice, maxPrice, min, max);
   }
 
   function updateSlider(type, minPrice, maxPrice, minRange, maxRange) {
@@ -2043,11 +2184,17 @@ function initFiltersFromURL() {
       const roundedValue = Math.round(value / step) * step;
 
       if (thumb === minThumb) {
-        const maxValue = shopState.filters.maxPrice !== null ? shopState.filters.maxPrice : max;
+        const maxValue =
+          shopState.filters.maxPrice !== null
+            ? shopState.filters.maxPrice
+            : max;
         if (roundedValue >= maxValue) return;
         shopState.filters.minPrice = roundedValue;
       } else {
-        const minValue = shopState.filters.minPrice !== null ? shopState.filters.minPrice : min;
+        const minValue =
+          shopState.filters.minPrice !== null
+            ? shopState.filters.minPrice
+            : min;
         if (roundedValue <= minValue) return;
         shopState.filters.maxPrice = roundedValue;
       }
@@ -2081,43 +2228,49 @@ function initFiltersFromURL() {
   // Toggle filter section
   function toggleFilterSection(sectionId) {
     const content = document.getElementById(`${sectionId}-content`);
-    const title = document.querySelector(`[onclick="toggleFilterSection('${sectionId}')"]`);
-    
+    const title = document.querySelector(
+      `[onclick="toggleFilterSection('${sectionId}')"]`
+    );
+
     if (content && title) {
-      content.classList.toggle('collapsed');
-      title.classList.toggle('active');
-      
-      if (content.classList.contains('collapsed')) {
-        content.style.maxHeight = '0';
+      content.classList.toggle("collapsed");
+      title.classList.toggle("active");
+
+      if (content.classList.contains("collapsed")) {
+        content.style.maxHeight = "0";
       } else {
-        content.style.maxHeight = content.scrollHeight + 'px';
+        content.style.maxHeight = content.scrollHeight + "px";
       }
     }
   }
 
   // Modal functions
   function toggleFilterModal() {
-    const modal = document.getElementById('filterModal');
-    modal.classList.toggle('active');
-    document.body.style.overflow = modal.classList.contains('active') ? 'hidden' : 'auto';
+    const modal = document.getElementById("filterModal");
+    modal.classList.toggle("active");
+    document.body.style.overflow = modal.classList.contains("active")
+      ? "hidden"
+      : "auto";
   }
 
   function closeFilterModal() {
-    const modal = document.getElementById('filterModal');
-    modal.classList.remove('active');
-    document.body.style.overflow = 'auto';
+    const modal = document.getElementById("filterModal");
+    modal.classList.remove("active");
+    document.body.style.overflow = "auto";
   }
 
   function toggleSortModal() {
-    const modal = document.getElementById('sortModal');
-    modal.classList.toggle('active');
-    document.body.style.overflow = modal.classList.contains('active') ? 'hidden' : 'auto';
+    const modal = document.getElementById("sortModal");
+    modal.classList.toggle("active");
+    document.body.style.overflow = modal.classList.contains("active")
+      ? "hidden"
+      : "auto";
   }
 
   function closeSortModal() {
-    const modal = document.getElementById('sortModal');
-    modal.classList.remove('active');
-    document.body.style.overflow = 'auto';
+    const modal = document.getElementById("sortModal");
+    modal.classList.remove("active");
+    document.body.style.overflow = "auto";
   }
 
   function handleSortChange(sortBy) {
@@ -2138,43 +2291,49 @@ function initFiltersFromURL() {
   // Setup event listeners
   function setupEventListeners() {
     // Setup price sliders
-    setupPriceSlider('desktop');
-    setupPriceSlider('mobile');
-    
+    setupPriceSlider("desktop");
+    setupPriceSlider("mobile");
+
     // Close modals on outside click
-    const modals = ['filterModal', 'sortModal'];
-    modals.forEach(modalId => {
+    const modals = ["filterModal", "sortModal"];
+    modals.forEach((modalId) => {
       const modal = document.getElementById(modalId);
       if (modal) {
-        modal.addEventListener('click', function(e) {
+        modal.addEventListener("click", function (e) {
           if (e.target === this) {
-            this.classList.remove('active');
-            document.body.style.overflow = 'auto';
+            this.classList.remove("active");
+            document.body.style.overflow = "auto";
           }
         });
       }
     });
-    
+
     // Close modals with ESC
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape') {
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") {
         closeFilterModal();
         closeSortModal();
       }
     });
-    
+
     // Handle browser back/forward
-    window.addEventListener('popstate', function() {
+    window.addEventListener("popstate", function () {
       loadShopData();
     });
-    
+
     // Initialize filter sections
-    const sections = ['desktop-categories', 'desktop-price', 'desktop-availability', 
-                     'mobile-categories', 'mobile-price', 'mobile-availability'];
-    sections.forEach(section => {
+    const sections = [
+      "desktop-categories",
+      "desktop-price",
+      "desktop-availability",
+      "mobile-categories",
+      "mobile-price",
+      "mobile-availability",
+    ];
+    sections.forEach((section) => {
       const content = document.getElementById(`${section}-content`);
       if (content) {
-        content.style.maxHeight = content.scrollHeight + 'px';
+        content.style.maxHeight = content.scrollHeight + "px";
       }
     });
   }

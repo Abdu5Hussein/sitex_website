@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Product, Branch ,Inquiry ,Category
+from .models import Product, Branch ,Inquiry ,Category,Project
 
 class ProductSerializer(serializers.ModelSerializer):
     class Meta:
@@ -54,3 +54,26 @@ class CategorySerializer(serializers.ModelSerializer):
         if obj.image and hasattr(obj.image, 'url'):
             return request.build_absolute_uri(obj.image.url) if request else obj.image.url
         return None
+
+
+class ProjectSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Project
+        fields = [
+            "id",
+            "title",
+            "slug",
+            "description",
+            "image",
+            "url",
+            "project_type",
+            "stack",
+            "industry",
+            "year",
+            "is_featured",
+            "is_public",
+            "sort_order",
+            "created_at",
+            "updated_at",
+        ]
+        read_only_fields = ["id", "created_at", "updated_at"]

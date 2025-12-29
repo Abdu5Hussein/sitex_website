@@ -1,193 +1,271 @@
-{% extends 'main/base.html' %} 
-{% load static i18n %}
+{% extends 'main/base.html' %} {% load static i18n %}
 <!-- prettier-ignore -->
-{% block title %}{% trans "Home - HeavyDuty Parts Hub" %}{% endblock %}
+{% block title %}
+{% trans "Home - SITEX" %}
+{% endblock %} {% block content %}
 
-{% block content %}
-
-<!-- Hero Section -->
-<section class="hero-section position-relative overflow-hidden pt-6" 
-         style="background-color: var(--bg-color); color: var(--text-color);">
+<!-- =========================================================
+  HERO SECTION (SITEX Software Group)
+========================================================= -->
+<section class="hero-section position-relative overflow-hidden pt-6">
   <div class="container-fluid">
-    <div class="row min-vh-75 py-5 g-0">
-      
+    <div class="row min-vh-75 py-5 g-0 align-items-stretch">
       <!-- Left: Banner / Carousel -->
       <div class="col-lg-6 position-relative" data-aos="fade-right">
         <div class="hero-image-container w-100 h-100 position-relative">
-          <div id="homeBannerCarousel" class="carousel slide rounded-3 shadow-lg overflow-hidden h-100" data-bs-ride="carousel">
-            <div class="carousel-inner h-100" id="bannerCarouselInner">
+          <div
+            id="homeBannerCarousel"
+            class="carousel slide hero-carousel rounded-3 shadow-lg"
+            data-bs-ride="carousel"
+          >
+            <div class="carousel-inner" id="bannerCarouselInner">
               <!-- Banners will be loaded here via JS -->
             </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#homeBannerCarousel" data-bs-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Previous</span>
+
+            <button
+              class="carousel-control-prev"
+              type="button"
+              data-bs-target="#homeBannerCarousel"
+              data-bs-slide="prev"
+            >
+              <span
+                class="carousel-control-prev-icon"
+                aria-hidden="true"
+              ></span>
+              <span class="visually-hidden">{% trans "Previous" %}</span>
             </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#homeBannerCarousel" data-bs-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Next</span>
+
+            <button
+              class="carousel-control-next"
+              type="button"
+              data-bs-target="#homeBannerCarousel"
+              data-bs-slide="next"
+            >
+              <span
+                class="carousel-control-next-icon"
+                aria-hidden="true"
+              ></span>
+              <span class="visually-hidden">{% trans "Next" %}</span>
             </button>
           </div>
         </div>
       </div>
-      
+
       <!-- Right: Text / CTA -->
-      <div class="col-lg-6 d-flex flex-column justify-content-center px-5" data-aos="fade-left" data-aos-delay="200">
-        <span class="badge rounded-pill mb-3 px-3 py-2" style="background-color: var(--primary); color: var(--light);">
-          <i class="fas fa-truck me-2"></i>{% trans "Premium Parts Supplier" %}
+      <div
+        class="col-lg-6 d-flex flex-column justify-content-center px-5 hero-content"
+        data-aos="fade-left"
+        data-aos-delay="200"
+      >
+        <span class="badge rounded-pill mb-3 px-3 py-2 hero-badge">
+          <i class="fas fa-code mx-2"></i>{% trans "SITEX Software Group" %}
         </span>
 
-        <h1 class="display-3 fw-bold mb-4" style="color: var(--text-color);">
-          {% trans "Premium Truck Parts for Every Major Brand" %}
+        <h1 class="display-3 fw-bold mb-4 hero-title">
+          {% trans "Build Modern Software, Websites & Digital Platforms" %}
         </h1>
 
-        <p class="lead mb-5 opacity-75" style="color: var(--text-color);">
-          {% blocktrans %} Your trusted partner for heavy-duty truck parts, 
-          engine components, and industrial equipment. Quality guaranteed, 
-          delivery across the Middle East. {% endblocktrans %}
+        <p class="lead mb-5 hero-subtitle">
+          {% blocktrans %} We design and develop high-performance websites,
+          business systems, and scalable cloud-ready solutions — with clean UI,
+          secure architecture, and measurable results. {% endblocktrans %}
         </p>
 
         <div class="d-flex flex-wrap gap-3 mb-5">
-          <a href="#featured-products" class="btn btn-lg px-4 py-3" 
-             style="background-color: var(--primary); color: var(--light); border: none;">
-            <i class="fas fa-tools me-2"></i>{% trans "Browse Parts" %}
+          <!-- prettier-ignore -->
+          <a href="#services" class="btn btn-lg px-4 py-3 hero-btn-primary">
+            <i class="fas fa-layer-group mx-2"></i>
+            {% trans "Explore Services" %}
           </a>
-          <a href="{% url 'contact' %}" class="btn btn-lg px-4 py-3" 
-             style="background-color: transparent; border: 2px solid var(--primary); color: var(--primary);">
-            <i class="fas fa-headset me-2"></i>{% trans "Get Quote" %}
+
+          <a
+            href="{% url 'contact' %}"
+            class="btn btn-lg px-4 py-3 hero-btn-outline"
+          >
+            <i class="fas fa-headset mx-2"></i>{% trans "Request a Quote" %}
           </a>
         </div>
 
         <div class="row g-4">
           <div class="col-6">
             <div class="d-flex align-items-center">
-              <i class="fas fa-shipping-fast fa-2x me-3" style="color: var(--accent);"></i>
+              <i
+                class="fas fa-bolt fa-2x mx-3 hero-feature-icon hero-feature-icon-accent"
+              ></i>
               <div>
-                <h4 class="mb-0" style="color: var(--text-color);">24/7</h4>
-                <small class="opacity-75" style="color: var(--text-color);">{% trans "Express Delivery" %}</small>
+                <h4 class="mb-0 hero-feature-value">Fast</h4>
+                <small class="hero-feature-label"
+                  >{% trans "Delivery & Iteration" %}</small
+                >
               </div>
             </div>
           </div>
+
           <div class="col-6">
             <div class="d-flex align-items-center">
-              <i class="fas fa-check-circle fa-2x me-3" style="color: var(--success);"></i>
+              <i
+                class="fas fa-shield-halved fa-2x mx-3 hero-feature-icon hero-feature-icon-success"
+              ></i>
               <div>
-                <h4 class="mb-0" style="color: var(--text-color);">100%</h4>
-                <small class="opacity-75" style="color: var(--text-color);">{% trans "Quality Guaranteed" %}</small>
+                <h4 class="mb-0 hero-feature-value">Secure</h4>
+                <small class="hero-feature-label"
+                  >{% trans "Best Practices" %}</small
+                >
               </div>
             </div>
           </div>
         </div>
       </div>
-
+      <!-- /Right -->
     </div>
   </div>
 
-  <!-- Optional floating shapes -->
+  <!-- Floating shapes -->
   <div class="floating-shape shape-1">
-    <i class="fas fa-cog fa-spin" style="color: var(--primary)"></i>
+    <i class="fas fa-code fa-spin floating-icon floating-icon-primary"></i>
   </div>
   <div class="floating-shape shape-2">
-    <i class="fas fa-truck" style="color: var(--secondary)"></i>
+    <i class="fas fa-cloud floating-icon floating-icon-secondary"></i>
   </div>
   <div class="floating-shape shape-3">
-    <i class="fas fa-tools" style="color: var(--accent)"></i>
+    <i class="fas fa-diagram-project floating-icon floating-icon-accent"></i>
   </div>
 </section>
 
-
-
-<!-- Company Statistics Section -->
-<section class="py-5 position-relative overflow-hidden" 
-         style="background: var(--bg-color); color: var(--text-color);">
+<!-- =========================================================
+  COMPANY STATS (SITEX)
+========================================================= -->
+<section class="company-stats-section py-5 position-relative overflow-hidden">
   <div class="container position-relative z-1">
     <div class="section-header text-center mb-5">
-      <span class="badge" 
-            style="background-color: var(--primary); color: var(--light); margin-bottom: 1rem; padding: 0.5rem 1rem; border-radius: 50px;">
-        <i class="fas fa-chart-line me-2"></i>{% trans "Company Excellence" %}
+      <span class="badge company-badge mb-3">
+        <i class="fas fa-chart-line mx-2"></i>{% trans "Performance & Trust" %}
       </span>
-      <h2 class="display-5 fw-bold mb-4" style="color: var(--text-color);">
-        {% trans "Driving Excellence Since 2008" %}
+
+      <h2 class="display-5 fw-bold mb-4 section-title">
+        {% trans "Delivering Digital Excellence" %}
       </h2>
-      <p class="lead mx-auto opacity-75" style="max-width: 600px; color: var(--text-color);">
-        {% blocktrans %} With over 15 years of industry leadership, we've built 
-        a reputation for reliability, quality, and exceptional service across 
-        the GCC region. {% endblocktrans %}
+
+      <p class="lead mx-auto section-subtitle">
+        {% blocktrans %} From corporate websites to internal systems, we focus
+        on speed, stability, and a modern user experience — built for real
+        business impact. {% endblocktrans %}
       </p>
     </div>
 
     <div class="row g-4">
       <!-- Client Satisfaction -->
       <div class="col-md-3 col-6 text-center" data-aos="fade-up">
-        <div class="company-stat-card p-4 position-relative" 
-             style="background: var(--card-bg); border: 1px solid var(--card-border-color); box-shadow: var(--card-shadow);">
-          <div class="stat-icon-wrapper mb-3">
-            <i class="fas fa-smile-beam fa-3x" style="color: var(--accent);"></i>
+        <div class="company-stat-card p-4 position-relative">
+          <div class="stat-icon-wrapper mb-3 stat-color-accent">
+            <i class="fas fa-face-smile-beam fa-3x"></i>
           </div>
-          <h2 class="display-3 fw-bold mb-2" style="color: var(--text-color);">
-            <span class="counter" data-target="98">98</span>%
+          <h2 class="display-3 fw-bold mb-2 stat-number">
+            <span class="counter" data-target="97">97</span>%
           </h2>
-          <p class="fw-semibold mb-2" style="color: var(--text-color);">{% trans "Client Satisfaction" %}</p>
-          <small class="opacity-75" style="color: var(--text-color);">{% trans "Based on 500+ client reviews" %}</small>
-          <div class="progress mt-2" style="height: 4px; background-color: var(--card-border-color);">
-            <div class="progress-bar" role="progressbar" style="width: 98%; background-color: var(--accent);" 
-                 aria-valuenow="98" aria-valuemin="0" aria-valuemax="100"></div>
+          <p class="fw-semibold mb-2 stat-label">
+            {% trans "Client Satisfaction" %}
+          </p>
+          <small class="stat-note"
+            >{% trans "Based on delivery & support feedback" %}</small
+          >
+          <div class="progress mt-2 stat-progress">
+            <div
+              class="progress-bar stat-bar stat-bar-accent"
+              role="progressbar"
+              aria-valuenow="97"
+              aria-valuemin="0"
+              aria-valuemax="100"
+            ></div>
           </div>
         </div>
       </div>
 
-      <!-- On-Time Delivery -->
-      <div class="col-md-3 col-6 text-center" data-aos="fade-up" data-aos-delay="100">
-        <div class="company-stat-card p-4 position-relative" 
-             style="background: var(--card-bg); border: 1px solid var(--card-border-color); box-shadow: var(--card-shadow);">
-          <div class="stat-icon-wrapper mb-3">
-            <i class="fas fa-shipping-fast fa-3x" style="color: var(--success);"></i>
+      <!-- Uptime -->
+      <div
+        class="col-md-3 col-6 text-center"
+        data-aos="fade-up"
+        data-aos-delay="100"
+      >
+        <div class="company-stat-card p-4 position-relative">
+          <div class="stat-icon-wrapper mb-3 stat-color-success">
+            <i class="fas fa-server fa-3x"></i>
           </div>
-          <h2 class="display-3 fw-bold mb-2" style="color: var(--text-color);">
-            <span class="counter" data-target="99.5">99.5</span>%
+          <h2 class="display-3 fw-bold mb-2 stat-number">
+            <span class="counter" data-target="99.9">99.9</span>%
           </h2>
-          <p class="fw-semibold mb-2" style="color: var(--text-color);">{% trans "On-Time Delivery" %}</p>
-          <small class="opacity-75" style="color: var(--text-color);">{% trans "Across GCC countries" %}</small>
-          <div class="progress mt-2" style="height: 4px; background-color: var(--card-border-color);">
-            <div class="progress-bar" role="progressbar" style="width: 99.5%; background-color: var(--success);" 
-                 aria-valuenow="99.5" aria-valuemin="0" aria-valuemax="100"></div>
+          <p class="fw-semibold mb-2 stat-label">{% trans "Uptime" %}</p>
+          <small class="stat-note"
+            >{% trans "Monitoring & stable deployments" %}</small
+          >
+          <div class="progress mt-2 stat-progress">
+            <div
+              class="progress-bar stat-bar stat-bar-success"
+              role="progressbar"
+              aria-valuenow="99.9"
+              aria-valuemin="0"
+              aria-valuemax="100"
+            ></div>
           </div>
         </div>
       </div>
 
-      <!-- Quality Assurance -->
-      <div class="col-md-3 col-6 text-center" data-aos="fade-up" data-aos-delay="200">
-        <div class="company-stat-card p-4 position-relative" 
-             style="background: var(--card-bg); border: 1px solid var(--card-border-color); box-shadow: var(--card-shadow);">
-          <div class="stat-icon-wrapper mb-3">
-            <i class="fas fa-award fa-3x" style="color: var(--warning);"></i>
+      <!-- Quality -->
+      <div
+        class="col-md-3 col-6 text-center"
+        data-aos="fade-up"
+        data-aos-delay="200"
+      >
+        <div class="company-stat-card p-4 position-relative">
+          <div class="stat-icon-wrapper mb-3 stat-color-warning">
+            <i class="fas fa-award fa-3x"></i>
           </div>
-          <h2 class="display-3 fw-bold mb-2" style="color: var(--text-color);">
+          <h2 class="display-3 fw-bold mb-2 stat-number">
             <span class="counter" data-target="100">100</span>%
           </h2>
-          <p class="fw-semibold mb-2" style="color: var(--text-color);">{% trans "Quality Assurance" %}</p>
-          <small class="opacity-75" style="color: var(--text-color);">{% trans "Zero defect policy" %}</small>
-          <div class="progress mt-2" style="height: 4px; background-color: var(--card-border-color);">
-            <div class="progress-bar" role="progressbar" style="width: 100%; background-color: var(--warning);" 
-                 aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+          <p class="fw-semibold mb-2 stat-label">
+            {% trans "Quality Standards" %}
+          </p>
+          <small class="stat-note"
+            >{% trans "Code reviews & testing discipline" %}</small
+          >
+          <div class="progress mt-2 stat-progress">
+            <div
+              class="progress-bar stat-bar stat-bar-warning"
+              role="progressbar"
+              aria-valuenow="100"
+              aria-valuemin="0"
+              aria-valuemax="100"
+            ></div>
           </div>
         </div>
       </div>
 
       <!-- Repeat Business -->
-      <div class="col-md-3 col-6 text-center" data-aos="fade-up" data-aos-delay="300">
-        <div class="company-stat-card p-4 position-relative" 
-             style="background: var(--card-bg); border: 1px solid var(--card-border-color); box-shadow: var(--card-shadow);">
-          <div class="stat-icon-wrapper mb-3">
-            <i class="fas fa-handshake fa-3x" style="color: var(--primary);"></i>
+      <div
+        class="col-md-3 col-6 text-center"
+        data-aos="fade-up"
+        data-aos-delay="300"
+      >
+        <div class="company-stat-card p-4 position-relative">
+          <div class="stat-icon-wrapper mb-3 stat-color-primary">
+            <i class="fas fa-handshake fa-3x"></i>
           </div>
-          <h2 class="display-3 fw-bold mb-2" style="color: var(--text-color);">
-            <span class="counter" data-target="85">85</span>%
+          <h2 class="display-3 fw-bold mb-2 stat-number">
+            <span class="counter" data-target="82">82</span>%
           </h2>
-          <p class="fw-semibold mb-2" style="color: var(--text-color);">{% trans "Repeat Business" %}</p>
-          <small class="opacity-75" style="color: var(--text-color);">{% trans "Loyal customer base" %}</small>
-          <div class="progress mt-2" style="height: 4px; background-color: var(--card-border-color);">
-            <div class="progress-bar" role="progressbar" style="width: 85%; background-color: var(--primary);" 
-                 aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
+          <p class="fw-semibold mb-2 stat-label">
+            {% trans "Returning Clients" %}
+          </p>
+          <small class="stat-note">{% trans "Long-term partnerships" %}</small>
+          <div class="progress mt-2 stat-progress">
+            <div
+              class="progress-bar stat-bar stat-bar-primary"
+              role="progressbar"
+              aria-valuenow="82"
+              aria-valuemin="0"
+              aria-valuemax="100"
+            ></div>
           </div>
         </div>
       </div>
@@ -195,1032 +273,791 @@
 
     <!-- Additional Stats Row -->
     <div class="row g-4 mt-2">
-      <!-- Technical Support -->
-      <div class="col-md-4 col-6 text-center" data-aos="fade-up" data-aos-delay="400">
-        <div class="company-stat-card p-4 position-relative" 
-             style="background: var(--card-bg); border: 1px solid var(--card-border-color); box-shadow: var(--card-shadow);">
-          <div class="stat-icon-wrapper mb-3">
-            <i class="fas fa-headset fa-3x" style="color: var(--info);"></i>
+      <div
+        class="col-md-4 col-6 text-center"
+        data-aos="fade-up"
+        data-aos-delay="400"
+      >
+        <div class="company-stat-card p-4 position-relative">
+          <div class="stat-icon-wrapper mb-3 stat-color-info">
+            <i class="fas fa-headset fa-3x"></i>
           </div>
-          <h2 class="display-4 fw-bold mb-2" style="color: var(--text-color);">
+          <h2 class="display-4 fw-bold mb-2 stat-number">
             <span class="counter" data-target="24">24</span>/7
           </h2>
-          <p class="fw-semibold mb-2" style="color: var(--text-color);">{% trans "Technical Support" %}</p>
-          <small class="opacity-75" style="color: var(--text-color);">{% trans "Average response time: 15min" %}</small>
+          <p class="fw-semibold mb-2 stat-label">{% trans "Support" %}</p>
+          <small class="stat-note"
+            >{% trans "Fast response & clear communication" %}</small
+          >
         </div>
       </div>
 
-      <!-- Emergency Response -->
-      <div class="col-md-4 col-6 text-center" data-aos="fade-up" data-aos-delay="500">
-        <div class="company-stat-card p-4 position-relative" 
-             style="background: var(--card-bg); border: 1px solid var(--card-border-color); box-shadow: var(--card-shadow);">
-          <div class="stat-icon-wrapper mb-3">
-            <i class="fas fa-ambulance fa-3x" style="color: var(--danger);"></i>
+      <div
+        class="col-md-4 col-6 text-center"
+        data-aos="fade-up"
+        data-aos-delay="500"
+      >
+        <div class="company-stat-card p-4 position-relative">
+          <div class="stat-icon-wrapper mb-3 stat-color-danger">
+            <i class="fas fa-rocket fa-3x"></i>
           </div>
-          <h2 class="display-4 fw-bold mb-2" style="color: var(--text-color);">
-            <span class="counter" data-target="2">2</span>h
+          <h2 class="display-4 fw-bold mb-2 stat-number">
+            <span class="counter" data-target="7">7</span>+
           </h2>
-          <p class="fw-semibold mb-2" style="color: var(--text-color);">{% trans "Emergency Response" %}</p>
-          <small class="opacity-75" style="color: var(--text-color);">{% trans "Critical parts dispatch" %}</small>
+          <p class="fw-semibold mb-2 stat-label">{% trans "Fast Launch" %}</p>
+          <small class="stat-note"
+            >{% trans "For MVP & landing websites" %}</small
+          >
         </div>
       </div>
 
-      <!-- Warranty Coverage -->
-      <div class="col-md-4 col-6 text-center" data-aos="fade-up" data-aos-delay="600">
-        <div class="company-stat-card p-4 position-relative" 
-             style="background: var(--card-bg); border: 1px solid var(--card-border-color); box-shadow: var(--card-shadow);">
-          <div class="stat-icon-wrapper mb-3">
-            <i class="fas fa-shield-alt fa-3x" style="color: var(--success);"></i>
+      <div
+        class="col-md-4 col-6 text-center"
+        data-aos="fade-up"
+        data-aos-delay="600"
+      >
+        <div class="company-stat-card p-4 position-relative">
+          <div class="stat-icon-wrapper mb-3 stat-color-success">
+            <i class="fas fa-lock fa-3x"></i>
           </div>
-          <h2 class="display-4 fw-bold mb-2" style="color: var(--text-color);">
+          <h2 class="display-4 fw-bold mb-2 stat-number">
             <span class="counter" data-target="12">12</span>+
           </h2>
-          <p class="fw-semibold mb-2" style="color: var(--text-color);">{% trans "Months Warranty" %}</p>
-          <small class="opacity-75" style="color: var(--text-color);">{% trans "On all genuine parts" %}</small>
+          <p class="fw-semibold mb-2 stat-label">
+            {% trans "Security Checks" %}
+          </p>
+          <small class="stat-note"
+            >{% trans "Hardening & best practices" %}</small
+          >
         </div>
       </div>
     </div>
 
-    <!-- Certifications Badge -->
+    <!-- Trust badges -->
     <div class="row mt-5 pt-3">
       <div class="col-12 text-center">
-        <div class="d-flex flex-wrap justify-content-center align-items-center gap-4">
-          <div class="cert-badge rounded-pill px-4 py-2 d-flex align-items-center" style="background-color: rgba(255,255,255,0.1);">
-            <i class="fas fa-certificate text-warning me-2"></i>
-            <span>{% trans "ISO 9001:2015 Certified" %}</span>
+        <div
+          class="d-flex flex-wrap justify-content-center align-items-center gap-4"
+        >
+          <div
+            class="cert-badge rounded-pill px-4 py-2 d-flex align-items-center"
+          >
+            <i class="fas fa-code-branch text-warning mx-2"></i>
+            <span>{% trans "Clean Git Workflow" %}</span>
           </div>
-          <div class="cert-badge rounded-pill px-4 py-2 d-flex align-items-center" style="background-color: rgba(255,255,255,0.1);">
-            <i class="fas fa-check-circle text-success me-2"></i>
-            <span>{% trans "Authorized Distributor" %}</span>
+          <div
+            class="cert-badge rounded-pill px-4 py-2 d-flex align-items-center"
+          >
+            <i class="fas fa-shield-halved text-success mx-2"></i>
+            <span>{% trans "Secure by Design" %}</span>
           </div>
-          <div class="cert-badge rounded-pill px-4 py-2 d-flex align-items-center" style="background-color: rgba(255,255,255,0.1);">
-            <i class="fas fa-globe-americas text-info me-2"></i>
-            <span>{% trans "GCC Wide Operations" %}</span>
+          <div
+            class="cert-badge rounded-pill px-4 py-2 d-flex align-items-center"
+          >
+            <i class="fas fa-cloud text-info mx-2"></i>
+            <span>{% trans "Cloud-Ready Deployments" %}</span>
           </div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Background Pattern -->
   <div class="position-absolute top-0 start-0 w-100 h-100 opacity-5">
     <div class="pattern-dots"></div>
   </div>
 
-  <!-- Floating Elements -->
   <div class="floating-shape shape-1">
-    <i class="fas fa-cog fa-spin" style="color: var(--primary)"></i>
+    <i class="fas fa-code fa-spin floating-icon floating-icon-primary"></i>
   </div>
   <div class="floating-shape shape-2">
-    <i class="fas fa-truck" style="color: var(--secondary)"></i>
+    <i class="fas fa-cloud floating-icon floating-icon-secondary"></i>
   </div>
   <div class="floating-shape shape-3">
-    <i class="fas fa-tools" style="color: var(--accent)"></i>
+    <i class="fas fa-diagram-project floating-icon floating-icon-accent"></i>
   </div>
 </section>
 
-<!-- Categories Section -->
-<section id="categories" class="py-5">
+<!-- =========================================================
+  SERVICES SECTION (replaces Categories)
+========================================================= -->
+<section id="services" class="py-5">
   <div class="container">
     <div class="section-header text-center mb-5">
-      <span class="badge bg-primary-industrial bg-opacity-10 text-primary-industrial mb-3 px-3 py-2 rounded-pill">
-        {% trans "Parts Categories" %}
+      <span class="badge section-pill-badge mb-3 px-3 py-2 rounded-pill">
+        <i class="fas fa-layer-group mx-2"></i>{% trans "Our Services" %}
       </span>
       <h2 class="display-5 fw-bold mb-4 section-title-home">
-        {% trans "Explore Our Parts Collection" %}
+        {% trans "What We Build" %}
       </h2>
-      <p class="lead text-muted mx-auto" style="max-width: 600px">
-        {% blocktrans %} From engine components to electrical systems, 
-        we have everything you need to keep your fleet running. 
+      <!-- prettier-ignore -->
+      <p class="lead text-muted mx-auto section-max-600">
+        {% blocktrans %} Websites, systems, and digital products — engineered
+        for performance, scalability, and a great user experience.
         {% endblocktrans %}
       </p>
     </div>
 
-    <div class="row g-4" id="categoriesContainer">
-      <!-- Categories will be loaded here via JS -->
+    <div class="row g-4" id="servicesContainer">
+      <!-- Services will be loaded here via JS -->
     </div>
   </div>
 </section>
-<!-- Brands Section -->
+
+<!-- =========================================================
+  TECHNOLOGIES / PARTNERS (replaces Brands)
+========================================================= -->
 <section class="py-5">
   <div class="container">
     <div class="section-header text-center mb-5">
-      <span class="badge bg-primary-industrial bg-opacity-10 text-primary-industrial mb-3 px-3 py-2 rounded-pill">
-        {% trans "Trusted Brands" %}
+      <span class="badge section-pill-badge mb-3 px-3 py-2 rounded-pill">
+        <i class="fas fa-cubes mx-2"></i>{% trans "Technologies" %}
       </span>
       <h2 class="display-5 fw-bold mb-4 section-title-home">
-        {% trans "Our Premium Brand Partners" %}
+        {% trans "Modern Stack, Reliable Delivery" %}
       </h2>
-      <p class="lead text-muted mx-auto" style="max-width: 600px">
-        {% blocktrans %} We supply genuine parts from the world's leading 
-        manufacturers and trusted aftermarket brands. {% endblocktrans %}
+      <p class="lead text-muted mx-auto section-max-600">
+        {% blocktrans %} We use trusted technologies and proven engineering
+        practices to ship stable products faster. {% endblocktrans %}
       </p>
     </div>
-    
-    <div class="row g-4 align-items-center" id="brandsContainer">
-      <!-- Brands will be loaded here via JS -->
+
+    <div class="row g-4 align-items-center" id="techContainer">
+      <!-- Tech/partners will be loaded here via JS -->
     </div>
   </div>
 </section>
 
-<!-- Featured Products Section -->
-<section id="featured-products" class="py-5 section-alt">
+<!-- =========================================================
+  FEATURED PROJECTS (replaces Featured Products)
+========================================================= -->
+<section id="featured-projects" class="py-5 section-alt">
   <div class="container">
     <div class="section-header text-center mb-5">
-      <span class="badge bg-primary-industrial bg-opacity-10 text-primary-industrial mb-3 px-3 py-2 rounded-pill">
-        {% trans "Featured Products" %}
+      <span class="badge section-pill-badge mb-3 px-3 py-2 rounded-pill">
+        <i class="fas fa-briefcase mx-2"></i>{% trans "Featured Work" %}
       </span>
       <h2 class="display-5 fw-bold mb-4 section-title-home">
-        {% trans "Top Quality Parts" %}
+        {% trans "Projects & Case Studies" %}
       </h2>
-      <p class="lead text-muted mx-auto" style="max-width: 600px">
-        {% blocktrans %} Explore our selection of premium truck and heavy equipment parts. 
-        {% endblocktrans %}
+      <p class="lead text-muted mx-auto section-max-600">
+        {% blocktrans %} A selection of websites and systems delivered with care
+        — UI, backend, integrations, and deployment. {% endblocktrans %}
       </p>
     </div>
 
-    <div class="row g-4" id="featuredProductsContainer">
-      <!-- Featured products will be loaded here via JS -->
+    <div class="row g-4" id="featuredProjectsContainer">
+      <!-- Featured projects will be loaded here via JS -->
     </div>
 
     <div class="text-center mt-5">
-      <a href="{% url 'products' %}" class="btn btn-industrial btn-primary-industrial btn-lg px-5">
-        <i class="fas fa-eye me-2"></i>{% trans "View All Products" %}
+      <a
+        href="{% url 'products' %}"
+        class="btn btn-industrial text-muted btn-lg px-5 border"
+      >
+        <i class="fas fa-eye mx-2"></i>{% trans "View All Services" %}
       </a>
     </div>
   </div>
 </section>
 
-
-
-<!-- Popular Categories Section -->
-
-
-<!-- Rest of the template remains the same (Why Choose Us, Testimonials, CTA) -->
-<!-- ... [Keep all the remaining sections exactly as they are] ... -->
-
 <style>
-  /* Add this new style for banner carousel */
-  .banner-item {
-    height: 400px;
+  /* =========================================================
+     Base theme bindings (keep)
+  ========================================================= */
+  .hero-section,
+  .company-stats-section {
+    background: var(--bg-color);
+    color: var(--text-color);
+  }
+
+  .hero-title,
+  .hero-subtitle,
+  .hero-feature-value,
+  .hero-feature-label,
+  .section-title,
+  .company-stats-section .section-title,
+  .company-stat-card .stat-number,
+  .company-stat-card .stat-label,
+  .company-stat-card .stat-note {
+    color: var(--text-color);
+  }
+
+  .hero-subtitle,
+  .hero-feature-label,
+  .company-stat-card .stat-note {
+    opacity: 0.75;
+  }
+
+  .hero-badge {
+    background: var(--primary);
+    color: var(--light);
+  }
+
+  .hero-btn-primary {
+    background: var(--primary);
+    color: var(--light);
+    border: none;
     position: relative;
     overflow: hidden;
   }
+  .hero-btn-primary:hover {
+    filter: brightness(0.95);
+    color: var(--light);
+  }
 
+  .hero-btn-outline {
+    background: transparent;
+    border: 2px solid var(--primary);
+    color: var(--primary);
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-btn-outline:hover {
+    background: var(--primary);
+    color: var(--light);
+  }
+
+  .hero-feature-icon-accent {
+    color: var(--accent);
+  }
+  .hero-feature-icon-success {
+    color: var(--success);
+  }
+
+  /* =========================================================
+     Fixed Carousel height
+  ========================================================= */
+  .hero-carousel {
+    height: clamp(320px, 728px, 728px);
+    overflow: hidden;
+  }
+  .hero-carousel .carousel-inner {
+    height: 100%;
+    overflow: hidden;
+    border-radius: inherit;
+  }
+  .hero-carousel .carousel-item {
+    width: 100%;
+    height: 100%;
+  }
+
+  .banner-item {
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+  }
   .banner-item img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    display: block;
   }
 
   .banner-content {
     position: absolute;
+    inset-inline: 0;
     bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 2rem;
-    background: linear-gradient(transparent, rgba(0,0,0,0.7));
-    color: white;
+    padding: 1.5rem;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+    color: #fff;
+  }
+  .banner-title {
+    font-size: 1.75rem;
+    color: #fff;
   }
 
-  /* Product Card Styles */
-  .product-card {
-    transition: all 0.3s ease;
-    height: 100%;
-    border: 1px solid var(--card-border-color);
-  }
-
-  .product-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-    border-color: var(--primary-industrial);
-  }
-
-  .product-image {
-    height: 200px;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #f8f9fa;
-  }
-
-  .product-image img {
-    max-height: 100%;
-    max-width: 100%;
-    object-fit: contain;
-  }
-
-  .product-price {
-    font-size: 1.25rem;
-    font-weight: bold;
-    color: var(--primary-industrial);
-  }
-
-  .discount-badge {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: var(--danger);
-    color: white;
-    padding: 0.25rem 0.5rem;
-    border-radius: 4px;
-    font-size: 0.875rem;
-  }
-
-  /* Add to existing styles */
-  .category-card {
-    transition: all 0.3s ease;
-    color: var(--text-color);
-  }
-
-  .category-card:hover {
-    transform: translateY(-8px);
-    border-color: var(--primary-industrial);
-    color: var(--primary-industrial);
-  }
-
-  .category-icon {
-    width: 80px;
-    height: 80px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto 1rem;
-  }
-
-  /* Category Cards Hover Effects */
-.category-card-wrapper {
-  perspective: 1000px;
-}
-
-.category-card {
-  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  border-radius: 12px;
-}
-
-.category-card:hover {
-  transform: translateY(-12px) scale(1.03);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-}
-
-.category-image-container {
-  height: 280px;
-  position: relative;
-  overflow: hidden;
-  border-radius: 12px;
-  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-}
-
-.category-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: all 0.5s ease;
-  filter: brightness(0.9);
-}
-
-.category-card:hover .category-image {
-  transform: scale(1.1);
-  filter: brightness(0.7) blur(1px);
-}
-
-.category-overlay {
-  background: linear-gradient(135deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.6) 100%);
-  opacity: 0;
-  transition: all 0.5s ease;
-  padding: 2rem;
-  backdrop-filter: blur(5px);
-}
-
-.category-card:hover .category-overlay {
-  opacity: 1;
-}
-
-.category-name {
-  font-size: 1.5rem;
-  transform: translateY(20px);
-  transition: all 0.4s ease 0.1s;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-}
-
-.category-description {
-  font-size: 0.9rem;
-  transform: translateY(20px);
-  transition: all 0.4s ease 0.2s;
-  opacity: 0;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
-}
-
-.category-card:hover .category-name,
-.category-card:hover .category-description {
-  transform: translateY(0);
-  opacity: 1;
-}
-
-.fallback-icon-container {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.5s ease;
-}
-
-.category-card:hover .fallback-icon-container i {
-  transform: scale(1.2);
-  transition: transform 0.5s ease;
-}
-
-/* Add glowing shadow effect on hover */
-.category-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  border-radius: 12px;
-  background: linear-gradient(45deg, 
-    rgba(0, 123, 255, 0.2) 0%, 
-    rgba(0, 123, 255, 0) 50%,
-    rgba(0, 123, 255, 0.2) 100%);
-  opacity: 0;
-  transition: opacity 0.5s ease;
-  z-index: 1;
-  pointer-events: none;
-}
-
-.category-card:hover::before {
-  opacity: 1;
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .category-image-container {
-    height: 220px;
-  }
-  
-  .category-overlay {
-    padding: 1rem;
-  }
-  
-  .category-name {
-    font-size: 1.25rem;
-  }
-  
-  .category-description {
-    font-size: 0.8rem;
-  }
-}
-
-@media (max-width: 576px) {
-  .category-image-container {
-    height: 200px;
-  }
-  
-  .category-name {
-    font-size: 1.1rem;
-  }
-}
-
-  /* Responsive adjustments for banners */
-  @media (max-width: 768px) {
-    .banner-item {
-      height: 300px;
+  @media (max-width: 576px) {
+    .hero-carousel {
+      height: clamp(260px, 45vh, 520px);
     }
-    
     .banner-content {
       padding: 1rem;
     }
-    
-    .banner-content h3 {
-      font-size: 1.25rem;
+    .hero-content {
+      padding-inline: 1rem !important;
     }
-    
-    .banner-content p {
-      font-size: 0.875rem;
+    .hero-title {
+      font-size: 2rem;
+    }
+    .hero-subtitle {
+      font-size: 1rem;
     }
   }
 
-  /* Company Statistics Section */
-.company-stat-card {
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  backdrop-filter: blur(10px);
-  height: 100%;
-  position: relative;
-  overflow: hidden;
-  z-index: 1;
-}
-
-.company-stat-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(135deg, 
-    rgba(255, 255, 255, 0.05) 0%, 
-    rgba(255, 255, 255, 0.02) 50%,
-    rgba(255, 255, 255, 0) 100%);
-  z-index: -1;
-  opacity: 0;
-  transition: opacity 0.4s ease;
-}
-
-.company-stat-card:hover {
-  transform: translateY(-10px);
-  border-color: rgba(var(--primary-industrial-rgb), 0.3);
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
-}
-
-.company-stat-card:hover::before {
-  opacity: 1;
-}
-
-.stat-icon-wrapper {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.stat-icon-wrapper::after {
-  content: '';
-  position: absolute;
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  background: currentColor;
-  opacity: 0.1;
-  filter: blur(10px);
-  z-index: -1;
-  transition: all 0.4s ease;
-}
-
-.company-stat-card:hover .stat-icon-wrapper::after {
-  transform: scale(1.2);
-  opacity: 0.15;
-}
-
-.company-stat-card .display-3,
-.company-stat-card .display-4 {
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-  position: relative;
-}
-
-.counter {
-  display: inline-block;
-}
-
-/* Progress Bar Styling */
-.company-stat-card .progress {
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 10px;
-  overflow: hidden;
-}
-
-.company-stat-card .progress-bar {
-  border-radius: 10px;
-  transition: width 1.5s ease-in-out;
-}
-.bg-industrial-dark {
-  background-color: var(--bg-color); /* example dark color */
-}
-
-/* Certifications Badges */
-.cert-badge {
-  transition: all 0.3s ease;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(5px);
-}
-
-.cert-badge:hover {
-  background: rgba(255, 255, 255, 0.15);
-  transform: translateY(-3px);
-  border-color: var(--primary-industrial);
-}
-
-/* Background Pattern */
-.pattern-dots {
-  width: 100%;
-  height: 100%;
-  background-image: 
-    radial-gradient(rgba(255, 255, 255, 0.1) 2px, transparent 2px),
-    radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
-  background-size: 50px 50px, 25px 25px;
-  background-position: 0 0, 25px 25px;
-}
-
-/* Floating Shapes */
-.floating-shape {
-  position: absolute;
-  font-size: 2rem;
-  opacity: 0.1;
-  z-index: 0;
-}
-
-.floating-shape.shape-1 {
-  top: 20%;
-  left: 5%;
-  animation: float 8s ease-in-out infinite;
-}
-
-.floating-shape.shape-2 {
-  top: 60%;
-  right: 10%;
-  animation: float 10s ease-in-out infinite reverse;
-}
-
-.floating-shape.shape-3 {
-  bottom: 20%;
-  left: 15%;
-  animation: float 12s ease-in-out infinite;
-}
-
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0) rotate(0deg);
+  /* =========================================================
+     Services / Tech / Projects cards (reuse your card style)
+  ========================================================= */
+  .service-card,
+  .tech-card,
+  .project-card {
+    transition: all 0.3s ease;
+    height: 100%;
+    border: 1px solid var(--card-border-color);
+    border-radius: 16px;
+    background: var(--card-bg);
+    box-shadow: var(--card-shadow);
   }
-  33% {
-    transform: translateY(-20px) rotate(120deg);
+  .service-card:hover,
+  .tech-card:hover,
+  .project-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 35px rgba(0, 0, 0, 0.15);
+    border-color: rgba(37, 99, 235, 0.35);
   }
-  66% {
-    transform: translateY(10px) rotate(240deg);
+  .card-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 14px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(37, 99, 235, 0.1);
+    color: var(--primary);
   }
-}
 
-/* Text Accent Colors */
-.text-accent {
-  color: #00d4ff;
-}
+  /* =========================================================
+     Company statistics cards (keep)
+  ========================================================= */
+  .company-badge {
+    background: var(--primary);
+    color: var(--light);
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+  }
+  .section-subtitle,
+  .section-max-600 {
+    max-width: 600px;
+  }
 
-.bg-accent {
-  background-color: #00d4ff !important;
-}
-
-/* Responsive Adjustments */
-@media (max-width: 768px) {
   .company-stat-card {
-    padding: 1.5rem !important;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border-color);
+    box-shadow: var(--card-shadow);
+    border-radius: 16px;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    backdrop-filter: blur(10px);
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
   }
-  
-  .company-stat-card .display-3 {
-    font-size: 2.5rem;
+  .company-stat-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
   }
-  
-  .company-stat-card .display-4 {
-    font-size: 2rem;
+  .stat-progress {
+    height: 4px;
+    border-radius: 10px;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.1);
   }
-  
-  .floating-shape {
-    display: none;
+  .stat-bar {
+    width: 0%;
+    border-radius: 10px;
+    transition: width 1.5s ease-in-out;
   }
-  
+  .stat-bar-accent {
+    background: var(--accent);
+  }
+  .stat-bar-success {
+    background: var(--success);
+  }
+  .stat-bar-warning {
+    background: var(--warning);
+  }
+  .stat-bar-primary {
+    background: var(--primary);
+  }
+
+  .stat-color-accent {
+    color: var(--accent);
+  }
+  .stat-color-success {
+    color: var(--success);
+  }
+  .stat-color-warning {
+    color: var(--warning);
+  }
+  .stat-color-primary {
+    color: var(--primary);
+  }
+  .stat-color-info {
+    color: var(--primary-light);
+  }
+  .stat-color-danger {
+    color: var(--danger);
+  }
+
   .cert-badge {
-    margin-bottom: 0.5rem;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(5px);
+    background: rgba(255, 255, 255, 0.1);
   }
-}
+  .cert-badge:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-3px);
+  }
 
-@media (max-width: 576px) {
-  .company-stat-card {
-    padding: 1rem !important;
+  .pattern-dots {
+    width: 100%;
+    height: 100%;
+    background-image: radial-gradient(
+        rgba(255, 255, 255, 0.1) 2px,
+        transparent 2px
+      ),
+      radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    background-size: 50px 50px, 25px 25px;
+    background-position: 0 0, 25px 25px;
   }
-  
-  .company-stat-card .display-3 {
+
+  .floating-shape {
+    position: absolute;
     font-size: 2rem;
+    opacity: 0.1;
+    z-index: 0;
   }
-  
-  .stat-icon-wrapper i {
-    font-size: 2rem !important;
+  .shape-1 {
+    top: 20%;
+    inset-inline-start: 5%;
+    animation: float 8s ease-in-out infinite;
   }
-}
-</style>
-<script>
-  // =========================
-  // Initialize AOS animations
-  // =========================
-  document.addEventListener('DOMContentLoaded', function() {
-    AOS.init({
-      duration: 800,
-      once: true,
-      offset: 100,
-    });
+  .shape-2 {
+    top: 60%;
+    inset-inline-end: 10%;
+    animation: float 10s ease-in-out infinite reverse;
+  }
+  .shape-3 {
+    bottom: 20%;
+    inset-inline-start: 15%;
+    animation: float 12s ease-in-out infinite;
+  }
 
-    // =========================
-    // Fetch all home data from single API
-    // =========================
+  .floating-icon-primary {
+    color: var(--primary);
+  }
+  .floating-icon-secondary {
+    color: var(--secondary);
+  }
+  .floating-icon-accent {
+    color: var(--accent);
+  }
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0) rotate(0deg);
+    }
+    33% {
+      transform: translateY(-20px) rotate(120deg);
+    }
+    66% {
+      transform: translateY(10px) rotate(240deg);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .floating-shape {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    AOS.init({ duration: 800, once: true, offset: 100 });
+
+    // ========= DATA LOAD =========
     async function loadHomeData() {
-      console.log("Loading home data from single API...");
-      
       try {
-        // Fetch all data from single endpoint
         const response = await fetch("{% url 'api-home-data' %}");
-        console.log("Home data response status:", response.status);
-        
-        if (!response.ok) {
+        if (!response.ok)
           throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        
+
         const data = await response.json();
-        console.log("Home data received:", data);
-        
-        if (!data.success) {
+        if (!data.success)
           throw new Error(data.error || "Failed to load home data");
-        }
-        
-        // Update stats
-        if (data.stats) {
-          const totalProducts = document.getElementById('totalProducts');
-          const totalCategories = document.getElementById('totalCategories');
-          
-          if (totalProducts && data.stats.total_products) {
-            totalProducts.textContent = data.stats.total_products > 1000 
-              ? `${Math.round(data.stats.total_products/1000)}K+` 
-              : `${data.stats.total_products}+`;
-          }
-          
-          if (totalCategories && data.stats.total_categories) {
-            totalCategories.textContent = `${data.stats.total_categories}+`;
-          }
-        }
-        
-        // Load banners
+
         loadBanners(data.banners || []);
-        
-        // Load brands
-        loadBrands(data.brands || []);
-        
-        // Load categories
-        loadCategories(data.categories || []);
-        
-        // Load popular categories
-        loadPopularCategories(data.popular_categories || []);
-        
-        // Load featured products
-        loadFeaturedProducts(data.featured_products || []);
-        
+        loadServices(data.categories || data.services || []); // reuse old key if your API still sends categories
+        loadTech(data.brands || data.tech || []); // reuse old key if your API still sends brands
+        loadFeaturedProjects(data.projects || []);
       } catch (error) {
         console.error("Error loading home data:", error);
         showErrorMessages();
       }
     }
 
-    // =========================
-    // Load Banners
-    // =========================
-    function loadBanners(banners) {
-      const container = document.getElementById('bannerCarouselInner');
-      if (!container) return;
-      
-      if (!banners || banners.length === 0) {
-        // Fallback to default banner
-        container.innerHTML = `
-          <div class="carousel-item active">
-            <div class="banner-item">
-              <img src="{% static 'main/img/truck-hero.png' %}" alt="{% trans 'HeavyDuty Parts Hub' %}" 
-                   onerror="this.src='https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80'">
-              <div class="banner-content">
-                <h3 class="text-white">{% trans "Premium Truck Parts" %}</h3>
-                <p class="text-white opacity-75">{% trans "Quality parts for heavy-duty trucks" %}</p>
-              </div>
-            </div>
-          </div>
-        `;
-        return;
-      }
-      
-      container.innerHTML = '';
-      banners.forEach((banner, index) => {
-        const isActive = index === 0 ? 'active' : '';
-        const bannerHTML = `
-          <div class="carousel-item ${isActive}">
-            <div class="banner-item">
-              ${banner.image ? 
-                `<img src="${banner.image}" alt="${banner.title || 'Banner'}">` :
-                `<div class="bg-primary-industrial h-100 d-flex align-items-center justify-content-center">
-                   <h2 class="text-white">${banner.title || 'Premium Parts'}</h2>
-                 </div>`
+    // ========= HERO SLIDES =========
+    function slideHTML({
+      isActive,
+      imgUrl,
+      title,
+      subtitle,
+      btnText,
+      btnLink,
+    }) {
+      return `
+        <div class="carousel-item ${isActive ? "active" : ""}">
+          <div class="banner-item">
+            ${
+              imgUrl
+                ? `<img src="${imgUrl}" alt="${
+                    title || "Banner"
+                  }" loading="eager" decoding="async">`
+                : `<div class="bg-primary h-100 d-flex align-items-center justify-content-center">
+                     <div class="text-center text-white px-4">
+                       <h2 class="fw-bold mb-2">${title || "SITEX"}</h2>
+                       <p class="mb-0 opacity-75">${subtitle || ""}</p>
+                     </div>
+                   </div>`
+            }
+            <div class="banner-content">
+              ${
+                title
+                  ? `<h3 class="fw-bold mb-1 banner-title">${title}</h3>`
+                  : ""
               }
-              <div class="banner-content" style="${banner.text_color ? `color: ${banner.text_color};` : ''}">
-                ${banner.title ? `<h3 class="fw-bold">${banner.title}</h3>` : ''}
-                ${banner.subtitle ? `<p class="mb-0 opacity-75">${banner.subtitle}</p>` : ''}
-                ${banner.button_text ? `
-                  <a href="${banner.button_link || '#'}" class="btn btn-industrial btn-light mt-3">
-                    ${banner.button_text}
-                  </a>
-                ` : ''}
-              </div>
+              ${subtitle ? `<p class="mb-0 opacity-75">${subtitle}</p>` : ""}
+              ${
+                btnText
+                  ? `<a href="${btnLink || "#"}" class="btn btn-light mt-3">
+                       <i class="fas fa-arrow-right mx-2"></i>${btnText}
+                     </a>`
+                  : ""
+              }
             </div>
           </div>
-        `;
-        container.insertAdjacentHTML('beforeend', bannerHTML);
-      });
-      
-      // Initialize carousel if more than one banner
-      if (banners.length > 1) {
-        const carousel = new bootstrap.Carousel(document.getElementById('homeBannerCarousel'));
+        </div>
+      `;
+    }
+
+    function loadBanners(banners) {
+      const container = document.getElementById("bannerCarouselInner");
+      if (!container) return;
+
+      if (!banners || banners.length === 0) {
+        container.innerHTML = slideHTML({
+          isActive: true,
+          imgUrl: "{% static 'main/img/hero-sitex.jpg' %}",
+          title: "{% trans 'Websites & Systems that Perform' %}",
+          subtitle:
+            "{% trans 'Modern UI, secure backend, reliable deployment' %}",
+          btnText: "",
+          btnLink: "#",
+        });
+
+        const img = container.querySelector("img");
+        if (img) {
+          img.onerror = function () {
+            this.src =
+              "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1400&q=80";
+          };
+        }
+      } else {
+        container.innerHTML = banners
+          .map((b, i) =>
+            slideHTML({
+              isActive: i === 0,
+              imgUrl: b.image || "",
+              title: b.title || "",
+              subtitle: b.subtitle || "",
+              btnText: b.button_text || "",
+              btnLink: b.button_link || "#",
+            })
+          )
+          .join("");
+      }
+
+      const el = document.getElementById("homeBannerCarousel");
+      if (el) {
+        bootstrap.Carousel.getInstance(el)?.dispose();
+        if ((banners || []).length > 1)
+          new bootstrap.Carousel(el, { interval: 5000, ride: "carousel" });
       }
     }
 
-    // =========================
-    // Load Brands
-    // =========================
-    function loadBrands(brands) {
-      const container = document.getElementById("brandsContainer");
+    // ========= SERVICES (replaces Categories) =========
+    function loadServices(services) {
+      const container = document.getElementById("servicesContainer");
       if (!container) return;
-      
-      if (!brands || brands.length === 0) {
+
+      if (!services || services.length === 0) {
         container.innerHTML = `
           <div class="col-12 text-center py-4">
-            <p class="text-muted">{% trans "No brands available." %}</p>
+            <p class="text-muted">{% trans "No services available." %}</p>
           </div>
         `;
         return;
       }
-      
-      container.innerHTML = '';
-      brands.forEach((brand, index) => {
-        const delay = index * 50;
-        const brandHTML = `
-          <div class="col-lg-3 col-md-4 col-6" data-aos="fade-up" data-aos-delay="${delay}">
-            <div class="brand-card industrial-card text-center p-4">
-              <div class="brand-icon mb-3">
-                ${
-                  brand.image
-                    ? `<img src="${brand.image}" alt="${brand.name}" class="img-fluid" style="max-height: 60px; width: auto;">`
-                    : `<i class="fas fa-industry text-primary-industrial fa-3x"></i>`
-                }
-              </div>
-              <h5 class="fw-bold mb-0">${brand.name}</h5>
-              <small class="text-muted">${brand.description || ''}</small>
-            </div>
-          </div>
-        `;
-        container.insertAdjacentHTML("beforeend", brandHTML);
-      });
-    }
 
-    // =========================
-    // Load Categories
-  // =========================
-// Load Categories with hover effects
-// =========================
-function loadCategories(categories) {
-  const container = document.getElementById("categoriesContainer");
-  if (!container) return;
-  
-  if (!categories || categories.length === 0) {
-    container.innerHTML = `
-      <div class="col-12 text-center py-4">
-        <p class="text-muted">{% trans "No categories available." %}</p>
-      </div>
-    `;
-    return;
-  }
-  
-  container.innerHTML = '';
-  categories.forEach((category, index) => {
-    const delay = index * 100;
-    
-    // Use category image if available, otherwise use fallback based on index
-    const iconHTML = category.image
-      ? `<img src="${category.image}" alt="${category.name}" class="category-image">`
-      : getCategoryFallbackIcon(index);
-    
-    const categoryHTML = `
-      <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="${delay}">
-        <div class="category-card-wrapper position-relative">
-          <a href="/products/?category=${category.id || category.slug}" class="category-card d-block text-decoration-none">
-            <div class="category-image-container position-relative overflow-hidden rounded-3 shadow-lg">
-              ${iconHTML}
-              <div class="category-overlay position-absolute top-0 start-0 w-100 h-100 d-flex flex-column align-items-center justify-content-center">
-                <h4 class="category-name fw-bold text-white mb-2 text-center px-3">${category.name}</h4>
-                ${category.description ? `
-                  <p class="category-description text-white text-center px-3 mb-3 opacity-75">
-                    ${category.description.length > 80 ? category.description.substring(0, 80) + '...' : category.description}
-                  </p>
-                ` : ''}
-                ${category.product_count ? `
-                  <span class="badge bg-white text-primary-industrial px-3 py-2">
-                    <i class="fas fa-boxes me-1"></i> ${category.product_count} {% trans "parts" %}
-                  </span>
-                ` : ''}
-                <div class="mt-3">
-                  <span class="btn btn-outline-light btn-sm px-3">
-                    <i class="fas fa-arrow-right me-1"></i> {% trans "Browse" %}
-                  </span>
+      container.innerHTML = "";
+      services.forEach((s, index) => {
+        const delay = index * 80;
+
+        const name = s.name || s.title || "{% trans 'Service' %}";
+        const desc = s.description || "";
+        const icon = s.icon || getServiceIcon(index);
+        const link = s.url || s.link || "/our-services/";
+
+        container.insertAdjacentHTML(
+          "beforeend",
+          `
+          <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="${delay}">
+            <a href="${link}" class="text-decoration-none">
+              <div class="service-card p-4">
+                <div class="d-flex align-items-center justify-content-between mb-3">
+                  <div class="card-icon">
+                    <i class="${icon}"></i>
+                  </div>
+                  <i class="fas fa-arrow-right text-muted"></i>
                 </div>
+                <h5 class="fw-bold mb-2" style="color: var(--text-color);">${name}</h5>
+                <p class="text-muted mb-0" style="font-size:0.95rem;">
+                  ${
+                    desc
+                      ? desc.length > 110
+                        ? desc.substring(0, 110) + "..."
+                        : desc
+                      : "{% trans 'Details available on request.' %}"
+                  }
+                </p>
               </div>
-            </div>
-          </a>
-        </div>
-      </div>
-    `;
-    container.insertAdjacentHTML("beforeend", categoryHTML);
-  });
-}
-
-// Helper function for fallback icons
-function getCategoryFallbackIcon(index) {
-  const icons = [
-    '<i class="fas fa-cogs fa-5x text-primary-industrial"></i>',
-    '<i class="fas fa-car-battery fa-5x text-success"></i>',
-    '<i class="fas fa-oil-can fa-5x text-warning"></i>',
-    '<i class="fas fa-tachometer-alt fa-5x text-danger"></i>',
-    '<i class="fas fa-braille fa-5x text-info"></i>',
-    '<i class="fas fa-tire fa-5x text-secondary"></i>',
-    '<i class="fas fa-trailer fa-5x text-purple"></i>',
-    '<i class="fas fa-toolbox fa-5x text-dark"></i>'
-  ];
-  
-  const colors = [
-    'bg-primary-industrial bg-opacity-10',
-    'bg-success bg-opacity-10',
-    'bg-warning bg-opacity-10',
-    'bg-danger bg-opacity-10',
-    'bg-info bg-opacity-10',
-    'bg-secondary bg-opacity-10',
-    'bg-purple bg-opacity-10',
-    'bg-dark bg-opacity-10'
-  ];
-  
-  const iconIndex = index % icons.length;
-  const colorClass = colors[iconIndex];
-  
-  return `
-    <div class="fallback-icon-container ${colorClass} w-100 h-100 d-flex align-items-center justify-content-center">
-      ${icons[iconIndex]}
-    </div>
-  `;
-}
-
-    // =========================
-    // Load Popular Categories
-    // =========================
-    function loadPopularCategories(popularCategories) {
-      const container = document.getElementById("popularCategoriesContainer");
-      if (!container) return;
-      
-      if (!popularCategories || popularCategories.length === 0) {
-        container.innerHTML = '';
-        return;
-      }
-      
-      const icons = [
-        'fas fa-fire text-danger',
-        'fas fa-star text-warning',
-        'fas fa-bolt text-primary-industrial',
-        'fas fa-chart-line text-success',
-        'fas fa-gem text-info',
-        'fas fa-crown text-warning',
-        'fas fa-rocket text-purple',
-        'fas fa-trophy text-warning'
-      ];
-      
-      container.innerHTML = '';
-      popularCategories.forEach((category, index) => {
-        const delay = index * 50;
-        const iconIndex = index % icons.length;
-        
-        const categoryHTML = `
-          <div class="col-lg-3 col-md-4 col-6" data-aos="fade-up" data-aos-delay="${delay}">
-            <a href="/products/?category=${category.slug}" class="category-card industrial-card h-100 text-center p-3 d-block text-decoration-none">
-              <div class="mb-3">
-                <i class="${category.icon || icons[iconIndex]} fa-2x"></i>
-              </div>
-              <h5 class="fw-bold mb-2">${category.name}</h5>
-              ${category.product_count ? `
-                <small class="text-muted">
-                  ${category.product_count} {% trans "products" %}
-                </small>
-              ` : ''}
             </a>
           </div>
-        `;
-        container.insertAdjacentHTML("beforeend", categoryHTML);
+        `
+        );
       });
     }
 
-    // =========================
-    // Load Featured Products
-    // =========================
-    function loadFeaturedProducts(products) {
-      const container = document.getElementById("featuredProductsContainer");
+    function getServiceIcon(index) {
+      const icons = [
+        "fas fa-globe",
+        "fas fa-laptop-code",
+        "fas fa-gear",
+        "fas fa-mobile-screen-button",
+        "fas fa-cloud",
+        "fas fa-shield-halved",
+        "fas fa-database",
+        "fas fa-diagram-project",
+      ];
+      return icons[index % icons.length];
+    }
+
+    // ========= TECHNOLOGIES (replaces Brands) =========
+    function loadTech(items) {
+      const container = document.getElementById("techContainer");
       if (!container) return;
-      
-      if (!products || products.length === 0) {
+
+      if (!items || items.length === 0) {
         container.innerHTML = `
           <div class="col-12 text-center py-4">
-            <p class="text-muted">{% trans "No featured products available." %}</p>
+            <p class="text-muted">{% trans "No technologies available." %}</p>
           </div>
         `;
         return;
       }
-      
-      container.innerHTML = '';
-      products.forEach((product, index) => {
+
+      container.innerHTML = "";
+      items.forEach((t, index) => {
         const delay = index * 50;
-        
-        // Calculate final price if discount exists
-        let priceDisplay = '';
-        if (product.show_price && product.price) {
-          const originalPrice = parseFloat(product.price);
-          const discount = product.discount_percentage || 0;
-          const finalPrice = discount > 0 ? originalPrice * (1 - discount/100) : originalPrice;
-          
-          priceDisplay = `
-            <div class="product-price">
-              ${discount > 0 ? `
-                <span class="text-danger">${finalPrice.toFixed(2)} AED</span>
-                <small class="text-muted text-decoration-line-through ms-2">${originalPrice.toFixed(2)} AED</small>
-              ` : `
-                <span>${originalPrice.toFixed(2)} AED</span>
-              `}
-            </div>
-          `;
-        }
-        
-        const productHTML = `
+
+        const name = t.name || t.title || "Tech";
+        const description = t.description || "";
+        const image = t.image || t.logo || t.logo_url || t.image_url || null;
+
+        container.insertAdjacentHTML(
+          "beforeend",
+          `
           <div class="col-lg-3 col-md-4 col-6" data-aos="fade-up" data-aos-delay="${delay}">
-            <div class="product-card industrial-card p-3 position-relative">
-              ${product.discount_percentage > 0 ? `
-                <div class="discount-badge">
-                  -${product.discount_percentage}%
-                </div>
-              ` : ''}
-              
-              <a href="/products/${product.id}/" class="text-decoration-none text-dark">
-                <div class="product-image mb-3">
-                  ${product.image ? 
-                    `<img src="${product.image}" alt="${product.name}" class="img-fluid">` :
-                    `<i class="fas fa-box text-muted fa-4x"></i>`
-                  }
-                </div>
-                
-                <h6 class="fw-bold mb-2 text-truncate">${product.name}</h6>
-                
-                ${product.category ? `
-                  <div class="mb-2">
-                    <small class="badge bg-primary-industrial bg-opacity-10 text-primary-industrial">
-                      ${product.category}
-                    </small>
-                  </div>
-                ` : ''}
-                
-                ${product.description ? `
-                  <p class="text-muted small mb-2" style="font-size: 0.875rem;">
-                    ${product.description}
-                  </p>
-                ` : ''}
-                
-                ${priceDisplay}
-                
-                <div class="mt-3">
-                  ${product.in_stock ? `
-                    <span class="badge bg-success bg-opacity-10 text-success">
-                      <i class="fas fa-check-circle me-1"></i>{% trans "In Stock" %}
-                    </span>
-                  ` : product.can_order ? `
-                    <span class="badge bg-warning bg-opacity-10 text-warning">
-                      <i class="fas fa-clock me-1"></i>{% trans "Order Only" %}
-                    </span>
-                  ` : `
-                    <span class="badge bg-danger bg-opacity-10 text-danger">
-                      <i class="fas fa-times-circle me-1"></i>{% trans "Not Available" %}
-                    </span>
-                  `}
-                </div>
-              </a>
+            <div class="tech-card text-center p-4">
+              <div class="mb-3">
+                ${
+                  image
+                    ? `<img src="${image}" alt="${name}" class="img-fluid" style="max-height:56px;width:auto;">`
+                    : `<div class="card-icon mx-auto"><i class="fas fa-cubes"></i></div>`
+                }
+              </div>
+              <h6 class="fw-bold mb-1" style="color: var(--text-color);">${name}</h6>
+              <small class="text-muted">${description || ""}</small>
             </div>
           </div>
-        `;
-        container.insertAdjacentHTML("beforeend", productHTML);
+        `
+        );
       });
     }
 
-    // =========================
-    // Show Error Messages
-    // =========================
+    // ========= FEATURED PROJECTS (replaces Featured Products) =========
+    function loadFeaturedProjects(projects) {
+      const container = document.getElementById("featuredProjectsContainer");
+      if (!container) return;
+
+      if (!projects || projects.length === 0) {
+        container.innerHTML = `
+          <div class="col-12 text-center py-4">
+            <p class="text-muted">{% trans "No featured work available." %}</p>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = "";
+      projects.forEach((p, index) => {
+        const delay = index * 60;
+
+        const name = p.name || p.title || "{% trans 'Project' %}";
+        const description = p.description || "";
+        const image = p.image || p.thumbnail || null;
+        const link = p.url || p.link || "/our-services/";
+
+        container.insertAdjacentHTML(
+          "beforeend",
+          `
+          <div class="col-lg-3 col-md-4 col-6" data-aos="fade-up" data-aos-delay="${delay}">
+            <a href="${link}" class="text-decoration-none">
+              <div class="project-card p-3 position-relative">
+                <div class="mb-3" style="border-radius: 14px; overflow:hidden; background: rgba(37,99,235,0.06); height: 190px; display:flex; align-items:center; justify-content:center;">
+                  ${
+                    image
+                      ? `<img src="${image}" alt="${name}" class="img-fluid" style="width:100%;height:100%;object-fit:cover;">`
+                      : `<i class="fas fa-window-restore text-muted fa-3x"></i>`
+                  }
+                </div>
+
+                <h6 class="fw-bold mb-2 text-truncate" style="color: var(--text-color);">${name}</h6>
+
+                ${
+                  description
+                    ? `<p class="text-muted small mb-0" style="font-size:0.9rem;">
+                         ${
+                           description.length > 95
+                             ? description.substring(0, 95) + "..."
+                             : description
+                         }
+                       </p>`
+                    : `<p class="text-muted small mb-0" style="font-size:0.9rem;">{% trans "Project details available." %}</p>`
+                }
+              </div>
+            </a>
+          </div>
+        `
+        );
+      });
+    }
+
     function showErrorMessages() {
       const containers = [
-        'brandsContainer',
-        'categoriesContainer',
-        'popularCategoriesContainer',
-        'featuredProductsContainer'
+        "servicesContainer",
+        "techContainer",
+        "featuredProjectsContainer",
       ];
-      
-      containers.forEach(containerId => {
-        const container = document.getElementById(containerId);
-        if (container) {
-          container.innerHTML = `
+      containers.forEach((id) => {
+        const el = document.getElementById(id);
+        if (el) {
+          el.innerHTML = `
             <div class="col-12 text-center py-4">
               <p class="text-danger">
-                <i class="fas fa-exclamation-triangle me-2"></i>
+                <i class="fas fa-exclamation-triangle mx-2"></i>
                 {% trans "Failed to load content. Please try again later." %}
               </p>
             </div>
@@ -1229,115 +1066,15 @@ function getCategoryFallbackIcon(index) {
       });
     }
 
-    // =========================
-    // Counter animation for stats
-    // =========================
-    function animateCounters() {
-      const counters = document.querySelectorAll(".home-stats-section .display-4");
-      const speed = 200;
-
-      counters.forEach((counter) => {
-        const text = counter.innerText;
-        let target;
-
-        if (text.includes('K+')) {
-          target = parseFloat(text) * 1000;
-        } else if (text.includes('+')) {
-          target = parseInt(text.replace('+', ''));
-        } else if (text.includes('/')) {
-          return;
-        } else {
-          target = parseInt(text);
-        }
-
-        let count = 0;
-        const increment = target / speed;
-        const hasPlus = text.includes('+');
-        const hasK = text.includes('K');
-
-        const updateCount = () => {
-          if (count < target) {
-            count += increment;
-            const next = hasK ? Math.floor(count / 1000) : Math.floor(count);
-            counter.innerText =
-              next +
-              (hasK ? 'K' : '') +
-              (hasPlus ? '+' : '') +
-              (text === '24/7' ? '/7' : '');
-
-            if (count < target) {
-              setTimeout(updateCount, 10);
-            } else {
-              counter.innerText = text;
-            }
-          }
-        };
-        updateCount();
+    // Animate stat progress bars
+    function initStatBars() {
+      document.querySelectorAll(".stat-bar").forEach((bar) => {
+        const val = bar.getAttribute("aria-valuenow");
+        if (val) bar.style.width = val + "%";
       });
     }
+    initStatBars();
 
-    // Trigger counter animation when stats section is in view
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            animateCounters();
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.5 }
-    );
-
-    const statsSection = document.querySelector(".home-stats-section");
-    if (statsSection) {
-      observer.observe(statsSection);
-    }
-
-    // =========================
-    // Ripple effect on industrial buttons
-    // =========================
-    document.querySelectorAll('.btn-industrial').forEach(button => {
-      button.addEventListener('click', function(e) {
-        const ripple = document.createElement('span');
-        const rect = this.getBoundingClientRect();
-        const size = Math.max(rect.width, rect.height);
-        const x = e.clientX - rect.left - size / 2;
-        const y = e.clientY - rect.top - size / 2;
-
-        ripple.style.cssText = `
-          position: absolute;
-          border-radius: 50%;
-          background: rgba(255, 255, 255, 0.6);
-          transform: scale(0);
-          animation: ripple 0.6s linear;
-          width: ${size}px;
-          height: ${size}px;
-          top: ${y}px;
-          left: ${x}px;
-          pointer-events: none;
-        `;
-
-        this.appendChild(ripple);
-        setTimeout(() => ripple.remove(), 600);
-      });
-    });
-
-    // Add CSS for ripple animation
-    const style = document.createElement('style');
-    style.textContent = `
-      @keyframes ripple {
-        to {
-          transform: scale(4);
-          opacity: 0;
-        }
-      }
-    `;
-    document.head.appendChild(style);
-
-    // =========================
-    // Load all home data
-    // =========================
     loadHomeData();
   });
 </script>

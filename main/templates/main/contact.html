@@ -4,7 +4,7 @@
 
 {% block content %}
 <!-- Contact Header (brand hero – keep as-is) -->
-<section class="contact-header py-5 bg-primary text-white">
+<section class="contact-header py-5 bg-primary text-white mt-5">
   <div class="container">
     <div class="row">
       <div class="col-lg-8 mx-auto text-center" data-aos="fade-up">
@@ -233,20 +233,42 @@
     <div class="modal-content modern-modal">
       <div class="modal-header">
         <h5 class="modal-title" id="branchModalTitle"></h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+        ></button>
       </div>
       <div class="modal-body">
         <div class="row g-4">
           <div class="col-md-6">
-            <p><strong>{% trans "Name" %}:</strong> <span id="branchDetailName"></span></p>
-            <p><strong>{% trans "Address" %}:</strong> <span id="branchDetailAddress"></span></p>
-            <p><strong>{% trans "Phone" %}:</strong> <span id="branchDetailPhone"></span></p>
-            <p><strong>{% trans "Hours" %}:</strong> <span id="branchDetailHours"></span></p>
-            <p><strong>{% trans "Email" %}:</strong> <span id="branchDetailEmail"></span></p>
-            <p><strong>{% trans "Coordinates" %}:</strong> <span id="branchDetailCoordinates"></span></p>
+            <p>
+              <strong>{% trans "Name" %}:</strong>
+              <span id="branchDetailName"></span>
+            </p>
+            <p>
+              <strong>{% trans "Address" %}:</strong>
+              <span id="branchDetailAddress"></span>
+            </p>
+            <p>
+              <strong>{% trans "Phone" %}:</strong>
+              <span id="branchDetailPhone"></span>
+            </p>
+            <p>
+              <strong>{% trans "Hours" %}:</strong>
+              <span id="branchDetailHours"></span>
+            </p>
+            <p>
+              <strong>{% trans "Email" %}:</strong>
+              <span id="branchDetailEmail"></span>
+            </p>
+            <p>
+              <strong>{% trans "Coordinates" %}:</strong>
+              <span id="branchDetailCoordinates"></span>
+            </p>
           </div>
           <div class="col-md-6">
-            <div id="branchDetailMap" style="height: 300px;"></div>
+            <div id="branchDetailMap" style="height: 300px"></div>
           </div>
         </div>
       </div>
@@ -364,51 +386,60 @@
       }
 
       const validBranches = branches
-  .map((b) => {
-    const lat = parseFloat(b.latitude);
-    const lng = parseFloat(b.longitude);
+        .map((b) => {
+          const lat = parseFloat(b.latitude);
+          const lng = parseFloat(b.longitude);
 
-    if (!isNaN(lat) && !isNaN(lng) && lat >= -90 && lat <= 90 && lng >= -180 && lng <= 180) {
-      
-      // Construct business hours
-      let hoursText = "";
+          if (
+            !isNaN(lat) &&
+            !isNaN(lng) &&
+            lat >= -90 &&
+            lat <= 90 &&
+            lng >= -180 &&
+            lng <= 180
+          ) {
+            // Construct business hours
+            let hoursText = "";
 
-      if (b.day_from || b.day_to) {
-        hoursText += b.day_from || "";
-        if (b.day_to) hoursText += b.day_from ? ` - ${b.day_to}` : b.day_to;
-      }
+            if (b.day_from || b.day_to) {
+              hoursText += b.day_from || "";
+              if (b.day_to)
+                hoursText += b.day_from ? ` - ${b.day_to}` : b.day_to;
+            }
 
-      if (b.opening_hours || b.closing_hours) {
-        if (hoursText) hoursText += ": ";
-        hoursText += b.opening_hours || "";
-        if (b.closing_hours) hoursText += b.opening_hours ? ` - ${b.closing_hours}` : b.closing_hours;
-      }
+            if (b.opening_hours || b.closing_hours) {
+              if (hoursText) hoursText += ": ";
+              hoursText += b.opening_hours || "";
+              if (b.closing_hours)
+                hoursText += b.opening_hours
+                  ? ` - ${b.closing_hours}`
+                  : b.closing_hours;
+            }
 
-      if (!hoursText) {
-        hoursText = "Mon-Fri: 9AM-6PM"; // fallback
-      }
+            if (!hoursText) {
+              hoursText = "Mon-Fri: 9AM-6PM"; // fallback
+            }
 
-      return {
-        id: b.id,
-        lat,
-        lng,
-        name: b.name || "Unnamed Branch",
-        address: b.address || "Address not set",
-        phone: b.phone_number || "+1 (555) 123-4567",
-        hours: hoursText,
-        email: b.Email_Adress || "info@AWFERLK.com",
-        facbook_link: b.facbook_link || "#",
-        twitter_link: b.twitter_link || "#",
-        linkdin_link: b.linkdin_link || "#",
-        instagram_link: b.instagram_link || "#",
-        primery_branch: b.primery_branch || false,
-      };
-    }
+            return {
+              id: b.id,
+              lat,
+              lng,
+              name: b.name || "Unnamed Branch",
+              address: b.address || "Address not set",
+              phone: b.phone_number || "+1 (555) 123-4567",
+              hours: hoursText,
+              email: b.Email_Adress || "info@AWFERLK.com",
+              facbook_link: b.facbook_link || "#",
+              twitter_link: b.twitter_link || "#",
+              linkdin_link: b.linkdin_link || "#",
+              instagram_link: b.instagram_link || "#",
+              primery_branch: b.primery_branch || false,
+            };
+          }
 
-    return null;
-  })
-  .filter(Boolean);
-
+          return null;
+        })
+        .filter(Boolean);
 
       if (!validBranches.length) {
         document.getElementById("branches-container").innerHTML = `
@@ -532,7 +563,8 @@
     `;
     document.getElementById("branchDetailName").textContent = branch.name;
     document.getElementById("branchDetailAddress").textContent = branch.address;
-    document.getElementById("branchDetailPhone").textContent = branch.phone_number;
+    document.getElementById("branchDetailPhone").textContent =
+      branch.phone_number;
     document.getElementById("branchDetailHours").textContent = branch.hours;
     document.getElementById("branchDetailEmail").textContent = branch.email;
     document.getElementById(
@@ -550,42 +582,45 @@
   }
 
   // Helper function to get branch by ID from the stored array
- function getBranchById(branchId) {
-  // Find the branch in the allBranches array
-  const branch = allBranches.find((b) => b.id === branchId);
-  if (!branch) return null;
+  function getBranchById(branchId) {
+    // Find the branch in the allBranches array
+    const branch = allBranches.find((b) => b.id === branchId);
+    if (!branch) return null;
 
-  const lat = parseFloat(branch.latitude);
-  const lng = parseFloat(branch.longitude);
+    const lat = parseFloat(branch.latitude);
+    const lng = parseFloat(branch.longitude);
 
-  // Build the hours string
-  let hoursText = "";
+    // Build the hours string
+    let hoursText = "";
 
-  if (branch.day_from || branch.day_to) {
-    hoursText += branch.day_from || "";
-    if (branch.day_to) hoursText += branch.day_from ? ` - ${branch.day_to}` : branch.day_to;
+    if (branch.day_from || branch.day_to) {
+      hoursText += branch.day_from || "";
+      if (branch.day_to)
+        hoursText += branch.day_from ? ` - ${branch.day_to}` : branch.day_to;
+    }
+
+    if (branch.opening_hours || branch.closing_hours) {
+      if (hoursText) hoursText += ": ";
+      hoursText += branch.opening_hours || "";
+      if (branch.closing_hours)
+        hoursText += branch.opening_hours
+          ? ` - ${branch.closing_hours}`
+          : branch.closing_hours;
+    }
+
+    if (!hoursText) hoursText = "Mon-Fri: 9AM-6PM"; // fallback
+
+    return {
+      id: branch.id,
+      name: branch.name || "Unnamed Branch",
+      address: branch.address || "Address not set",
+      lat: lat,
+      lng: lng,
+      phone: branch.phone_number || "+1 (555) 123-4567",
+      hours: hoursText,
+      email: branch.Email_Adress || "info@AWFERLK.com",
+    };
   }
-
-  if (branch.opening_hours || branch.closing_hours) {
-    if (hoursText) hoursText += ": ";
-    hoursText += branch.opening_hours || "";
-    if (branch.closing_hours) hoursText += branch.opening_hours ? ` - ${branch.closing_hours}` : branch.closing_hours;
-  }
-
-  if (!hoursText) hoursText = "Mon-Fri: 9AM-6PM"; // fallback
-
-  return {
-    id: branch.id,
-    name: branch.name || "Unnamed Branch",
-    address: branch.address || "Address not set",
-    lat: lat,
-    lng: lng,
-    phone: branch.phone_number || "+1 (555) 123-4567",
-    hours: hoursText,
-    email: branch.Email_Adress || "info@AWFERLK.com",
-  };
-}
-
 
   // Initialize detail map in modal
   function initDetailMap(branch) {

@@ -17,7 +17,10 @@ from django.utils.translation import gettext_lazy as _
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
+WEBSITE_NAME = "SITEX"
+WEBSITE_NAME_AR = "سايتكس"
+WEBSITE_DESCRIPTION = "SITEX FOR SOFTWARE SOLUTIONS"
+WEBSITE_DESCRIPTION_AR = "سايتكس لحلول البرمجيات"
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
@@ -33,6 +36,7 @@ handler404 = 'main.views.t404_view'
 ALLOWED_HOSTS = [
     '192.168.0.37',
     '127.0.0.1',
+    "localhost",
 ]
 
 
@@ -76,6 +80,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                "main.context_processors.website_context",
             ],
         },
     },

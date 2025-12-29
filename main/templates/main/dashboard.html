@@ -192,88 +192,149 @@
   </div>
 
   <!-- Brands Section -->
-<div class="dashboard-section mb-5" data-aos="fade-up" data-aos-delay="300">
-  <div class="section-header d-flex justify-content-between align-items-center mb-4">
-    <h3 class="section-title">
-      <i class="fas fa-industry me-2 text-info"></i>
-      {% trans "Brands" %}
-    </h3>
-<button
-    class="btn btn-success-modern btn-sm"
-    data-bs-toggle="modal"
-    data-bs-target="#addBrandModal"
->
-    <i class="fas fa-plus me-1"></i>
-    {% trans "Add Brand" %}
-</button>
-  </div>
+  <div class="dashboard-section mb-5" data-aos="fade-up" data-aos-delay="300">
+    <div
+      class="section-header d-flex justify-content-between align-items-center mb-4"
+    >
+      <h3 class="section-title">
+        <i class="fas fa-industry me-2 text-info"></i>
+        {% trans "Brands" %}
+      </h3>
+      <button
+        class="btn btn-success-modern btn-sm"
+        data-bs-toggle="modal"
+        data-bs-target="#addBrandModal"
+      >
+        <i class="fas fa-plus me-1"></i>
+        {% trans "Add Brand" %}
+      </button>
+    </div>
 
-  <div class="modern-card">
-    <div class="table-responsive">
-      <table class="table table-hover align-middle">
-        <thead class="table-light">
-          <tr>
-            <th>{% trans "Image" %}</th>
-            <th>{% trans "Name" %}</th>
-            <th>{% trans "Description" %}</th>
-            <th>{% trans "Actions" %}</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for brand in brands %}
-          <tr>
-            <td>
-              {% if brand.image %}
-              <img src="{{ brand.image.url }}" alt="{{ brand.name }}" class="rounded" style="height:50px; width:50px; object-fit:cover" />
-              {% else %}
-              <div class="no-image-placeholder d-flex justify-content-center align-items-center rounded bg-light" style="height:50px; width:50px">
-                <i class="fas fa-image text-muted"></i>
-              </div>
-              {% endif %}
-            </td>
-            <td>{{ brand.name }}</td>
-            <td>
-              <span class="text-truncate d-inline-block" style="max-width:200px" title="{{ brand.description }}">
-                {{ brand.description }}
-              </span>
-            </td>
-            <td>
-              <div class="btn-group btn-group-sm">
-                <button class="btn btn-outline-primary edit-brand-btn mx-1"
-                        title="{% trans 'Edit' %}"
-                        data-brand-id="{{ brand.id }}"
-                        data-brand-name="{{ brand.name }}"
-                        data-brand-description="{{ brand.description }}"
-                        {% if brand.image and brand.image.name %}
-                          data-brand-image="{{ brand.image.url }}"
-                        {% else %}
-                          data-brand-image=""
-                        {% endif %}>
-                  <i class="fas fa-edit"></i>
-                </button>
-                <button type="button" class="btn btn-outline-danger delete-brand-btn mx-1"
-                        title="{% trans 'Delete' %}"
-                        data-brand-id="{{ brand.id }}">
-                  <i class="fas fa-trash"></i>
-                </button>
-              </div>
-            </td>
-          </tr>
-          {% empty %}
-          <tr>
-            <td colspan="4" class="text-center py-4">
-              <i class="fas fa-industry fa-2x text-muted mb-2"></i>
-              <p class="text-muted mb-0">{% trans "No brands added yet" %}</p>
-            </td>
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
+    <div class="modern-card">
+      <div class="table-responsive">
+        <table class="table table-hover align-middle">
+          <thead class="table-light">
+            <tr>
+              <th>{% trans "Image" %}</th>
+              <th>{% trans "Name" %}</th>
+              <th>{% trans "Description" %}</th>
+              <th>{% trans "Actions" %}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for brand in brands %}
+            <tr>
+              <td>
+                {% if brand.image %}
+                <img
+                  src="{{ brand.image.url }}"
+                  alt="{{ brand.name }}"
+                  class="rounded"
+                  style="height: 50px; width: 50px; object-fit: cover"
+                />
+                {% else %}
+                <div
+                  class="no-image-placeholder d-flex justify-content-center align-items-center rounded bg-light"
+                  style="height: 50px; width: 50px"
+                >
+                  <i class="fas fa-image text-muted"></i>
+                </div>
+                {% endif %}
+              </td>
+              <td>{{ brand.name }}</td>
+              <td>
+                <span
+                  class="text-truncate d-inline-block"
+                  style="max-width: 200px"
+                  title="{{ brand.description }}"
+                >
+                  {{ brand.description }}
+                </span>
+              </td>
+              <td>
+                <!-- prettier-ignore -->
+                <div class="btn-group btn-group-sm">
+                  <button
+                    class="btn btn-outline-primary edit-brand-btn mx-1"
+                    title="{% trans 'Edit' %}"
+                    data-brand-id="{{ brand.id }}"
+                    data-brand-name="{{ brand.name }}"
+                    data-brand-description="{{ brand.description }}"
+                    {% if brand.image and brand.image.name %}
+                    data-brand-image="{{ brand.image.url }}"
+                    {% else %}
+                    data-brand-image=""
+                    {% endif %}
+                  >
+                    <i class="fas fa-edit"></i>
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-outline-danger delete-brand-btn mx-1"
+                    title="{% trans 'Delete' %}"
+                    data-brand-id="{{ brand.id }}"
+                  >
+                    <i class="fas fa-trash"></i>
+                  </button>
+                </div>
+              </td>
+            </tr>
+            {% empty %}
+            <tr>
+              <td colspan="4" class="text-center py-4">
+                <i class="fas fa-industry fa-2x text-muted mb-2"></i>
+                <p class="text-muted mb-0">{% trans "No brands added yet" %}</p>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
-</div>
 
+  <!-- Projects Section -->
+  <div
+    class="dashboard-section mb-5"
+    id="projectsSection"
+    data-aos="fade-up"
+    data-aos-delay="400"
+  >
+    <div
+      class="section-header d-flex justify-content-between align-items-center mb-4"
+    >
+      <h3 class="section-title">
+        <i class="fas fa-folder-open me-2 text-primary"></i>
+        {% trans "Projects" %}
+      </h3>
 
+      <button
+        type="button"
+        class="btn btn-success-modern btn-sm"
+        id="btnOpenCreateProject"
+        data-bs-toggle="modal"
+        data-bs-target="#projectModal"
+      >
+        <i class="fas fa-plus me-1"></i>
+        {% trans "Add Project" %}
+      </button>
+    </div>
+
+    <div class="modern-card p-3 p-md-4">
+      <!-- prettier-ignore -->
+      <p class="text-muted mb-3">
+        {% trans "Manage SITEX projects (create, edit, delete) and showcase them to clients." %}
+      </p>
+
+      <!-- Alerts -->
+      <div id="projectsAlert" class="mb-3" style="display: none"></div>
+
+      <!-- Grid -->
+      <div class="row g-4" id="projectsGrid">
+        <!-- Filled by JS -->
+      </div>
+    </div>
+  </div>
   <!-- Invoices Section -->
   <div class="dashboard-section mb-5" data-aos="fade-up" data-aos-delay="300">
     <div
@@ -620,7 +681,6 @@
     </div>
   </div>
 
-  
   <!-- Messages Section -->
   <div class="dashboard-section mb-5" data-aos="fade-up" data-aos-delay="200">
     <div class="section-header mb-4">
@@ -806,7 +866,7 @@
         {% trans "Cities" %}
       </h3>
       <button
-        class="btn btn-secondary btn-sm btn-modern"
+        class="btn btn-success-modern btn-sm"
         data-bs-toggle="modal"
         data-bs-target="#addCityModal"
       >
@@ -875,6 +935,211 @@
   </div>
 </div>
 
+<!-- Modal: Create/Edit -->
+<div class="modal fade" id="projectModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content modern-card" style="border-radius: 16px">
+      <div class="modal-header">
+        <h5 class="modal-title fw-bold" id="projectModalTitle">
+          {% trans "Add Project" %}
+        </h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+
+      <form id="projectForm">
+        {% csrf_token %}
+        <div class="modal-body">
+          <input type="hidden" id="projectId" />
+
+          <div class="row g-3">
+            <div class="col-md-8">
+              <label class="form-label">{% trans "Title" %}</label>
+              <input
+                class="form-control form-control-modern"
+                id="title"
+                required
+              />
+            </div>
+            <div class="col-md-4">
+              <label class="form-label">{% trans "Year" %}</label>
+              <input
+                type="number"
+                class="form-control form-control-modern"
+                id="year"
+                min="1990"
+                max="2100"
+              />
+            </div>
+
+            <div class="col-md-4">
+              <label class="form-label">{% trans "Project Type" %}</label>
+              <input
+                class="form-control form-control-modern"
+                id="project_type"
+                placeholder="Website, System, Integration..."
+              />
+            </div>
+            <div class="col-md-4">
+              <label class="form-label">{% trans "Industry" %}</label>
+              <input
+                class="form-control form-control-modern"
+                id="industry"
+                placeholder="Banking, Retail..."
+              />
+            </div>
+            <div class="col-md-4">
+              <label class="form-label">{% trans "Sort Order" %}</label>
+              <input
+                type="number"
+                class="form-control form-control-modern"
+                id="sort_order"
+                min="0"
+                value="0"
+              />
+            </div>
+
+            <div class="col-12">
+              <label class="form-label">{% trans "Tech Stack" %}</label>
+              <input
+                class="form-control form-control-modern"
+                id="stack"
+                placeholder="Django, DRF, React, Docker..."
+              />
+            </div>
+
+            <div class="col-12">
+              <label class="form-label">{% trans "Project URL" %}</label>
+              <input
+                type="url"
+                class="form-control form-control-modern"
+                id="url"
+                placeholder="https://..."
+              />
+            </div>
+
+            <div class="col-12">
+              <label class="form-label">{% trans "Description" %}</label>
+              <textarea
+                class="form-control form-control-modern"
+                id="description"
+                rows="4"
+              ></textarea>
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">{% trans "Image" %}</label>
+              <input
+                type="file"
+                class="form-control form-control-modern"
+                id="image"
+                accept="image/*"
+              />
+              <small class="text-muted d-block mt-1"
+                >{% trans "Leave empty to keep current image when editing."
+                %}</small
+              >
+            </div>
+
+            <div class="col-md-3 d-flex align-items-center">
+              <div class="form-check mt-4">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  id="is_featured"
+                />
+                <label class="form-check-label" for="is_featured"
+                  >{% trans "Featured" %}</label
+                >
+              </div>
+            </div>
+
+            <div class="col-md-3 d-flex align-items-center">
+              <div class="form-check mt-4">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  id="is_public"
+                  checked
+                />
+                <label class="form-check-label" for="is_public"
+                  >{% trans "Public" %}</label
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="text-danger small mt-3" id="projectFormErrors"></div>
+        </div>
+
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-outline-secondary btn-modern"
+            data-bs-dismiss="modal"
+          >
+            {% trans "Cancel" %}
+          </button>
+          <button
+            type="submit"
+            class="btn btn-primary-modern btn-modern"
+            id="projectSubmitBtn"
+          >
+            <i class="fas fa-save me-2"></i>{% trans "Save" %}
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Modal: Delete confirm -->
+<div
+  class="modal fade"
+  id="deleteProjectModal"
+  tabindex="-1"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content modern-card" style="border-radius: 16px">
+      <div class="modal-header">
+        <h5 class="modal-title fw-bold">{% trans "Delete Project" %}</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <p class="mb-0">
+          {% trans "Are you sure you want to delete this project?" %}
+        </p>
+        <input type="hidden" id="deleteProjectId" />
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-outline-secondary btn-modern"
+          data-bs-dismiss="modal"
+        >
+          {% trans "Cancel" %}
+        </button>
+        <button
+          type="button"
+          class="btn btn-danger btn-modern"
+          id="confirmDeleteProjectBtn"
+        >
+          <i class="fas fa-trash me-2"></i>{% trans "Delete" %}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
 <!-- Add Product Modal -->
 <div
   class="modal fade"
@@ -1361,119 +1626,228 @@
       </div>
       <div class="modal-body p-3 p-md-4">
         <form id="branchFormAdd">
-  {% csrf_token %}
-  <div class="row g-3">
-    <div class="col-12">
-      <div class="form-floating">
-        <input type="text" class="form-control" id="branchNameAdd" name="name" placeholder="{% trans 'Branch Name' %}" required />
-        <label for="branchNameAdd">{% trans "Branch Name" %}</label>
-      </div>
-    </div>
+          {% csrf_token %}
+          <div class="row g-3">
+            <div class="col-12">
+              <div class="form-floating">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="branchNameAdd"
+                  name="name"
+                  placeholder="{% trans 'Branch Name' %}"
+                  required
+                />
+                <label for="branchNameAdd">{% trans "Branch Name" %}</label>
+              </div>
+            </div>
 
-    <div class="col-md-6">
-      <div class="form-floating">
-        <input type="tel" class="form-control" id="branchPhoneAdd" name="phone_number" placeholder="{% trans 'Phone Number' %}" />
-        <label for="branchPhoneAdd">{% trans "Phone Number" %}</label>
-      </div>
-    </div>
+            <div class="col-md-6">
+              <div class="form-floating">
+                <input
+                  type="tel"
+                  class="form-control"
+                  id="branchPhoneAdd"
+                  name="phone_number"
+                  placeholder="{% trans 'Phone Number' %}"
+                />
+                <label for="branchPhoneAdd">{% trans "Phone Number" %}</label>
+              </div>
+            </div>
 
-    <div class="col-md-6">
-      <div class="form-floating">
-        <input type="email" class="form-control" id="branchEmailAdd" name="Email_Adress" placeholder="{% trans 'Email Address' %}" />
-        <label for="branchEmailAdd">{% trans "Email Address" %}</label>
-      </div>
-    </div>
+            <div class="col-md-6">
+              <div class="form-floating">
+                <input
+                  type="email"
+                  class="form-control"
+                  id="branchEmailAdd"
+                  name="Email_Adress"
+                  placeholder="{% trans 'Email Address' %}"
+                />
+                <label for="branchEmailAdd">{% trans "Email Address" %}</label>
+              </div>
+            </div>
 
-    <div class="col-12">
-      <div class="form-floating">
-        <textarea class="form-control" id="branchAddressAdd" name="address" placeholder="{% trans 'Address' %}" style="height:80px" required></textarea>
-        <label for="branchAddressAdd">{% trans "Address" %}</label>
-      </div>
-    </div>
-    <div class="col-12 mb-3">
-  <div id="branchMapAdd" style="height: 300px; width: 100%; border:1px solid #ddd;"></div>
-</div>
+            <div class="col-12">
+              <div class="form-floating">
+                <textarea
+                  class="form-control"
+                  id="branchAddressAdd"
+                  name="address"
+                  placeholder="{% trans 'Address' %}"
+                  style="height: 80px"
+                  required
+                ></textarea>
+                <label for="branchAddressAdd">{% trans "Address" %}</label>
+              </div>
+            </div>
+            <div class="col-12 mb-3">
+              <div
+                id="branchMapAdd"
+                style="height: 300px; width: 100%; border: 1px solid #ddd"
+              ></div>
+            </div>
 
-    <div class="col-md-6">
-      <div class="form-floating">
-        <input type="number" step="any" class="form-control" id="branchLatitudeAdd" name="latitude" placeholder="{% trans 'Latitude' %}" required />
-        <label for="branchLatitudeAdd">{% trans "Latitude" %}</label>
-      </div>
-    </div>
+            <div class="col-md-6">
+              <div class="form-floating">
+                <input
+                  type="number"
+                  step="any"
+                  class="form-control"
+                  id="branchLatitudeAdd"
+                  name="latitude"
+                  placeholder="{% trans 'Latitude' %}"
+                  required
+                />
+                <label for="branchLatitudeAdd">{% trans "Latitude" %}</label>
+              </div>
+            </div>
 
-    <div class="col-md-6">
-      <div class="form-floating">
-        <input type="number" step="any" class="form-control" id="branchLongitudeAdd" name="longitude" placeholder="{% trans 'Longitude' %}" required />
-        <label for="branchLongitudeAdd">{% trans "Longitude" %}</label>
-      </div>
-    </div>
+            <div class="col-md-6">
+              <div class="form-floating">
+                <input
+                  type="number"
+                  step="any"
+                  class="form-control"
+                  id="branchLongitudeAdd"
+                  name="longitude"
+                  placeholder="{% trans 'Longitude' %}"
+                  required
+                />
+                <label for="branchLongitudeAdd">{% trans "Longitude" %}</label>
+              </div>
+            </div>
 
-    <!-- New Fields -->
-    <div class="col-md-6">
-      <div class="form-floating">
-        <input type="text" class="form-control" id="branchOpeningHoursAdd" name="opening_hours" placeholder="{% trans 'Opening Hours' %}" />
-        <label for="branchOpeningHoursAdd">{% trans "Opening Hours" %}</label>
-      </div>
-    </div>
+            <!-- New Fields -->
+            <div class="col-md-6">
+              <div class="form-floating">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="branchOpeningHoursAdd"
+                  name="opening_hours"
+                  placeholder="{% trans 'Opening Hours' %}"
+                />
+                <label for="branchOpeningHoursAdd"
+                  >{% trans "Opening Hours" %}</label
+                >
+              </div>
+            </div>
 
-    <div class="col-md-6">
-      <div class="form-floating">
-        <input type="text" class="form-control" id="branchClosingHoursAdd" name="closing_hours" placeholder="{% trans 'Closing Hours' %}" />
-        <label for="branchClosingHoursAdd">{% trans "Closing Hours" %}</label>
-      </div>
-    </div>
+            <div class="col-md-6">
+              <div class="form-floating">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="branchClosingHoursAdd"
+                  name="closing_hours"
+                  placeholder="{% trans 'Closing Hours' %}"
+                />
+                <label for="branchClosingHoursAdd"
+                  >{% trans "Closing Hours" %}</label
+                >
+              </div>
+            </div>
 
-    <div class="col-md-6">
-      <div class="form-floating">
-        <input type="text" class="form-control" id="branchDayFromAdd" name="day_from" placeholder="{% trans 'Day From' %}" />
-        <label for="branchDayFromAdd">{% trans "Day From" %}</label>
-      </div>
-    </div>
+            <div class="col-md-6">
+              <div class="form-floating">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="branchDayFromAdd"
+                  name="day_from"
+                  placeholder="{% trans 'Day From' %}"
+                />
+                <label for="branchDayFromAdd">{% trans "Day From" %}</label>
+              </div>
+            </div>
 
-    <div class="col-md-6">
-      <div class="form-floating">
-        <input type="text" class="form-control" id="branchDayToAdd" name="day_to" placeholder="{% trans 'Day To' %}" />
-        <label for="branchDayToAdd">{% trans "Day To" %}</label>
-      </div>
-    </div>
+            <div class="col-md-6">
+              <div class="form-floating">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="branchDayToAdd"
+                  name="day_to"
+                  placeholder="{% trans 'Day To' %}"
+                />
+                <label for="branchDayToAdd">{% trans "Day To" %}</label>
+              </div>
+            </div>
 
-    <div class="col-md-6">
-      <div class="form-floating">
-        <input type="url" class="form-control" id="branchFacebookAdd" name="facbook_link" placeholder="{% trans 'Facebook Link' %}" />
-        <label for="branchFacebookAdd">{% trans "Facebook Link" %}</label>
-      </div>
-    </div>
+            <div class="col-md-6">
+              <div class="form-floating">
+                <input
+                  type="url"
+                  class="form-control"
+                  id="branchFacebookAdd"
+                  name="facbook_link"
+                  placeholder="{% trans 'Facebook Link' %}"
+                />
+                <label for="branchFacebookAdd"
+                  >{% trans "Facebook Link" %}</label
+                >
+              </div>
+            </div>
 
-    <div class="col-md-6">
-      <div class="form-floating">
-        <input type="url" class="form-control" id="branchInstagramAdd" name="instagram_link" placeholder="{% trans 'Instagram Link' %}" />
-        <label for="branchInstagramAdd">{% trans "Instagram Link" %}</label>
-      </div>
-    </div>
+            <div class="col-md-6">
+              <div class="form-floating">
+                <input
+                  type="url"
+                  class="form-control"
+                  id="branchInstagramAdd"
+                  name="instagram_link"
+                  placeholder="{% trans 'Instagram Link' %}"
+                />
+                <label for="branchInstagramAdd"
+                  >{% trans "Instagram Link" %}</label
+                >
+              </div>
+            </div>
 
-    <div class="col-md-6">
-      <div class="form-floating">
-        <input type="url" class="form-control" id="branchTwitterAdd" name="twitter_link" placeholder="{% trans 'Twitter Link' %}" />
-        <label for="branchTwitterAdd">{% trans "Twitter Link" %}</label>
-      </div>
-    </div>
+            <div class="col-md-6">
+              <div class="form-floating">
+                <input
+                  type="url"
+                  class="form-control"
+                  id="branchTwitterAdd"
+                  name="twitter_link"
+                  placeholder="{% trans 'Twitter Link' %}"
+                />
+                <label for="branchTwitterAdd">{% trans "Twitter Link" %}</label>
+              </div>
+            </div>
 
-    <div class="col-md-6">
-      <div class="form-floating">
-        <input type="url" class="form-control" id="branchLinkedinAdd" name="linkdin_link" placeholder="{% trans 'LinkedIn Link' %}" />
-        <label for="branchLinkedinAdd">{% trans "LinkedIn Link" %}</label>
-      </div>
-    </div>
+            <div class="col-md-6">
+              <div class="form-floating">
+                <input
+                  type="url"
+                  class="form-control"
+                  id="branchLinkedinAdd"
+                  name="linkdin_link"
+                  placeholder="{% trans 'LinkedIn Link' %}"
+                />
+                <label for="branchLinkedinAdd"
+                  >{% trans "LinkedIn Link" %}</label
+                >
+              </div>
+            </div>
 
-    <div class="col-12">
-      <div class="form-check">
-        <input class="form-check-input" type="checkbox" id="primaryBranchAdd" name="primery_branch" />
-        <label class="form-check-label" for="primaryBranchAdd">{% trans "Primary Branch" %}</label>
-      </div>
-    </div>
-  </div>
-</form>
-
+            <div class="col-12">
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  id="primaryBranchAdd"
+                  name="primery_branch"
+                />
+                <label class="form-check-label" for="primaryBranchAdd"
+                  >{% trans "Primary Branch" %}</label
+                >
+              </div>
+            </div>
+          </div>
+        </form>
       </div>
       <div class="modal-footer">
         <button
@@ -1508,7 +1882,12 @@
           <i class="fas fa-edit me-2"></i>
           {% trans "Edit Branch" %}
         </h5>
-        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        <button
+          type="button"
+          class="btn-close btn-close-white"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
       </div>
       <div class="modal-body p-3 p-md-4">
         <form id="branchFormEdit">
@@ -1517,46 +1896,91 @@
             <!-- Basic Info -->
             <div class="col-12">
               <div class="form-floating">
-                <input type="text" class="form-control" id="branchNameEdit" name="name" placeholder="{% trans 'Branch Name' %}" required />
+                <input
+                  type="text"
+                  class="form-control"
+                  id="branchNameEdit"
+                  name="name"
+                  placeholder="{% trans 'Branch Name' %}"
+                  required
+                />
                 <label for="branchNameEdit">{% trans "Branch Name" %}</label>
               </div>
             </div>
 
             <div class="col-md-6">
               <div class="form-floating">
-                <input type="tel" class="form-control" id="branchPhoneEdit" name="phone_number" placeholder="{% trans 'Phone Number' %}" />
+                <input
+                  type="tel"
+                  class="form-control"
+                  id="branchPhoneEdit"
+                  name="phone_number"
+                  placeholder="{% trans 'Phone Number' %}"
+                />
                 <label for="branchPhoneEdit">{% trans "Phone Number" %}</label>
               </div>
             </div>
 
             <div class="col-md-6">
               <div class="form-floating">
-                <input type="email" class="form-control" id="branchEmailEdit" name="Email_Adress" placeholder="{% trans 'Email Address' %}" />
+                <input
+                  type="email"
+                  class="form-control"
+                  id="branchEmailEdit"
+                  name="Email_Adress"
+                  placeholder="{% trans 'Email Address' %}"
+                />
                 <label for="branchEmailEdit">{% trans "Email Address" %}</label>
               </div>
             </div>
 
             <div class="col-12">
               <div class="form-floating">
-                <textarea class="form-control" id="branchAddressEdit" name="address" placeholder="{% trans 'Address' %}" style="height: 80px" required></textarea>
+                <textarea
+                  class="form-control"
+                  id="branchAddressEdit"
+                  name="address"
+                  placeholder="{% trans 'Address' %}"
+                  style="height: 80px"
+                  required
+                ></textarea>
                 <label for="branchAddressEdit">{% trans "Address" %}</label>
               </div>
             </div>
-<!-- For Edit modal -->
-<div class="col-12 mb-3">
-  <div id="branchMapEdit" style="height: 300px; width: 100%; border:1px solid #ddd;"></div>
-</div>
+            <!-- For Edit modal -->
+            <div class="col-12 mb-3">
+              <div
+                id="branchMapEdit"
+                style="height: 300px; width: 100%; border: 1px solid #ddd"
+              ></div>
+            </div>
             <!-- Coordinates -->
             <div class="col-md-6">
               <div class="form-floating">
-                <input type="number" step="any" class="form-control" id="branchLatitudeEdit" name="latitude" placeholder="{% trans 'Latitude' %}" required />
+                <input
+                  type="number"
+                  step="any"
+                  class="form-control"
+                  id="branchLatitudeEdit"
+                  name="latitude"
+                  placeholder="{% trans 'Latitude' %}"
+                  required
+                />
                 <label for="branchLatitudeEdit">{% trans "Latitude" %}</label>
               </div>
             </div>
 
             <div class="col-md-6">
               <div class="form-floating">
-                <input type="number" step="any" class="form-control" id="branchLongitudeEdit" name="longitude" placeholder="{% trans 'Longitude' %}" required />
+                <input
+                  type="number"
+                  step="any"
+                  class="form-control"
+                  id="branchLongitudeEdit"
+                  name="longitude"
+                  placeholder="{% trans 'Longitude' %}"
+                  required
+                />
                 <label for="branchLongitudeEdit">{% trans "Longitude" %}</label>
               </div>
             </div>
@@ -1564,28 +1988,56 @@
             <!-- Hours & Days -->
             <div class="col-md-6">
               <div class="form-floating">
-                <input type="text" class="form-control" id="branchOpeningHoursEdit" name="opening_hours" placeholder="{% trans 'Opening Hours' %}" />
-                <label for="branchOpeningHoursEdit">{% trans "Opening Hours" %}</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="branchOpeningHoursEdit"
+                  name="opening_hours"
+                  placeholder="{% trans 'Opening Hours' %}"
+                />
+                <label for="branchOpeningHoursEdit"
+                  >{% trans "Opening Hours" %}</label
+                >
               </div>
             </div>
 
             <div class="col-md-6">
               <div class="form-floating">
-                <input type="text" class="form-control" id="branchClosingHoursEdit" name="closing_hours" placeholder="{% trans 'Closing Hours' %}" />
-                <label for="branchClosingHoursEdit">{% trans "Closing Hours" %}</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="branchClosingHoursEdit"
+                  name="closing_hours"
+                  placeholder="{% trans 'Closing Hours' %}"
+                />
+                <label for="branchClosingHoursEdit"
+                  >{% trans "Closing Hours" %}</label
+                >
               </div>
             </div>
 
             <div class="col-md-6">
               <div class="form-floating">
-                <input type="text" class="form-control" id="branchDayFromEdit" name="day_from" placeholder="{% trans 'Day From' %}" />
+                <input
+                  type="text"
+                  class="form-control"
+                  id="branchDayFromEdit"
+                  name="day_from"
+                  placeholder="{% trans 'Day From' %}"
+                />
                 <label for="branchDayFromEdit">{% trans "Day From" %}</label>
               </div>
             </div>
 
             <div class="col-md-6">
               <div class="form-floating">
-                <input type="text" class="form-control" id="branchDayToEdit" name="day_to" placeholder="{% trans 'Day To' %}" />
+                <input
+                  type="text"
+                  class="form-control"
+                  id="branchDayToEdit"
+                  name="day_to"
+                  placeholder="{% trans 'Day To' %}"
+                />
                 <label for="branchDayToEdit">{% trans "Day To" %}</label>
               </div>
             </div>
@@ -1593,44 +2045,89 @@
             <!-- Social Links -->
             <div class="col-md-6">
               <div class="form-floating">
-                <input type="url" class="form-control" id="branchFacebookEdit" name="facbook_link" placeholder="{% trans 'Facebook Link' %}" />
-                <label for="branchFacebookEdit">{% trans "Facebook Link" %}</label>
+                <input
+                  type="url"
+                  class="form-control"
+                  id="branchFacebookEdit"
+                  name="facbook_link"
+                  placeholder="{% trans 'Facebook Link' %}"
+                />
+                <label for="branchFacebookEdit"
+                  >{% trans "Facebook Link" %}</label
+                >
               </div>
             </div>
 
             <div class="col-md-6">
               <div class="form-floating">
-                <input type="url" class="form-control" id="branchInstagramEdit" name="instagram_link" placeholder="{% trans 'Instagram Link' %}" />
-                <label for="branchInstagramEdit">{% trans "Instagram Link" %}</label>
+                <input
+                  type="url"
+                  class="form-control"
+                  id="branchInstagramEdit"
+                  name="instagram_link"
+                  placeholder="{% trans 'Instagram Link' %}"
+                />
+                <label for="branchInstagramEdit"
+                  >{% trans "Instagram Link" %}</label
+                >
               </div>
             </div>
 
             <div class="col-md-6">
               <div class="form-floating">
-                <input type="url" class="form-control" id="branchTwitterEdit" name="twitter_link" placeholder="{% trans 'Twitter Link' %}" />
-                <label for="branchTwitterEdit">{% trans "Twitter Link" %}</label>
+                <input
+                  type="url"
+                  class="form-control"
+                  id="branchTwitterEdit"
+                  name="twitter_link"
+                  placeholder="{% trans 'Twitter Link' %}"
+                />
+                <label for="branchTwitterEdit"
+                  >{% trans "Twitter Link" %}</label
+                >
               </div>
             </div>
 
             <div class="col-md-6">
               <div class="form-floating">
-                <input type="url" class="form-control" id="branchLinkedinEdit" name="linkdin_link" placeholder="{% trans 'LinkedIn Link' %}" />
-                <label for="branchLinkedinEdit">{% trans "LinkedIn Link" %}</label>
+                <input
+                  type="url"
+                  class="form-control"
+                  id="branchLinkedinEdit"
+                  name="linkdin_link"
+                  placeholder="{% trans 'LinkedIn Link' %}"
+                />
+                <label for="branchLinkedinEdit"
+                  >{% trans "LinkedIn Link" %}</label
+                >
               </div>
             </div>
 
             <!-- Primary Branch -->
             <div class="col-12">
               <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="primaryBranchEdit" name="primery_branch" />
-                <label class="form-check-label" for="primaryBranchEdit">{% trans "Primary Branch" %}</label>
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  id="primaryBranchEdit"
+                  name="primery_branch"
+                />
+                <label class="form-check-label" for="primaryBranchEdit"
+                  >{% trans "Primary Branch" %}</label
+                >
               </div>
             </div>
           </div>
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">{% trans "Cancel" %}</button>
+        <button
+          type="button"
+          class="btn btn-outline-secondary"
+          data-bs-dismiss="modal"
+        >
+          {% trans "Cancel" %}
+        </button>
         <button type="button" class="btn btn-info" id="updateBranchBtn">
           <i class="fas fa-save me-2"></i>
           {% trans "Update Branch" %}
@@ -1639,7 +2136,6 @@
     </div>
   </div>
 </div>
-
 
 <!-- Add Category Modal -->
 <div
@@ -2456,7 +2952,13 @@
   </div>
 </div>
 <!-- Add Brand Modal -->
-<div class="modal fade" id="addBrandModal" tabindex="-1" aria-labelledby="addBrandModalLabel" aria-hidden="true">
+<div
+  class="modal fade"
+  id="addBrandModal"
+  tabindex="-1"
+  aria-labelledby="addBrandModalLabel"
+  aria-hidden="true"
+>
   <div class="modal-dialog">
     <div class="modal-content modern-modal">
       <div class="modal-header bg-info text-white">
@@ -2464,31 +2966,74 @@
           <i class="fas fa-industry me-2"></i>
           {% trans "Add Brand" %}
         </h5>
-        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        <button
+          type="button"
+          class="btn-close btn-close-white"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
       </div>
       <div class="modal-body">
-        <form id="brandFormAdd" class="needs-validation" novalidate enctype="multipart/form-data">
+        <form
+          id="brandFormAdd"
+          class="needs-validation"
+          novalidate
+          enctype="multipart/form-data"
+        >
           {% csrf_token %}
           <div class="mb-3">
-            <label for="brandNameAdd" class="form-label">{% trans "Name" %}</label>
-            <input type="text" class="form-control" id="brandNameAdd" name="name" required>
-            <div class="invalid-feedback">{% trans "Please enter a brand name." %}</div>
+            <label for="brandNameAdd" class="form-label"
+              >{% trans "Name" %}</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              id="brandNameAdd"
+              name="name"
+              required
+            />
+            <div class="invalid-feedback">
+              {% trans "Please enter a brand name." %}
+            </div>
           </div>
 
           <div class="mb-3">
-            <label for="brandDescriptionAdd" class="form-label">{% trans "Description" %}</label>
-            <textarea class="form-control" id="brandDescriptionAdd" name="description" rows="3"></textarea>
+            <label for="brandDescriptionAdd" class="form-label"
+              >{% trans "Description" %}</label
+            >
+            <textarea
+              class="form-control"
+              id="brandDescriptionAdd"
+              name="description"
+              rows="3"
+            ></textarea>
           </div>
 
           <div class="mb-3">
-            <label for="brandImageAdd" class="form-label">{% trans "Image" %}</label>
-            <input type="file" class="form-control" id="brandImageAdd" name="image" accept="image/*">
-            <div class="form-text">{% trans "Optional - Upload a brand image" %}</div>
+            <label for="brandImageAdd" class="form-label"
+              >{% trans "Image" %}</label
+            >
+            <input
+              type="file"
+              class="form-control"
+              id="brandImageAdd"
+              name="image"
+              accept="image/*"
+            />
+            <div class="form-text">
+              {% trans "Optional - Upload a brand image" %}
+            </div>
           </div>
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">{% trans "Cancel" %}</button>
+        <button
+          type="button"
+          class="btn btn-outline-secondary"
+          data-bs-dismiss="modal"
+        >
+          {% trans "Cancel" %}
+        </button>
         <button type="button" class="btn btn-info" id="createBrandBtn">
           <i class="fas fa-plus me-2"></i>
           {% trans "Add Brand" %}
@@ -2499,7 +3044,13 @@
 </div>
 
 <!-- Edit Brand Modal -->
-<div class="modal fade" id="editBrandModal" tabindex="-1" aria-labelledby="editBrandModalLabel" aria-hidden="true">
+<div
+  class="modal fade"
+  id="editBrandModal"
+  tabindex="-1"
+  aria-labelledby="editBrandModalLabel"
+  aria-hidden="true"
+>
   <div class="modal-dialog">
     <div class="modal-content modern-modal">
       <div class="modal-header bg-info text-white">
@@ -2507,35 +3058,84 @@
           <i class="fas fa-edit me-2"></i>
           {% trans "Edit Brand" %}
         </h5>
-        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        <button
+          type="button"
+          class="btn-close btn-close-white"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
       </div>
       <div class="modal-body">
-        <form id="brandFormEdit" class="needs-validation" novalidate enctype="multipart/form-data">
-          <input type="hidden" id="brandIdEdit" name="brand_id">
+        <form
+          id="brandFormEdit"
+          class="needs-validation"
+          novalidate
+          enctype="multipart/form-data"
+        >
+          <input type="hidden" id="brandIdEdit" name="brand_id" />
           <div class="mb-3">
-            <label for="brandNameEdit" class="form-label">{% trans "Name" %}</label>
-            <input type="text" class="form-control" id="brandNameEdit" name="name" required>
-            <div class="invalid-feedback">{% trans "Please enter a brand name." %}</div>
+            <label for="brandNameEdit" class="form-label"
+              >{% trans "Name" %}</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              id="brandNameEdit"
+              name="name"
+              required
+            />
+            <div class="invalid-feedback">
+              {% trans "Please enter a brand name." %}
+            </div>
           </div>
 
           <div class="mb-3">
-            <label for="brandDescriptionEdit" class="form-label">{% trans "Description" %}</label>
-            <textarea class="form-control" id="brandDescriptionEdit" name="description" rows="3"></textarea>
+            <label for="brandDescriptionEdit" class="form-label"
+              >{% trans "Description" %}</label
+            >
+            <textarea
+              class="form-control"
+              id="brandDescriptionEdit"
+              name="description"
+              rows="3"
+            ></textarea>
           </div>
 
           <div class="mb-3">
-            <label for="brandImageEdit" class="form-label">{% trans "Image" %}</label>
-            <input type="file" class="form-control" id="brandImageEdit" name="image" accept="image/*">
-            <div class="form-text">{% trans "Optional - Leave empty to keep current image" %}</div>
+            <label for="brandImageEdit" class="form-label"
+              >{% trans "Image" %}</label
+            >
+            <input
+              type="file"
+              class="form-control"
+              id="brandImageEdit"
+              name="image"
+              accept="image/*"
+            />
+            <div class="form-text">
+              {% trans "Optional - Leave empty to keep current image" %}
+            </div>
           </div>
 
           <div class="mb-3">
-            <img id="brandImagePreview" src="" alt="Brand Image Preview" class="img-fluid rounded" style="display:none; max-height:150px;">
+            <img
+              id="brandImagePreview"
+              src=""
+              alt="Brand Image Preview"
+              class="img-fluid rounded"
+              style="display: none; max-height: 150px"
+            />
           </div>
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">{% trans "Cancel" %}</button>
+        <button
+          type="button"
+          class="btn btn-outline-secondary"
+          data-bs-dismiss="modal"
+        >
+          {% trans "Cancel" %}
+        </button>
         <button type="button" class="btn btn-info" id="updateBrandBtn">
           <i class="fas fa-save me-2"></i>
           {% trans "Update Brand" %}
@@ -2545,207 +3145,159 @@
   </div>
 </div>
 
-
+<!-- prettier-ignore-start -->
 <script>
   document.addEventListener("DOMContentLoaded", function () {
-    const dashboardManager = {
-      csrfToken: document.querySelector("[name=csrfmiddlewaretoken]")?.value,
+    // ✅ Modal Guardian (fix gray screen / stuck backdrop)
+    const __cleanupModalArtifacts = () => {
+      // remove leftover backdrops and restore body if no modal is open
+      if (!document.querySelector(".modal.show")) {
+        document.body.classList.remove("modal-open");
+        document.body.style.removeProperty("padding-right");
+        document.body.style.removeProperty("overflow");
+        document.querySelectorAll(".modal-backdrop").forEach((b) => b.remove());
+      }
+    };
 
+    document.addEventListener("hidden.bs.modal", () =>
+      setTimeout(__cleanupModalArtifacts, 20)
+    );
+    window.addEventListener("error", () =>
+      setTimeout(__cleanupModalArtifacts, 20)
+    );
+
+    // Prevent stacked modals (optional safety)
+    document.addEventListener("show.bs.modal", (e) => {
+      document.querySelectorAll(".modal.show").forEach((m) => {
+        if (m !== e.target) bootstrap.Modal.getInstance(m)?.hide();
+      });
+    });
+
+    const App = {
+      // ====== CONFIG ======
+      urls: {
+        // Products
+        createProduct: "{% url 'create_product' %}",
+        productDetail: (id) => `/products/api/${id}/`,
+        productUpdate: (id) => `/products/api/${id}/`,
+        productDelete: (id) => `/products/api/${id}/delete/`,
+
+        // Branches
+        createBranch: "{% url 'create_branch' %}",
+        branchDetail: (id) => `/branches/api/${id}/`,
+        branchUpdate: (id) => `/branches/api/${id}/`,
+        branchDelete: (id) =>
+          "{% url 'branch_delete_api' 0 %}".replace("0", id),
+
+        // Categories
+        createCategory: "{% url 'category_add' %}",
+        categoryUpdate: (id) =>
+          "{% url 'category_update' 0 %}".replace("0", id),
+        categoryDelete: (id) => `/api/category/${id}/delete/`,
+
+        // Cities
+        createCity: "{% url 'create_city' %}",
+        cityDetail: (id) => `/cities/api/${id}/`,
+        cityUpdate: (id) => "{% url 'city_detail_api' 0 %}".replace("0", id),
+        cityDelete: (id) => "{% url 'city_delete_api' 0 %}".replace("0", id),
+
+        // Brands
+        createBrand: "{% url 'brand_add' %}",
+        brandUpdate: (id) => "{% url 'brand_update' 0 %}".replace("0", id),
+        brandDelete: (id) => "{% url 'brand_delete' 0 %}".replace("0", id),
+
+        // Banners
+        bannerAdd: "{% url 'banner_add' %}",
+        bannerDetail: (id) => `/banners/api/${id}/`,
+        bannerUpdate: (id) => `/banners/api/${id}/`,
+        bannerDelete: (id) =>
+          "{% url 'banner_delete_api' 0 %}".replace("0", id),
+
+        // Projects (DRF ViewSet)
+        projectsBase: "/api/projects/",
+        projectDetail: (id) => `/api/projects/${id}/`,
+      },
+
+      csrfToken:
+        document.querySelector("[name=csrfmiddlewaretoken]")?.value ||
+        (function getCookie(name) {
+          const v = `; ${document.cookie}`;
+          const p = v.split(`; ${name}=`);
+          if (p.length === 2) return p.pop().split(";").shift();
+          return "";
+        })("csrftoken"),
+
+      // ====== STATE ======
+      confirmCtx: null, // { type, id, buttonEl, onConfirm() }
+      branchMaps: {
+        addMap: null,
+        addMarker: null,
+        editMap: null,
+        editMarker: null,
+      },
+
+      // ====== INIT ======
       init() {
-        this.bindEvents();
-        console.log("Dashboard Manager initialized");
-      },
+        this.bindGlobalEvents();
+        this.bindButtons();
+        this.initTooltips();
+        this.initFormValidation();
+        this.adjustTablesForMobile();
+        window.addEventListener("resize", () => this.adjustTablesForMobile());
 
-      bindEvents() {
-        // Product buttons
-        document
-          .getElementById("createProductBtn")
-          ?.addEventListener("click", () => this.createProduct());
-        document
-          .getElementById("updateProductBtn")
-          ?.addEventListener("click", () => this.updateProduct());
-
-        // Branch buttons
-        document
-          .getElementById("createBranchBtn")
-          ?.addEventListener("click", () => this.createBranch());
-        document
-          .getElementById("updateBranchBtn")
-          ?.addEventListener("click", () => this.updateBranch());
-
-        // Category buttons
-        document
-          .getElementById("createCategoryBtn")
-          ?.addEventListener("click", () => this.createCategory());
-        document
-          .getElementById("updateCategoryBtn")
-          ?.addEventListener("click", () => this.updateCategory());
-
-        // City buttons
-        document
-          .getElementById("createCityBtn")
-          ?.addEventListener("click", () => this.createCity());
-        document
-          .getElementById("updateCityBtn")
-          ?.addEventListener("click", () => this.updateCity());
-        
-        // Brand buttons
-        document
-          .getElementById("createBrandBtn")
-          ?.addEventListener("click", () => this.createBrand());
-        document
-          .getElementById("updateBrandBtn")
-          ?.addEventListener("click", () => this.updateBrand());
-
-        // Table actions using event delegation
-        document.addEventListener("click", (e) => {
-          // Edit product
-          if (e.target.closest(".edit-product-btn")) {
-            const btn = e.target.closest(".edit-product-btn");
-            this.loadProduct(btn.dataset.productId);
-          }
-
-          // Delete product
-          if (e.target.closest(".delete-product-btn")) {
-            const btn = e.target.closest(".delete-product-btn");
-            this.confirmDelete("product", btn.dataset.productId, btn);
-          }
-
-          // Edit branch
-          if (e.target.closest(".edit-branch-btn")) {
-            const btn = e.target.closest(".edit-branch-btn");
-            this.loadBranch(btn.dataset.branchId);
-          }
-
-          // Delete branch
-          if (e.target.closest(".delete-branch-btn")) {
-            const btn = e.target.closest(".delete-branch-btn");
-            this.confirmDelete("branch", btn.dataset.branchId, btn);
-          }
-
-          // Edit category
-          if (e.target.closest(".edit-category-btn")) {
-            const btn = e.target.closest(".edit-category-btn");
-            this.loadCategory(btn);
-          }
-
-          // Delete category
-          if (e.target.closest(".delete-category-btn")) {
-            const btn = e.target.closest(".delete-category-btn");
-            this.confirmDelete("category", btn.dataset.categoryId, btn);
-          }
-
-          // Edit city
-          if (e.target.closest(".edit-city-btn")) {
-            const btn = e.target.closest(".edit-city-btn");
-            this.loadCity(btn.dataset.cityId);
-          }
-
-          // Delete city
-          if (e.target.closest(".delete-city-btn")) {
-            const btn = e.target.closest(".delete-city-btn");
-            this.confirmDelete("city", btn.dataset.cityId, btn);
-          }
-
-          // View message
-          if (e.target.closest('[data-bs-target="#viewMessageModal"]')) {
-            const btn = e.target.closest(
-              '[data-bs-target="#viewMessageModal"]'
-            );
-            this.viewMessage(btn.dataset.message, btn.dataset.email);
-          }
-          
-          // Edit brand
-          if (e.target.closest(".edit-brand-btn")) {
-              const btn = e.target.closest(".edit-brand-btn");
-              this.loadBrand(btn);
-          }
-
-          // Delete brand button
-          if (e.target.closest(".delete-brand-btn")) {
-              const btn = e.target.closest(".delete-brand-btn");
-              this.confirmDelete("brand", btn.dataset.brandId, btn);
-          }
-
-        });
-
-        // View message modal
-        const viewMessageModal = document.getElementById("viewMessageModal");
-        if (viewMessageModal) {
-          viewMessageModal.addEventListener("show.bs.modal", (e) => {
-            if (e.relatedTarget) {
-              const button = e.relatedTarget;
-              this.viewMessage(button.dataset.message, button.dataset.email);
-            }
-          });
+        // Projects initial load (if section exists)
+        if (document.getElementById("projectsGrid")) {
+          this.projects.fetch();
         }
 
-        // Confirm modal
-        const confirmModal = document.getElementById("confirmModal");
-        if (confirmModal) {
-          confirmModal.addEventListener("hidden.bs.modal", () => {
-            this.confirmAction = null;
-            this.confirmCallback = null;
-          });
-        }
+        console.log("Dashboard App initialized ✅");
       },
 
-      // API Methods
-      async apiRequest(url, options = {}) {
-        const { method = "GET", body = null, isFormData = false } = options;
-
-        const headers = {
-          "X-CSRFToken": this.csrfToken,
-        };
+      // ====== UTILITIES ======
+      async request(
+        url,
+        { method = "GET", body = null, isFormData = false } = {}
+      ) {
+        const headers = { "X-CSRFToken": this.csrfToken };
 
         if (!isFormData && body && !(body instanceof FormData)) {
           headers["Content-Type"] = "application/json";
         }
 
-        const config = {
+        const res = await fetch(url, {
           method,
           headers,
           credentials: "same-origin",
-        };
+          body: body
+            ? isFormData || body instanceof FormData
+              ? body
+              : JSON.stringify(body)
+            : null,
+        });
 
-        if (body) {
-          config.body = isFormData ? body : JSON.stringify(body);
+        const data = await res.json().catch(() => ({}));
+        if (!res.ok) {
+          throw new Error(
+            data.error || data.detail || data.message || `HTTP ${res.status}`
+          );
         }
-
-        try {
-          const response = await fetch(url, config);
-          const data = await response.json();
-
-          if (!response.ok) {
-            throw new Error(
-              data.error || data.message || `HTTP ${response.status}`
-            );
-          }
-
-          return data;
-        } catch (error) {
-          console.error("API Error:", error);
-          throw error;
-        }
+        return data;
       },
 
-      // Alert System
       showAlert(message, type = "success") {
-        // Remove existing alerts
-        const existingAlert = document.querySelector(".dashboard-alert");
-        if (existingAlert) {
-          existingAlert.remove();
-        }
+        document.querySelector(".dashboard-alert")?.remove();
 
         const alertDiv = document.createElement("div");
-        alertDiv.className = `alert alert-${type} alert-dismissible fade show dashboard-alert`;
+        const bsType = type === "error" ? "danger" : type;
+
+        alertDiv.className = `alert alert-${bsType} alert-dismissible fade show dashboard-alert`;
         alertDiv.style.cssText =
-          "position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 9999; min-width: 300px; max-width: 500px;";
+          "position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 9999; min-width: 300px; max-width: 520px;";
 
         alertDiv.innerHTML = `
           <div class="d-flex align-items-center">
             <i class="fas fa-${
-              type === "success" ? "check-circle" : "exclamation-triangle"
+              bsType === "success" ? "check-circle" : "exclamation-triangle"
             } me-2"></i>
             <div>${message}</div>
           </div>
@@ -2753,971 +3305,1327 @@
         `;
 
         document.body.appendChild(alertDiv);
-
-        // Auto remove after 5 seconds
-        setTimeout(() => {
-          if (alertDiv.parentNode) {
-            alertDiv.remove();
-          }
-        }, 5000);
+        setTimeout(() => alertDiv.remove(), 4500);
       },
 
-      // Loading states
-      setLoading(button, isLoading) {
+      setLoading(button, isLoading, loadingText = "Processing...") {
         if (!button) return;
-
         if (isLoading) {
           button.disabled = true;
-          if (!button.dataset.originalHtml) {
-            button.dataset.originalHtml = button.innerHTML;
-          }
-          button.innerHTML =
-            '<span class="spinner-border spinner-border-sm me-2"></span>Processing...';
+          button.dataset.originalHtml ||= button.innerHTML;
+          button.innerHTML = `<span class="spinner-border spinner-border-sm me-2"></span>${loadingText}`;
         } else {
           button.disabled = false;
           button.innerHTML = button.dataset.originalHtml || button.innerHTML;
         }
       },
 
-      // Form handling
-      serializeForm(formId) {
+      serializeForm(formId, { skipFiles = true } = {}) {
         const form = document.getElementById(formId);
         if (!form) return {};
-
-        const formData = new FormData(form);
+        const fd = new FormData(form);
         const data = {};
 
-        formData.forEach((value, key) => {
-          if (key === "image" || key === "video") return; // Skip files
+        fd.forEach((value, key) => {
+          if (skipFiles && value instanceof File) return;
 
-          // Handle checkboxes
-          if (form.elements[key]?.type === "checkbox") {
-            data[key] = form.elements[key].checked;
-          } else {
-            data[key] = value;
-          }
+          const el = form.elements[key];
+          if (el?.type === "checkbox") data[key] = el.checked;
+          else data[key] = value;
         });
 
         return data;
       },
 
-      // Product Methods
-      async createProduct() {
-        const btn = document.getElementById("createProductBtn");
-        const form = document.getElementById("productFormAdd");
-
-        if (!form.checkValidity()) {
-          form.classList.add("was-validated");
-          return;
-        }
-
-        this.setLoading(btn, true);
-
-        try {
-          const formData = new FormData(form);
-
-          // Convert checkboxes properly
-          ["show_price", "show_quantity", "place_orders"].forEach((field) => {
-            const checkbox = form.querySelector(`[name="${field}"]`);
-            if (checkbox) {
-              formData.set(field, checkbox.checked ? "true" : "false");
-            }
-          });
-
-          const data = await this.apiRequest('{% url "create_product" %}', {
-            method: "POST",
-            body: formData,
-            isFormData: true,
-          });
-
-          this.showAlert("Product created successfully!", "success");
-          setTimeout(() => location.reload(), 1500);
-        } catch (error) {
-          this.showAlert(`Error: ${error.message}`, "error");
-        } finally {
-          this.setLoading(btn, false);
-        }
-      },
-
-      async loadProduct(productId) {
-        try {
-          const data = await this.apiRequest(`/products/api/${productId}/`);
-
-          // Fill form
-          document.getElementById("productIdEdit").value = data.id;
-          document.getElementById("productNameEdit").value = data.name || "";
-          document.getElementById("productDescriptionEdit").value =
-            data.description || "";
-          document.getElementById("productQuantityEdit").value =
-            data.quantity_available || "";
-          document.getElementById("productPriceEdit").value = data.price || "";
-          document.getElementById("productCategoryEdit").value =
-            data.category?.id || "";
-
-          // Set checkboxes
-          document.getElementById("showPriceEdit").checked =
-            data.show_price || false;
-          document.getElementById("showQuantityEdit").checked =
-            data.show_quantity || false;
-          document.getElementById("placeOrdersEdit").checked =
-            data.place_orders || false;
-
-          // Show image preview if exists
-          const preview = document.getElementById("productImagePreview");
-          if (data.image_url) {
-            preview.src = data.image_url;
-            preview.style.display = "block";
-          } else {
-            preview.style.display = "none";
-          }
-
-          // Show modal
-          const modal = new bootstrap.Modal(
-            document.getElementById("editProductModal")
-          );
-          modal.show();
-        } catch (error) {
-          this.showAlert("Failed to load product data", "error");
-        }
-      },
-
-      async updateProduct() {
-        const btn = document.getElementById("updateProductBtn");
-        const form = document.getElementById("productFormEdit");
-        const productId = document.getElementById("productIdEdit").value;
-
-        if (!form.checkValidity()) {
-          form.classList.add("was-validated");
-          return;
-        }
-
-        this.setLoading(btn, true);
-
-        try {
-          const formData = new FormData(form);
-
-          // Convert checkboxes properly
-          ["show_price", "show_quantity", "place_orders"].forEach((field) => {
-            const checkbox = form.querySelector(`[name="${field}"]`);
-            if (checkbox) {
-              formData.set(field, checkbox.checked ? "true" : "false");
-            }
-          });
-
-          const data = await this.apiRequest(`/products/api/${productId}/`, {
-            method: "POST",
-            body: formData,
-            isFormData: true,
-          });
-
-          this.showAlert("Product updated successfully!", "success");
-          setTimeout(() => location.reload(), 1500);
-        } catch (error) {
-          this.showAlert(`Error: ${error.message}`, "error");
-        } finally {
-          this.setLoading(btn, false);
-        }
-      },
-
-      // Branch Methods
-      async createBranch() {
-        const btn = document.getElementById("createBranchBtn");
-        const form = document.getElementById("branchFormAdd");
-
-        if (!form.checkValidity()) {
-          form.classList.add("was-validated");
-          return;
-        }
-
-        this.setLoading(btn, true);
-
-        try {
-          const data = await this.apiRequest('{% url "create_branch" %}', {
-            method: "POST",
-            body: this.serializeForm("branchFormAdd"),
-          });
-
-          this.showAlert("Branch created successfully!", "success");
-          setTimeout(() => location.reload(), 1500);
-        } catch (error) {
-          this.showAlert(`Error: ${error.message}`, "error");
-        } finally {
-          this.setLoading(btn, false);
-        }
-      },
-
-      async loadBranch(branchId) {
-        try {
-          const data = await this.apiRequest(`/branches/api/${branchId}/`);
-
-          // Fill form
-          document.getElementById("branchIdEdit").value = data.id;
-          document.getElementById("branchNameEdit").value = data.name || "";
-          document.getElementById("branchPhoneEdit").value =
-            data.phone_number || "";
-          document.getElementById("branchEmailEdit").value =
-            data.Email_Adress || "";
-          document.getElementById("branchAddressEdit").value =
-            data.address || "";
-          document.getElementById("branchLatitudeEdit").value =
-            data.latitude || "";
-          document.getElementById("branchLongitudeEdit").value =
-            data.longitude || "";
-          document.getElementById("primaryBranchEdit").checked =
-            data.primery_branch || false;
-
-          // Show modal
-          const modal = new bootstrap.Modal(
-            document.getElementById("editBranchModal")
-          );
-          modal.show();
-        } catch (error) {
-          this.showAlert("Failed to load branch data", "error");
-        }
-      },
-
-      async updateBranch() {
-        const btn = document.getElementById("updateBranchBtn");
-        const form = document.getElementById("branchFormEdit");
-        const branchId = document.getElementById("branchIdEdit").value;
-
-        if (!form.checkValidity()) {
-          form.classList.add("was-validated");
-          return;
-        }
-
-        this.setLoading(btn, true);
-
-        try {
-          const formData = new FormData(form);
-
-          // handle primery_branch checkbox explicitly
-          const primaryCheckbox = form.querySelector('[name="primery_branch"]');
-          if (primaryCheckbox) {
-            if (primaryCheckbox.checked) {
-              // "on" is already fine for your view, but we can be explicit
-              formData.set("primery_branch", "true");
-            } else {
-              formData.set("primery_branch", "false");
-            }
-          }
-
-          const data = await this.apiRequest(`/branches/api/${branchId}/`, {
-            method: "POST",
-            body: formData,
-            isFormData: true,
-          });
-
-          this.showAlert("Branch updated successfully!", "success");
-          setTimeout(() => location.reload(), 1500);
-        } catch (error) {
-          this.showAlert(`Error: ${error.message}`, "error");
-        } finally {
-          this.setLoading(btn, false);
-        }
-      },
-      // Category Methods
-      async createCategory() {
-        const btn = document.getElementById("createCategoryBtn");
-        const form = document.getElementById("categoryFormAdd");
-
-        if (!form.checkValidity()) {
-          form.classList.add("was-validated");
-          return;
-        }
-
-        this.setLoading(btn, true);
-
-        try {
-          const formData = new FormData(form);
-
-          const data = await this.apiRequest('{% url "category_add" %}', {
-            method: "POST",
-            body: formData,
-            isFormData: true,
-          });
-
-          this.showAlert("Category created successfully!", "success");
-          setTimeout(() => location.reload(), 1500);
-        } catch (error) {
-          this.showAlert(`Error: ${error.message}`, "error");
-        } finally {
-          this.setLoading(btn, false);
-        }
-      },
-
-      loadCategory(button) {
-        const categoryId = button.dataset.categoryId;
-        const categoryName = button.dataset.categoryName;
-        const categoryDescription = button.dataset.categoryDescription;
-        const categoryImage = button.dataset.categoryImage;
-
-        // Fill form
-        document.getElementById("categoryIdEdit").value = categoryId;
-        document.getElementById("categoryNameEdit").value = categoryName || "";
-        document.getElementById("categoryDescriptionEdit").value =
-          categoryDescription || "";
-
-        // Show image preview if exists
-        const preview = document.getElementById("categoryImagePreview");
-        if (categoryImage) {
-          preview.src = categoryImage;
-          preview.style.display = "block";
-        } else {
-          preview.style.display = "none";
-        }
-
-        // Show modal
-        const modal = new bootstrap.Modal(
-          document.getElementById("editCategoryModal")
-        );
+      openModal(modalId) {
+        const el = document.getElementById(modalId);
+        if (!el) return null;
+        const modal = new bootstrap.Modal(el);
         modal.show();
+        return modal;
       },
 
-      async updateCategory() {
-        const btn = document.getElementById("updateCategoryBtn");
-        const form = document.getElementById("categoryFormEdit");
-        const categoryId = document.getElementById("categoryIdEdit").value;
-
-        if (!form.checkValidity()) {
-          form.classList.add("was-validated");
-          return;
-        }
-
-        this.setLoading(btn, true);
-
-        try {
-          const formData = new FormData(form);
-
-          // Build URL from Django reverse so it always matches
-          const url = "{% url 'category_update' 0 %}".replace("0", categoryId);
-
-          const data = await this.apiRequest(url, {
-            method: "POST", // 🔥 changed from PATCH to POST
-            body: formData,
-            isFormData: true,
-          });
-
-          if (data.success) {
-            this.showAlert("Category updated successfully!", "success");
-            setTimeout(() => location.reload(), 1500);
-          } else {
-            this.showAlert(data.error || "Failed to update category", "danger");
-          }
-        } catch (error) {
-          this.showAlert(`Error: ${error.message}`, "danger");
-        } finally {
-          this.setLoading(btn, false);
-        }
-      },
-      // City Methods
-      async createCity() {
-        const btn = document.getElementById("createCityBtn");
-        const form = document.getElementById("cityFormAdd");
-
-        if (!form.checkValidity()) {
-          form.classList.add("was-validated");
-          return;
-        }
-
-        this.setLoading(btn, true);
-
-        try {
-          const payload = this.serializeForm("cityFormAdd"); // { name, delivery_fee }
-
-          const data = await this.apiRequest('{% url "create_city" %}', {
-            method: "POST",
-            body: payload,
-          });
-
-          if (data.success) {
-            this.showAlert("City created successfully!", "success");
-            setTimeout(() => location.reload(), 1500);
-          } else {
-            this.showAlert(data.error || "Failed to create city", "error");
-          }
-        } catch (error) {
-          this.showAlert(`Error: ${error.message}`, "error");
-        } finally {
-          this.setLoading(btn, false);
-        }
+      closeModal(modalId) {
+        const el = document.getElementById(modalId);
+        if (!el) return;
+        const modal = bootstrap.Modal.getInstance(el);
+        modal?.hide();
       },
 
-      async loadCity(cityId) {
-        try {
-          const data = await this.apiRequest(`/cities/api/${cityId}/`);
-
-          document.getElementById("cityIdEdit").value = data.id;
-          document.getElementById("cityNameEdit").value = data.name || "";
-          document.getElementById("cityDeliveryFeeEdit").value =
-            data.delivery_fee ?? "0.00";
-
-          const modal = new bootstrap.Modal(
-            document.getElementById("editCityModal")
-          );
-          modal.show();
-        } catch (error) {
-          this.showAlert("Failed to load city data", "error");
-        }
-      },
-
-      async updateCity() {
-        const btn = document.getElementById("updateCityBtn");
-        const form = document.getElementById("cityFormEdit");
-        const cityId = document.getElementById("cityIdEdit").value;
-
-        if (!form.checkValidity()) {
-          form.classList.add("was-validated");
-          return;
-        }
-
-        this.setLoading(btn, true);
-
-        try {
-          const payload = this.serializeForm("cityFormEdit"); // { name, delivery_fee }
-
-          const url = "{% url 'city_detail_api' 0 %}".replace("0", cityId);
-
-          const data = await this.apiRequest(url, {
-            method: "POST",
-            body: payload,
-          });
-
-          if (data.success) {
-            this.showAlert("City updated successfully!", "success");
-            setTimeout(() => location.reload(), 1500);
-          } else {
-            this.showAlert(data.error || "Failed to update city", "error");
-          }
-        } catch (error) {
-          this.showAlert(`Error: ${error.message}`, "error");
-        } finally {
-          this.setLoading(btn, false);
-        }
-      },
-
-      // Message Methods
-      viewMessage(message, email) {
-        document.getElementById("messageEmail").textContent = email;
-        document.getElementById("messageContent").textContent = message;
-      },
-
-      // Confirmation System
-      confirmAction: null,
-      confirmCallback: null,
-
-      confirmDelete(type, id, button) {
-        this.confirmAction = { type, id, button };
-
-        const messages = {
-            product: "Are you sure you want to delete this product?",
-            branch: "Are you sure you want to delete this branch?",
-            category: "Are you sure you want to delete this category?",
-            city: "Are you sure you want to delete this city?",
-            brand: "Are you sure you want to delete this brand?",
-        };
-
-        document.getElementById("confirmMessage").textContent =
-            messages[type] || "Are you sure?";
-
-        const modal = new bootstrap.Modal(
-            document.getElementById("confirmModal")
+      escapeHtml(s) {
+        return (s || "").replace(
+          /[&<>"']/g,
+          (m) =>
+            ({
+              "&": "&amp;",
+              "<": "&lt;",
+              ">": "&gt;",
+              '"': "&quot;",
+              "'": "&#039;",
+            }[m])
         );
-        modal.show();
-
-        // Set up callback
-        const confirmBtn = document.getElementById("confirmActionBtn");
-        confirmBtn.onclick = () => this.performDelete();
       },
 
-      async performDelete() {
-        const { type, id, button } = this.confirmAction;
-
-        try {
-            let url, data;
-
-            switch (type) {
-                case "product":
-                    url = `/products/api/${id}/delete/`;
-                    data = await this.apiRequest(url, { method: "POST" });
-                    break;
-                case "branch":
-                    url = "{% url 'branch_delete_api' 0 %}".replace("0", id);
-                    data = await this.apiRequest(url, { method: "POST" });
-                    break;
-                case "category":
-                    url = `/api/category/${id}/delete/`;
-                    data = await this.apiRequest(url, { method: "POST" });
-                    break;
-                case "city":
-                    url = "{% url 'city_delete_api' 0 %}".replace("0", id);
-                    data = await this.apiRequest(url, { method: "POST" });
-                    break;
-                case "brand":
-                    url = "{% url 'brand_delete' 0 %}".replace("0", id);
-                    data = await this.apiRequest(url, { method: "POST" });
-                    break;
-            }
-
-            if (data.success) {
-                this.showAlert(
-                    `${type.charAt(0).toUpperCase() + type.slice(1)} deleted successfully!`,
-                    "success"
-                );
-
-                // Remove row from table
-                const row = button.closest("tr");
-                if (row) {
-                    row.remove();
-
-                    // Update stats
-                    const statCard = document.querySelector(
-                        `.stats-card.bg-${
-                            type === "product" ? "primary" :
-                            type === "branch" ? "info" :
-                            type === "brand" ? "info" :
-                            "warning"
-                        } .stats-number`
-                    );
-                    if (statCard) {
-                        const current = parseInt(statCard.textContent);
-                        statCard.textContent = current - 1;
-                    }
-                }
-            }
-
-            // Close modal
-            bootstrap.Modal.getInstance(
-                document.getElementById("confirmModal")
-            ).hide();
-        } catch (error) {
-            this.showAlert(`Error: ${error.message}`, "error");
-        }
-      },
-
-      // ===== BRAND METHODS =====
-      async createBrand() {
-          console.log("createBrand called");
-          
-          const btn = document.getElementById("createBrandBtn");
-          const form = document.getElementById("brandFormAdd");
-
-          if (!form.checkValidity()) {
-              console.log("Form not valid");
-              form.classList.add("was-validated");
-              return;
-          }
-
-          this.setLoading(btn, true);
-
-          try {
-              const formData = new FormData(form);
-              
-              console.log("Sending brand data...");
-              for (let [key, value] of formData.entries()) {
-                  console.log(key, value);
-              }
-
-              const data = await this.apiRequest('{% url "brand_add" %}', {
-                  method: "POST",
-                  body: formData,
-                  isFormData: true,
-              });
-
-              console.log("Response:", data);
-              
-              this.showAlert("Brand created successfully!", "success");
-              
-              // Close the modal
-              const modal = bootstrap.Modal.getInstance(document.getElementById('addBrandModal'));
-              if (modal) modal.hide();
-              
-              setTimeout(() => location.reload(), 1500);
-          } catch (error) {
-              console.error("Create brand error:", error);
-              this.showAlert(`Error: ${error.message}`, "error");
-          } finally {
-              this.setLoading(btn, false);
-          }
-      },
-
-      loadBrand(button) {
-          console.log("loadBrand called", button);
-          
-          const brandId = button.dataset.brandId;
-          const brandName = button.dataset.brandName;
-          const brandDescription = button.dataset.brandDescription;
-          const brandImage = button.dataset.brandImage;
-
-          // Fill form
-          document.getElementById("brandIdEdit").value = brandId;
-          document.getElementById("brandNameEdit").value = brandName || "";
-          document.getElementById("brandDescriptionEdit").value = brandDescription || "";
-
-          // Show image preview if exists
-          const preview = document.getElementById("brandImagePreview");
-          if (brandImage && brandImage.trim() !== "") {
-              preview.src = brandImage;
-              preview.style.display = "block";
-              console.log("Image preview:", brandImage);
-          } else {
-              preview.style.display = "none";
-          }
-
-          // Show modal
-          const modal = new bootstrap.Modal(document.getElementById("editBrandModal"));
-          modal.show();
-      },
-
-      async updateBrand() {
-          console.log("updateBrand called");
-          
-          const btn = document.getElementById("updateBrandBtn");
-          const form = document.getElementById("brandFormEdit");
-          const brandId = document.getElementById("brandIdEdit").value;
-
-          if (!form.checkValidity()) {
-              console.log("Form not valid");
-              form.classList.add("was-validated");
-              return;
-          }
-
-          this.setLoading(btn, true);
-
-          try {
-              const formData = new FormData(form);
-              const url = "{% url 'brand_update' 0 %}".replace("0", brandId);
-              
-              console.log("Updating brand ID:", brandId);
-              console.log("URL:", url);
-
-              const data = await this.apiRequest(url, {
-                  method: "POST",
-                  body: formData,
-                  isFormData: true,
-              });
-
-              console.log("Update response:", data);
-
-              if (data.success) {
-                  this.showAlert("Brand updated successfully!", "success");
-                  
-                  // Close the modal
-                  const modal = bootstrap.Modal.getInstance(document.getElementById('editBrandModal'));
-                  if (modal) modal.hide();
-                  
-                  setTimeout(() => location.reload(), 1500);
-              } else {
-                  this.showAlert(data.error || "Failed to update brand", "danger");
-              }
-          } catch (error) {
-              console.error("Update brand error:", error);
-              this.showAlert(`Error: ${error.message}`, "danger");
-          } finally {
-              this.setLoading(btn, false);
-          }
-      },
-    };
-
-    // Initialize dashboard manager
-    dashboardManager.init();
-
-    // Initialize Bootstrap tooltips
-    const tooltipTriggerList = [].slice.call(
-      document.querySelectorAll("[title]")
-    );
-    tooltipTriggerList.map(function (tooltipTriggerEl) {
-      return new bootstrap.Tooltip(tooltipTriggerEl, {
-        trigger: "hover",
-      });
-    });
-
-    // Form validation
-    const forms = document.querySelectorAll(".needs-validation");
-    Array.from(forms).forEach((form) => {
-      form.addEventListener(
-        "submit",
-        (event) => {
-          if (!form.checkValidity()) {
-            event.preventDefault();
-            event.stopPropagation();
-          }
-          form.classList.add("was-validated");
-        },
-        false
-      );
-    });
-
-    // Responsive table adjustments
-    function adjustTableForMobile() {
-      const tables = document.querySelectorAll(".table-responsive");
-      tables.forEach((table) => {
-        if (window.innerWidth < 768) {
-          table.classList.add("table-sm");
-        } else {
-          table.classList.remove("table-sm");
-        }
-      });
-    }
-
-    // Initial adjustment
-    adjustTableForMobile();
-
-    // Adjust on resize
-    window.addEventListener("resize", adjustTableForMobile);
-  });
-
-  // Banner Manager (separate from dashboardManager)
-  document.addEventListener("DOMContentLoaded", () => {
-    const bannerManager = {
-      csrfToken: document.querySelector("[name=csrfmiddlewaretoken]")?.value,
-      confirmData: null,
-
-      init() {
-        this.bind();
-        console.log("Banner Manager initialized");
-      },
-
-      bind() {
-        // Buttons
-        this.onClick("createBannerBtn", () => this.createBanner());
-        this.onClick("updateBannerBtn", () => this.updateBanner());
-
-        // Delegated table actions for banners
+      // ====== GLOBAL EVENTS ======
+      bindGlobalEvents() {
+        // Delegation for edit/delete buttons and other actions
         document.addEventListener("click", (e) => {
-          const editBtn = e.target.closest(".edit-banner-btn");
-          if (editBtn) {
-            const id = editBtn.dataset.bannerId;
-            this.loadBanner(id);
-            return;
+          // Products
+          const editProduct = e.target.closest(".edit-product-btn");
+          if (editProduct)
+            return this.products.load(editProduct.dataset.productId);
+
+          const delProduct = e.target.closest(".delete-product-btn");
+          if (delProduct) {
+            return this.confirmDelete({
+              type: "product",
+              id: delProduct.dataset.productId,
+              buttonEl: delProduct,
+              message: "Are you sure you want to delete this product?",
+              onConfirm: () =>
+                this.products.delete(delProduct.dataset.productId, delProduct),
+            });
           }
 
-          const deleteBtn = e.target.closest(".delete-banner-btn");
-          if (deleteBtn) {
-            const id = deleteBtn.dataset.bannerId;
-            this.confirmDelete(id, deleteBtn);
-            return;
+          // Branches
+          const editBranch = e.target.closest(".edit-branch-btn");
+          if (editBranch)
+            return this.branches.load(editBranch.dataset.branchId);
+
+          const delBranch = e.target.closest(".delete-branch-btn");
+          if (delBranch) {
+            return this.confirmDelete({
+              type: "branch",
+              id: delBranch.dataset.branchId,
+              buttonEl: delBranch,
+              message: "Are you sure you want to delete this branch?",
+              onConfirm: () =>
+                this.branches.delete(delBranch.dataset.branchId, delBranch),
+            });
+          }
+
+          // Categories
+          const editCategory = e.target.closest(".edit-category-btn");
+          if (editCategory)
+            return this.categories.loadFromDataset(editCategory);
+
+          const delCategory = e.target.closest(".delete-category-btn");
+          if (delCategory) {
+            return this.confirmDelete({
+              type: "category",
+              id: delCategory.dataset.categoryId,
+              buttonEl: delCategory,
+              message: "Are you sure you want to delete this category?",
+              onConfirm: () =>
+                this.categories.delete(
+                  delCategory.dataset.categoryId,
+                  delCategory
+                ),
+            });
+          }
+
+          // Cities
+          const editCity = e.target.closest(".edit-city-btn");
+          if (editCity) return this.cities.load(editCity.dataset.cityId);
+
+          const delCity = e.target.closest(".delete-city-btn");
+          if (delCity) {
+            return this.confirmDelete({
+              type: "city",
+              id: delCity.dataset.cityId,
+              buttonEl: delCity,
+              message: "Are you sure you want to delete this city?",
+              onConfirm: () =>
+                this.cities.delete(delCity.dataset.cityId, delCity),
+            });
+          }
+
+          // Brands
+          const editBrand = e.target.closest(".edit-brand-btn");
+          if (editBrand) return this.brands.loadFromDataset(editBrand);
+
+          const delBrand = e.target.closest(".delete-brand-btn");
+          if (delBrand) {
+            return this.confirmDelete({
+              type: "brand",
+              id: delBrand.dataset.brandId,
+              buttonEl: delBrand,
+              message: "Are you sure you want to delete this brand?",
+              onConfirm: () =>
+                this.brands.delete(delBrand.dataset.brandId, delBrand),
+            });
+          }
+
+          // Banners
+          const editBanner = e.target.closest(".edit-banner-btn");
+          if (editBanner) return this.banners.load(editBanner.dataset.bannerId);
+
+          const delBanner = e.target.closest(".delete-banner-btn");
+          if (delBanner) {
+            return this.confirmDelete({
+              type: "banner",
+              id: delBanner.dataset.bannerId,
+              buttonEl: delBanner,
+              message: "Delete this banner?",
+              onConfirm: () =>
+                this.banners.delete(delBanner.dataset.bannerId, delBanner),
+            });
+          }
+
+          // View message
+          const viewMsg = e.target.closest(
+            '[data-bs-target="#viewMessageModal"]'
+          );
+          if (viewMsg) {
+            return this.messages.view(
+              viewMsg.dataset.message,
+              viewMsg.dataset.email
+            );
+          }
+
+          // Projects actions
+          const projBtn = e.target.closest("button[data-project-action]");
+          if (projBtn) {
+            const id = projBtn.dataset.projectId;
+            const action = projBtn.dataset.projectAction;
+            if (action === "edit") return this.projects.openEdit(id);
+            if (action === "delete") {
+              return this.confirmDelete({
+                type: "project",
+                id,
+                buttonEl: projBtn,
+                message: "Delete this project?",
+                onConfirm: () => this.projects.delete(id),
+              });
+            }
           }
         });
 
-        // Confirm modal reset
+        // confirm modal reset
         const confirmModal = document.getElementById("confirmModal");
         confirmModal?.addEventListener("hidden.bs.modal", () => {
-          this.confirmData = null;
+          this.confirmCtx = null;
+          const btn = document.getElementById("confirmActionBtn");
+          if (btn) btn.onclick = null;
         });
       },
 
-      onClick(id, fn) {
-        const el = document.getElementById(id);
-        if (el) el.addEventListener("click", fn);
+      bindButtons() {
+        // Products
+        document
+          .getElementById("createProductBtn")
+          ?.addEventListener("click", () => this.products.create());
+        document
+          .getElementById("updateProductBtn")
+          ?.addEventListener("click", () => this.products.update());
+
+        // Branches
+        document
+          .getElementById("createBranchBtn")
+          ?.addEventListener("click", () => this.branches.create());
+        document
+          .getElementById("updateBranchBtn")
+          ?.addEventListener("click", () => this.branches.update());
+
+        // Categories
+        document
+          .getElementById("createCategoryBtn")
+          ?.addEventListener("click", () => this.categories.create());
+        document
+          .getElementById("updateCategoryBtn")
+          ?.addEventListener("click", () => this.categories.update());
+
+        // Cities
+        document
+          .getElementById("createCityBtn")
+          ?.addEventListener("click", () => this.cities.create());
+        document
+          .getElementById("updateCityBtn")
+          ?.addEventListener("click", () => this.cities.update());
+
+        // Brands
+        document
+          .getElementById("createBrandBtn")
+          ?.addEventListener("click", () => this.brands.create());
+        document
+          .getElementById("updateBrandBtn")
+          ?.addEventListener("click", () => this.brands.update());
+
+        // Banners
+        document
+          .getElementById("createBannerBtn")
+          ?.addEventListener("click", () => this.banners.create());
+        document
+          .getElementById("updateBannerBtn")
+          ?.addEventListener("click", () => this.banners.update());
+
+        // Projects
+        document
+          .getElementById("btnOpenCreateProject")
+          ?.addEventListener("click", () => this.projects.openCreate());
+        document
+          .getElementById("projectForm")
+          ?.addEventListener("submit", (e) => {
+            e.preventDefault();
+            this.projects.submit(e);
+          });
+        document
+          .getElementById("confirmDeleteProjectBtn")
+          ?.addEventListener("click", () => {
+            // optional if you use separate deleteProjectModal
+            const id = document.getElementById("deleteProjectId")?.value;
+            if (id) this.projects.delete(id);
+          });
       },
 
-      async api(url, method = "GET", body = null, isForm = false) {
-        const headers = { "X-CSRFToken": this.csrfToken };
+      initTooltips() {
+        const list = [].slice.call(document.querySelectorAll("[title]"));
+        list.map((el) => new bootstrap.Tooltip(el, { trigger: "hover" }));
+      },
 
-        if (!isForm && body && !(body instanceof FormData)) {
-          headers["Content-Type"] = "application/json";
-        }
-
-        const res = await fetch(url, {
-          method,
-          headers,
-          body: body ? (isForm ? body : JSON.stringify(body)) : null,
-          credentials: "same-origin",
+      initFormValidation() {
+        const forms = document.querySelectorAll(".needs-validation");
+        Array.from(forms).forEach((form) => {
+          form.addEventListener(
+            "submit",
+            (event) => {
+              if (!form.checkValidity()) {
+                event.preventDefault();
+                event.stopPropagation();
+              }
+              form.classList.add("was-validated");
+            },
+            false
+          );
         });
-
-        const data = await res.json().catch(() => ({}));
-        if (!res.ok) {
-          throw new Error(data.error || data.detail || data.message || "Error");
-        }
-
-        return data;
       },
 
-      alert(msg, type = "success") {
-        document.querySelector(".dashboard-alert")?.remove();
-
-        const box = document.createElement("div");
-        box.className = `alert alert-${type} alert-dismissible fade show dashboard-alert`;
-        box.style.cssText = `
-          position:fixed; top:50%; left:50%; transform:translate(-50%, -50%);
-          z-index:9999; min-width:300px; max-width:400px;
-        `;
-        box.innerHTML = `
-          <div class="d-flex align-items-center">
-            <i class="fas fa-${
-              type === "success" ? "check-circle" : "exclamation-triangle"
-            } me-2"></i>
-            <div>${msg}</div>
-          </div>
-          <button class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        `;
-        document.body.appendChild(box);
-        setTimeout(() => box.remove(), 4000);
+      adjustTablesForMobile() {
+        document.querySelectorAll(".table-responsive").forEach((t) => {
+          if (window.innerWidth < 768) t.classList.add("table-sm");
+          else t.classList.remove("table-sm");
+        });
       },
 
-      // ===== BANNER METHODS =====
+      // ====== CONFIRM ======
+      confirmDelete({ type, id, buttonEl, message, onConfirm }) {
+        this.confirmCtx = { type, id, buttonEl, onConfirm };
 
-      async createBanner() {
-        const btn = document.getElementById("createBannerBtn");
-        const form = document.getElementById("bannerFormAdd");
-        if (!form.checkValidity()) {
-          form.classList.add("was-validated");
-          return;
-        }
+        const msgEl = document.getElementById("confirmMessage");
+        if (msgEl) msgEl.textContent = message || "Are you sure?";
 
-        btn.disabled = true;
+        const modal = this.openModal("confirmModal");
+        const confirmBtn = document.getElementById("confirmActionBtn");
+        if (confirmBtn) confirmBtn.onclick = () => this.performConfirm();
+
+        return modal;
+      },
+
+      async performConfirm() {
+        if (!this.confirmCtx) return;
 
         try {
-          const fd = new FormData(form);
-          await this.api("{% url 'banner_add' %}", "POST", fd, true);
-
-          this.alert("Banner created!");
-          setTimeout(() => location.reload(), 1200);
+          await this.confirmCtx.onConfirm?.();
+          this.closeModal("confirmModal");
         } catch (e) {
-          this.alert(e.message, "danger");
+          this.showAlert(`Error: ${e.message}`, "error");
         }
-
-        btn.disabled = false;
       },
 
-      async loadBanner(id) {
-        try {
-          const data = await this.api(`/banners/api/${id}/`, "GET");
+      // ====== MODULES ======
+      products: {
+        async create() {
+          const btn = document.getElementById("createProductBtn");
+          const form = document.getElementById("productFormAdd");
+          if (!form || !form.checkValidity()) {
+            form?.classList.add("was-validated");
+            return;
+          }
 
-          document.getElementById("bannerIdEdit").value = data.id;
-          document.getElementById("bannerTitleEdit").value = data.title || "";
-          document.getElementById("bannerSubtitleEdit").value =
-            data.subtitle || "";
-          document.getElementById("bannerButtonTextEdit").value =
-            data.button_text || "";
-          document.getElementById("bannerButtonLinkEdit").value =
-            data.button_link || "";
-          document.getElementById("bannerColorEdit").value =
-            data.text_color || "white";
-          document.getElementById("bannerOrderEdit").value =
-            data.order !== undefined && data.order !== null ? data.order : 0;
-          document.getElementById("bannerActiveEdit").checked =
-            !!data.is_active;
+          App.setLoading(btn, true);
 
-          // Show image preview
-          const preview = document.getElementById("bannerImagePreview");
-          if (data.image_url) {
-            preview.src = data.image_url;
+          try {
+            const fd = new FormData(form);
+
+            ["show_price", "show_quantity", "place_orders"].forEach((field) => {
+              const cb = form.querySelector(`[name="${field}"]`);
+              if (cb) fd.set(field, cb.checked ? "true" : "false");
+            });
+
+            await App.request(App.urls.createProduct, {
+              method: "POST",
+              body: fd,
+              isFormData: true,
+            });
+            App.showAlert("Product created successfully!", "success");
+            setTimeout(() => location.reload(), 800);
+          } catch (e) {
+            App.showAlert(`Error: ${e.message}`, "error");
+          } finally {
+            App.setLoading(btn, false);
+          }
+        },
+
+        async load(id) {
+          try {
+            const data = await App.request(App.urls.productDetail(id));
+
+            document.getElementById("productIdEdit").value = data.id;
+            document.getElementById("productNameEdit").value = data.name || "";
+            document.getElementById("productDescriptionEdit").value =
+              data.description || "";
+            document.getElementById("productQuantityEdit").value =
+              data.quantity_available || "";
+            document.getElementById("productPriceEdit").value =
+              data.price || "";
+            document.getElementById("productCategoryEdit").value =
+              data.category?.id || "";
+
+            document.getElementById("showPriceEdit").checked =
+              !!data.show_price;
+            document.getElementById("showQuantityEdit").checked =
+              !!data.show_quantity;
+            document.getElementById("placeOrdersEdit").checked =
+              !!data.place_orders;
+
+            const preview = document.getElementById("productImagePreview");
+            if (data.image_url) {
+              preview.src = data.image_url;
+              preview.style.display = "block";
+            } else {
+              preview.style.display = "none";
+            }
+
+            App.openModal("editProductModal");
+          } catch (e) {
+            App.showAlert("Failed to load product data", "error");
+          }
+        },
+
+        async update() {
+          const btn = document.getElementById("updateProductBtn");
+          const form = document.getElementById("productFormEdit");
+          const id = document.getElementById("productIdEdit")?.value;
+
+          if (!form || !id || !form.checkValidity()) {
+            form?.classList.add("was-validated");
+            return;
+          }
+
+          App.setLoading(btn, true);
+
+          try {
+            const fd = new FormData(form);
+            ["show_price", "show_quantity", "place_orders"].forEach((field) => {
+              const cb = form.querySelector(`[name="${field}"]`);
+              if (cb) fd.set(field, cb.checked ? "true" : "false");
+            });
+
+            await App.request(App.urls.productUpdate(id), {
+              method: "POST",
+              body: fd,
+              isFormData: true,
+            });
+            App.showAlert("Product updated successfully!", "success");
+            setTimeout(() => location.reload(), 800);
+          } catch (e) {
+            App.showAlert(`Error: ${e.message}`, "error");
+          } finally {
+            App.setLoading(btn, false);
+          }
+        },
+
+        async delete(id, btnEl) {
+          const data = await App.request(App.urls.productDelete(id), {
+            method: "POST",
+          });
+          if (data.success) {
+            btnEl?.closest("tr")?.remove();
+            App.showAlert("Product deleted successfully!", "success");
+          }
+        },
+      },
+
+      branches: {
+        async create() {
+          const btn = document.getElementById("createBranchBtn");
+          const form = document.getElementById("branchFormAdd");
+          if (!form || !form.checkValidity()) {
+            form?.classList.add("was-validated");
+            return;
+          }
+
+          App.setLoading(btn, true);
+          try {
+            await App.request(App.urls.createBranch, {
+              method: "POST",
+              body: App.serializeForm("branchFormAdd"),
+            });
+
+            App.showAlert("Branch created successfully!", "success");
+            setTimeout(() => location.reload(), 800);
+          } catch (e) {
+            App.showAlert(`Error: ${e.message}`, "error");
+          } finally {
+            App.setLoading(btn, false);
+          }
+        },
+
+        async load(id) {
+          try {
+            const data = await App.request(App.urls.branchDetail(id));
+            document.getElementById("branchIdEdit").value = data.id;
+            document.getElementById("branchNameEdit").value = data.name || "";
+            document.getElementById("branchPhoneEdit").value =
+              data.phone_number || "";
+            document.getElementById("branchEmailEdit").value =
+              data.Email_Adress || "";
+            document.getElementById("branchAddressEdit").value =
+              data.address || "";
+            document.getElementById("branchLatitudeEdit").value =
+              data.latitude || "";
+            document.getElementById("branchLongitudeEdit").value =
+              data.longitude || "";
+            document.getElementById("primaryBranchEdit").checked =
+              !!data.primery_branch;
+
+            // Update map position if exists
+            if (
+              window.editBranchMap &&
+              window.editBranchMarker &&
+              data.latitude &&
+              data.longitude
+            ) {
+              const pos = {
+                lat: parseFloat(data.latitude),
+                lng: parseFloat(data.longitude),
+              };
+              window.editBranchMap.setCenter(pos);
+              window.editBranchMap.setZoom(12);
+              window.editBranchMarker.setPosition(pos);
+            }
+
+            App.openModal("editBranchModal");
+          } catch (e) {
+            App.showAlert("Failed to load branch data", "error");
+          }
+        },
+
+        async update() {
+          const btn = document.getElementById("updateBranchBtn");
+          const form = document.getElementById("branchFormEdit");
+          const id = document.getElementById("branchIdEdit")?.value;
+
+          if (!form || !id || !form.checkValidity()) {
+            form?.classList.add("was-validated");
+            return;
+          }
+
+          App.setLoading(btn, true);
+          try {
+            const fd = new FormData(form);
+            const cb = form.querySelector('[name="primery_branch"]');
+            if (cb) fd.set("primery_branch", cb.checked ? "true" : "false");
+
+            await App.request(App.urls.branchUpdate(id), {
+              method: "POST",
+              body: fd,
+              isFormData: true,
+            });
+
+            App.showAlert("Branch updated successfully!", "success");
+            setTimeout(() => location.reload(), 800);
+          } catch (e) {
+            App.showAlert(`Error: ${e.message}`, "error");
+          } finally {
+            App.setLoading(btn, false);
+          }
+        },
+
+        async delete(id, btnEl) {
+          const data = await App.request(App.urls.branchDelete(id), {
+            method: "POST",
+          });
+          if (data.success) {
+            btnEl?.closest("tr")?.remove();
+            App.showAlert("Branch deleted successfully!", "success");
+          }
+        },
+      },
+
+      categories: {
+        async create() {
+          const btn = document.getElementById("createCategoryBtn");
+          const form = document.getElementById("categoryFormAdd");
+          if (!form || !form.checkValidity()) {
+            form?.classList.add("was-validated");
+            return;
+          }
+
+          App.setLoading(btn, true);
+          try {
+            const fd = new FormData(form);
+            await App.request(App.urls.createCategory, {
+              method: "POST",
+              body: fd,
+              isFormData: true,
+            });
+            App.showAlert("Category created successfully!", "success");
+            setTimeout(() => location.reload(), 800);
+          } catch (e) {
+            App.showAlert(`Error: ${e.message}`, "error");
+          } finally {
+            App.setLoading(btn, false);
+          }
+        },
+
+        loadFromDataset(btn) {
+          document.getElementById("categoryIdEdit").value =
+            btn.dataset.categoryId;
+          document.getElementById("categoryNameEdit").value =
+            btn.dataset.categoryName || "";
+          document.getElementById("categoryDescriptionEdit").value =
+            btn.dataset.categoryDescription || "";
+
+          const preview = document.getElementById("categoryImagePreview");
+          if (btn.dataset.categoryImage) {
+            preview.src = btn.dataset.categoryImage;
             preview.style.display = "block";
           } else {
             preview.style.display = "none";
           }
 
-          const modalEl = document.getElementById("editBannerModal");
-          const modal = new bootstrap.Modal(modalEl);
-          modal.show();
-        } catch (e) {
-          this.alert("Failed to load banner", "danger");
-        }
-      },
+          App.openModal("editCategoryModal");
+        },
 
-      async updateBanner() {
-        const btn = document.getElementById("updateBannerBtn");
-        const form = document.getElementById("bannerFormEdit");
-        const id = document.getElementById("bannerIdEdit").value;
+        async update() {
+          const btn = document.getElementById("updateCategoryBtn");
+          const form = document.getElementById("categoryFormEdit");
+          const id = document.getElementById("categoryIdEdit")?.value;
 
-        if (!form.checkValidity()) {
-          form.classList.add("was-validated");
-          return;
-        }
-
-        btn.disabled = true;
-
-        try {
-          const fd = new FormData(form);
-          await this.api(`/banners/api/${id}/`, "POST", fd, true);
-
-          this.alert("Banner updated!");
-          setTimeout(() => location.reload(), 1200);
-        } catch (e) {
-          this.alert(e.message, "danger");
-        }
-
-        btn.disabled = false;
-      },
-
-      confirmDelete(id, btn) {
-        this.confirmData = { id, btn };
-        document.getElementById("confirmMessage").textContent =
-          "Delete this banner?";
-
-        const modalEl = document.getElementById("confirmModal");
-        const modal = new bootstrap.Modal(modalEl);
-        modal.show();
-
-        document.getElementById("confirmActionBtn").onclick = () =>
-          this.deleteBanner();
-      },
-
-      async deleteBanner() {
-        if (!this.confirmData) return;
-        const { id, btn } = this.confirmData;
-
-        try {
-          // Use Django URL reverse and replace the dummy id
-          const url = "{% url 'banner_delete_api' 0 %}".replace("0", id);
-
-          const res = await this.api(url, "POST"); // 🔥 use POST (matches view)
-          if (res.success) {
-            btn.closest("tr")?.remove();
-            this.alert("Banner deleted", "success");
+          if (!form || !id || !form.checkValidity()) {
+            form?.classList.add("was-validated");
+            return;
           }
 
-          const modalEl = document.getElementById("confirmModal");
-          const modal = bootstrap.Modal.getInstance(modalEl);
-          modal.hide();
-        } catch (e) {
-          this.alert(e.message, "danger");
-        }
+          App.setLoading(btn, true);
+          try {
+            const fd = new FormData(form);
+            const data = await App.request(App.urls.categoryUpdate(id), {
+              method: "POST",
+              body: fd,
+              isFormData: true,
+            });
+
+            if (data.success) {
+              App.showAlert("Category updated successfully!", "success");
+              setTimeout(() => location.reload(), 800);
+            } else {
+              App.showAlert(data.error || "Failed to update category", "error");
+            }
+          } catch (e) {
+            App.showAlert(`Error: ${e.message}`, "error");
+          } finally {
+            App.setLoading(btn, false);
+          }
+        },
+
+        async delete(id, btnEl) {
+          const data = await App.request(App.urls.categoryDelete(id), {
+            method: "POST",
+          });
+          if (data.success) {
+            btnEl?.closest("tr")?.remove();
+            App.showAlert("Category deleted successfully!", "success");
+          }
+        },
+      },
+
+      cities: {
+        async create() {
+          const btn = document.getElementById("createCityBtn");
+          const form = document.getElementById("cityFormAdd");
+          if (!form || !form.checkValidity()) {
+            form?.classList.add("was-validated");
+            return;
+          }
+
+          App.setLoading(btn, true);
+          try {
+            const payload = App.serializeForm("cityFormAdd");
+            const data = await App.request(App.urls.createCity, {
+              method: "POST",
+              body: payload,
+            });
+
+            if (data.success) {
+              App.showAlert("City created successfully!", "success");
+              setTimeout(() => location.reload(), 800);
+            } else {
+              App.showAlert(data.error || "Failed to create city", "error");
+            }
+          } catch (e) {
+            App.showAlert(`Error: ${e.message}`, "error");
+          } finally {
+            App.setLoading(btn, false);
+          }
+        },
+
+        async load(id) {
+          try {
+            const data = await App.request(App.urls.cityDetail(id));
+            document.getElementById("cityIdEdit").value = data.id;
+            document.getElementById("cityNameEdit").value = data.name || "";
+            document.getElementById("cityDeliveryFeeEdit").value =
+              data.delivery_fee ?? "0.00";
+            App.openModal("editCityModal");
+          } catch (e) {
+            App.showAlert("Failed to load city data", "error");
+          }
+        },
+
+        async update() {
+          const btn = document.getElementById("updateCityBtn");
+          const form = document.getElementById("cityFormEdit");
+          const id = document.getElementById("cityIdEdit")?.value;
+
+          if (!form || !id || !form.checkValidity()) {
+            form?.classList.add("was-validated");
+            return;
+          }
+
+          App.setLoading(btn, true);
+          try {
+            const payload = App.serializeForm("cityFormEdit");
+            const data = await App.request(App.urls.cityUpdate(id), {
+              method: "POST",
+              body: payload,
+            });
+
+            if (data.success) {
+              App.showAlert("City updated successfully!", "success");
+              setTimeout(() => location.reload(), 800);
+            } else {
+              App.showAlert(data.error || "Failed to update city", "error");
+            }
+          } catch (e) {
+            App.showAlert(`Error: ${e.message}`, "error");
+          } finally {
+            App.setLoading(btn, false);
+          }
+        },
+
+        async delete(id, btnEl) {
+          const data = await App.request(App.urls.cityDelete(id), {
+            method: "POST",
+          });
+          if (data.success) {
+            btnEl?.closest("tr")?.remove();
+            App.showAlert("City deleted successfully!", "success");
+          }
+        },
+      },
+
+      brands: {
+        async create() {
+          const btn = document.getElementById("createBrandBtn");
+          const form = document.getElementById("brandFormAdd");
+          if (!form || !form.checkValidity()) {
+            form?.classList.add("was-validated");
+            return;
+          }
+
+          App.setLoading(btn, true);
+          try {
+            const fd = new FormData(form);
+            const data = await App.request(App.urls.createBrand, {
+              method: "POST",
+              body: fd,
+              isFormData: true,
+            });
+            App.showAlert("Brand created successfully!", "success");
+            App.closeModal("addBrandModal");
+            setTimeout(() => location.reload(), 800);
+          } catch (e) {
+            App.showAlert(`Error: ${e.message}`, "error");
+          } finally {
+            App.setLoading(btn, false);
+          }
+        },
+
+        loadFromDataset(btn) {
+          document.getElementById("brandIdEdit").value = btn.dataset.brandId;
+          document.getElementById("brandNameEdit").value =
+            btn.dataset.brandName || "";
+          document.getElementById("brandDescriptionEdit").value =
+            btn.dataset.brandDescription || "";
+
+          const preview = document.getElementById("brandImagePreview");
+          if (btn.dataset.brandImage && btn.dataset.brandImage.trim() !== "") {
+            preview.src = btn.dataset.brandImage;
+            preview.style.display = "block";
+          } else preview.style.display = "none";
+
+          App.openModal("editBrandModal");
+        },
+
+        async update() {
+          const btn = document.getElementById("updateBrandBtn");
+          const form = document.getElementById("brandFormEdit");
+          const id = document.getElementById("brandIdEdit")?.value;
+
+          if (!form || !id || !form.checkValidity()) {
+            form?.classList.add("was-validated");
+            return;
+          }
+
+          App.setLoading(btn, true);
+          try {
+            const fd = new FormData(form);
+            const data = await App.request(App.urls.brandUpdate(id), {
+              method: "POST",
+              body: fd,
+              isFormData: true,
+            });
+
+            if (data.success) {
+              App.showAlert("Brand updated successfully!", "success");
+              App.closeModal("editBrandModal");
+              setTimeout(() => location.reload(), 800);
+            } else {
+              App.showAlert(data.error || "Failed to update brand", "error");
+            }
+          } catch (e) {
+            App.showAlert(`Error: ${e.message}`, "error");
+          } finally {
+            App.setLoading(btn, false);
+          }
+        },
+
+        async delete(id, btnEl) {
+          const data = await App.request(App.urls.brandDelete(id), {
+            method: "POST",
+          });
+          if (data.success) {
+            btnEl?.closest("tr")?.remove();
+            App.showAlert("Brand deleted successfully!", "success");
+          }
+        },
+      },
+
+      banners: {
+        async create() {
+          const btn = document.getElementById("createBannerBtn");
+          const form = document.getElementById("bannerFormAdd");
+          if (!form || !form.checkValidity()) {
+            form?.classList.add("was-validated");
+            return;
+          }
+
+          App.setLoading(btn, true);
+          try {
+            const fd = new FormData(form);
+            await App.request(App.urls.bannerAdd, {
+              method: "POST",
+              body: fd,
+              isFormData: true,
+            });
+            App.showAlert("Banner created!", "success");
+            setTimeout(() => location.reload(), 800);
+          } catch (e) {
+            App.showAlert(e.message, "error");
+          } finally {
+            App.setLoading(btn, false);
+          }
+        },
+
+        async load(id) {
+          try {
+            const data = await App.request(App.urls.bannerDetail(id));
+
+            document.getElementById("bannerIdEdit").value = data.id;
+            document.getElementById("bannerTitleEdit").value = data.title || "";
+            document.getElementById("bannerSubtitleEdit").value =
+              data.subtitle || "";
+            document.getElementById("bannerButtonTextEdit").value =
+              data.button_text || "";
+            document.getElementById("bannerButtonLinkEdit").value =
+              data.button_link || "";
+            document.getElementById("bannerColorEdit").value =
+              data.text_color || "white";
+            document.getElementById("bannerOrderEdit").value = data.order ?? 0;
+            document.getElementById("bannerActiveEdit").checked =
+              !!data.is_active;
+
+            const preview = document.getElementById("bannerImagePreview");
+            if (data.image_url) {
+              preview.src = data.image_url;
+              preview.style.display = "block";
+            } else preview.style.display = "none";
+
+            App.openModal("editBannerModal");
+          } catch (e) {
+            App.showAlert("Failed to load banner", "error");
+          }
+        },
+
+        async update() {
+          const btn = document.getElementById("updateBannerBtn");
+          const form = document.getElementById("bannerFormEdit");
+          const id = document.getElementById("bannerIdEdit")?.value;
+
+          if (!form || !id || !form.checkValidity()) {
+            form?.classList.add("was-validated");
+            return;
+          }
+
+          App.setLoading(btn, true);
+          try {
+            const fd = new FormData(form);
+            await App.request(App.urls.bannerUpdate(id), {
+              method: "POST",
+              body: fd,
+              isFormData: true,
+            });
+
+            App.showAlert("Banner updated!", "success");
+            setTimeout(() => location.reload(), 800);
+          } catch (e) {
+            App.showAlert(e.message, "error");
+          } finally {
+            App.setLoading(btn, false);
+          }
+        },
+
+        async delete(id, btnEl) {
+          const data = await App.request(App.urls.bannerDelete(id), {
+            method: "POST",
+          });
+          if (data.success) {
+            btnEl?.closest("tr")?.remove();
+            App.showAlert("Banner deleted", "success");
+          }
+        },
+      },
+
+      messages: {
+        view(message, email) {
+          const e = document.getElementById("messageEmail");
+          const c = document.getElementById("messageContent");
+          if (e) e.textContent = email || "";
+          if (c) c.textContent = message || "";
+        },
+      },
+
+      // ====== PROJECTS (DRF CRUD) ======
+      projects: {
+        gridEl() {
+          return document.getElementById("projectsGrid");
+        },
+        modal() {
+          const el = document.getElementById("projectModal");
+          return el ? new bootstrap.Modal(el) : null;
+        },
+        setModalTitle(t) {
+          const el = document.getElementById("projectModalTitle");
+          if (el) el.textContent = t;
+        },
+        formEl() {
+          return document.getElementById("projectForm");
+        },
+        errorsEl() {
+          return document.getElementById("projectFormErrors");
+        },
+        submitBtn() {
+          return document.getElementById("projectSubmitBtn");
+        },
+        fields() {
+          return {
+            id: document.getElementById("projectId"),
+            title: document.getElementById("title"),
+            year: document.getElementById("year"),
+            project_type: document.getElementById("project_type"),
+            industry: document.getElementById("industry"),
+            sort_order: document.getElementById("sort_order"),
+            stack: document.getElementById("stack"),
+            url: document.getElementById("url"),
+            description: document.getElementById("description"),
+            image: document.getElementById("image"),
+            is_featured: document.getElementById("is_featured"),
+            is_public: document.getElementById("is_public"),
+          };
+        },
+
+        async fetch() {
+          const grid = this.gridEl();
+          if (!grid) return;
+
+          try {
+            const res = await fetch(App.urls.projectsBase, {
+              headers: { Accept: "application/json" },
+            });
+            if (!res.ok) throw new Error("Failed to load projects");
+            const data = await res.json();
+
+            const items = Array.isArray(data) ? data : data.results || [];
+            if (!items.length) {
+              grid.innerHTML = `
+                <div class="col-12 text-center">
+                  <div class="modern-card p-5">
+                    <i class="fas fa-folder-open fa-3x text-muted mb-3"></i>
+                    <h4 class="text-muted mb-1">No Projects Yet</h4>
+                    <p class="text-muted mb-0">Add your first SITEX project.</p>
+                  </div>
+                </div>
+              `;
+              return;
+            }
+
+            grid.innerHTML = items.map(this.cardHtml).join("");
+          } catch (e) {
+            console.error(e);
+            App.showAlert(
+              "Failed to load projects. Check API route & permissions.",
+              "error"
+            );
+          }
+        },
+
+        cardHtml(p) {
+          const img = p.image || p.image_url || "";
+          const esc = App.escapeHtml;
+          const isFeatured = !!p.is_featured;
+          const isPublic = !!p.is_public;
+
+          return `
+            <div class="col-lg-4 col-md-6">
+              <div class="modern-card project-card h-100">
+                <div class="project-thumb">
+                  ${
+                    img
+                      ? `<img src="${img}" alt="${esc(p.title)}">`
+                      : `<div class="text-center p-4">
+                          <i class="fas fa-code fa-3x text-muted mb-2"></i>
+                          <div class="text-muted small">No image</div>
+                        </div>`
+                  }
+                </div>
+
+                <div class="p-4">
+                  <div class="d-flex justify-content-between align-items-start gap-2">
+                    <h5 class="fw-bold mb-2">${esc(p.title)}</h5>
+                    <div class="project-actions d-flex gap-2">
+                      <button class="btn btn-outline-primary btn-sm"
+                        data-project-action="edit"
+                        data-project-id="${p.id}">
+                        <i class="fas fa-pen"></i>
+                      </button>
+
+                      <button class="btn btn-outline-danger btn-sm"
+                        data-project-action="delete"
+                        data-project-id="${p.id}">
+                        <i class="fas fa-trash"></i>
+                      </button>
+                    </div>
+                  </div>
+
+                  <div class="project-badges mb-3">
+                    ${
+                      isFeatured
+                        ? `<span class="badge bg-primary">Featured</span>`
+                        : ""
+                    }
+                    <span class="badge bg-secondary bg-opacity-10 text-secondary">
+                      ${esc(p.project_type || "Project")}
+                    </span>
+                    ${
+                      p.year
+                        ? `<span class="badge bg-info bg-opacity-10 text-info">${p.year}</span>`
+                        : ""
+                    }
+                    <span class="badge ${
+                      isPublic
+                        ? "bg-success bg-opacity-10 text-success"
+                        : "bg-danger bg-opacity-10 text-danger"
+                    }">
+                      ${isPublic ? "Public" : "Private"}
+                    </span>
+                  </div>
+
+                  ${
+                    p.description
+                      ? `<p class="text-muted mb-3">${esc(p.description).slice(
+                          0,
+                          160
+                        )}${p.description.length > 160 ? "..." : ""}</p>`
+                      : `<p class="text-muted mb-3"><span class="text-muted">No description</span></p>`
+                  }
+
+                  ${
+                    p.stack
+                      ? `<div class="small text-muted mb-3"><i class="fas fa-layer-group me-1"></i>${esc(
+                          p.stack
+                        )}</div>`
+                      : ""
+                  }
+
+                  ${
+                    p.url
+                      ? `<a href="${p.url}" target="_blank" rel="noopener" class="btn btn-outline-primary btn-sm btn-modern">
+                    <i class="fas fa-external-link-alt me-1"></i>Open
+                  </a>`
+                      : ""
+                  }
+                </div>
+              </div>
+            </div>
+          `;
+        },
+
+        resetForm() {
+          const form = this.formEl();
+          const f = this.fields();
+          if (!form) return;
+
+          this.errorsEl().innerHTML = "";
+          form.reset();
+          f.id.value = "";
+          f.sort_order.value = 0;
+          f.is_public.checked = true;
+          f.is_featured.checked = false;
+          f.image.value = "";
+        },
+
+        openCreate() {
+          this.resetForm();
+          this.setModalTitle("Add Project");
+          this.modal()?.show();
+        },
+
+        async openEdit(id) {
+          this.resetForm();
+          this.setModalTitle("Edit Project");
+          const f = this.fields();
+
+          try {
+            const res = await fetch(App.urls.projectDetail(id), {
+              headers: { Accept: "application/json" },
+            });
+            if (!res.ok) throw new Error("Failed to load project");
+            const p = await res.json();
+
+            f.id.value = p.id;
+            f.title.value = p.title || "";
+            f.year.value = p.year || "";
+            f.project_type.value = p.project_type || "";
+            f.industry.value = p.industry || "";
+            f.sort_order.value = p.sort_order ?? 0;
+            f.stack.value = p.stack || "";
+            f.url.value = p.url || "";
+            f.description.value = p.description || "";
+            f.is_featured.checked = !!p.is_featured;
+            f.is_public.checked = !!p.is_public;
+
+            this.modal()?.show();
+          } catch (e) {
+            App.showAlert("Failed to open project for editing.", "error");
+          }
+        },
+
+        buildFormData() {
+          const f = this.fields();
+          const fd = new FormData();
+
+          fd.append("title", (f.title.value || "").trim());
+          fd.append("description", (f.description.value || "").trim());
+          fd.append("url", (f.url.value || "").trim());
+          fd.append("project_type", (f.project_type.value || "").trim());
+          fd.append("stack", (f.stack.value || "").trim());
+          fd.append("industry", (f.industry.value || "").trim());
+          fd.append("sort_order", f.sort_order.value || "0");
+          fd.append("is_featured", f.is_featured.checked ? "true" : "false");
+          fd.append("is_public", f.is_public.checked ? "true" : "false");
+          if (f.year.value) fd.append("year", f.year.value);
+
+          if (f.image.files && f.image.files[0])
+            fd.append("image", f.image.files[0]);
+
+          return fd;
+        },
+
+        renderErrors(errJson) {
+          const el = this.errorsEl();
+          let html = "";
+          for (const key in errJson) {
+            const msgs = Array.isArray(errJson[key])
+              ? errJson[key].join(", ")
+              : String(errJson[key]);
+            html += `<div><i class="fas fa-exclamation-circle me-1"></i><b>${App.escapeHtml(
+              key
+            )}:</b> ${App.escapeHtml(msgs)}</div>`;
+          }
+          el.innerHTML = html || "Validation error.";
+        },
+
+        setSaving(isSaving) {
+          const btn = this.submitBtn();
+          if (!btn) return;
+          btn.disabled = isSaving;
+          btn.innerHTML = isSaving
+            ? `<span class="spinner-border spinner-border-sm me-2"></span>Saving...`
+            : `<i class="fas fa-save me-2"></i>Save`;
+        },
+
+        async submit(e) {
+          e.preventDefault();
+
+          const f = this.fields();
+          const id = f.id.value;
+          this.errorsEl().innerHTML = "";
+
+          try {
+            this.setSaving(true);
+            const fd = this.buildFormData();
+
+            const res = await fetch(
+              id ? App.urls.projectDetail(id) : App.urls.projectsBase,
+              {
+                method: id ? "PATCH" : "POST",
+                headers: { "X-CSRFToken": App.csrfToken },
+                body: fd,
+                credentials: "same-origin",
+              }
+            );
+
+            const data = await res.json().catch(() => ({}));
+
+            if (!res.ok) {
+              this.renderErrors(data);
+              throw new Error("Save failed");
+            }
+
+            App.showAlert(
+              id
+                ? "Project updated successfully."
+                : "Project created successfully.",
+              "success"
+            );
+            this.modal()?.hide();
+            await this.fetch();
+          } catch (err) {
+            if (err.message !== "Save failed")
+              App.showAlert(err.message, "error");
+          } finally {
+            this.setSaving(false);
+          }
+        },
+
+        async delete(id) {
+          try {
+            const res = await fetch(App.urls.projectDetail(id), {
+              method: "DELETE",
+              headers: { "X-CSRFToken": App.csrfToken },
+              credentials: "same-origin",
+            });
+
+            if (!res.ok) throw new Error("Delete failed (check permissions)");
+            App.showAlert("Project deleted successfully.", "success");
+            await this.fetch();
+          } catch (e) {
+            App.showAlert(e.message, "error");
+          }
+        },
       },
     };
 
-    bannerManager.init();
+    // Expose initBranchMaps callback globally for Google Maps
+    window.initBranchMaps = function () {
+      // --- ADD BRANCH MAP ---
+      const addMapEl = document.getElementById("branchMapAdd");
+      if (addMapEl) {
+        const defaultLatLng = { lat: 0, lng: 0 };
+
+        window.addBranchMap = new google.maps.Map(addMapEl, {
+          center: defaultLatLng,
+          zoom: 2,
+        });
+
+        window.addBranchMarker = new google.maps.Marker({
+          position: defaultLatLng,
+          map: window.addBranchMap,
+          draggable: true,
+        });
+
+        window.addBranchMarker.addListener("dragend", function () {
+          document.getElementById("branchLatitudeAdd").value =
+            window.addBranchMarker.getPosition().lat().toFixed(6);
+          document.getElementById("branchLongitudeAdd").value =
+            window.addBranchMarker.getPosition().lng().toFixed(6);
+        });
+
+        window.addBranchMap.addListener("click", function (e) {
+          window.addBranchMarker.setPosition(e.latLng);
+          document.getElementById("branchLatitudeAdd").value = e.latLng
+            .lat()
+            .toFixed(6);
+          document.getElementById("branchLongitudeAdd").value = e.latLng
+            .lng()
+            .toFixed(6);
+        });
+      }
+
+      // --- EDIT BRANCH MAP ---
+      const editMapEl = document.getElementById("branchMapEdit");
+      if (editMapEl) {
+        const defaultLatLng = { lat: 0, lng: 0 };
+
+        window.editBranchMap = new google.maps.Map(editMapEl, {
+          center: defaultLatLng,
+          zoom: 2,
+        });
+
+        window.editBranchMarker = new google.maps.Marker({
+          position: defaultLatLng,
+          map: window.editBranchMap,
+          draggable: true,
+        });
+
+        window.editBranchMarker.addListener("dragend", function () {
+          document.getElementById("branchLatitudeEdit").value =
+            window.editBranchMarker.getPosition().lat().toFixed(6);
+          document.getElementById("branchLongitudeEdit").value =
+            window.editBranchMarker.getPosition().lng().toFixed(6);
+        });
+
+        window.editBranchMap.addListener("click", function (e) {
+          window.editBranchMarker.setPosition(e.latLng);
+          document.getElementById("branchLatitudeEdit").value = e.latLng
+            .lat()
+            .toFixed(6);
+          document.getElementById("branchLongitudeEdit").value = e.latLng
+            .lng()
+            .toFixed(6);
+        });
+      }
+    };
+
+    // Start app
+    App.init();
   });
+</script>
+<!-- prettier-ignore-end -->
 
-  function printInvoice(invoiceId) {
-    // Get the invoice HTML
-    var content = document.getElementById("invoice-" + invoiceId).innerHTML;
+<!-- prettier-ignore-start -->
+<script>
+  // ✅ MUST be global for Google callback
+  window.initBranchMaps = function () {
+    let addBranchMap, addBranchMarker;
+    let editBranchMap, editBranchMarker;
 
-    // Open new window for printing
-    var printWindow = window.open("", "", "height=600,width=800");
-    printWindow.document.write('<html dir="rtl"><head><title>فاتورة</title>');
-    printWindow.document.write("<style>");
-    printWindow.document.write(
-      "body { font-family: Arial, sans-serif; direction: rtl; text-align: right; }"
-    );
-    printWindow.document.write(
-      "table { width: 100%; border-collapse: collapse; margin-top: 10px; }"
-    );
-    printWindow.document.write(
-      "th, td { border: 1px solid #aaa; padding: 5px; }"
-    );
-    printWindow.document.write("th { background-color: #f5f5f5; }");
-    printWindow.document.write("</style>");
-    printWindow.document.write("</head><body>");
-    printWindow.document.write(content);
-    printWindow.document.write("</body></html>");
-    printWindow.document.close();
-
-    // Wait a bit then print
-    printWindow.focus();
-    printWindow.print();
-  }
-
-  let addBranchMap, addBranchMarker;
-  let editBranchMap, editBranchMarker;
-
-  function initBranchMaps() {
     // --- ADD BRANCH MAP ---
     const addMapEl = document.getElementById("branchMapAdd");
     if (addMapEl) {
-      const defaultLatLng = { lat: 0, lng: 0 }; // default position
+      const defaultLatLng = { lat: 0, lng: 0 };
       addBranchMap = new google.maps.Map(addMapEl, {
         center: defaultLatLng,
         zoom: 2,
@@ -3729,28 +4637,32 @@
         draggable: true,
       });
 
-      // Update inputs when marker is dragged
       addBranchMarker.addListener("dragend", function () {
-        document.getElementById("branchLatitudeAdd").value =
-          addBranchMarker.getPosition().lat().toFixed(6);
-        document.getElementById("branchLongitudeAdd").value =
-          addBranchMarker.getPosition().lng().toFixed(6);
+        document.getElementById("branchLatitudeAdd").value = addBranchMarker
+          .getPosition()
+          .lat()
+          .toFixed(6);
+        document.getElementById("branchLongitudeAdd").value = addBranchMarker
+          .getPosition()
+          .lng()
+          .toFixed(6);
       });
 
-      // Set marker on map click
       addBranchMap.addListener("click", function (e) {
         addBranchMarker.setPosition(e.latLng);
-        document.getElementById("branchLatitudeAdd").value =
-          e.latLng.lat().toFixed(6);
-        document.getElementById("branchLongitudeAdd").value =
-          e.latLng.lng().toFixed(6);
+        document.getElementById("branchLatitudeAdd").value = e.latLng
+          .lat()
+          .toFixed(6);
+        document.getElementById("branchLongitudeAdd").value = e.latLng
+          .lng()
+          .toFixed(6);
       });
     }
 
     // --- EDIT BRANCH MAP ---
     const editMapEl = document.getElementById("branchMapEdit");
     if (editMapEl) {
-      const defaultLatLng = { lat: 0, lng: 0 }; // will update when editing
+      const defaultLatLng = { lat: 0, lng: 0 };
       editBranchMap = new google.maps.Map(editMapEl, {
         center: defaultLatLng,
         zoom: 2,
@@ -3763,24 +4675,50 @@
       });
 
       editBranchMarker.addListener("dragend", function () {
-        document.getElementById("branchLatitudeEdit").value =
-          editBranchMarker.getPosition().lat().toFixed(6);
-        document.getElementById("branchLongitudeEdit").value =
-          editBranchMarker.getPosition().lng().toFixed(6);
+        document.getElementById("branchLatitudeEdit").value = editBranchMarker
+          .getPosition()
+          .lat()
+          .toFixed(6);
+        document.getElementById("branchLongitudeEdit").value = editBranchMarker
+          .getPosition()
+          .lng()
+          .toFixed(6);
       });
 
       editBranchMap.addListener("click", function (e) {
         editBranchMarker.setPosition(e.latLng);
-        document.getElementById("branchLatitudeEdit").value =
-          e.latLng.lat().toFixed(6);
-        document.getElementById("branchLongitudeEdit").value =
-          e.latLng.lng().toFixed(6);
+        document.getElementById("branchLatitudeEdit").value = e.latLng
+          .lat()
+          .toFixed(6);
+        document.getElementById("branchLongitudeEdit").value = e.latLng
+          .lng()
+          .toFixed(6);
       });
     }
-  }
+  };
+  // ====== MODAL BACKDROP SAFETY NET ======
+  document.addEventListener(
+    "hidden.bs.modal",
+    function () {
+      if (document.querySelectorAll(".modal.show").length === 0) {
+        document.body.classList.remove("modal-open");
+        document.body.style.removeProperty("padding-right");
+        document.body.style.removeProperty("overflow");
+        document.querySelectorAll(".modal-backdrop").forEach((b) => b.remove());
+      }
+    },
+    true
+  );
 </script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyArwI9jJAXm0u75YnXMTTq6v0CpVkqQRP0&callback=initBranchMaps"></script>
+<!-- prettier-ignore-end -->
 
+<!-- prettier-ignore-start -->
+<script
+  async
+  defer
+  src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY&callback=initBranchMaps"
+></script>
+<!-- prettier-ignore-end -->
 <style>
   /* Dashboard Container */
   .dashboard-container {
@@ -3832,6 +4770,38 @@
     font-size: 1.25rem;
     font-weight: 600;
     margin-bottom: 0;
+  }
+
+  .project-card {
+    transition: all 0.25s ease;
+  }
+  .project-card:hover {
+    transform: translateY(-6px);
+  }
+
+  .project-thumb {
+    height: 200px;
+    border-radius: 14px 14px 0 0;
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.03);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .project-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .project-badges {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .project-actions .btn {
+    padding: 0.35rem 0.6rem;
+    border-radius: 10px;
   }
 
   /* Tables - Mobile Responsive */
@@ -4204,5 +5174,4 @@
     }
   }
 </style>
-
 {% endblock %}

@@ -1,10 +1,16 @@
-from django.urls import path
+from django.urls import path, include
 from . import views
 from . import api_views
-from .api_views import create_product, product_list_api,create_branch ,create_inquiry ,branch_list_api
+from .api_views import ProjectViewSet, create_product, product_list_api,create_branch ,create_inquiry ,branch_list_api
+from rest_framework.routers import DefaultRouter
+
+
+router = DefaultRouter()
+router.register(r"projects", ProjectViewSet, basename="project")
 
 urlpatterns = [
     path('', views.home, name='home'),
+    path("api/", include(router.urls)),
     path('about/', views.about, name='about'),
     path('shop/', views.shop, name='shop'),
     path('cart/', views.view_cart, name='view_cart'),
@@ -14,6 +20,7 @@ urlpatterns = [
     path('login/', views.login_view, name='login'),
     path('logout/', views.logout_view, name='logout'),
     path('dashboard/', views.dashboard, name='dashboard'),
+    path('our-services/', views.categories, name='categories'),
     path('api/branches/', branch_list_api, name='branch-list-api'),
     path('api/create-product/', create_product, name='create_product'),
     path('api/create-branch/', create_branch, name='create_branch'),
