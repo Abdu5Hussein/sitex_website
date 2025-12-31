@@ -1,0 +1,1344 @@
+{% extends "main/base.html" %}
+{% load i18n %}
+<!-- prettier-ignore -->
+{% block title %}
+{% trans "فاتورة - SITEX" %}
+{% endblock %}
+
+{% block content %}
+<section class="invoice-wrapper py-5" dir="rtl">
+  <div class="container">
+    <!-- Header with actions -->
+    <div class="row mb-4">
+      <div class="col-12">
+        <div class="modern-card p-4 shadow-sm">
+          <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
+            <div>
+              <h1 class="h3 fw-bold mb-1 text-primary">
+                <i class="fas fa-file-invoice mx-2"></i>{% trans "إنشاء فاتورة" %}
+              </h1>
+              <p class="text-muted mb-0 small">
+                {% trans "املأ البيانات واختر الخدمات لإنشاء فاتورة احترافية" %}
+              </p>
+            </div>
+            <div class="d-flex gap-2 flex-wrap">
+              <button class="btn btn-outline-primary btn-modern" type="button" id="saveDraftBtn">
+                <i class="fas fa-save mx-2"></i>{% trans "حفظ كمسودة" %}
+              </button>
+              <button class="btn btn-primary btn-modern" type="button" id="printBtn">
+                <i class="fas fa-print mx-2"></i>{% trans "طباعة / حفظ PDF" %}
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row g-4">
+      <!-- Left Column - Form -->
+      <div class="col-lg-7">
+        <!-- Basic Info Card -->
+        <div class="modern-card p-4 shadow-sm mb-4" data-aos="fade-left">
+          <div class="card-header bg-transparent border-0 p-0 mb-3">
+            <h3 class="h5 fw-bold mb-0">
+              <i class="fas fa-info-circle text-primary mx-2"></i>{% trans "المعلومات الأساسية" %}
+            </h3>
+          </div>
+
+          <div class="row g-3">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label class="form-label fw-medium">{% trans "رقم الفاتورة" %}</label>
+                <div class="input-group">
+                  <span class="input-group-text bg-light"><i class="fas fa-hashtag"></i></span>
+                  <input id="invNumber" class="form-control" placeholder="INV-0001" value="INV-{{ now.year }}-001" />
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-group">
+                <label class="form-label fw-medium">{% trans "تاريخ الفاتورة" %}</label>
+                <div class="input-group">
+                  <span class="input-group-text bg-light"><i class="fas fa-calendar"></i></span>
+                  <input id="invDate" type="date" class="form-control" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Client Info Card -->
+        <div class="modern-card p-4 shadow-sm mb-4" data-aos="fade-left">
+          <div class="card-header bg-transparent border-0 p-0 mb-3">
+            <h3 class="h5 fw-bold mb-0">
+              <i class="fas fa-user-tie text-primary mx-2"></i>{% trans "معلومات العميل" %}
+            </h3>
+          </div>
+
+          <div class="row g-3">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label class="form-label fw-medium">{% trans "اسم العميل" %}</label>
+                <div class="input-group">
+                  <span class="input-group-text bg-light"><i class="fas fa-user"></i></span>
+                  <input id="clientName" class="form-control" placeholder="{% trans 'اسم العميل' %}" />
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-group">
+                <label class="form-label fw-medium">{% trans "اسم الشركة" %}</label>
+                <div class="input-group">
+                  <span class="input-group-text bg-light"><i class="fas fa-building"></i></span>
+                  <input id="clientCompany" class="form-control" placeholder="{% trans 'الشركة / الجهة' %}" />
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-group">
+                <label class="form-label fw-medium">{% trans "البريد الإلكتروني" %}</label>
+                <div class="input-group">
+                  <span class="input-group-text bg-light"><i class="fas fa-envelope"></i></span>
+                  <input id="clientEmail" type="email" class="form-control" placeholder="client@email.com" />
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-group">
+                <label class="form-label fw-medium">{% trans "رقم الهاتف" %}</label>
+                <div class="input-group">
+                  <span class="input-group-text bg-light"><i class="fas fa-phone"></i></span>
+                  <input id="clientPhone" class="form-control" placeholder="09xxxxxxxx" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project Info Card -->
+        <div class="modern-card p-4 shadow-sm mb-4" data-aos="fade-left">
+          <div class="card-header bg-transparent border-0 p-0 mb-3">
+            <h3 class="h5 fw-bold mb-0">
+              <i class="fas fa-project-diagram text-primary mx-2"></i>{% trans "معلومات المشروع" %}
+            </h3>
+          </div>
+
+          <div class="row g-3">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label class="form-label fw-medium">{% trans "نوع المشروع" %}</label>
+                <div class="input-group">
+                  <span class="input-group-text bg-light"><i class="fas fa-tags"></i></span>
+                  <select id="projectType" class="form-select">
+                    <option value="">{% trans "اختر نوع المشروع" %}</option>
+                    <option value="website">{% trans "موقع ويب" %}</option>
+                    <option value="ecommerce">{% trans "متجر إلكتروني" %}</option>
+                    <option value="system">{% trans "نظام إدارة" %}</option>
+                    <option value="mobile">{% trans "تطبيق جوال" %}</option>
+                    <option value="design">{% trans "تصميم جرافيك" %}</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-group">
+                <label class="form-label fw-medium">{% trans "اسم المشروع" %}</label>
+                <div class="input-group">
+                  <span class="input-group-text bg-light"><i class="fas fa-file-alt"></i></span>
+                  <input id="projectName" class="form-control" placeholder="{% trans 'اسم المشروع' %}" />
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-12">
+              <div class="form-group">
+                <label class="form-label fw-medium">{% trans "ملاحظات المشروع" %}</label>
+                <textarea id="invNotes" class="form-control" rows="3" placeholder="{% trans 'أضف أي ملاحظات أو تفاصيل إضافية...' %}"></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column - Preview & Totals -->
+      <div class="col-lg-5">
+        <!-- Totals Card -->
+        <div class="modern-card p-4 shadow-sm mb-4" data-aos="fade-right">
+          <div class="card-header bg-transparent border-0 p-0 mb-3">
+            <h3 class="h5 fw-bold mb-0">
+              <i class="fas fa-calculator text-primary mx-2"></i>{% trans "إجمالي الفاتورة" %}
+            </h3>
+          </div>
+
+          <div class="totals-preview">
+            <div class="total-row d-flex justify-content-between align-items-center p-3 mb-2 bg-light rounded-3">
+              <div>
+                <div class="text-muted small">{% trans "الإجمالي الفرعي" %}</div>
+                <div class="h5 fw-bold mb-0"><span id="invSubtotal">0</span> د.ل</div>
+              </div>
+              <i class="fas fa-receipt text-primary fs-3"></i>
+            </div>
+
+            <div class="row g-2 mb-3">
+              <div class="col-6">
+                <div class="form-group">
+                  <label class="form-label small fw-medium">{% trans "خصم (د.ل)" %}</label>
+                  <div class="input-group input-group-sm">
+                    <input id="invDiscount" type="number" class="form-control" value="0" min="0" step="1" />
+                    <span class="input-group-text">د.ل</span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="form-group">
+                  <label class="form-label small fw-medium">{% trans "ضريبة (د.ل)" %}</label>
+                  <div class="input-group input-group-sm">
+                    <input id="invTax" type="number" class="form-control" value="0" min="0" step="1" />
+                    <span class="input-group-text">د.ل</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="total-row d-flex justify-content-between align-items-center p-3 bg-primary text-white rounded-3">
+              <div>
+                <div class="small opacity-85">{% trans "الإجمالي النهائي" %}</div>
+                <div class="h3 fw-bold mb-0"><span id="invTotal">0</span> د.ل</div>
+              </div>
+              <i class="fas fa-wallet fs-2 opacity-85"></i>
+            </div>
+          </div>
+
+          <!-- Payment Info -->
+          <div class="mt-4 pt-3 border-top">
+            <label class="form-label fw-medium mb-2">{% trans "بيانات الدفع" %}</label>
+            <textarea id="invPayInfo" class="form-control" rows="3" placeholder="{% trans 'مثال: تحويل مصرفي / نقدي / بيانات الحساب...' %}"></textarea>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="d-grid gap-2 mt-4">
+            <button class="btn btn-outline-primary btn-modern" type="button" id="copyBtn">
+              <i class="fas fa-copy mx-2"></i>{% trans "نسخ ملخص الفاتورة" %}
+            </button>
+            <button class="btn btn-success btn-modern" type="button" id="sendEmailBtn">
+              <i class="fas fa-paper-plane mx-2"></i>{% trans "إرسال بالبريد الإلكتروني" %}
+            </button>
+          </div>
+        </div>
+
+        <!-- Quick Templates -->
+        <div class="modern-card p-4 shadow-sm" data-aos="fade-right">
+          <div class="card-header bg-transparent border-0 p-0 mb-3">
+            <h3 class="h5 fw-bold mb-0">
+              <i class="fas fa-bolt text-primary mx-2"></i>{% trans "قوالب سريعة" %}
+            </h3>
+          </div>
+          <p class="text-muted small mb-3">{% trans "اختر قالبًا لملء الخدمات تلقائيًا" %}</p>
+
+          <div class="d-flex flex-wrap gap-2">
+            <button class="btn btn-sm btn-outline-primary template-btn" data-template="website">
+              <i class="fas fa-globe mx-1"></i>{% trans "موقع ويب" %}
+            </button>
+            <button class="btn btn-sm btn-outline-primary template-btn" data-template="ecommerce">
+              <i class="fas fa-shopping-cart mx-1"></i>{% trans "متجر إلكتروني" %}
+            </button>
+            <button class="btn btn-sm btn-outline-primary template-btn" data-template="maintenance">
+              <i class="fas fa-tools mx-1"></i>{% trans "صيانة" %}
+            </button>
+            <button class="btn btn-sm btn-outline-primary template-btn" data-template="custom">
+              <i class="fas fa-plus mx-1"></i>{% trans "مخصص" %}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Services Table -->
+    <div class="row mt-4">
+      <div class="col-12">
+        <div class="modern-card p-0 shadow-sm" data-aos="fade-up">
+          <div class="card-header bg-light py-3 px-4 border-bottom">
+            <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
+              <div>
+                <h3 class="h5 fw-bold mb-0">
+                  <i class="fas fa-list-check text-primary mx-2"></i>{% trans "الخدمات والبنود" %}
+                </h3>
+                <p class="text-muted small mb-0 mt-1">{% trans "أضف وعدّل الخدمات المطلوبة" %}</p>
+              </div>
+              <div class="d-flex gap-2">
+                <button class="btn btn-outline-primary btn-sm" type="button" id="addRowBtn">
+                  <i class="fas fa-plus mx-2"></i>{% trans "إضافة بند" %}
+                </button>
+                <button class="btn btn-outline-secondary btn-sm" type="button" id="clearAllBtn">
+                  <i class="fas fa-trash mx-2"></i>{% trans "حذف الكل" %}
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+              <thead class="table-light">
+                <tr>
+                  <th style="width: 40%" class="ps-4">
+                    <i class="fas fa-cube mx-2"></i>{% trans "الخدمة / الوصف" %}
+                  </th>
+                  <th class="text-center" style="width: 15%">
+                    <i class="fas fa-hashtag mx-2"></i>{% trans "الكمية" %}
+                  </th>
+                  <th class="text-end" style="width: 20%">
+                    <i class="fas fa-tag mx-2"></i>{% trans "سعر الوحدة" %}
+                  </th>
+                  <th class="text-end pe-4" style="width: 20%">
+                    <i class="fas fa-calculator mx-2"></i>{% trans "الإجمالي" %}
+                  </th>
+                  <th class="text-center" style="width: 5%"></th>
+                </tr>
+              </thead>
+              <tbody id="invItemsBody"></tbody>
+            </table>
+          </div>
+
+          <div class="table-footer p-3 bg-light border-top">
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="text-muted small">
+                <i class="fas fa-circle-info mx-1"></i>
+                {% trans "إجمالي البنود:" %} <span class="fw-bold" id="itemsCount">0</span>
+              </div>
+              <div class="text-muted small">
+                {% trans "سيتم تحديث الإجمالي تلقائيًا" %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =====================================================
+  PRINTABLE INVOICE (Hidden on screen)
+===================================================== -->
+<section id="printInvoice" class="print-invoice" aria-hidden="true" dir="rtl">
+  <div class="print-container">
+    <!-- Header -->
+    <div class="print-header text-center d-flex justify-content-center align-items-center">
+      <div class="brand-section ">
+        <div class="brand-logo">SITEX</div>
+        <div class="brand-info">
+          {% trans "حلول البرمجيات وتقنية المعلومات" %}<br />
+          {% trans "طرابلس - ليبيا" %}<br />
+          info@sitex.com.ly
+        </div>
+      </div>
+    </div>
+    <div class="invoice-meta mb-4">
+      <div class="invoice-title text-end">{% trans "فاتورة" %}</div>
+      <div class="meta-grid">
+        <div class="k">{% trans "رقم الفاتورة" %}</div><div class="v" id="pInvNumber">—</div>
+        <div class="k">{% trans "تاريخ الفاتورة" %}</div><div class="v" id="pInvDate">—</div>
+        <div class="k">{% trans "نوع المشروع" %}</div><div class="v" id="pProjectType">—</div>
+        <div class="k">{% trans "العملة" %}</div><div class="v">دينار ليبي (LYD)</div>
+      </div>
+    </div>
+    <!-- Client Info -->
+    <div class="print-client-info">
+      <div class="client-section">
+        <div class="section-title">{% trans "فاتورة إلى" %}</div>
+        <div class="client-details">
+          <div class="client-name" id="pClientName">—</div>
+          <div class="client-company" id="pClientCompany">—</div>
+          <div class="client-contact">
+            <span id="pClientEmail">—</span> | <span id="pClientPhone">—</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-section">
+        <div class="section-title">{% trans "معلومات المشروع" %}</div>
+        <div class="project-details">
+          <div class="project-name" id="pProjectName">—</div>
+          <div class="project-notes" id="pInvNotes">—</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Items Table -->
+    <div class="print-items-table">
+      <table class="items-table">
+        <thead>
+          <tr>
+            <th style="width: 50%">{% trans "الخدمة / الوصف" %}</th>
+            <th style="width: 12%; text-align:center">{% trans "الكمية" %}</th>
+            <th style="width: 19%; text-align:end">{% trans "سعر الوحدة" %}</th>
+            <th style="width: 19%; text-align:end">{% trans "الإجمالي" %}</th>
+          </tr>
+        </thead>
+        <tbody id="pItems"></tbody>
+      </table>
+    </div>
+
+    <!-- Totals -->
+    <div class="print-totals">
+      <div class="totals-grid">
+        <div class="k">{% trans "الإجمالي الفرعي" %}</div>
+        <div class="v"><span id="pSubtotal">0</span> د.ل</div>
+
+        <div class="k discount">{% trans "خصم" %}</div>
+        <div class="v discount">- <span id="pDiscount">0</span> د.ل</div>
+
+        <div class="k tax">{% trans "ضريبة" %}</div>
+        <div class="v tax">+ <span id="pTax">0</span> د.ل</div>
+
+        <div class="k total">{% trans "الإجمالي النهائي" %}</div>
+        <div class="v total"><span id="pTotal">0</span> د.ل</div>
+      </div>
+    </div>
+
+    <!-- Payment Info -->
+    <div class="print-payment-info">
+      <div class="payment-section">
+        <div class="section-title">{% trans "بيانات الدفع" %}</div>
+        <div class="payment-details" id="pPayInfo">—</div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="print-footer">
+      <div class="footer-line"></div>
+      <div class="footer-text">
+        {% trans "تم إصدار هذه الفاتورة إلكترونيًا ولا تتطلب توقيعًا." %}
+        <br />
+        {% trans "شكرًا لاختياركم SITEX." %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ENHANCED STYLES ================= -->
+<style>
+  :root {
+    --primary-color: #0d6efd;
+    --primary-light: rgba(13, 110, 253, 0.1);
+    --success-color: #198754;
+    --danger-color: #dc3545;
+    --border-radius-lg: 12px;
+    --border-radius-md: 8px;
+    --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.08);
+    --shadow-medium: 0 8px 30px rgba(0, 0, 0, 0.12);
+  }
+
+  .invoice-wrapper {
+    background: linear-gradient(135deg, #f8fafc 0%, #e9ecef 100%);
+    min-height: 100vh;
+  }
+
+  .modern-card {
+    background: white;
+    border-radius: var(--border-radius-lg);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+  }
+
+  .modern-card:hover {
+    box-shadow: var(--shadow-medium);
+  }
+
+  .btn-modern {
+    border-radius: var(--border-radius-md);
+    padding: 0.625rem 1.25rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+  }
+
+  .btn-primary {
+    background: linear-gradient(135deg, #0d6efd 0%, #0b5ed7 100%);
+    border: none;
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(13, 110, 253, 0.25);
+  }
+
+  .form-control, .form-select {
+    border-radius: var(--border-radius-md);
+    border: 1px solid #dee2e6;
+    padding: 0.625rem 0.75rem;
+  }
+
+  .form-control:focus, .form-select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+  }
+
+  .input-group-text {
+    background-color: #f8f9fa;
+    border-color: #dee2e6;
+  }
+
+  /* Table Styles */
+  .table-hover tbody tr {
+    transition: all 0.2s ease;
+  }
+
+  .table-hover tbody tr:hover {
+    background-color: rgba(13, 110, 253, 0.03) !important;
+  }
+
+  .table th {
+    font-weight: 600;
+    color: #495057;
+    background-color: #f8f9fa;
+  }
+
+  /* Service Item Row */
+  .service-row {
+    position: relative;
+  }
+
+  .service-row:hover {
+    background-color: #f8fafc;
+  }
+
+  .service-row .actions {
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+
+  .service-row:hover .actions {
+    opacity: 1;
+  }
+
+  /* Totals Preview */
+  .totals-preview .total-row {
+    transition: all 0.3s ease;
+  }
+
+  .totals-preview .total-row:hover {
+    transform: translateX(-5px);
+  }
+
+  /* Print Area (Hidden on screen) */
+  .print-invoice {
+    display: none;
+  }
+
+  /* =====================================================
+     PRINT STYLES
+  ===================================================== */
+  @media print {
+    @page {
+      size: A4;
+      margin: 15mm;
+    }
+
+    body * {
+      visibility: hidden !important;
+      direction: rtl !important;
+    }
+
+    .print-invoice,
+    .print-invoice * {
+      visibility: visible !important;
+    }
+
+    .print-invoice {
+      display: block !important;
+      position: absolute !important;
+      top: 0 !important;
+      left: 0 !important;
+      width: 100% !important;
+      height: auto !important;
+      background: white !important;
+      padding: 0 !important;
+      margin: 0 !important;
+    }
+
+    /* Hide all non-print elements */
+    .modern-card, .btn, .invoice-wrapper > *:not(.print-invoice) {
+      display: none !important;
+    }
+
+    html, body {
+      height: auto !important;
+      overflow: visible !important;
+      background: white !important;
+    }
+  }
+
+  /* Print Invoice Design */
+  .print-container {
+    max-width: 210mm;
+    margin: 0 auto;
+    padding: 20px;
+    background: white;
+  }
+
+  .print-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding-bottom: 20px;
+    border-bottom: 2px solid var(--primary-color);
+    margin-bottom: 20px;
+  }
+
+  .brand-logo {
+    font-size: 32px;
+    font-weight: 800;
+    color: var(--primary-color);
+    margin-bottom: 5px;
+  }
+
+  .brand-info {
+    font-size: 12px;
+    color: #666;
+    line-height: 1.4;
+  }
+
+  .invoice-title {
+    font-size: 28px;
+    font-weight: 700;
+    color: #1a1a1a;
+    text-align: left;
+    margin-bottom: 10px;
+  }
+
+  .meta-grid {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 5px 15px;
+    font-size: 13px;
+    text-align: left;
+  }
+
+  .meta-grid .k {
+    color: #666;
+    font-weight: 500;
+  }
+
+  .meta-grid .v {
+    color: #1a1a1a;
+    font-weight: 600;
+  }
+
+  .print-client-info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-bottom: 25px;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 8px;
+  }
+
+  .section-title {
+    font-weight: 700;
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 10px;
+  }
+
+  .client-name {
+    font-weight: 700;
+    font-size: 16px;
+    margin-bottom: 5px;
+  }
+
+  .client-company, .client-contact {
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 3px;
+  }
+
+  .project-name {
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 8px;
+  }
+
+  .project-notes {
+    font-size: 12px;
+    color: #666;
+    line-height: 1.5;
+  }
+
+  .print-items-table {
+    margin-bottom: 25px;
+  }
+
+  .items-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+  }
+
+  .items-table th {
+    background: #f8f9fa;
+    border: 1px solid #dee2e6;
+    padding: 12px 10px;
+    font-weight: 700;
+    color: #333;
+    text-align: right;
+  }
+
+  .items-table td {
+    border: 1px solid #dee2e6;
+    padding: 10px;
+    vertical-align: top;
+  }
+
+  .items-table tr:nth-child(even) {
+    background: #fcfcfc;
+  }
+
+  .items-table .item-description {
+    font-weight: 600;
+    margin-bottom: 3px;
+  }
+
+  .items-table .item-note {
+    font-size: 11px;
+    color: #666;
+    margin-top: 3px;
+  }
+
+  .print-totals {
+    margin-bottom: 25px;
+  }
+
+  .totals-grid {
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    gap: 8px;
+    font-size: 13px;
+    max-width: 300px;
+    margin-right: auto;
+  }
+
+  .totals-grid .k {
+    color: #666;
+    font-weight: 500;
+    text-align: left;
+  }
+
+  .totals-grid .v {
+    color: #1a1a1a;
+    font-weight: 600;
+    text-align: left;
+  }
+
+  .totals-grid .k.total,
+  .totals-grid .v.total {
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--primary-color);
+    border-top: 1px solid #dee2e6;
+    padding-top: 8px;
+    margin-top: 8px;
+  }
+
+  .print-payment-info {
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    margin-bottom: 25px;
+  }
+
+  .payment-details {
+    font-size: 13px;
+    color: #666;
+    line-height: 1.5;
+    white-space: pre-wrap;
+  }
+
+  .print-footer {
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid #dee2e6;
+  }
+
+  .footer-line {
+    height: 1px;
+    background: linear-gradient(to left, transparent, #dee2e6, transparent);
+    margin-bottom: 15px;
+  }
+
+  .footer-text {
+    font-size: 11px;
+    color: #888;
+    line-height: 1.4;
+  }
+
+  .meta-grid{
+    direction: rtl;              /* يخلي ترتيب الأعمدة من اليمين */
+    display: grid;
+    grid-template-columns: 140px 1fr; /* (k) ثم (v) */
+    gap: 8px 14px;
+    align-items: center;
+  }
+  .meta-grid .k{
+    text-align: right;
+    font-weight: 600;
+    color: #475569;
+    white-space: nowrap;
+  }
+  .meta-grid .v{
+    text-align: right;
+    direction: ltr;              /* مهم لو القيم فيها أرقام/INV */
+    unicode-bidi: plaintext;
+    font-weight: 700;
+    color: #0f172a;
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 992px) {
+    .invoice-wrapper {
+      padding: 20px 0;
+    }
+
+    .modern-card {
+      margin-bottom: 20px;
+    }
+
+    .print-client-info {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .invoice-card {
+      padding: 20px;
+    }
+
+    .print-header {
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .meta-grid {
+      grid-template-columns: 100px 1fr;
+    }
+  }
+</style>
+
+<!-- ================= ENHANCED SCRIPT ================= -->
+<script>
+  // ========= Templates for quick filling =========
+  const INVOICE_TEMPLATES = {
+    website: [
+      { name: "تصميم وتطوير موقع ويب متجاوب", qty: 1, unit: 400, note: "تصميم عصري متكامل مع جميع الشاشات" },
+      { name: "نطاق مخصص (دومين) لمدة سنة", qty: 1, unit: 30, note: "اسم النطاق حسب اختيار العميل" },
+      { name: "استضافة مواقع لمدة 6 أشهر", qty: 1, unit: 150, note: "استضافة سحابية مع دعم فني" },
+      { name: "شهادة SSL مجانية", qty: 1, unit: 0, note: "تشفير HTTPS للموقع" },
+      { name: "إعداد بريد إلكتروني رسمي", qty: 3, unit: 50, note: "info@yourdomain.com" },
+    ],
+    ecommerce: [
+      { name: "تصميم وتطوير متجر إلكتروني", qty: 1, unit: 600, note: "متجر كامل مع لوحة تحكم" },
+      { name: "تكامل مع بوابة الدفع", qty: 1, unit: 200, note: "ربط مع نظام الدفع الإلكتروني" },
+      { name: "إدارة المنتجات والطلبات", qty: 1, unit: 150, note: "لوحة تحكم كاملة للمنتجات" },
+      { name: "تطبيق لوحة تحكم الموردين", qty: 1, unit: 100, note: "لإدارة المخزون والمبيعات" },
+    ],
+    maintenance: [
+      { name: "صيانة شهرية للموقع", qty: 6, unit: 100, note: "تحديثات ودعم فني شهري" },
+      { name: "نسخ احتياطي أسبوعي", qty: 1, unit: 50, note: "نسخ احتياطي تلقائي للبيانات" },
+      { name: "مراقبة أمان الموقع", qty: 1, unit: 80, note: "حماية من الهجمات الإلكترونية" },
+    ],
+    custom: []
+  };
+
+  // ========= Default items =========
+  let INV_ITEMS = [
+    { name: "تصميم وتطوير موقع", qty: 1, unit: 0, note: "" },
+  ];
+
+  // ========= Utilities =========
+  const fmt = (n) => new Intl.NumberFormat('ar-LY', {
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0
+  }).format(Number(n || 0));
+
+  function todayISO() {
+    const d = new Date();
+    const yyyy = d.getFullYear();
+    const mm = String(d.getMonth() + 1).padStart(2, "0");
+    const dd = String(d.getDate()).padStart(2, "0");
+    return `${yyyy}-${mm}-${dd}`;
+  }
+
+  function generateInvoiceNumber() {
+    const date = new Date();
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const random = Math.floor(Math.random() * 1000).toString().padStart(3, '0');
+    return `INV-${year}${month}-${random}`;
+  }
+
+  // ========= Render Items Table =========
+  function renderItems() {
+    const tbody = document.getElementById("invItemsBody");
+    if (!INV_ITEMS.length) {
+      tbody.innerHTML = `
+        <tr>
+          <td colspan="5" class="text-center py-4 text-muted">
+            <i class="fas fa-clipboard-list fa-2x mb-3 opacity-50"></i>
+            <p class="mb-0">{% trans "لا توجد بنود مضافة" %}<br>
+            <span class="small opacity-75">{% trans "انقر على 'إضافة بند' لبدء الفاتورة" %}</span></p>
+          </td>
+        </tr>
+      `;
+      return;
+    }
+
+    tbody.innerHTML = INV_ITEMS.map((it, i) => {
+      const total = Number(it.qty || 0) * Number(it.unit || 0);
+      return `
+        <tr class="service-row" data-idx="${i}">
+          <td class="ps-4">
+            <div class="d-flex align-items-start gap-2">
+              <div class="mt-1">
+                <span class="badge bg-primary bg-opacity-10 text-primary">${i + 1}</span>
+              </div>
+              <div class="flex-grow-1">
+                <input class="form-control form-control-sm mb-2 inv-name"
+                       value="${it.name || ""}"
+                       placeholder="{% trans 'اسم الخدمة / الوصف' %}" />
+                <textarea class="form-control form-control-sm inv-note"
+                          rows="2"
+                          placeholder="{% trans 'ملاحظات إضافية (اختياري)' %}">${it.note || ""}</textarea>
+              </div>
+            </div>
+          </td>
+
+          <td class="text-center">
+            <div class="quantity-control d-flex align-items-center justify-content-center gap-2">
+              <button class="btn btn-sm btn-outline-secondary qty-minus" type="button">
+                <i class="fas fa-minus"></i>
+              </button>
+              <input class="form-control form-control-sm text-center inv-qty"
+                     type="number"
+                     min="1"
+                     value="${it.qty || 1}"
+                     style="width: 70px;" />
+              <button class="btn btn-sm btn-outline-secondary qty-plus" type="button">
+                <i class="fas fa-plus"></i>
+              </button>
+            </div>
+          </td>
+
+          <td class="text-end">
+            <div class="input-group input-group-sm">
+              <input class="form-control text-end inv-unit"
+                     type="number"
+                     min="0"
+                     value="${it.unit || 0}" />
+              <span class="input-group-text">د.ل</span>
+            </div>
+          </td>
+
+          <td class="text-end pe-4">
+            <div class="fw-bold h6 mb-0">${fmt(total)} د.ل</div>
+            <small class="text-muted">${fmt(it.unit)} × ${it.qty}</small>
+          </td>
+
+          <td class="text-center actions">
+            <button class="btn btn-sm btn-outline-danger inv-del" type="button" title="{% trans 'حذف' %}">
+              <i class="fas fa-trash"></i>
+            </button>
+          </td>
+        </tr>
+      `;
+    }).join("");
+  }
+
+  // ========= Calculate Totals =========
+  function calcTotals() {
+    const tbody = document.getElementById("invItemsBody");
+    let subtotal = 0;
+
+    [...tbody.querySelectorAll("tr.service-row")].forEach((tr, i) => {
+      if (!tr.dataset.idx) return;
+
+      const idx = i;
+      const name = tr.querySelector(".inv-name")?.value || INV_ITEMS[idx]?.name || "";
+      const note = tr.querySelector(".inv-note")?.value || "";
+      let qty = Number(tr.querySelector(".inv-qty")?.value || 1);
+      let unit = Number(tr.querySelector(".inv-unit")?.value || 0);
+
+      if (!Number.isFinite(qty) || qty < 1) qty = 1;
+      if (!Number.isFinite(unit) || unit < 0) unit = 0;
+
+      INV_ITEMS[idx] = { name, note, qty, unit };
+
+      const line = qty * unit;
+      subtotal += line;
+
+      // Update row total display
+      const totalDisplay = tr.querySelector("td:nth-child(4) .h6");
+      const calcDisplay = tr.querySelector("td:nth-child(4) small");
+      if (totalDisplay) totalDisplay.textContent = `${fmt(line)} د.ل`;
+      if (calcDisplay) calcDisplay.textContent = `${fmt(unit)} × ${qty}`;
+    });
+
+    const disc = Math.max(0, Number(document.getElementById("invDiscount").value || 0));
+    const tax = Math.max(0, Number(document.getElementById("invTax").value || 0));
+    const total = Math.max(0, subtotal - disc + tax);
+
+    // Update totals display
+    document.getElementById("invSubtotal").textContent = fmt(subtotal);
+    document.getElementById("invTotal").textContent = fmt(total);
+    document.getElementById("itemsCount").textContent = INV_ITEMS.length;
+
+    // Update print preview
+    updatePrintPreview(subtotal, disc, tax, total);
+  }
+
+  // ========= Update Print Preview =========
+  function updatePrintPreview(subtotal, discount, tax, total) {
+    // Update header info
+    document.getElementById("pInvNumber").textContent = document.getElementById("invNumber").value || "—";
+    document.getElementById("pInvDate").textContent = document.getElementById("invDate").value || "—";
+
+    // Update client info
+    document.getElementById("pClientName").textContent = document.getElementById("clientName").value || "—";
+    document.getElementById("pClientCompany").textContent = document.getElementById("clientCompany").value || "—";
+    document.getElementById("pClientEmail").textContent = document.getElementById("clientEmail").value || "—";
+    document.getElementById("pClientPhone").textContent = document.getElementById("clientPhone").value || "—";
+
+    // Update project info
+    const projectTypeSelect = document.getElementById("projectType");
+    const projectType = projectTypeSelect.options[projectTypeSelect.selectedIndex]?.text || "—";
+    document.getElementById("pProjectType").textContent = projectType;
+    document.getElementById("pProjectName").textContent = document.getElementById("projectName").value || "—";
+    document.getElementById("pInvNotes").textContent = document.getElementById("invNotes").value || "—";
+
+    // Update payment info
+    document.getElementById("pPayInfo").textContent = document.getElementById("invPayInfo").value || "—";
+
+    // Update totals
+    document.getElementById("pSubtotal").textContent = fmt(subtotal);
+    document.getElementById("pDiscount").textContent = fmt(discount);
+    document.getElementById("pTax").textContent = fmt(tax);
+    document.getElementById("pTotal").textContent = fmt(total);
+
+    // Update items in print preview
+    const pItemsTbody = document.getElementById("pItems");
+    pItemsTbody.innerHTML = INV_ITEMS.map((item, i) => {
+      const itemTotal = item.qty * item.unit;
+      return `
+        <tr>
+          <td>
+            <div class="item-description">${item.name || "—"}</div>
+            ${item.note ? `<div class="item-note">${item.note}</div>` : ''}
+          </td>
+          <td style="text-align:center">${item.qty}</td>
+          <td style="text-align:end">${fmt(item.unit)} د.ل</td>
+          <td style="text-align:end">${fmt(itemTotal)} د.ل</td>
+        </tr>
+      `;
+    }).join("") || `
+      <tr>
+        <td colspan="4" style="text-align:center; padding:20px; color:#999">
+          {% trans "لا توجد بنود" %}
+        </td>
+      </tr>
+    `;
+  }
+
+  // ========= Add/Remove Items =========
+  function addRow() {
+    INV_ITEMS.push({ name: "", qty: 1, unit: 0, note: "" });
+    renderItems();
+    bindTableEvents();
+    calcTotals();
+  }
+
+  function clearAllItems() {
+    if (confirm("{% trans 'هل أنت متأكد من حذف جميع البنود؟' %}")) {
+      INV_ITEMS = [];
+      renderItems();
+      calcTotals();
+    }
+  }
+
+  // ========= Template Functions =========
+  function loadTemplate(templateName) {
+    if (!INVOICE_TEMPLATES[templateName]) return;
+
+    if (templateName === 'custom') {
+      // For custom, just add empty row
+      INV_ITEMS = [{ name: "", qty: 1, unit: 0, note: "" }];
+    } else {
+      INV_ITEMS = [...INVOICE_TEMPLATES[templateName]];
+    }
+
+    renderItems();
+    bindTableEvents();
+    calcTotals();
+
+    // Show success message
+    showToast(`تم تحميل قالب ${templateName}`, 'success');
+  }
+
+  // ========= Event Binding =========
+  function bindTableEvents() {
+    const tbody = document.getElementById("invItemsBody");
+
+    // Input changes
+    tbody.addEventListener("input", (e) => {
+      if (e.target.classList.contains("inv-name") ||
+          e.target.classList.contains("inv-note") ||
+          e.target.classList.contains("inv-qty") ||
+          e.target.classList.contains("inv-unit")) {
+        calcTotals();
+      }
+    });
+
+    // Quantity buttons
+    tbody.addEventListener("click", (e) => {
+      const btn = e.target.closest(".qty-minus, .qty-plus");
+      if (btn) {
+        const tr = btn.closest("tr");
+        const qtyInput = tr.querySelector(".inv-qty");
+        let qty = parseInt(qtyInput.value) || 1;
+
+        if (btn.classList.contains("qty-minus") && qty > 1) {
+          qty--;
+        } else if (btn.classList.contains("qty-plus")) {
+          qty++;
+        }
+
+        qtyInput.value = qty;
+        calcTotals();
+      }
+    });
+
+    // Delete buttons
+    tbody.addEventListener("click", (e) => {
+      const btn = e.target.closest(".inv-del");
+      if (btn) {
+        const tr = btn.closest("tr");
+        const idx = parseInt(tr.dataset.idx);
+
+        if (confirm("{% trans 'هل أنت متأكد من حذف هذا البند؟' %}")) {
+          INV_ITEMS.splice(idx, 1);
+          renderItems();
+          bindTableEvents();
+          calcTotals();
+        }
+      }
+    });
+  }
+
+  // ========= Utility Functions =========
+  function showToast(message, type = 'info') {
+    // Create toast element
+    const toast = document.createElement('div');
+    toast.className = `toast align-items-center text-bg-${type} border-0`;
+    toast.setAttribute('role', 'alert');
+    toast.setAttribute('aria-live', 'assertive');
+    toast.setAttribute('aria-atomic', 'true');
+
+    toast.innerHTML = `
+      <div class="d-flex">
+        <div class="toast-body">${message}</div>
+        <button type="button" class="btn-close btn-close-white mx-2 m-auto" data-bs-dismiss="toast"></button>
+      </div>
+    `;
+
+    // Add to container
+    const container = document.createElement('div');
+    container.className = 'toast-container position-fixed top-0 end-0 p-3';
+    container.appendChild(toast);
+    document.body.appendChild(container);
+
+    // Show and auto-remove
+    const bsToast = new bootstrap.Toast(toast);
+    bsToast.show();
+
+    toast.addEventListener('hidden.bs.toast', () => {
+      container.remove();
+    });
+  }
+
+  async function copySummary() {
+    const invoiceNo = document.getElementById("invNumber").value || "—";
+    const invoiceDate = document.getElementById("invDate").value || "—";
+    const client = document.getElementById("clientName").value || "—";
+    const subtotal = document.getElementById("invSubtotal").textContent;
+    const total = document.getElementById("invTotal").textContent;
+
+    const lines = INV_ITEMS.map((x, i) =>
+      `${i + 1}. ${x.name} | الكمية: ${x.qty} | السعر: ${fmt(x.unit)} | الإجمالي: ${fmt(x.qty * x.unit)} د.ل`
+    ).join("\n");
+
+    const text =
+`فاتورة SITEX
+رقم الفاتورة: ${invoiceNo}
+التاريخ: ${invoiceDate}
+العميل: ${client}
+
+البنود:
+${lines || "—"}
+
+الإجمالي الفرعي: ${subtotal} د.ل
+الإجمالي النهائي: ${total} د.ل
+`;
+
+    try {
+      await navigator.clipboard.writeText(text);
+      showToast("تم نسخ ملخص الفاتورة بنجاح", "success");
+    } catch (e) {
+      prompt("انسخ النص أدناه:", text);
+    }
+  }
+
+  function saveDraft() {
+    const draft = {
+      invoiceNumber: document.getElementById("invNumber").value,
+      invoiceDate: document.getElementById("invDate").value,
+      client: {
+        name: document.getElementById("clientName").value,
+        company: document.getElementById("clientCompany").value,
+        email: document.getElementById("clientEmail").value,
+        phone: document.getElementById("clientPhone").value,
+      },
+      project: {
+        type: document.getElementById("projectType").value,
+        name: document.getElementById("projectName").value,
+        notes: document.getElementById("invNotes").value,
+      },
+      items: INV_ITEMS,
+      totals: {
+        subtotal: document.getElementById("invSubtotal").textContent,
+        discount: document.getElementById("invDiscount").value,
+        tax: document.getElementById("invTax").value,
+        total: document.getElementById("invTotal").textContent,
+      },
+      paymentInfo: document.getElementById("invPayInfo").value,
+      lastSaved: new Date().toISOString(),
+    };
+
+    localStorage.setItem('sitex_invoice_draft', JSON.stringify(draft));
+    showToast("تم حفظ الفاتورة كمسودة", "success");
+  }
+
+  function loadDraft() {
+    const saved = localStorage.getItem('sitex_invoice_draft');
+    if (saved) {
+      try {
+        const draft = JSON.parse(saved);
+
+        // Load basic info
+        document.getElementById("invNumber").value = draft.invoiceNumber || "";
+        document.getElementById("invDate").value = draft.invoiceDate || "";
+
+        // Load client info
+        document.getElementById("clientName").value = draft.client?.name || "";
+        document.getElementById("clientCompany").value = draft.client?.company || "";
+        document.getElementById("clientEmail").value = draft.client?.email || "";
+        document.getElementById("clientPhone").value = draft.client?.phone || "";
+
+        // Load project info
+        document.getElementById("projectType").value = draft.project?.type || "";
+        document.getElementById("projectName").value = draft.project?.name || "";
+        document.getElementById("invNotes").value = draft.project?.notes || "";
+
+        // Load items
+        INV_ITEMS = draft.items || [];
+
+        // Load totals
+        document.getElementById("invDiscount").value = draft.totals?.discount || 0;
+        document.getElementById("invTax").value = draft.totals?.tax || 0;
+
+        // Load payment info
+        document.getElementById("invPayInfo").value = draft.paymentInfo || "";
+
+        // Re-render and calculate
+        renderItems();
+        bindTableEvents();
+        calcTotals();
+
+        showToast("تم تحميل المسودة المحفوظة", "info");
+      } catch (e) {
+        console.error("Error loading draft:", e);
+      }
+    }
+  }
+
+  // ========= Initialize =========
+  document.addEventListener("DOMContentLoaded", () => {
+    // Set default date
+    const invDate = document.getElementById("invDate");
+    if (invDate && !invDate.value) {
+      invDate.value = todayISO();
+    }
+
+    // Generate invoice number if empty
+    const invNumber = document.getElementById("invNumber");
+    if (invNumber && !invNumber.value) {
+      invNumber.value = generateInvoiceNumber();
+    }
+
+    // Initial render
+    renderItems();
+    bindTableEvents();
+    calcTotals();
+
+    // Load draft if exists
+    loadDraft();
+
+    // Bind buttons
+    document.getElementById("addRowBtn").addEventListener("click", addRow);
+    document.getElementById("clearAllBtn").addEventListener("click", clearAllItems);
+    document.getElementById("invDiscount").addEventListener("input", calcTotals);
+    document.getElementById("invTax").addEventListener("input", calcTotals);
+
+    // Bind template buttons
+    document.querySelectorAll(".template-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        loadTemplate(btn.dataset.template);
+      });
+    });
+
+    // Bind action buttons
+    document.getElementById("saveDraftBtn").addEventListener("click", saveDraft);
+    document.getElementById("printBtn").addEventListener("click", () => {
+      calcTotals(); // Ensure print values are updated
+      setTimeout(() => window.print(), 100);
+    });
+    document.getElementById("copyBtn").addEventListener("click", copySummary);
+    document.getElementById("sendEmailBtn").addEventListener("click", () => {
+      alert("سيتم إضافة إرسال البريد الإلكتروني في نسخة لاحقة");
+    });
+
+    // Auto-save on input (with debounce)
+    let saveTimeout;
+    const autoSaveElements = [
+      "invNumber", "invDate", "clientName", "clientCompany",
+      "clientEmail", "clientPhone", "projectType", "projectName",
+      "invNotes", "invDiscount", "invTax", "invPayInfo"
+    ];
+
+    autoSaveElements.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) {
+        el.addEventListener("input", () => {
+          clearTimeout(saveTimeout);
+          saveTimeout = setTimeout(() => {
+            calcTotals();
+          }, 500);
+        });
+      }
+    });
+  });
+</script>
+
+{% endblock %}

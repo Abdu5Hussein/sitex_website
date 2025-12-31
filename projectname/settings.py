@@ -34,9 +34,15 @@ handler404 = 'main.views.t404_view'
 
 
 ALLOWED_HOSTS = [
-    '192.168.0.37',
-    '127.0.0.1',
+    "sitex.com.ly",
+    "www.sitex.com.ly",
+    "102.203.200.84",
+    "127.0.0.1",
     "localhost",
+]
+CSRF_TRUSTED_ORIGINS = [
+    "https://sitex.com.ly",
+    "https://www.sitex.com.ly",
 ]
 
 

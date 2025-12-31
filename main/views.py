@@ -21,6 +21,12 @@ def products(request):
     products = Product.objects.all()
     return render(request, 'main/products.html', {'products': products})
 
+def sitex_invoice(request):
+    return render(request, 'main/sitex-invoice.html')
+
+def website_calculator(request):
+    return render(request, 'main/website-calculator.html')
+
 def categories(request):
     categories = Category.objects.all()
     return render(request, 'main/categories.html', {'categories': categories})

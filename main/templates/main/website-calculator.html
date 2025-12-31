@@ -1,0 +1,921 @@
+{% extends 'main/base.html' %}
+{% load i18n %}
+<!-- prettier-ignore -->
+{% block title %}
+{% trans "Pricing Calculator - SITEX" %}
+{% endblock %}
+
+{% block content %}
+<!-- =========================
+  PAGE HEADER
+========================= -->
+<section class="py-5 bg-primary text-white mt-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 mx-auto text-center" data-aos="fade-up">
+        <h1 class="display-4 fw-bold mb-3">{% trans "Project Pricing Calculator" %}</h1>
+        <p class="lead mb-0">
+          <!-- prettier-ignore -->
+          {% blocktrans %}
+          Select the services you need and get an estimated price instantly—clear, flexible, and tailored to your project.
+          {% endblocktrans %}
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================
+  CLIENT INFO
+========================= -->
+<section class="py-5">
+  <div class="container">
+    <div class="row g-4 align-items-stretch">
+      <!-- Left -->
+      <div class="col-lg-7" data-aos="fade-right">
+        <div class="modern-card h-100 p-4">
+          <h2 class="fw-bold mb-4">{% trans "Client & Project Details" %}</h2>
+
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label class="form-label">{% trans "Client Name" %}</label>
+              <input id="qcClientName" type="text" class="form-control" placeholder="{% trans 'Company / Person' %}" />
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">{% trans "Quote Date" %}</label>
+              <input id="qcQuoteDate" type="date" class="form-control" />
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">{% trans "Project Type" %}</label>
+              <select id="qcProjectType" class="form-select">
+                <option value="website">{% trans "Website" %}</option>
+                <option value="ecommerce">{% trans "E-commerce" %}</option>
+                <option value="system">{% trans "Business System" %}</option>
+                <option value="landing">{% trans "Landing Page" %}</option>
+              </select>
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">{% trans "Currency" %}</label>
+              <input class="form-control" value="LYD" readonly />
+            </div>
+
+            <div class="col-12">
+              <label class="form-label">{% trans "Notes" %}</label>
+              <textarea id="qcNotes" class="form-control" rows="4" placeholder="{% trans 'Any special notes, requirements, references...' %}"></textarea>
+            </div>
+          </div>
+
+          <div class="d-flex gap-2 flex-wrap mt-3">
+            <button type="button" class="btn btn-outline-secondary" id="qcResetBtn">
+              <i class="fas fa-rotate-left me-2"></i>{% trans "Reset to Default" %}
+            </button>
+
+            <!-- ✅ Print Quote (NOT whole page) -->
+            <button type="button" class="btn btn-primary" id="qcPrintBtn">
+              <i class="fas fa-print me-2"></i>{% trans "Print Quote (PDF)" %}
+            </button>
+          </div>
+
+          <p class="text-muted small mt-3 mb-0">
+            <!-- prettier-ignore -->
+            {% blocktrans %}
+            This is an estimate. Final pricing may vary based on scope, timeline, integrations, and content readiness.
+            {% endblocktrans %}
+          </p>
+        </div>
+      </div>
+
+      <!-- Right -->
+      <div class="col-lg-5" data-aos="fade-left">
+        <div class="modern-card h-100 p-4">
+          <div class="text-center mb-3">
+            <i class="fas fa-calculator fa-3x text-primary mb-3"></i>
+            <h3 class="fw-bold mb-1">{% trans "Summary" %}</h3>
+            <p class="text-muted mb-0">
+              <!-- prettier-ignore -->
+              {% blocktrans %}
+              Your selected items and totals will appear here.
+              {% endblocktrans %}
+            </p>
+          </div>
+
+          <div class="d-flex justify-content-between mb-2">
+            <div class="text-muted">{% trans "Subtotal" %}</div>
+            <div class="fw-bold"><span id="qcSubtotal">0</span> LYD</div>
+          </div>
+
+          <div class="row g-2 align-items-center mb-2">
+            <div class="col-6 text-muted">{% trans "Discount (LYD)" %}</div>
+            <div class="col-6">
+              <input id="qcDiscount" type="number" min="0" step="1" class="form-control" value="0" disabled />
+            </div>
+          </div>
+
+          <div class="row g-2 align-items-center mb-3">
+            <div class="col-6 text-muted">{% trans "Tax (LYD)" %}</div>
+            <div class="col-6">
+              <input id="qcTax" type="number" min="0" step="1" class="form-control" value="0" disabled />
+            </div>
+          </div>
+
+          <hr />
+
+          <div class="d-flex justify-content-between align-items-center">
+            <div class="h6 mb-0">{% trans "Total" %}</div>
+            <div class="h4 mb-0 fw-bold text-primary"><span id="qcTotal">0</span> LYD</div>
+          </div>
+
+          <div class="d-grid gap-2 mt-3">
+            <button type="button" class="btn btn-outline-primary" id="qcCopyBtn">
+              <i class="fas fa-copy me-2"></i>{% trans "Copy Quote Summary" %}
+            </button>
+          </div>
+
+          <div class="mt-3">
+            <h6 class="fw-bold mb-2">{% trans "Selected Items" %}</h6>
+            <div id="qcSelectedList" class="small text-muted" style="max-height: 210px; overflow:auto;">
+              {% trans "No items selected yet." %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================
+  FEATURES / SERVICES
+========================= -->
+<section class="py-5 section-alt">
+  <div class="container">
+    <div class="text-center mb-5" data-aos="fade-up">
+      <h2 class="display-5 fw-bold mb-3">{% trans "Choose Services" %}</h2>
+      <p class="lead text-muted">
+        <!-- prettier-ignore -->
+        {% blocktrans %}
+        Pick what you need. Adjust quantities when applicable. The estimate updates instantly.
+        {% endblocktrans %}
+      </p>
+    </div>
+
+    <div class="modern-card p-0 overflow-hidden" data-aos="fade-up">
+      <div class="table-responsive">
+        <table class="table align-middle mb-0">
+          <thead class="table-light">
+            <tr>
+              <th style="min-width: 170px">{% trans "Category" %}</th>
+              <th style="min-width: 380px">{% trans "Service / Feature" %}</th>
+              <th class="text-center" style="min-width: 120px">{% trans "Include" %}</th>
+              <th class="text-center" style="min-width: 120px">{% trans "Qty" %}</th>
+              <th class="text-end" style="min-width: 160px">{% trans "Unit Price (LYD)" %}</th>
+              <th class="text-end" style="min-width: 170px">{% trans "Line Total (LYD)" %}</th>
+            </tr>
+          </thead>
+          <tbody id="qcFeaturesBody"></tbody>
+        </table>
+
+        <div class="p-3 d-flex justify-content-end align-items-center gap-2 border-top">
+          <p class="px-2 m-0">{% trans "Total" %}</p>
+          <input type="text" id="table-total" class="form-control text-end fw-bold rounded" value="0 LYD" readonly style="max-width: 150px;" />
+        </div>
+      </div>
+    </div>
+
+    <div class="text-muted small mt-3" data-aos="fade-up">
+      <i class="fas fa-circle-info me-2"></i>
+      <!-- prettier-ignore -->
+      {% blocktrans %}
+      You can customize the dataset from your Excel file later. For now, the list is pre-filled and editable in code.
+      {% endblocktrans %}
+    </div>
+  </div>
+</section>
+
+<!-- =========================
+  CTA
+========================= -->
+<section class="py-5 section-cta text-center">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 mx-auto" data-aos="zoom-in">
+        <h3 class="fw-bold mb-3">{% trans "Need a Precise Quote?" %}</h3>
+        <p class="lead mb-4">
+          <!-- prettier-ignore -->
+          {% blocktrans %}
+          Share your requirements and we'll send a detailed proposal with timeline, deliverables, and exact pricing.
+          {% endblocktrans %}
+        </p>
+        <a href="{% url 'contact' %}" class="btn btn-primary-modern btn-lg btn-modern">
+          <i class="fas fa-paper-plane me-2"></i>
+          {% trans "Request a Consultation" %}
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =====================================================
+  ✅ PRINT-ONLY QUOTE AREA (hidden on screen)
+===================================================== -->
+<section id="qcPrintArea" class="qc-print-area" aria-hidden="true">
+  <div class="qc-print-card">
+    <div class="qc-print-head">
+      <div class="qc-brand">
+        <div class="qc-logo">SITEX</div>
+        <div class="qc-brand-sub">
+          {% trans "Software & IT Solutions" %} • {% trans "Tripoli - Libya" %}<br />
+          info@sitex.com.ly
+        </div>
+      </div>
+
+      <div class="qc-quote-meta">
+        <div class="qc-quote-title">{% trans "QUOTE / ESTIMATE" %}</div>
+        <div class="qc-meta-grid">
+          <div class="k">{% trans "Client" %}</div><div class="v" id="pClient">—</div>
+          <div class="k">{% trans "Date" %}</div><div class="v" id="pDate">—</div>
+          <div class="k">{% trans "Project Type" %}</div><div class="v" id="pType">—</div>
+          <div class="k">{% trans "Currency" %}</div><div class="v">LYD</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="qc-print-notes">
+      <div class="ttl">{% trans "Project Notes" %}</div>
+      <div class="txt" id="pNotes">—</div>
+    </div>
+
+    <div class="qc-print-table-wrap">
+      <table class="qc-print-table">
+        <thead>
+          <tr>
+            <th style="width: 18%">{% trans "Category" %}</th>
+            <th style="width: 52%">{% trans "Item" %}</th>
+            <th style="width: 10%; text-align:center">{% trans "Qty" %}</th>
+            <th style="width: 10%; text-align:end">{% trans "Unit" %}</th>
+            <th style="width: 10%; text-align:end">{% trans "Total" %}</th>
+          </tr>
+        </thead>
+        <tbody id="pItems"></tbody>
+      </table>
+    </div>
+
+    <div class="qc-print-totals">
+      <div class="row">
+        <div class="k">{% trans "Subtotal" %}</div>
+        <div class="v"><span id="pSubtotal">0</span> LYD</div>
+      </div>
+      <div class="row">
+        <div class="k">{% trans "Total" %}</div>
+        <div class="v big"><span id="pTotal">0</span> LYD</div>
+      </div>
+      <div class="hint">
+        {% trans "This document is an estimate. Final pricing may change based on scope and timeline." %}
+      </div>
+    </div>
+
+    <div class="qc-print-foot">
+      <div class="line"></div>
+      <div class="small">
+        {% trans "Thank you for choosing SITEX." %} •
+        {% trans "This quote is generated electronically and does not require a signature." %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================
+  STYLES
+========================= -->
+<style>
+  .container { max-width: 1300px !important; }
+
+  .qc-pill{
+    font-size: 0.75rem; padding: 0.25rem 0.6rem; border-radius: 999px;
+    background: rgba(13,110,253,0.08); color:#0d6efd; display:inline-block; white-space:nowrap;
+  }
+  .qc-num{ font-variant-numeric: tabular-nums; }
+  .qc-ltr{ direction:ltr; text-align:left; }
+  #qcSelectedList .item{
+    padding: 0.45rem 0.6rem; border-radius: 12px; background: rgba(0,0,0,0.03); margin-bottom:0.5rem;
+  }
+  .qc-subline{ margin-top:0.35rem; padding-top:0.35rem; border-top:1px dashed rgba(0,0,0,0.12); }
+  .qc-radio-wrap{ display:flex; flex-wrap:wrap; gap:14px; margin-top:0.35rem; }
+
+  /* ✅ Print area hidden on screen */
+  .qc-print-area { display: none; }
+
+  /* =====================================================
+     PRINT ONLY THE QUOTE AREA
+  ===================================================== */
+  @media print {
+    @page { size: A4; margin: 10mm; }
+
+    /* hide everything */
+    body * { visibility: hidden !important; }
+
+    /* show print area only */
+    #qcPrintArea, #qcPrintArea * { visibility: visible !important; }
+
+    #qcPrintArea {
+      display: block !important;
+      position: absolute !important;
+      inset: 0 !important;
+      width: 100% !important;
+    }
+
+    /* never print buttons/cta */
+    .btn, .section-cta { display: none !important; }
+
+    html, body { height: auto !important; overflow: visible !important; background: #fff !important; }
+  }
+
+  /* ====== PRINT CARD DESIGN ====== */
+  .qc-print-card{
+    background:#fff;
+    border: 1px solid rgba(0,0,0,0.08);
+    border-radius: 14px;
+    padding: 18px 18px;
+  }
+  .qc-print-head{
+    display:flex; justify-content:space-between; gap:16px; align-items:flex-start;
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+    padding-bottom: 12px; margin-bottom: 12px;
+  }
+  .qc-logo{ font-weight:800; font-size: 26px; letter-spacing: 1px; }
+  .qc-brand-sub{ font-size: 12px; color: rgba(0,0,0,0.6); line-height: 1.35; }
+  .qc-quote-title{ font-weight:800; font-size: 14px; text-align: end; }
+  .qc-meta-grid{
+    margin-top: 8px;
+    display:grid;
+    grid-template-columns: 90px 1fr;
+    gap: 6px 10px;
+    font-size: 12px;
+  }
+  .qc-meta-grid .k{ color: rgba(0,0,0,0.55); }
+  .qc-meta-grid .v{ font-weight: 600; }
+
+  .qc-print-notes{
+    background: rgba(0,0,0,0.03);
+    border: 1px solid rgba(0,0,0,0.06);
+    border-radius: 12px;
+    padding: 10px 12px;
+    margin-bottom: 12px;
+  }
+  .qc-print-notes .ttl{ font-weight: 700; font-size: 12px; margin-bottom: 6px; }
+  .qc-print-notes .txt{ font-size: 12px; color: rgba(0,0,0,0.7); white-space: pre-wrap; }
+
+  .qc-print-table{
+    width:100%;
+    border-collapse: collapse;
+    font-size: 12px;
+  }
+  .qc-print-table th{
+    text-align: start;
+    padding: 10px 8px;
+    background: rgba(0,0,0,0.04);
+    border: 1px solid rgba(0,0,0,0.08);
+    font-weight: 800;
+  }
+  .qc-print-table td{
+    padding: 9px 8px;
+    border: 1px solid rgba(0,0,0,0.08);
+    vertical-align: top;
+  }
+  .qc-print-table .num{ font-variant-numeric: tabular-nums; }
+  .qc-print-table .muted{ color: rgba(0,0,0,0.55); font-size: 11px; margin-top: 3px; }
+
+  .qc-print-totals{
+    margin-top: 12px;
+    display:flex; flex-direction:column; gap:6px;
+    align-items:flex-end;
+  }
+  .qc-print-totals .row{
+    width: 320px;
+    display:flex; justify-content:space-between; gap:10px;
+    font-size: 12px;
+  }
+  .qc-print-totals .k{ color: rgba(0,0,0,0.6); }
+  .qc-print-totals .v{ font-weight: 700; }
+  .qc-print-totals .v.big{ font-size: 16px; font-weight: 900; }
+  .qc-print-totals .hint{
+    width: 520px;
+    font-size: 11px;
+    color: rgba(0,0,0,0.55);
+    text-align: end;
+    margin-top: 6px;
+  }
+
+  .qc-print-foot{ margin-top: 14px; }
+  .qc-print-foot .line{ height: 1px; background: rgba(0,0,0,0.1); margin-bottom: 8px; }
+  .qc-print-foot .small{ font-size: 11px; color: rgba(0,0,0,0.6); text-align: center; }
+</style>
+
+<!-- =========================
+  SCRIPT
+========================= -->
+<script>
+  // ========= Dataset =========
+  const QC_FEATURES = [
+    {
+      category: "Infrastructure",
+      name: "Server / Hosting",
+      type: "period_price",
+      defaultWanted: true,
+      defaultQty: 1,
+      mandatory: true,
+      periods: [
+        { key: "3m", label: "3 months", price: 150, default: true },
+        { key: "6m", label: "6 months", price: 250 },
+        { key: "1y", label: "1 year",  price: 400 },
+      ],
+    },
+
+    { category: "Infrastructure", name: "Domain registration (1 year)", unit: 30, defaultWanted: true, defaultQty: 1, mandatory: true },
+    { category: "Security", name: "SSL Certificate", unit: 0, defaultWanted: true, defaultQty: 1, mandatory: true },
+    { category: "Email", name: "Official email setup (info@...)", unit: 50, defaultWanted: true, defaultQty: 1, mandatory: false },
+
+    { category: "Design", name: "Custom modern responsive design", unit: 400, defaultWanted: true, defaultQty: 1, mandatory: false },
+    { category: "Pages", name: "Up to 5 pages (Home/About/Services/Contact)", unit: 250, defaultWanted: true, defaultQty: 1, mandatory: true },
+    { category: "Pages", name: "Extra page", unit: 50, defaultWanted: false, defaultQty: 1, mandatory: false },
+
+    {
+      category: "Products",
+      name: "Products module",
+      type: "options_price",
+      defaultWanted: true,
+      defaultQty: 1,
+      mandatory: false,
+      options: [
+        { key: "10", label: "up to 10 products", price: 50, default: true },
+        { key: "50", label: "up to 50 products", price: 70 },
+        { key: "unlimited", label: "Unlimited + advanced details", price: 100 },
+      ],
+    },
+
+    { category: "Forms", name: "Contact form", unit: 50, defaultWanted: true, defaultQty: 1, mandatory: true },
+    { category: "Forms", name: "Quotation form", unit: 80, defaultWanted: false, defaultQty: 1, mandatory: false },
+    { category: "Forms", name: "Custom form", unit: 100, defaultWanted: false, defaultQty: 1, mandatory: false },
+
+    { category: "E-commerce", name: "Basic e-commerce setup", unit: 300, defaultWanted: false, defaultQty: 1, mandatory: false },
+
+    { category: "Social Media", name: "Social media integration", unit: 100, defaultWanted: false, defaultQty: 1, mandatory: false },
+    { category: "Maps", name: "Google Maps integration", unit: 120, defaultWanted: false, defaultQty: 1, mandatory: false },
+    { category: "WhatsApp", name: "WhatsApp notifications development", unit: 100, defaultWanted: false, defaultQty: 1, mandatory: false },
+
+    { category: "Languages", name: "Multi-language (Arabic + English)", unit: 150, defaultWanted: true, defaultQty: 1, mandatory: false },
+    { category: "Themes", name: "Dark Mode Theme", unit: 100, defaultWanted: true, defaultQty: 1, mandatory: false },
+    { category: "Analytics", name: "Google Analytics + basic dashboard", unit: 200, defaultWanted: true, defaultQty: 1, mandatory: false },
+
+    { category: "SEO", name: "Basic SEO setup", unit: 200, defaultWanted: false, defaultQty: 1, mandatory: false },
+    { category: "SEO", name: "Advanced SEO (strategy + technical SEO)", unit: 800, defaultWanted: false, defaultQty: 1, mandatory: false },
+
+    { category: "Support", name: "Maintenance & support (monthly)", unit: 200, defaultWanted: false, defaultQty: 3, mandatory: false },
+    { category: "Security", name: "Security monitoring & hardening (monthly)", unit: 150, defaultWanted: false, defaultQty: 3, mandatory: false },
+  ];
+
+  // ========= Utilities =========
+  const qcFmt = (n) => (Number(n || 0)).toLocaleString("en-US", { maximumFractionDigits: 2 });
+
+  function qcTodayISO(){
+    const d=new Date();
+    const yyyy=d.getFullYear();
+    const mm=String(d.getMonth()+1).padStart(2,"0");
+    const dd=String(d.getDate()).padStart(2,"0");
+    return `${yyyy}-${mm}-${dd}`;
+  }
+
+  function qcGetSelectedRadio(tr, selector){
+    const el = tr.querySelector(selector + ":checked");
+    if (!el) return null;
+    return { key: el.value, label: el.dataset.label || el.value, price: Number(el.dataset.price || 0) };
+  }
+
+  function qcGetEffectiveUnit(item, tr){
+    if (!item.type) return Number(item.unit || 0);
+
+    if (item.type === "period_price"){
+      const p = qcGetSelectedRadio(tr, ".qc-period");
+      if (p) return p.price;
+      const first=(item.periods||[])[0];
+      return first ? Number(first.price||0) : 0;
+    }
+
+    if (item.type === "options_price"){
+      const o = qcGetSelectedRadio(tr, ".qc-option");
+      if (o) return o.price;
+      const first=(item.options||[])[0];
+      return first ? Number(first.price||0) : 0;
+    }
+
+    return Number(item.unit || 0);
+  }
+
+  function qcCalcLine(item, wanted, qty, tr){
+    const q=Math.max(0, Number(qty||0));
+    if (!wanted) return 0;
+    return q * qcGetEffectiveUnit(item, tr);
+  }
+
+  // Qty rule: if wanted => >=1, else => 0 (disabled) if not mandatory
+  function qcClampQty(tr, wanted, item){
+    const qtyEl = tr.querySelector(".qc-qty");
+    if (!qtyEl) return;
+
+    if (!wanted && !item.mandatory){
+      qtyEl.value = 0;
+      qtyEl.disabled = true;
+      return;
+    }
+
+    qtyEl.disabled = false;
+    let q = Number(qtyEl.value || 0);
+    if (!Number.isFinite(q) || q < 1) q = 1;
+    qtyEl.value = q;
+  }
+
+  function qcRowHTML(item, idx){
+    const idBase = `qc_${idx}`;
+    let extraUI = "";
+
+    if (item.type === "period_price" && Array.isArray(item.periods)){
+      extraUI = `
+        <div class="qc-subline small text-muted">
+          <div class="qc-radio-wrap">
+            ${item.periods.map((p)=>{
+              const rid = `${idBase}_p_${p.key}`;
+              return `
+                <div class="form-check m-0">
+                  <input class="form-check-input qc-period" type="radio"
+                    name="${idBase}_period"
+                    id="${rid}"
+                    value="${p.key}"
+                    data-label="${p.label}"
+                    data-price="${p.price}"
+                    ${p.default ? "checked" : ""}
+                  />
+                  <label class="form-check-label" for="${rid}">
+                    ${p.label} <span class="text-muted qc-num">(${qcFmt(p.price)} LYD)</span>
+                  </label>
+                </div>
+              `;
+            }).join("")}
+          </div>
+        </div>
+      `;
+    }
+
+    if (item.type === "options_price" && Array.isArray(item.options)){
+      extraUI = `
+        <div class="qc-subline small text-muted">
+          <div class="qc-radio-wrap">
+            ${item.options.map((o)=>{
+              const rid = `${idBase}_o_${o.key}`;
+              return `
+                <div class="form-check m-0">
+                  <input class="form-check-input qc-option" type="radio"
+                    name="${idBase}_option"
+                    id="${rid}"
+                    value="${o.key}"
+                    data-label="${o.label}"
+                    data-price="${o.price}"
+                    ${o.default ? "checked" : ""}
+                  />
+                  <label class="form-check-label" for="${rid}">
+                    ${o.label} <span class="text-muted qc-num">(${qcFmt(o.price)} LYD)</span>
+                  </label>
+                </div>
+              `;
+            }).join("")}
+          </div>
+        </div>
+      `;
+    }
+
+    const unitCell = item.type
+      ? `<span class="qc-unit-live qc-num qc-ltr">0</span>`
+      : `<span class="qc-num qc-ltr">${qcFmt(item.unit)}</span>`;
+
+    return `
+      <tr data-idx="${idx}">
+        <td><span class="qc-pill">${item.category}</span></td>
+
+        <td>
+          <div class="fw-semibold">${item.name}</div>
+          ${extraUI}
+        </td>
+
+        <td class="text-center">
+          <div class="form-check d-inline-flex align-items-center gap-2 m-0">
+            <input class="form-check-input qc-wanted" type="checkbox" id="qc_w_${idx}">
+            <label class="form-check-label small" for="qc_w_${idx}">{% trans "Yes" %}</label>
+          </div>
+        </td>
+
+        <td class="text-center">
+          <input class="form-control form-control-sm qc-ltr qc-num qc-qty" type="number" min="0" step="1"
+            style="max-width: 110px; margin:0 auto;">
+        </td>
+
+        <td class="text-end">${unitCell}</td>
+        <td class="text-end qc-ltr qc-num fw-semibold"><span class="qc-line-total">0</span></td>
+      </tr>
+    `;
+  }
+
+  function qcUpdateUnitLive(tr, item){
+    if (!item.type) return;
+    const unitEl=tr.querySelector(".qc-unit-live");
+    if (!unitEl) return;
+    unitEl.textContent = qcFmt(qcGetEffectiveUnit(item, tr));
+  }
+
+  function qcApplyRowState(tr, item){
+    const wantedEl = tr.querySelector(".qc-wanted");
+    const qtyEl = tr.querySelector(".qc-qty");
+
+    if (item.mandatory){
+      wantedEl.checked = true;
+      wantedEl.disabled = true;
+    } else {
+      wantedEl.checked = !!item.defaultWanted;
+      wantedEl.disabled = false;
+    }
+
+    qtyEl.value = item.defaultQty ?? 1;
+
+    // radios defaults
+    if (item.type === "period_price"){
+      const def = (item.periods||[]).find(x=>x.default) || (item.periods||[])[0];
+      if (def){
+        const r = tr.querySelector(`#qc_${tr.dataset.idx}_p_${def.key}`);
+        if (r) r.checked = true;
+      }
+    }
+    if (item.type === "options_price"){
+      const def = (item.options||[]).find(x=>x.default) || (item.options||[])[0];
+      if (def){
+        const r = tr.querySelector(`#qc_${tr.dataset.idx}_o_${def.key}`);
+        if (r) r.checked = true;
+      }
+    }
+
+    qcClampQty(tr, wantedEl.checked || item.mandatory, item);
+    qcUpdateUnitLive(tr, item);
+  }
+
+  function qcRender(){
+    const tbody=document.getElementById("qcFeaturesBody");
+    tbody.innerHTML = QC_FEATURES.map(qcRowHTML).join("");
+    [...tbody.querySelectorAll("tr")].forEach((tr)=>{
+      const idx = Number(tr.dataset.idx);
+      qcApplyRowState(tr, QC_FEATURES[idx]);
+    });
+  }
+
+  function qcRecalc(){
+    const tbody=document.getElementById("qcFeaturesBody");
+    let subtotal=0;
+    const selectedItems=[];
+
+    [...tbody.querySelectorAll("tr")].forEach((tr)=>{
+      const idx=Number(tr.dataset.idx);
+      const item=QC_FEATURES[idx];
+
+      const wanted = tr.querySelector(".qc-wanted").checked || item.mandatory;
+      qcClampQty(tr, wanted, item);
+      qcUpdateUnitLive(tr, item);
+
+      const qty = tr.querySelector(".qc-qty").value;
+      const line = qcCalcLine(item, wanted, qty, tr);
+
+      tr.querySelector(".qc-line-total").textContent = qcFmt(line);
+      subtotal += line;
+
+      if (wanted && line > 0){
+        let extra="";
+        if (item.type === "period_price"){
+          const p = qcGetSelectedRadio(tr, ".qc-period");
+          if (p) extra = ` • ${p.label}`;
+        }
+        if (item.type === "options_price"){
+          const o = qcGetSelectedRadio(tr, ".qc-option");
+          if (o) extra = ` • ${o.label}`;
+        }
+
+        selectedItems.push({
+          category: item.category,
+          name: item.name + extra,
+          qty: Number(qty||0),
+          unit: qcGetEffectiveUnit(item, tr),
+          line: line,
+        });
+      }
+    });
+
+    const discount=Math.max(0, Number(document.getElementById("qcDiscount").value||0));
+    const tax=Math.max(0, Number(document.getElementById("qcTax").value||0));
+    const total=Math.max(0, subtotal - discount + tax);
+
+    document.getElementById("qcSubtotal").textContent = qcFmt(subtotal);
+    document.getElementById("qcTotal").textContent = qcFmt(total);
+    document.getElementById("table-total").value = qcFmt(total) + " LYD";
+
+    const list=document.getElementById("qcSelectedList");
+    if (!selectedItems.length){
+      list.textContent = "{% trans 'No items selected yet.' %}";
+      return;
+    }
+
+    list.innerHTML = selectedItems.map((x)=>`
+      <div class="item">
+        <div class="d-flex justify-content-between gap-2">
+          <div>
+            <div class="fw-semibold">${x.name}</div>
+            <div class="text-muted">${x.category} • Qty: <span class="qc-num">${qcFmt(x.qty)}</span></div>
+          </div>
+          <div class="fw-bold qc-num qc-ltr">${qcFmt(x.line)} LYD</div>
+        </div>
+        <div class="small text-muted mt-1">
+          Unit: <span class="qc-num">${qcFmt(x.unit)}</span> LYD
+        </div>
+      </div>
+    `).join("");
+  }
+
+  function qcReset(){
+    const tbody=document.getElementById("qcFeaturesBody");
+    [...tbody.querySelectorAll("tr")].forEach((tr)=>{
+      const idx=Number(tr.dataset.idx);
+      qcApplyRowState(tr, QC_FEATURES[idx]);
+    });
+    document.getElementById("qcDiscount").value=0;
+    document.getElementById("qcTax").value=0;
+    qcRecalc();
+  }
+
+  async function qcCopySummary(){
+    const clientName=(document.getElementById("qcClientName").value||"").trim() || "—";
+    const quoteDate=document.getElementById("qcQuoteDate").value || "—";
+    const projectType=document.getElementById("qcProjectType").value || "—";
+    const notes=(document.getElementById("qcNotes").value||"").trim();
+
+    const subtotal=document.getElementById("qcSubtotal").textContent;
+    const total=document.getElementById("qcTotal").textContent;
+
+    const tbody=document.getElementById("qcFeaturesBody");
+    const lines=[...tbody.querySelectorAll("tr")].map((tr)=>{
+      const idx=Number(tr.dataset.idx);
+      const item=QC_FEATURES[idx];
+      const wanted=tr.querySelector(".qc-wanted").checked || item.mandatory;
+      const qty=Number(tr.querySelector(".qc-qty").value||0);
+      const line=qcCalcLine(item, wanted, qty, tr);
+      if (!wanted || line <= 0) return null;
+
+      const unit=qcGetEffectiveUnit(item, tr);
+      let extra="";
+      if (item.type==="period_price"){
+        const p=qcGetSelectedRadio(tr, ".qc-period");
+        if (p) extra=` (${p.label})`;
+      }
+      if (item.type==="options_price"){
+        const o=qcGetSelectedRadio(tr, ".qc-option");
+        if (o) extra=` (${o.label})`;
+      }
+
+      return `- ${item.category} | ${item.name}${extra} | Qty: ${qty} | Unit: ${qcFmt(unit)} | Line: ${qcFmt(line)} LYD`;
+    }).filter(Boolean).join("\n");
+
+    const text =
+`SITEX Quote (LYD)
+Client: ${clientName}
+Date: ${quoteDate}
+Type: ${projectType}
+
+Items:
+${lines || "—"}
+
+Subtotal: ${subtotal} LYD
+TOTAL: ${total} LYD
+${notes ? "\nNotes:\n" + notes : ""}
+`;
+
+    try {
+      await navigator.clipboard.writeText(text);
+      alert("{% trans 'Quote summary copied ✅' %}");
+    } catch (e) {
+      prompt("{% trans 'Copy the text:' %}", text);
+    }
+  }
+
+  // ✅ Build print view
+  function qcBuildPrint(){
+    const client=(document.getElementById("qcClientName").value||"").trim() || "—";
+    const date=document.getElementById("qcQuoteDate").value || "—";
+    const type=document.getElementById("qcProjectType").selectedOptions?.[0]?.textContent || document.getElementById("qcProjectType").value || "—";
+    const notes=(document.getElementById("qcNotes").value||"").trim() || "—";
+    const subtotal=document.getElementById("qcSubtotal").textContent || "0";
+    const total=document.getElementById("qcTotal").textContent || "0";
+
+    document.getElementById("pClient").textContent = client;
+    document.getElementById("pDate").textContent = date;
+    document.getElementById("pType").textContent = type;
+    document.getElementById("pNotes").textContent = notes;
+    document.getElementById("pSubtotal").textContent = subtotal;
+    document.getElementById("pTotal").textContent = total;
+
+    const tbody=document.getElementById("qcFeaturesBody");
+    const rows=[...tbody.querySelectorAll("tr")].map((tr)=>{
+      const idx=Number(tr.dataset.idx);
+      const item=QC_FEATURES[idx];
+      const wanted=tr.querySelector(".qc-wanted").checked || item.mandatory;
+      const qty=Number(tr.querySelector(".qc-qty").value || 0);
+      const line=qcCalcLine(item, wanted, qty, tr);
+
+      if (!wanted || line <= 0) return null;
+
+      let extra="";
+      if (item.type==="period_price"){
+        const p=qcGetSelectedRadio(tr, ".qc-period");
+        if (p) extra = ` (${p.label})`;
+      }
+      if (item.type==="options_price"){
+        const o=qcGetSelectedRadio(tr, ".qc-option");
+        if (o) extra = ` (${o.label})`;
+      }
+
+      const unit=qcGetEffectiveUnit(item, tr);
+
+      return `
+        <tr>
+          <td>${item.category}</td>
+          <td>
+            <div style="font-weight:700">${item.name}${extra}</div>
+          </td>
+          <td style="text-align:center" class="num">${qcFmt(qty)}</td>
+          <td style="text-align:end" class="num">${qcFmt(unit)}</td>
+          <td style="text-align:end" class="num">${qcFmt(line)}</td>
+        </tr>
+      `;
+    }).filter(Boolean).join("");
+
+    document.getElementById("pItems").innerHTML = rows || `
+      <tr>
+        <td colspan="5" style="text-align:center; padding:14px; color:rgba(0,0,0,0.6)">
+          {% trans "No items selected." %}
+        </td>
+      </tr>
+    `;
+  }
+
+  function qcBind(){
+    const tbody=document.getElementById("qcFeaturesBody");
+
+    tbody.addEventListener("input", (e)=>{
+      if (!e.target.classList.contains("qc-qty")) return;
+      const tr=e.target.closest("tr");
+      const idx=Number(tr.dataset.idx);
+      const item=QC_FEATURES[idx];
+      const wanted=tr.querySelector(".qc-wanted").checked || item.mandatory;
+      qcClampQty(tr, wanted, item);
+      qcRecalc();
+    });
+
+    tbody.addEventListener("change", (e)=>{
+      if (e.target.classList.contains("qc-wanted")){
+        const tr=e.target.closest("tr");
+        const idx=Number(tr.dataset.idx);
+        const item=QC_FEATURES[idx];
+        if (item.mandatory) return;
+        qcClampQty(tr, e.target.checked, item);
+        qcRecalc();
+        return;
+      }
+      if (e.target.classList.contains("qc-period") || e.target.classList.contains("qc-option")){
+        qcRecalc();
+      }
+    });
+
+    document.getElementById("qcResetBtn").addEventListener("click", qcReset);
+    document.getElementById("qcCopyBtn").addEventListener("click", qcCopySummary);
+
+    // ✅ Print quote only
+    document.getElementById("qcPrintBtn").addEventListener("click", () => {
+      qcBuildPrint();
+      window.print();
+    });
+  }
+
+  document.addEventListener("DOMContentLoaded", ()=>{
+    const dateEl=document.getElementById("qcQuoteDate");
+    if (dateEl && !dateEl.value) dateEl.value = qcTodayISO();
+
+    qcRender();
+    qcBind();
+    qcRecalc();
+  });
+</script>
+
+{% endblock %}

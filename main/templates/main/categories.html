@@ -1,5 +1,6 @@
-{% extends 'main/base.html' %} {% load static i18n %} {% block title %}{% trans
-"Categories - SITEX" %}{% endblock %} {% block content %}
+{% extends 'main/base.html' %} {% load static i18n %}
+<!-- prettier-ignore -->
+ {% block title %}{% trans "Categories - SITEX" %}{% endblock %} {% block content %}
 
 <!-- Page Header -->
 <section class="py-5 bg-primary text-white mt-5">
@@ -34,7 +35,15 @@
             />
           </div>
         </div>
+
       </div>
+    </div>
+    <div class="row mb-4 h-auto">
+      <div class="text-center mt-3 " data-aos="fade-up" data-aos-delay="100">
+          <a href="/website-calculator/" class="text-decoration-none">
+            <button class="btn btn-primary btn-sm mt-2 w-100 bg-primary p-4 rounded">Project Price Calculator</button>
+          </a>
+        </div>
     </div>
 
     <div class="row g-4" id="categoriesGrid">
