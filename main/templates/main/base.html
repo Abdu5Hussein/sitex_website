@@ -25,7 +25,8 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
-
+<!-- Add this in your base.html or in the head section -->
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <!-- Font Awesome -->
     <link
       rel="stylesheet"
@@ -56,7 +57,8 @@
         --danger: #ef4444;
         --surface: #ffffff;
         --surface-dark: #1e293b;
-
+  --glass-bg: rgba(255, 255, 255, 0.1); /* Base transparency */
+  --glass-bg-hover: rgba(255, 255, 255, 0.15); /* Slightly stronger on hover */
         /* 2025 Gradients */
         --gradient-primary: linear-gradient(135deg, #2563eb, #1d4ed8);
         --gradient-dark: linear-gradient(135deg, #0f172a, #1e293b);
@@ -106,7 +108,8 @@
 
         --gradient-primary: linear-gradient(135deg, #3b82f6, #2563eb);
         --gradient-dark: linear-gradient(135deg, #0f172a, #1e293b);
-
+  --glass-bg: rgba(255, 255, 255, 0.05);
+  --glass-bg-hover: rgba(255, 255, 255, 0.1);
         --bg-color: #0f172a;
         --text-color: #f1f5f9;
         --text-secondary: #94a3b8;
@@ -812,32 +815,38 @@
               <i class="fas fa-moon"></i>
             </button>
 
-            <!-- Auth buttons -->
-            <div class="auth-buttons d-none d-lg-flex">
-              {% if user.is_authenticated %}
-              <a
-                href="{% url 'dashboard' %}"
-                class="btn btn-modern btn-outline-modern mx-2"
-              >
-                <i class="fas fa-tachometer-alt fa-sm mx-1"></i>
-                {% trans "Dashboard" %}
-              </a>
-              <a
-                href="{% url 'logout' %}"
-                class="btn btn-modern btn-outline-modern"
-              >
-                <i class="fas fa-sign-out-alt fa-sm mx-1"></i>
-                {% trans "Logout" %}
-              </a>
-              {% else %}
-              <a href="{% url 'login' %}" class="btn btn-modern btn-login mx-2">
-                {% trans "Login" %}
-              </a>
-              <!--<a href="#" class="btn btn-modern btn-register">
-                {% trans "Register" %}
-              </a>-->
-              {% endif %}
-            </div>
+         <!-- Auth buttons -->
+<div class="auth-buttons d-none d-lg-flex">
+  {% if user.is_authenticated %}
+
+    {% if user.is_client %}
+      <a href="{% url 'WA_provider:dashboard' %}" class="btn btn-modern btn-outline-modern mx-2">
+        <i class="fas fa-tachometer-alt fa-sm mx-1"></i>
+        {% trans "Dashboard" %}
+      </a>
+
+    {% elif user.is_company_user %}
+      <a href="{% url 'dashboard' %}" class="btn btn-modern btn-outline-modern mx-2">
+        <i class="fas fa-tachometer-alt fa-sm mx-1"></i>
+        {% trans "Company Dashboard" %}
+      </a>
+
+    {% endif %}
+
+    <!-- Logout button for all authenticated users -->
+    <a href="{% url 'logout' %}" class="btn btn-modern btn-outline-modern">
+      <i class="fas fa-sign-out-alt fa-sm mx-1"></i>
+      {% trans "Logout" %}
+    </a>
+
+  {% else %}
+    <!-- Login button for guests -->
+    <a href="{% url 'login' %}" class="btn btn-modern btn-login mx-2">
+      {% trans "Login" %}
+    </a>
+  {% endif %}
+</div>
+
           </div>
 
           <!-- Mobile Auth -->

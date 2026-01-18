@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Payment Success</title>
+    <style>
+        body { font-family: sans-serif; text-align:center; padding:50px; background:#f7f7f7; }
+        .card { display:inline-block; background:#fff; padding:30px; border-radius:10px; box-shadow:0 3px 6px rgba(0,0,0,0.1); }
+        h2 { color: #28a745; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h2>Payment Successful!</h2>
+        <p>Transaction Reference: {{ transaction.gateway_reference }}</p>
+        <p>Amount Paid: {{ transaction.amount }} LYD</p>
+        {% if transaction.payment_link.invoice %}
+            <p>Invoice: #{{ transaction.payment_link.invoice.invoice_number }}</p>
+        {% endif %}
+    </div>
+</body>
+</html>

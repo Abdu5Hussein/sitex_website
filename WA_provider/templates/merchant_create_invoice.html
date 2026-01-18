@@ -1,0 +1,61 @@
+{% extends "merchant_base.html" %}
+
+{% block title %}Create Invoice{% endblock %}
+
+{% block content %}
+<h2>Create New Invoice</h2>
+
+<form method="post">
+    {% csrf_token %}
+    <div style="margin-bottom:10px;">
+        <label>Invoice Number:</label>
+        <input type="text" name="invoice_number" required placeholder="INV-001">
+    </div>
+    <div style="margin-bottom:10px;">
+        <label>Description:</label>
+        <textarea name="description" placeholder="Invoice description"></textarea>
+    </div>
+
+    <h3>Items</h3>
+    <div id="items">
+        <div class="item" style="margin-bottom:10px;">
+            <input type="text" name="item_description[]" placeholder="Item description" required>
+            <input type="number" name="item_quantity[]" placeholder="Quantity" min="1" value="1" required>
+            <input type="number" name="item_unit_price[]" placeholder="Unit Price" step="0.01" min="0" required>
+            <button type="button" class="remove-item">Remove</button>
+        </div>
+    </div>
+    <button type="button" id="add-item" style="margin-bottom:20px;">Add Item</button>
+
+    <br>
+    <button type="submit">Create Invoice</button>
+</form>
+
+<script>
+document.getElementById('add-item').addEventListener('click', function(){
+    const container = document.getElementById('items');
+    const div = document.createElement('div');
+    div.className = 'item';
+    div.style.marginBottom = '10px';
+    div.innerHTML = `
+        <input type="text" name="item_description[]" placeholder="Item description" required>
+        <input type="number" name="item_quantity[]" placeholder="Quantity" min="1" value="1" required>
+        <input type="number" name="item_unit_price[]" placeholder="Unit Price" step="0.01" min="0" required>
+        <button type="button" class="remove-item">Remove</button>
+    `;
+    container.appendChild(div);
+
+    div.querySelector('.remove-item').addEventListener('click', function(){
+        div.remove();
+    });
+});
+
+// Remove existing first item
+document.querySelectorAll('.remove-item').forEach(btn => {
+    btn.addEventListener('click', function(){
+        btn.parentElement.remove();
+    });
+});
+</script>
+
+{% endblock %}

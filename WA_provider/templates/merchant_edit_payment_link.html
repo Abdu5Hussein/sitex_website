@@ -1,0 +1,35 @@
+{% extends "merchant_base.html" %}
+
+{% block title %}Edit Payment Link{% endblock %}
+
+{% block content %}
+<h2>Edit Payment Link</h2>
+
+<form method="post">
+    {% csrf_token %}
+    <div>
+        <label>Title:</label>
+        <input type="text" name="title" value="{{ link.title }}" required>
+    </div>
+    <div>
+        <label>Amount (LYD):</label>
+        <input type="number" name="amount" step="0.01" min="0" value="{{ link.amount }}" required>
+    </div>
+    <div>
+        <label>Attach to Invoice (optional):</label>
+        <select name="invoice">
+            <option value="">-- None --</option>
+            {% for inv in invoices %}
+                <option value="{{ inv.id }}" {% if link.invoice and link.invoice.id == inv.id %}selected{% endif %}>
+                    Invoice #{{ inv.invoice_number }} - {{ inv.total_amount }} LYD
+                </option>
+            {% endfor %}
+        </select>
+    </div>
+    <div>
+        <label>Expires At (optional):</label>
+        <input type="date" name="expires_at" value="{{ link.expires_at|date:'Y-m-d' }}">
+    </div>
+    <button type="submit">Save Changes</button>
+</form>
+{% endblock %}

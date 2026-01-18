@@ -1,0 +1,36 @@
+<section class="py-5">
+  <div class="container">
+    <div class="row mb-5 text-center" data-aos="fade-up">
+      <div class="col-12 mb-4">
+        <h2 class="fw-bold mb-3">{% trans "WhatsApp Service Packages" %}</h2>
+        <p class="text-muted">{% trans "Choose the package that suits your messaging needs." %}</p>
+      </div>
+
+      {% for package in packages %}
+      <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="{{ forloop.counter0|add:'1' }}00">
+        <div class="card pricing-card h-100 border-0 shadow-sm">
+          <div class="card-header bg-light text-center py-4 border-0">
+            <h5 class="fw-bold mb-1">{{ package.name }}</h5>
+            <h6 class="text-primary fw-bold mb-0">{% trans "Messages:" %} {{ package.messages }}</h6>
+          </div>
+          <div class="card-body p-4">
+            <div class="text-center mb-4">
+              <span class="display-6 fw-bold text-dark">{{ package.price }}</span>
+              <span class="h6 text-muted">LYD</span>
+            </div>
+          </div>
+          <div class="card-footer bg-transparent border-0 text-center pb-4 pt-0">
+            <form method="post" action="{% url 'WA_provider:choose_subscription' %}">
+              {% csrf_token %}
+              <input type="hidden" name="plan_code" value="{{ package.plan_code }}">
+              <button type="submit" class="btn btn-outline-primary btn-sm">
+                {% trans "Choose Plan" %}
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>

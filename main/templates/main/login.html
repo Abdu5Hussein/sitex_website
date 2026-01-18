@@ -19,88 +19,92 @@
         </div>
 
         <!-- Login Form -->
-        <form method="POST" id="loginForm">
-          {% csrf_token %} {% if messages %}
-          <div class="alert alert-danger" role="alert">
-            {% for message in messages %}
-            <div class="d-flex align-items-center">
-              <i class="fas fa-exclamation-circle me-2"></i>
-              {{ message }}
-            </div>
-            {% endfor %}
-          </div>
-          {% endif %}
+<form method="POST" id="loginForm">
+  {% csrf_token %}
 
-          <!-- Username Field -->
-          <div class="mb-4">
-            <label for="username" class="form-label fw-semibold">
-              <i class="fas fa-user me-2"></i>{% trans "Username" %}
-            </label>
-            <div class="input-group">
-              <span class="input-group-text section-alt border-end-0">
-                <i class="fas fa-user text-muted"></i>
-              </span>
-              <input
-                type="text"
-                class="form-control border-start-0"
-                id="username"
-                name="username"
-                required
-                placeholder="{% trans 'Enter your username' %}"
-              />
-            </div>
-          </div>
+  {% if messages %}
+    {% for message in messages %}
+      <div class="alert alert-{{ message.tags }} d-flex align-items-center" role="alert">
+        {% if message.tags == 'error' %}
+          <i class="fas fa-exclamation-circle me-2"></i>
+        {% elif message.tags == 'success' %}
+          <i class="fas fa-check-circle me-2"></i>
+        {% endif %}
+        {{ message }}
+      </div>
+    {% endfor %}
+  {% endif %}
 
-          <!-- Password Field -->
-          <div class="mb-4">
-            <label for="password" class="form-label fw-semibold">
-              <i class="fas fa-key me-2"></i>{% trans "Password" %}
-            </label>
-            <div class="input-group">
-              <span class="input-group-text section-alt border-end-0">
-                <i class="fas fa-lock text-muted"></i>
-              </span>
-              <input
-                type="password"
-                class="form-control border-start-0"
-                id="password"
-                name="password"
-                required
-                placeholder="{% trans 'Enter your password' %}"
-              />
-              <button
-                type="button"
-                class="btn btn-outline-secondary border-start-0"
-                onclick="togglePassword()"
-              >
-                <i class="fas fa-eye"></i>
-              </button>
-            </div>
-          </div>
+  <!-- Username Field -->
+  <div class="mb-4">
+    <label for="username" class="form-label fw-semibold">
+      <i class="fas fa-user me-2"></i>{% trans "Username" %}
+    </label>
+    <div class="input-group">
+      <span class="input-group-text section-alt border-end-0">
+        <i class="fas fa-user text-muted"></i>
+      </span>
+      <input
+        type="text"
+        class="form-control border-start-0"
+        id="username"
+        name="username"
+        required
+        placeholder="{% trans 'Enter your username' %}"
+      />
+    </div>
+  </div>
 
-          <!-- Remember Me & Forgot Password -->
-          <div class="d-flex justify-content-between align-items-center mb-4">
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="rememberMe" />
-              <label class="form-check-label text-muted small" for="rememberMe">
-                {% trans "Remember me" %}
-              </label>
-            </div>
-            <a href="#" class="text-primary small text-decoration-none">
-              {% trans "Forgot password?" %}
-            </a>
-          </div>
+  <!-- Password Field -->
+  <div class="mb-4">
+    <label for="password" class="form-label fw-semibold">
+      <i class="fas fa-key me-2"></i>{% trans "Password" %}
+    </label>
+    <div class="input-group">
+      <span class="input-group-text section-alt border-end-0">
+        <i class="fas fa-lock text-muted"></i>
+      </span>
+      <input
+        type="password"
+        class="form-control border-start-0"
+        id="password"
+        name="password"
+        required
+        placeholder="{% trans 'Enter your password' %}"
+      />
+      <button
+        type="button"
+        class="btn btn-outline-secondary border-start-0"
+        onclick="togglePassword()"
+      >
+        <i class="fas fa-eye"></i>
+      </button>
+    </div>
+  </div>
 
-          <!-- Submit Button -->
-          <div class="d-grid mb-4">
-            <button
-              type="submit"
-              class="btn btn-primary-modern btn-lg btn-modern"
-              id="loginBtn"
-            >
-              <i class="fas fa-sign-in-alt me-2"></i>{% trans "Sign In" %}
-            </button>
-          </div>
+  <!-- Remember Me & Forgot Password -->
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" id="rememberMe" />
+      <label class="form-check-label text-muted small" for="rememberMe">
+        {% trans "Remember me" %}
+      </label>
+    </div>
+    <a href="#" class="text-primary small text-decoration-none">
+      {% trans "Forgot password?" %}
+    </a>
+  </div>
+
+  <!-- Submit Button -->
+  <div class="d-grid mb-4">
+    <button
+      type="submit"
+      class="btn btn-primary-modern btn-lg btn-modern"
+      id="loginBtn"
+    >
+      <i class="fas fa-sign-in-alt me-2"></i>{% trans "Sign In" %}
+    </button>
+  </div>
 
           <!-- Divider -->
          
@@ -112,8 +116,8 @@
           <div class="text-center">
             <p class="text-muted mb-0">
               {% trans "Don't have an account?" %}
-              <a href="#" class="text-primary text-decoration-none fw-semibold">
-                {% trans "Contact administrator" %}
+              <a href="/accounts/register/" class="text-primary text-decoration-none fw-semibold">
+                {% trans "Register" %}
               </a>
             </p>
           </div>

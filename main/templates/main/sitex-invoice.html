@@ -6,252 +6,269 @@
 {% endblock %}
 
 {% block content %}
-<section class="invoice-wrapper py-5" dir="rtl">
-  <div class="container">
-    <!-- Header with actions -->
-    <div class="row mb-4">
-      <div class="col-12">
-        <div class="modern-card p-4 shadow-sm">
-          <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
-            <div>
-              <h1 class="h3 fw-bold mb-1 text-primary">
-                <i class="fas fa-file-invoice mx-2"></i>{% trans "إنشاء فاتورة" %}
-              </h1>
-              <p class="text-muted mb-0 small">
-                {% trans "املأ البيانات واختر الخدمات لإنشاء فاتورة احترافية" %}
-              </p>
-            </div>
-            <div class="d-flex gap-2 flex-wrap">
-              <button class="btn btn-outline-primary btn-modern" type="button" id="saveDraftBtn">
-                <i class="fas fa-save mx-2"></i>{% trans "حفظ كمسودة" %}
-              </button>
-              <button class="btn btn-primary btn-modern" type="button" id="printBtn">
-                <i class="fas fa-print mx-2"></i>{% trans "طباعة / حفظ PDF" %}
-              </button>
-            </div>
+<section class="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 py-8 px-4 sm:px-6 lg:px-8" dir="rtl">
+  <div class="max-w-7xl mx-auto">
+    <!-- Header -->
+    <div class="mb-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6 border border-gray-200">
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6">
+          <div>
+            <h1 class="text-2xl font-bold text-gray-900 mb-2">
+              <i class="fas fa-file-invoice text-blue-600 ml-2"></i>
+              {% trans "إنشاء فاتورة" %}
+            </h1>
+            <p class="text-gray-600 text-sm">
+              {% trans "املأ البيانات واختر الخدمات لإنشاء فاتورة احترافية" %}
+            </p>
+          </div>
+          <div class="flex gap-3 flex-wrap">
+            <button id="saveDraftBtn" class="px-6 py-3 bg-white border-2 border-gray-300 text-gray-700 font-semibold rounded-xl shadow-sm hover:bg-gray-50 hover:border-gray-400 transform hover:-translate-y-0.5 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2">
+              <i class="fas fa-save ml-2"></i>
+              {% trans "حفظ كمسودة" %}
+            </button>
+            <button id="printBtn" class="px-6 py-3 bg-gradient-to-r from-blue-600 to-blue-700 text-white font-semibold rounded-xl shadow-lg hover:from-blue-700 hover:to-blue-800 transform hover:-translate-y-0.5 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+              <i class="fas fa-print ml-2"></i>
+              {% trans "طباعة / حفظ PDF" %}
+            </button>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="row g-4">
-      <!-- Left Column - Form -->
-      <div class="col-lg-7">
+    <div class="grid grid-cols-1 lg:grid-cols-7 gap-6">
+      <!-- Left Column - Forms -->
+      <div class="lg:col-span-4 space-y-6">
         <!-- Basic Info Card -->
-        <div class="modern-card p-4 shadow-sm mb-4" data-aos="fade-left">
-          <div class="card-header bg-transparent border-0 p-0 mb-3">
-            <h3 class="h5 fw-bold mb-0">
-              <i class="fas fa-info-circle text-primary mx-2"></i>{% trans "المعلومات الأساسية" %}
-            </h3>
+        <div class="bg-white rounded-2xl shadow-lg p-6 border border-gray-200" style="animation: fadeIn 0.6s ease-out forwards; opacity: 0;">
+          <div class="flex items-center mb-6">
+            <div class="w-10 h-10 bg-blue-50 rounded-lg flex items-center justify-center ml-3">
+              <i class="fas fa-info-circle text-blue-600"></i>
+            </div>
+            <h3 class="text-lg font-semibold text-gray-900">{% trans "المعلومات الأساسية" %}</h3>
           </div>
-
-          <div class="row g-3">
-            <div class="col-md-6">
-              <div class="form-group">
-                <label class="form-label fw-medium">{% trans "رقم الفاتورة" %}</label>
-                <div class="input-group">
-                  <span class="input-group-text bg-light"><i class="fas fa-hashtag"></i></span>
-                  <input id="invNumber" class="form-control" placeholder="INV-0001" value="INV-{{ now.year }}-001" />
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2">{% trans "رقم الفاتورة" %}</label>
+              <div class="relative">
+                <div class="absolute inset-y-0 right-0 flex items-center pr-3">
+                  <i class="fas fa-hashtag text-gray-400"></i>
                 </div>
+                <input id="invNumber" class="w-full px-4 py-3 bg-white border border-gray-300 rounded-xl text-gray-900 text-sm transition-all duration-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 focus:outline-none placeholder-gray-400 pr-10" placeholder="INV-0001" value="INV-{{ now.year }}-001">
               </div>
             </div>
-
-            <div class="col-md-6">
-              <div class="form-group">
-                <label class="form-label fw-medium">{% trans "تاريخ الفاتورة" %}</label>
-                <div class="input-group">
-                  <span class="input-group-text bg-light"><i class="fas fa-calendar"></i></span>
-                  <input id="invDate" type="date" class="form-control" />
+            
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2">{% trans "تاريخ الفاتورة" %}</label>
+              <div class="relative">
+                <div class="absolute inset-y-0 right-0 flex items-center pr-3">
+                  <i class="fas fa-calendar text-gray-400"></i>
                 </div>
+                <input id="invDate" type="date" class="w-full px-4 py-3 bg-white border border-gray-300 rounded-xl text-gray-900 text-sm transition-all duration-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 focus:outline-none placeholder-gray-400 pr-10">
               </div>
             </div>
           </div>
         </div>
 
         <!-- Client Info Card -->
-        <div class="modern-card p-4 shadow-sm mb-4" data-aos="fade-left">
-          <div class="card-header bg-transparent border-0 p-0 mb-3">
-            <h3 class="h5 fw-bold mb-0">
-              <i class="fas fa-user-tie text-primary mx-2"></i>{% trans "معلومات العميل" %}
-            </h3>
+        <div class="bg-white rounded-2xl shadow-lg p-6 border border-gray-200" style="animation: fadeIn 0.6s ease-out 0.1s forwards; opacity: 0;">
+          <div class="flex items-center mb-6">
+            <div class="w-10 h-10 bg-indigo-50 rounded-lg flex items-center justify-center ml-3">
+              <i class="fas fa-user-tie text-indigo-600"></i>
+            </div>
+            <h3 class="text-lg font-semibold text-gray-900">{% trans "معلومات العميل" %}</h3>
           </div>
-
-          <div class="row g-3">
-            <div class="col-md-6">
-              <div class="form-group">
-                <label class="form-label fw-medium">{% trans "اسم العميل" %}</label>
-                <div class="input-group">
-                  <span class="input-group-text bg-light"><i class="fas fa-user"></i></span>
-                  <input id="clientName" class="form-control" placeholder="{% trans 'اسم العميل' %}" />
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2">{% trans "اسم العميل" %}</label>
+              <div class="relative">
+                <div class="absolute inset-y-0 right-0 flex items-center pr-3">
+                  <i class="fas fa-user text-gray-400"></i>
                 </div>
+                <input id="clientName" class="w-full px-4 py-3 bg-white border border-gray-300 rounded-xl text-gray-900 text-sm transition-all duration-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 focus:outline-none placeholder-gray-400 pr-10" placeholder="{% trans 'اسم العميل' %}">
               </div>
             </div>
-
-            <div class="col-md-6">
-              <div class="form-group">
-                <label class="form-label fw-medium">{% trans "اسم الشركة" %}</label>
-                <div class="input-group">
-                  <span class="input-group-text bg-light"><i class="fas fa-building"></i></span>
-                  <input id="clientCompany" class="form-control" placeholder="{% trans 'الشركة / الجهة' %}" />
+            
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2">{% trans "اسم الشركة" %}</label>
+              <div class="relative">
+                <div class="absolute inset-y-0 right-0 flex items-center pr-3">
+                  <i class="fas fa-building text-gray-400"></i>
                 </div>
+                <input id="clientCompany" class="w-full px-4 py-3 bg-white border border-gray-300 rounded-xl text-gray-900 text-sm transition-all duration-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 focus:outline-none placeholder-gray-400 pr-10" placeholder="{% trans 'الشركة / الجهة' %}">
               </div>
             </div>
-
-            <div class="col-md-6">
-              <div class="form-group">
-                <label class="form-label fw-medium">{% trans "البريد الإلكتروني" %}</label>
-                <div class="input-group">
-                  <span class="input-group-text bg-light"><i class="fas fa-envelope"></i></span>
-                  <input id="clientEmail" type="email" class="form-control" placeholder="client@email.com" />
+            
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2">{% trans "البريد الإلكتروني" %}</label>
+              <div class="relative">
+                <div class="absolute inset-y-0 right-0 flex items-center pr-3">
+                  <i class="fas fa-envelope text-gray-400"></i>
                 </div>
+                <input id="clientEmail" type="email" class="w-full px-4 py-3 bg-white border border-gray-300 rounded-xl text-gray-900 text-sm transition-all duration-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 focus:outline-none placeholder-gray-400 pr-10" placeholder="client@email.com">
               </div>
             </div>
-
-            <div class="col-md-6">
-              <div class="form-group">
-                <label class="form-label fw-medium">{% trans "رقم الهاتف" %}</label>
-                <div class="input-group">
-                  <span class="input-group-text bg-light"><i class="fas fa-phone"></i></span>
-                  <input id="clientPhone" class="form-control" placeholder="09xxxxxxxx" />
+            
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2">{% trans "رقم الهاتف" %}</label>
+              <div class="relative">
+                <div class="absolute inset-y-0 right-0 flex items-center pr-3">
+                  <i class="fas fa-phone text-gray-400"></i>
                 </div>
+                <input id="clientPhone" class="w-full px-4 py-3 bg-white border border-gray-300 rounded-xl text-gray-900 text-sm transition-all duration-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 focus:outline-none placeholder-gray-400 pr-10" placeholder="09xxxxxxxx">
               </div>
             </div>
           </div>
         </div>
 
         <!-- Project Info Card -->
-        <div class="modern-card p-4 shadow-sm mb-4" data-aos="fade-left">
-          <div class="card-header bg-transparent border-0 p-0 mb-3">
-            <h3 class="h5 fw-bold mb-0">
-              <i class="fas fa-project-diagram text-primary mx-2"></i>{% trans "معلومات المشروع" %}
-            </h3>
+        <div class="bg-white rounded-2xl shadow-lg p-6 border border-gray-200" style="animation: fadeIn 0.6s ease-out 0.2s forwards; opacity: 0;">
+          <div class="flex items-center mb-6">
+            <div class="w-10 h-10 bg-purple-50 rounded-lg flex items-center justify-center ml-3">
+              <i class="fas fa-project-diagram text-purple-600"></i>
+            </div>
+            <h3 class="text-lg font-semibold text-gray-900">{% trans "معلومات المشروع" %}</h3>
           </div>
-
-          <div class="row g-3">
-            <div class="col-md-6">
-              <div class="form-group">
-                <label class="form-label fw-medium">{% trans "نوع المشروع" %}</label>
-                <div class="input-group">
-                  <span class="input-group-text bg-light"><i class="fas fa-tags"></i></span>
-                  <select id="projectType" class="form-select">
-                    <option value="">{% trans "اختر نوع المشروع" %}</option>
-                    <option value="website">{% trans "موقع ويب" %}</option>
-                    <option value="ecommerce">{% trans "متجر إلكتروني" %}</option>
-                    <option value="system">{% trans "نظام إدارة" %}</option>
-                    <option value="mobile">{% trans "تطبيق جوال" %}</option>
-                    <option value="design">{% trans "تصميم جرافيك" %}</option>
-                  </select>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2">{% trans "نوع المشروع" %}</label>
+              <div class="relative">
+                <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                  <i class="fas fa-tags text-gray-400"></i>
                 </div>
+                <select id="projectType" class="w-full px-4 py-3 bg-white border border-gray-300 rounded-xl text-gray-900 text-sm transition-all duration-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 focus:outline-none placeholder-gray-400 pr-10 appearance-none">
+                  <option value="">{% trans "اختر نوع المشروع" %}</option>
+                  <option value="website">{% trans "موقع ويب" %}</option>
+                  <option value="ecommerce">{% trans "متجر إلكتروني" %}</option>
+                  <option value="system">{% trans "نظام إدارة" %}</option>
+                  <option value="mobile">{% trans "تطبيق جوال" %}</option>
+                  <option value="design">{% trans "تصميم جرافيك" %}</option>
+                </select>
               </div>
             </div>
-
-            <div class="col-md-6">
-              <div class="form-group">
-                <label class="form-label fw-medium">{% trans "اسم المشروع" %}</label>
-                <div class="input-group">
-                  <span class="input-group-text bg-light"><i class="fas fa-file-alt"></i></span>
-                  <input id="projectName" class="form-control" placeholder="{% trans 'اسم المشروع' %}" />
+            
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2">{% trans "اسم المشروع" %}</label>
+              <div class="relative">
+                <div class="absolute inset-y-0 right-0 flex items-center pr-3">
+                  <i class="fas fa-file-alt text-gray-400"></i>
                 </div>
+                <input id="projectName" class="w-full px-4 py-3 bg-white border border-gray-300 rounded-xl text-gray-900 text-sm transition-all duration-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 focus:outline-none placeholder-gray-400 pr-10" placeholder="{% trans 'اسم المشروع' %}">
               </div>
             </div>
-
-            <div class="col-md-12">
-              <div class="form-group">
-                <label class="form-label fw-medium">{% trans "ملاحظات المشروع" %}</label>
-                <textarea id="invNotes" class="form-control" rows="3" placeholder="{% trans 'أضف أي ملاحظات أو تفاصيل إضافية...' %}"></textarea>
-              </div>
+            
+            <div class="md:col-span-2">
+              <label class="block text-sm font-medium text-gray-700 mb-2">{% trans "ملاحظات المشروع" %}</label>
+              <textarea id="invNotes" class="w-full px-4 py-3 bg-white border border-gray-300 rounded-xl text-gray-900 text-sm transition-all duration-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 focus:outline-none placeholder-gray-400 min-h-[100px]" rows="3" placeholder="{% trans 'أضف أي ملاحظات أو تفاصيل إضافية...' %}"></textarea>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Right Column - Preview & Totals -->
-      <div class="col-lg-5">
+      <!-- Right Column - Preview & Actions -->
+      <div class="lg:col-span-3 space-y-6">
         <!-- Totals Card -->
-        <div class="modern-card p-4 shadow-sm mb-4" data-aos="fade-right">
-          <div class="card-header bg-transparent border-0 p-0 mb-3">
-            <h3 class="h5 fw-bold mb-0">
-              <i class="fas fa-calculator text-primary mx-2"></i>{% trans "إجمالي الفاتورة" %}
-            </h3>
-          </div>
-
-          <div class="totals-preview">
-            <div class="total-row d-flex justify-content-between align-items-center p-3 mb-2 bg-light rounded-3">
-              <div>
-                <div class="text-muted small">{% trans "الإجمالي الفرعي" %}</div>
-                <div class="h5 fw-bold mb-0"><span id="invSubtotal">0</span> د.ل</div>
-              </div>
-              <i class="fas fa-receipt text-primary fs-3"></i>
+        <div class="bg-white rounded-2xl shadow-lg p-6 border border-gray-200" style="animation: fadeIn 0.6s ease-out 0.3s forwards; opacity: 0;">
+          <div class="flex items-center mb-6">
+            <div class="w-10 h-10 bg-green-50 rounded-lg flex items-center justify-center ml-3">
+              <i class="fas fa-calculator text-green-600"></i>
             </div>
-
-            <div class="row g-2 mb-3">
-              <div class="col-6">
-                <div class="form-group">
-                  <label class="form-label small fw-medium">{% trans "خصم (د.ل)" %}</label>
-                  <div class="input-group input-group-sm">
-                    <input id="invDiscount" type="number" class="form-control" value="0" min="0" step="1" />
-                    <span class="input-group-text">د.ل</span>
-                  </div>
+            <h3 class="text-lg font-semibold text-gray-900">{% trans "إجمالي الفاتورة" %}</h3>
+          </div>
+          
+          <div class="space-y-4">
+            <!-- Subtotal -->
+            <div class="bg-gray-50 rounded-xl p-4 border border-gray-200 transition-all duration-300 hover:border-blue-300">
+              <div class="flex justify-between items-center">
+                <div>
+                  <div class="text-sm text-gray-600">{% trans "الإجمالي الفرعي" %}</div>
+                  <div class="text-2xl font-bold text-gray-900"><span id="invSubtotal">0</span> د.ل</div>
                 </div>
-              </div>
-              <div class="col-6">
-                <div class="form-group">
-                  <label class="form-label small fw-medium">{% trans "ضريبة (د.ل)" %}</label>
-                  <div class="input-group input-group-sm">
-                    <input id="invTax" type="number" class="form-control" value="0" min="0" step="1" />
-                    <span class="input-group-text">د.ل</span>
-                  </div>
+                <div class="w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center">
+                  <i class="fas fa-receipt text-blue-600 text-xl"></i>
                 </div>
               </div>
             </div>
-
-            <div class="total-row d-flex justify-content-between align-items-center p-3 bg-primary text-white rounded-3">
+            
+            <!-- Discount & Tax -->
+            <div class="grid grid-cols-2 gap-4">
               <div>
-                <div class="small opacity-85">{% trans "الإجمالي النهائي" %}</div>
-                <div class="h3 fw-bold mb-0"><span id="invTotal">0</span> د.ل</div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">{% trans "خصم (د.ل)" %}</label>
+                <div class="relative">
+                  <input id="invDiscount" type="number" class="w-full px-4 py-3 bg-white border border-gray-300 rounded-xl text-gray-900 text-sm transition-all duration-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 focus:outline-none placeholder-gray-400 text-left" value="0" min="0" step="1">
+                  <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-500">د.ل</span>
+                </div>
               </div>
-              <i class="fas fa-wallet fs-2 opacity-85"></i>
+              
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">{% trans "ضريبة (د.ل)" %}</label>
+                <div class="relative">
+                  <input id="invTax" type="number" class="w-full px-4 py-3 bg-white border border-gray-300 rounded-xl text-gray-900 text-sm transition-all duration-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 focus:outline-none placeholder-gray-400 text-left" value="0" min="0" step="1">
+                  <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-500">د.ل</span>
+                </div>
+              </div>
             </div>
-          </div>
-
-          <!-- Payment Info -->
-          <div class="mt-4 pt-3 border-top">
-            <label class="form-label fw-medium mb-2">{% trans "بيانات الدفع" %}</label>
-            <textarea id="invPayInfo" class="form-control" rows="3" placeholder="{% trans 'مثال: تحويل مصرفي / نقدي / بيانات الحساب...' %}"></textarea>
-          </div>
-
-          <!-- Action Buttons -->
-          <div class="d-grid gap-2 mt-4">
-            <button class="btn btn-outline-primary btn-modern" type="button" id="copyBtn">
-              <i class="fas fa-copy mx-2"></i>{% trans "نسخ ملخص الفاتورة" %}
-            </button>
-            <button class="btn btn-success btn-modern" type="button" id="sendEmailBtn">
-              <i class="fas fa-paper-plane mx-2"></i>{% trans "إرسال بالبريد الإلكتروني" %}
-            </button>
+            
+            <!-- Total -->
+            <div class="bg-gradient-to-r from-blue-600 to-blue-700 rounded-xl p-5 text-white shadow-lg">
+              <div class="flex justify-between items-center">
+                <div>
+                  <div class="text-sm opacity-90">{% trans "الإجمالي النهائي" %}</div>
+                  <div class="text-3xl font-bold"><span id="invTotal">0</span> د.ل</div>
+                </div>
+                <i class="fas fa-wallet text-2xl opacity-90"></i>
+              </div>
+            </div>
+            
+            <!-- Payment Info -->
+            <div class="pt-4 border-t border-gray-200">
+              <label class="block text-sm font-medium text-gray-700 mb-2">{% trans "بيانات الدفع" %}</label>
+              <textarea id="invPayInfo" class="w-full px-4 py-3 bg-white border border-gray-300 rounded-xl text-gray-900 text-sm transition-all duration-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 focus:outline-none placeholder-gray-400 min-h-[80px]" placeholder="{% trans 'مثال: تحويل مصرفي / نقدي / بيانات الحساب...' %}"></textarea>
+            </div>
+            
+            <!-- Action Buttons -->
+            <div class="space-y-3 pt-4">
+              <button id="copyBtn" class="w-full px-6 py-3 bg-white border-2 border-blue-600 text-blue-600 font-semibold rounded-xl hover:bg-blue-50 hover:border-blue-700 hover:text-blue-700 transform hover:-translate-y-0.5 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                <i class="fas fa-copy ml-2"></i>
+                {% trans "نسخ ملخص الفاتورة" %}
+              </button>
+              <button id="sendEmailBtn" class="w-full px-6 py-3 bg-gradient-to-r from-green-600 to-green-700 text-white font-semibold rounded-xl shadow-lg hover:from-green-700 hover:to-green-800 transform hover:-translate-y-0.5 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2">
+                <i class="fas fa-paper-plane ml-2"></i>
+                {% trans "إرسال بالبريد الإلكتروني" %}
+              </button>
+            </div>
           </div>
         </div>
-
+        
         <!-- Quick Templates -->
-        <div class="modern-card p-4 shadow-sm" data-aos="fade-right">
-          <div class="card-header bg-transparent border-0 p-0 mb-3">
-            <h3 class="h5 fw-bold mb-0">
-              <i class="fas fa-bolt text-primary mx-2"></i>{% trans "قوالب سريعة" %}
-            </h3>
+        <div class="bg-white rounded-2xl shadow-lg p-6 border border-gray-200" style="animation: fadeIn 0.6s ease-out 0.4s forwards; opacity: 0;">
+          <div class="flex items-center mb-4">
+            <div class="w-10 h-10 bg-yellow-50 rounded-lg flex items-center justify-center ml-3">
+              <i class="fas fa-bolt text-yellow-600"></i>
+            </div>
+            <h3 class="text-lg font-semibold text-gray-900">{% trans "قوالب سريعة" %}</h3>
           </div>
-          <p class="text-muted small mb-3">{% trans "اختر قالبًا لملء الخدمات تلقائيًا" %}</p>
-
-          <div class="d-flex flex-wrap gap-2">
-            <button class="btn btn-sm btn-outline-primary template-btn" data-template="website">
-              <i class="fas fa-globe mx-1"></i>{% trans "موقع ويب" %}
+          
+          <p class="text-gray-600 text-sm mb-4">{% trans "اختر قالبًا لملء الخدمات تلقائيًا" %}</p>
+          
+          <div class="grid grid-cols-2 gap-3">
+            <button class="template-btn px-4 py-3 bg-white border-2 border-gray-200 text-gray-700 font-medium rounded-lg hover:border-blue-300 hover:bg-blue-50 hover:text-blue-700 transition-all duration-200 focus:outline-none flex items-center justify-center" data-template="website">
+              <i class="fas fa-globe ml-2"></i>
+              {% trans "موقع ويب" %}
             </button>
-            <button class="btn btn-sm btn-outline-primary template-btn" data-template="ecommerce">
-              <i class="fas fa-shopping-cart mx-1"></i>{% trans "متجر إلكتروني" %}
+            <button class="template-btn px-4 py-3 bg-white border-2 border-gray-200 text-gray-700 font-medium rounded-lg hover:border-blue-300 hover:bg-blue-50 hover:text-blue-700 transition-all duration-200 focus:outline-none flex items-center justify-center" data-template="ecommerce">
+              <i class="fas fa-shopping-cart ml-2"></i>
+              {% trans "متجر إلكتروني" %}
             </button>
-            <button class="btn btn-sm btn-outline-primary template-btn" data-template="maintenance">
-              <i class="fas fa-tools mx-1"></i>{% trans "صيانة" %}
+            <button class="template-btn px-4 py-3 bg-white border-2 border-gray-200 text-gray-700 font-medium rounded-lg hover:border-blue-300 hover:bg-blue-50 hover:text-blue-700 transition-all duration-200 focus:outline-none flex items-center justify-center" data-template="maintenance">
+              <i class="fas fa-tools ml-2"></i>
+              {% trans "صيانة" %}
             </button>
-            <button class="btn btn-sm btn-outline-primary template-btn" data-template="custom">
-              <i class="fas fa-plus mx-1"></i>{% trans "مخصص" %}
+            <button class="template-btn px-4 py-3 bg-white border-2 border-gray-200 text-gray-700 font-medium rounded-lg hover:border-blue-300 hover:bg-blue-50 hover:text-blue-700 transition-all duration-200 focus:outline-none flex items-center justify-center" data-template="custom">
+              <i class="fas fa-plus ml-2"></i>
+              {% trans "مخصص" %}
             </button>
           </div>
         </div>
@@ -259,60 +276,61 @@
     </div>
 
     <!-- Services Table -->
-    <div class="row mt-4">
-      <div class="col-12">
-        <div class="modern-card p-0 shadow-sm" data-aos="fade-up">
-          <div class="card-header bg-light py-3 px-4 border-bottom">
-            <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
-              <div>
-                <h3 class="h5 fw-bold mb-0">
-                  <i class="fas fa-list-check text-primary mx-2"></i>{% trans "الخدمات والبنود" %}
-                </h3>
-                <p class="text-muted small mb-0 mt-1">{% trans "أضف وعدّل الخدمات المطلوبة" %}</p>
-              </div>
-              <div class="d-flex gap-2">
-                <button class="btn btn-outline-primary btn-sm" type="button" id="addRowBtn">
-                  <i class="fas fa-plus mx-2"></i>{% trans "إضافة بند" %}
-                </button>
-                <button class="btn btn-outline-secondary btn-sm" type="button" id="clearAllBtn">
-                  <i class="fas fa-trash mx-2"></i>{% trans "حذف الكل" %}
-                </button>
-              </div>
+    <div class="mt-8">
+      <div class="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-200" style="animation: fadeIn 0.6s ease-out 0.5s forwards; opacity: 0;">
+        <div class="px-6 py-5 border-b border-gray-200 bg-gradient-to-r from-gray-50 to-white">
+          <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+            <div>
+              <h3 class="text-lg font-semibold text-gray-900 mb-1">
+                <i class="fas fa-list-check text-blue-600 ml-2"></i>
+                {% trans "الخدمات والبنود" %}
+              </h3>
+              <p class="text-gray-600 text-sm">{% trans "أضف وعدّل الخدمات المطلوبة" %}</p>
+            </div>
+            <div class="flex gap-3">
+              <button id="addRowBtn" class="px-4 py-2 bg-white border border-gray-300 text-gray-700 text-sm font-medium rounded-lg hover:bg-gray-50 hover:border-gray-400 transition-all duration-200 focus:outline-none">
+                <i class="fas fa-plus ml-2"></i>
+                {% trans "إضافة بند" %}
+              </button>
+              <button id="clearAllBtn" class="px-4 py-2 bg-white border border-red-300 text-red-600 text-sm font-medium rounded-lg hover:bg-red-50 hover:border-red-400 transition-all duration-200 focus:outline-none">
+                <i class="fas fa-trash ml-2"></i>
+                {% trans "حذف الكل" %}
+              </button>
             </div>
           </div>
-
-          <div class="table-responsive">
-            <table class="table table-hover align-middle mb-0">
-              <thead class="table-light">
-                <tr>
-                  <th style="width: 40%" class="ps-4">
-                    <i class="fas fa-cube mx-2"></i>{% trans "الخدمة / الوصف" %}
-                  </th>
-                  <th class="text-center" style="width: 15%">
-                    <i class="fas fa-hashtag mx-2"></i>{% trans "الكمية" %}
-                  </th>
-                  <th class="text-end" style="width: 20%">
-                    <i class="fas fa-tag mx-2"></i>{% trans "سعر الوحدة" %}
-                  </th>
-                  <th class="text-end pe-4" style="width: 20%">
-                    <i class="fas fa-calculator mx-2"></i>{% trans "الإجمالي" %}
-                  </th>
-                  <th class="text-center" style="width: 5%"></th>
-                </tr>
-              </thead>
-              <tbody id="invItemsBody"></tbody>
-            </table>
-          </div>
-
-          <div class="table-footer p-3 bg-light border-top">
-            <div class="d-flex justify-content-between align-items-center">
-              <div class="text-muted small">
-                <i class="fas fa-circle-info mx-1"></i>
-                {% trans "إجمالي البنود:" %} <span class="fw-bold" id="itemsCount">0</span>
-              </div>
-              <div class="text-muted small">
-                {% trans "سيتم تحديث الإجمالي تلقائيًا" %}
-              </div>
+        </div>
+        
+        <div class="overflow-x-auto">
+          <table class="w-full">
+            <thead class="bg-gray-50">
+              <tr>
+                <th class="py-4 px-6 text-right font-semibold text-gray-700 w-[40%]">
+                  <i class="fas fa-cube ml-2"></i>{% trans "الخدمة / الوصف" %}
+                </th>
+                <th class="py-4 px-6 text-center font-semibold text-gray-700 w-[15%]">
+                  <i class="fas fa-hashtag ml-2"></i>{% trans "الكمية" %}
+                </th>
+                <th class="py-4 px-6 text-left font-semibold text-gray-700 w-[20%]">
+                  <i class="fas fa-tag ml-2"></i>{% trans "سعر الوحدة" %}
+                </th>
+                <th class="py-4 px-6 text-left font-semibold text-gray-700 w-[20%]">
+                  <i class="fas fa-calculator ml-2"></i>{% trans "الإجمالي" %}
+                </th>
+                <th class="py-4 px-6 text-center w-[5%]"></th>
+              </tr>
+            </thead>
+            <tbody id="invItemsBody" class="divide-y divide-gray-200"></tbody>
+          </table>
+        </div>
+        
+        <div class="px-6 py-4 bg-gray-50 border-t border-gray-200">
+          <div class="flex flex-col sm:flex-row justify-between items-center gap-2">
+            <div class="text-sm text-gray-600">
+              <i class="fas fa-circle-info ml-1"></i>
+              {% trans "إجمالي البنود:" %} <span class="font-semibold" id="itemsCount">0</span>
+            </div>
+            <div class="text-sm text-gray-500">
+              {% trans "سيتم تحديث الإجمالي تلقائيًا" %}
             </div>
           </div>
         </div>
@@ -321,97 +339,93 @@
   </div>
 </section>
 
-<!-- =====================================================
-  PRINTABLE INVOICE (Hidden on screen)
-===================================================== -->
-<section id="printInvoice" class="print-invoice" aria-hidden="true" dir="rtl">
-  <div class="print-container">
+<!-- Printable Invoice (Hidden) -->
+<section id="printInvoice" class="hidden" aria-hidden="true" dir="rtl">
+  <div class="max-w-[210mm] mx-auto p-8 bg-white">
     <!-- Header -->
-    <div class="print-header text-center d-flex justify-content-center align-items-center">
-      <div class="brand-section ">
-        <div class="brand-logo">SITEX</div>
-        <div class="brand-info">
+    <div class="flex justify-between items-start pb-6 mb-6 border-b-2 border-blue-600">
+      <div>
+        <div class="text-3xl font-black text-blue-600 mb-2">SITEX</div>
+        <div class="text-sm text-gray-600 leading-relaxed">
           {% trans "حلول البرمجيات وتقنية المعلومات" %}<br />
           {% trans "طرابلس - ليبيا" %}<br />
           info@sitex.com.ly
         </div>
       </div>
+      <div class="text-4xl font-bold text-gray-900">{% trans "فاتورة" %}</div>
     </div>
-    <div class="invoice-meta mb-4">
-      <div class="invoice-title text-end">{% trans "فاتورة" %}</div>
-      <div class="meta-grid">
-        <div class="k">{% trans "رقم الفاتورة" %}</div><div class="v" id="pInvNumber">—</div>
-        <div class="k">{% trans "تاريخ الفاتورة" %}</div><div class="v" id="pInvDate">—</div>
-        <div class="k">{% trans "نوع المشروع" %}</div><div class="v" id="pProjectType">—</div>
-        <div class="k">{% trans "العملة" %}</div><div class="v">دينار ليبي (LYD)</div>
-      </div>
+    
+    <!-- Meta Info -->
+    <div class="grid grid-cols-2 gap-y-2 gap-x-8 text-sm mb-8" style="grid-template-columns: 120px 1fr;">
+      <div class="text-gray-600 font-semibold text-left">{% trans "رقم الفاتورة" %}</div>
+      <div class="text-gray-900 font-bold text-left" id="pInvNumber">—</div>
+      <div class="text-gray-600 font-semibold text-left">{% trans "تاريخ الفاتورة" %}</div>
+      <div class="text-gray-900 font-bold text-left" id="pInvDate">—</div>
+      <div class="text-gray-600 font-semibold text-left">{% trans "نوع المشروع" %}</div>
+      <div class="text-gray-900 font-bold text-left" id="pProjectType">—</div>
+      <div class="text-gray-600 font-semibold text-left">{% trans "العملة" %}</div>
+      <div class="text-gray-900 font-bold text-left">دينار ليبي (LYD)</div>
     </div>
-    <!-- Client Info -->
-    <div class="print-client-info">
-      <div class="client-section">
-        <div class="section-title">{% trans "فاتورة إلى" %}</div>
-        <div class="client-details">
-          <div class="client-name" id="pClientName">—</div>
-          <div class="client-company" id="pClientCompany">—</div>
-          <div class="client-contact">
+    
+    <!-- Client & Project Info -->
+    <div class="grid grid-cols-2 gap-6 mb-8">
+      <div>
+        <h3 class="font-bold text-base text-gray-800 mb-3 pb-2 border-b border-gray-300">{% trans "فاتورة إلى" %}</h3>
+        <div>
+          <div class="font-bold text-lg mb-1" id="pClientName">—</div>
+          <div class="text-gray-600 text-sm mb-1" id="pClientCompany">—</div>
+          <div class="text-gray-600 text-sm">
             <span id="pClientEmail">—</span> | <span id="pClientPhone">—</span>
           </div>
         </div>
       </div>
-
-      <div class="project-section">
-        <div class="section-title">{% trans "معلومات المشروع" %}</div>
-        <div class="project-details">
-          <div class="project-name" id="pProjectName">—</div>
-          <div class="project-notes" id="pInvNotes">—</div>
+      
+      <div>
+        <h3 class="font-bold text-base text-gray-800 mb-3 pb-2 border-b border-gray-300">{% trans "معلومات المشروع" %}</h3>
+        <div>
+          <div class="font-semibold text-base mb-2" id="pProjectName">—</div>
+          <div class="text-gray-600 text-sm leading-relaxed" id="pInvNotes">—</div>
         </div>
       </div>
     </div>
-
+    
     <!-- Items Table -->
-    <div class="print-items-table">
-      <table class="items-table">
+    <div class="mb-8">
+      <table class="w-full border-collapse text-sm">
         <thead>
           <tr>
-            <th style="width: 50%">{% trans "الخدمة / الوصف" %}</th>
-            <th style="width: 12%; text-align:center">{% trans "الكمية" %}</th>
-            <th style="width: 19%; text-align:end">{% trans "سعر الوحدة" %}</th>
-            <th style="width: 19%; text-align:end">{% trans "الإجمالي" %}</th>
+            <th class="bg-gray-100 border border-gray-300 py-3 px-4 font-bold text-gray-800 text-right w-[50%]">{% trans "الخدمة / الوصف" %}</th>
+            <th class="bg-gray-100 border border-gray-300 py-3 px-4 font-bold text-gray-800 text-center w-[12%]">{% trans "الكمية" %}</th>
+            <th class="bg-gray-100 border border-gray-300 py-3 px-4 font-bold text-gray-800 text-left w-[19%]">{% trans "سعر الوحدة" %}</th>
+            <th class="bg-gray-100 border border-gray-300 py-3 px-4 font-bold text-gray-800 text-left w-[19%]">{% trans "الإجمالي" %}</th>
           </tr>
         </thead>
         <tbody id="pItems"></tbody>
       </table>
     </div>
-
+    
     <!-- Totals -->
-    <div class="print-totals">
-      <div class="totals-grid">
-        <div class="k">{% trans "الإجمالي الفرعي" %}</div>
-        <div class="v"><span id="pSubtotal">0</span> د.ل</div>
-
-        <div class="k discount">{% trans "خصم" %}</div>
-        <div class="v discount">- <span id="pDiscount">0</span> د.ل</div>
-
-        <div class="k tax">{% trans "ضريبة" %}</div>
-        <div class="v tax">+ <span id="pTax">0</span> د.ل</div>
-
-        <div class="k total">{% trans "الإجمالي النهائي" %}</div>
-        <div class="v total"><span id="pTotal">0</span> د.ل</div>
-      </div>
+    <div class="grid grid-cols-2 gap-y-3 ml-auto max-w-xs mb-8" style="grid-template-columns: 150px 1fr;">
+      <div class="text-gray-600 font-medium text-left">{% trans "الإجمالي الفرعي" %}</div>
+      <div class="text-gray-900 font-semibold text-left"><span id="pSubtotal">0</span> د.ل</div>
+      <div class="text-gray-600 font-medium text-left">{% trans "خصم" %}</div>
+      <div class="text-gray-900 font-semibold text-left">- <span id="pDiscount">0</span> د.ل</div>
+      <div class="text-gray-600 font-medium text-left">{% trans "ضريبة" %}</div>
+      <div class="text-gray-900 font-semibold text-left">+ <span id="pTax">0</span> د.ل</div>
+      <div class="font-bold text-blue-600 text-base pt-3 mt-3 border-t border-gray-300">{% trans "الإجمالي النهائي" %}</div>
+      <div class="font-bold text-blue-600 text-base pt-3 mt-3 border-t border-gray-300"><span id="pTotal">0</span> د.ل</div>
     </div>
-
+    
     <!-- Payment Info -->
-    <div class="print-payment-info">
-      <div class="payment-section">
-        <div class="section-title">{% trans "بيانات الدفع" %}</div>
-        <div class="payment-details" id="pPayInfo">—</div>
-      </div>
+    <div class="mb-10">
+      <h3 class="font-bold text-base text-gray-800 mb-3 pb-2 border-b border-gray-300">{% trans "بيانات الدفع" %}</h3>
+      <div class="text-gray-600 text-sm leading-relaxed whitespace-pre-wrap" id="pPayInfo">—</div>
     </div>
-
+    
     <!-- Footer -->
-    <div class="print-footer">
-      <div class="footer-line"></div>
-      <div class="footer-text">
+    <div class="text-center pt-8 mt-8 border-t border-gray-300">
+      <div class="h-px bg-gradient-to-l from-transparent via-gray-400 to-transparent mb-4"></div>
+      <div class="text-gray-500 text-xs leading-relaxed">
         {% trans "تم إصدار هذه الفاتورة إلكترونيًا ولا تتطلب توقيعًا." %}
         <br />
         {% trans "شكرًا لاختياركم SITEX." %}
@@ -420,135 +434,28 @@
   </div>
 </section>
 
-<!-- ================= ENHANCED STYLES ================= -->
 <style>
-  :root {
-    --primary-color: #0d6efd;
-    --primary-light: rgba(13, 110, 253, 0.1);
-    --success-color: #198754;
-    --danger-color: #dc3545;
-    --border-radius-lg: 12px;
-    --border-radius-md: 8px;
-    --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.08);
-    --shadow-medium: 0 8px 30px rgba(0, 0, 0, 0.12);
+  @keyframes fadeIn {
+    to { opacity: 1; }
   }
-
-  .invoice-wrapper {
-    background: linear-gradient(135deg, #f8fafc 0%, #e9ecef 100%);
-    min-height: 100vh;
-  }
-
-  .modern-card {
-    background: white;
-    border-radius: var(--border-radius-lg);
-    border: 1px solid rgba(0, 0, 0, 0.08);
-    transition: all 0.3s ease;
-  }
-
-  .modern-card:hover {
-    box-shadow: var(--shadow-medium);
-  }
-
-  .btn-modern {
-    border-radius: var(--border-radius-md);
-    padding: 0.625rem 1.25rem;
-    font-weight: 500;
-    transition: all 0.3s ease;
-  }
-
-  .btn-primary {
-    background: linear-gradient(135deg, #0d6efd 0%, #0b5ed7 100%);
-    border: none;
-  }
-
-  .btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(13, 110, 253, 0.25);
-  }
-
-  .form-control, .form-select {
-    border-radius: var(--border-radius-md);
-    border: 1px solid #dee2e6;
-    padding: 0.625rem 0.75rem;
-  }
-
-  .form-control:focus, .form-select:focus {
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
-  }
-
-  .input-group-text {
-    background-color: #f8f9fa;
-    border-color: #dee2e6;
-  }
-
-  /* Table Styles */
-  .table-hover tbody tr {
-    transition: all 0.2s ease;
-  }
-
-  .table-hover tbody tr:hover {
-    background-color: rgba(13, 110, 253, 0.03) !important;
-  }
-
-  .table th {
-    font-weight: 600;
-    color: #495057;
-    background-color: #f8f9fa;
-  }
-
-  /* Service Item Row */
-  .service-row {
-    position: relative;
-  }
-
-  .service-row:hover {
-    background-color: #f8fafc;
-  }
-
-  .service-row .actions {
-    opacity: 0;
-    transition: opacity 0.2s ease;
-  }
-
-  .service-row:hover .actions {
-    opacity: 1;
-  }
-
-  /* Totals Preview */
-  .totals-preview .total-row {
-    transition: all 0.3s ease;
-  }
-
-  .totals-preview .total-row:hover {
-    transform: translateX(-5px);
-  }
-
-  /* Print Area (Hidden on screen) */
-  .print-invoice {
-    display: none;
-  }
-
-  /* =====================================================
-     PRINT STYLES
-  ===================================================== */
+  
+  /* Print Styles */
   @media print {
     @page {
       size: A4;
-      margin: 15mm;
+      margin: 20mm;
     }
-
+    
     body * {
       visibility: hidden !important;
-      direction: rtl !important;
     }
-
-    .print-invoice,
-    .print-invoice * {
+    
+    #printInvoice,
+    #printInvoice * {
       visibility: visible !important;
     }
-
-    .print-invoice {
+    
+    #printInvoice {
       display: block !important;
       position: absolute !important;
       top: 0 !important;
@@ -559,275 +466,20 @@
       padding: 0 !important;
       margin: 0 !important;
     }
-
-    /* Hide all non-print elements */
-    .modern-card, .btn, .invoice-wrapper > *:not(.print-invoice) {
-      display: none !important;
-    }
-
+    
     html, body {
       height: auto !important;
       overflow: visible !important;
       background: white !important;
     }
-  }
-
-  /* Print Invoice Design */
-  .print-container {
-    max-width: 210mm;
-    margin: 0 auto;
-    padding: 20px;
-    background: white;
-  }
-
-  .print-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    padding-bottom: 20px;
-    border-bottom: 2px solid var(--primary-color);
-    margin-bottom: 20px;
-  }
-
-  .brand-logo {
-    font-size: 32px;
-    font-weight: 800;
-    color: var(--primary-color);
-    margin-bottom: 5px;
-  }
-
-  .brand-info {
-    font-size: 12px;
-    color: #666;
-    line-height: 1.4;
-  }
-
-  .invoice-title {
-    font-size: 28px;
-    font-weight: 700;
-    color: #1a1a1a;
-    text-align: left;
-    margin-bottom: 10px;
-  }
-
-  .meta-grid {
-    display: grid;
-    grid-template-columns: 120px 1fr;
-    gap: 5px 15px;
-    font-size: 13px;
-    text-align: left;
-  }
-
-  .meta-grid .k {
-    color: #666;
-    font-weight: 500;
-  }
-
-  .meta-grid .v {
-    color: #1a1a1a;
-    font-weight: 600;
-  }
-
-  .print-client-info {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 30px;
-    margin-bottom: 25px;
-    padding: 20px;
-    background: #f8f9fa;
-    border-radius: 8px;
-  }
-
-  .section-title {
-    font-weight: 700;
-    font-size: 14px;
-    color: #333;
-    margin-bottom: 10px;
-  }
-
-  .client-name {
-    font-weight: 700;
-    font-size: 16px;
-    margin-bottom: 5px;
-  }
-
-  .client-company, .client-contact {
-    font-size: 13px;
-    color: #666;
-    margin-bottom: 3px;
-  }
-
-  .project-name {
-    font-weight: 600;
-    font-size: 14px;
-    margin-bottom: 8px;
-  }
-
-  .project-notes {
-    font-size: 12px;
-    color: #666;
-    line-height: 1.5;
-  }
-
-  .print-items-table {
-    margin-bottom: 25px;
-  }
-
-  .items-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 12px;
-  }
-
-  .items-table th {
-    background: #f8f9fa;
-    border: 1px solid #dee2e6;
-    padding: 12px 10px;
-    font-weight: 700;
-    color: #333;
-    text-align: right;
-  }
-
-  .items-table td {
-    border: 1px solid #dee2e6;
-    padding: 10px;
-    vertical-align: top;
-  }
-
-  .items-table tr:nth-child(even) {
-    background: #fcfcfc;
-  }
-
-  .items-table .item-description {
-    font-weight: 600;
-    margin-bottom: 3px;
-  }
-
-  .items-table .item-note {
-    font-size: 11px;
-    color: #666;
-    margin-top: 3px;
-  }
-
-  .print-totals {
-    margin-bottom: 25px;
-  }
-
-  .totals-grid {
-    display: grid;
-    grid-template-columns: 150px 1fr;
-    gap: 8px;
-    font-size: 13px;
-    max-width: 300px;
-    margin-right: auto;
-  }
-
-  .totals-grid .k {
-    color: #666;
-    font-weight: 500;
-    text-align: left;
-  }
-
-  .totals-grid .v {
-    color: #1a1a1a;
-    font-weight: 600;
-    text-align: left;
-  }
-
-  .totals-grid .k.total,
-  .totals-grid .v.total {
-    font-weight: 700;
-    font-size: 15px;
-    color: var(--primary-color);
-    border-top: 1px solid #dee2e6;
-    padding-top: 8px;
-    margin-top: 8px;
-  }
-
-  .print-payment-info {
-    padding: 20px;
-    background: #f8f9fa;
-    border-radius: 8px;
-    margin-bottom: 25px;
-  }
-
-  .payment-details {
-    font-size: 13px;
-    color: #666;
-    line-height: 1.5;
-    white-space: pre-wrap;
-  }
-
-  .print-footer {
-    text-align: center;
-    padding-top: 20px;
-    border-top: 1px solid #dee2e6;
-  }
-
-  .footer-line {
-    height: 1px;
-    background: linear-gradient(to left, transparent, #dee2e6, transparent);
-    margin-bottom: 15px;
-  }
-
-  .footer-text {
-    font-size: 11px;
-    color: #888;
-    line-height: 1.4;
-  }
-
-  .meta-grid{
-    direction: rtl;              /* يخلي ترتيب الأعمدة من اليمين */
-    display: grid;
-    grid-template-columns: 140px 1fr; /* (k) ثم (v) */
-    gap: 8px 14px;
-    align-items: center;
-  }
-  .meta-grid .k{
-    text-align: right;
-    font-weight: 600;
-    color: #475569;
-    white-space: nowrap;
-  }
-  .meta-grid .v{
-    text-align: right;
-    direction: ltr;              /* مهم لو القيم فيها أرقام/INV */
-    unicode-bidi: plaintext;
-    font-weight: 700;
-    color: #0f172a;
-  }
-
-  /* Responsive adjustments */
-  @media (max-width: 992px) {
-    .invoice-wrapper {
-      padding: 20px 0;
-    }
-
-    .modern-card {
-      margin-bottom: 20px;
-    }
-
-    .print-client-info {
-      grid-template-columns: 1fr;
-      gap: 20px;
-    }
-  }
-
-  @media (max-width: 768px) {
-    .invoice-card {
-      padding: 20px;
-    }
-
-    .print-header {
-      flex-direction: column;
-      gap: 20px;
-    }
-
-    .meta-grid {
-      grid-template-columns: 100px 1fr;
+    
+    /* Hide all non-print elements */
+    .min-h-screen, .bg-gradient-to-br, button, .flex, .grid, .space-y-6, .mt-8, .gap-6 {
+      display: none !important;
     }
   }
 </style>
+
 
 <!-- ================= ENHANCED SCRIPT ================= -->
 <script>

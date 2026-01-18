@@ -1,0 +1,40 @@
+{% extends "main/base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Client Dashboard" %}{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+  <h1 class="mb-4">{% trans "Welcome, " %}{{ client.name }}</h1>
+
+  {% if no_subscription %}
+    <div class="alert alert-warning">
+      <i class="fas fa-exclamation-triangle me-2"></i>
+      {% trans "You don't have an active subscription. Please subscribe to start sending messages." %}
+    </div>
+    <a href="{{ subscribe_url }}" class="btn btn-primary btn-lg">
+      {% trans "Choose a Package" %}
+    </a>
+  {% else %}
+    <div class="card mb-4">
+      <div class="card-body">
+        <h5 class="card-title">{% trans "Subscription Status" %}</h5>
+        <p class="card-text">
+          {% trans "Total Messages:" %} {{ balance.total_messages }} <br>
+          {% trans "Used Messages:" %} {{ balance.used_messages }} <br>
+          {% trans "Remaining Messages:" %} {{ balance.remaining_messages }}
+        </p>
+      </div>
+    </div>
+
+    <!-- Example Dashboard Content -->
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">{% trans "Quick Actions" %}</h5>
+        <a href="/send-message/" class="btn btn-success me-2">{% trans "Send WhatsApp Message" %}</a>
+        <a href="/message-history/" class="btn btn-secondary">{% trans "View History" %}</a>
+      </div>
+    </div>
+  {% endif %}
+</div>
+{% endblock %}

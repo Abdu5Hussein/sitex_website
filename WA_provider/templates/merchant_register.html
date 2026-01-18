@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Merchant Registration</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f6fa;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            font-weight: 600;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        .packages {
+            margin-top: 25px;
+        }
+
+        .package-card {
+            border: 2px solid #eee;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .package-card:hover {
+            border-color: #0d6efd;
+            background: #f1f6ff;
+        }
+
+        .package-card input {
+            margin-right: 10px;
+        }
+
+        .price {
+            font-size: 18px;
+            font-weight: bold;
+            color: #0d6efd;
+        }
+
+        .error {
+            background: #ffecec;
+            color: #c0392b;
+            padding: 10px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            background: #0d6efd;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            background: #0b5ed7;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h2>Register as Merchant</h2>
+
+    {% if error %}
+        <div class="error">{{ error }}</div>
+    {% endif %}
+
+    <form method="post">
+        {% csrf_token %}
+
+        <div class="form-group">
+            <label>Business Name *</label>
+            <input name="name" required>
+        </div>
+
+        <div class="form-group">
+            <label>Phone *</label>
+            <input name="phone" required>
+        </div>
+
+        <div class="form-group">
+            <label>Email</label>
+            <input name="email" type="email">
+        </div>
+
+        <div class="form-group">
+            <label>City</label>
+            <input name="city">
+        </div>
+
+        <div class="form-group">
+            <label>Address</label>
+            <textarea name="address" rows="3"></textarea>
+        </div>
+
+        <div class="form-group">
+            <label>LyPay Number</label>
+            <input name="lypay" placeholder="Optional">
+        </div>
+
+        <div class="packages">
+            <h3>Choose Package</h3>
+
+            {% for p in packages %}
+                <label class="package-card">
+                    <input type="radio" name="package" value="{{ p.id }}"
+                        {% if p.name == "Free" %}checked{% endif %}
+                    >
+                    <strong>{{ p.name }}</strong><br>
+                    <span class="price">{{ p.monthly_price }} LYD / month</span><br>
+                    Transaction Fee: {{ p.transaction_fee_percent }}%<br>
+                    Payment Links: {{ p.max_payment_links }}
+                </label>
+            {% endfor %}
+        </div>
+
+        <button type="submit">Create Merchant Account</button>
+
+    </form>
+
+</div>
+
+</body>
+</html>

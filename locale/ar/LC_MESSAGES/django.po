@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-29 13:01+0200\n"
+"POT-Creation-Date: 2026-01-04 11:18+0000\n"
 "PO-Revision-Date: 2025-12-07 10:30+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Arabic <LL@li.org>\n"
@@ -15,2334 +15,2803 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
-"&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
 
-#: .\main\templates copy\main\footer.html:6
-#: .\main\templates\main\footer.html:6
+#: ⁨main/templates copy/main/footer.html⁩:6 main/templates/main/footer.html:6
 msgid "Copyright &copy; 2020 Company Name"
 msgstr "حقوق النشر &copy; 2020 اسم الشركة"
 
-#: .\main\templates copy\main\footer.html:7
-#: .\main\templates\main\footer.html:7
+#: ⁨main/templates copy/main/footer.html⁩:7 main/templates/main/footer.html:7
 msgid "Designed by TOOPLATE"
 msgstr "تصميم بواسطة TOOPLATE"
 
-#: .\main\templates\main\404.html:3
+#: main/templates/main/404.html:3
 msgid "Page Not Found - AWFERLK Solutions"
 msgstr "الصفحة غير موجودة - اوفرلك للحلول التقنية"
 
-#: .\main\templates\main\404.html:15
+#: main/templates/main/404.html:15
 msgid "404 - Page Not Found"
 msgstr "404 - الصفحة غير موجودة"
 
-#: .\main\templates\main\404.html:18
-msgid ""
-" The page you're looking for doesn't exist or has been\n"
-"          moved. "
-msgstr ""
-" الصفحة التي تبحث عنها غير موجودة أو تم نقلها\n"
-"          إلى مكان آخر. "
+#: main/templates/main/404.html:18
+msgid " The page you're looking for doesn't exist or has been\n          moved. "
+msgstr " الصفحة التي تبحث عنها غير موجودة أو تم نقلها\n          إلى مكان آخر. "
 
-#: .\main\templates\main\404.html:35
+#: main/templates/main/404.html:35
 msgid "What Happened?"
 msgstr "ما الذي حدث؟"
 
-#: .\main\templates\main\404.html:39
-msgid ""
-" We couldn't find the page you requested. This might\n"
-"            be because: "
-msgstr ""
-" لم نتمكن من العثور على الصفحة المطلوبة. قد يكون ذلك\n"
-"            للأسباب التالية: "
+#: main/templates/main/404.html:39
+msgid " We couldn't find the page you requested. This might\n            be because: "
+msgstr " لم نتمكن من العثور على الصفحة المطلوبة. قد يكون ذلك\n            للأسباب التالية: "
 
-#: .\main\templates\main\404.html:46
+#: main/templates/main/404.html:46
 msgid "The URL might be misspelled"
 msgstr "ربما تم إدخال رابط الصفحة بشكل غير صحيح"
 
-#: .\main\templates\main\404.html:50
+#: main/templates/main/404.html:50
 msgid "The page has been moved or deleted"
 msgstr "ربما تم نقل الصفحة أو حذفها"
 
-#: .\main\templates\main\404.html:54
+#: main/templates/main/404.html:54
 msgid "You might have followed an outdated link"
 msgstr "ربما استخدمت رابطًا قديمًا أو غير محدث"
 
-#: .\main\templates\main\404.html:61
+#: main/templates/main/404.html:61
 msgid "Back to Homepage"
 msgstr "العودة إلى الصفحة الرئيسية"
 
-#: .\main\templates\main\404.html:66
+#: main/templates/main/404.html:66
 msgid "Contact Support"
 msgstr "الاتصال بالدعم"
 
-#: .\main\templates\main\404.html:77
+#: main/templates/main/404.html:77
 msgid "Helpful Links"
 msgstr "روابط مفيدة"
 
-#: .\main\templates\main\404.html:88 .\main\templates\main\shop.html:1016
+#: main/templates/main/404.html:88 main/templates/main/shop.html:1016
 msgid "Shop"
 msgstr "المتجر"
 
-#: .\main\templates\main\404.html:90
+#: main/templates/main/404.html:90
 msgid "Explore our product catalog"
 msgstr "استكشف قائمة منتجاتنا"
 
-#: .\main\templates\main\404.html:102
+#: main/templates/main/404.html:102
 msgid "Documentation"
 msgstr "التوثيق"
 
-#: .\main\templates\main\404.html:104
+#: main/templates/main/404.html:104
 msgid "Browse our help center"
 msgstr "تصفّح مركز المساعدة"
 
-#: .\main\templates\main\404.html:116
+#: main/templates/main/404.html:116
 msgid "Blog & News"
 msgstr "المدونة والأخبار"
 
-#: .\main\templates\main\404.html:118
+#: main/templates/main/404.html:118
 msgid "Read our latest updates"
 msgstr "اطّلع على آخر التحديثات"
 
-#: .\main\templates\main\404.html:130 .\main\templates\main\base.html:919
+#: main/templates/main/404.html:130 main/templates/main/base.html:920
 msgid "About Us"
 msgstr "من نحن"
 
-#: .\main\templates\main\404.html:132
+#: main/templates/main/404.html:132
 msgid "Learn more about our company"
 msgstr "تعرّف أكثر على شركتنا"
 
-#: .\main\templates\main\404.html:149
+#: main/templates/main/404.html:149
 msgid "Recent Updates"
 msgstr "آخر التحديثات"
 
-#: .\main\templates\main\404.html:151
+#: main/templates/main/404.html:151
 msgid "You might be interested in these pages"
 msgstr "قد تهمّك هذه الصفحات"
 
-#: .\main\templates\main\404.html:164
+#: main/templates/main/404.html:164
 msgid "New Features"
 msgstr "مزايا جديدة"
 
-#: .\main\templates\main\404.html:166
+#: main/templates/main/404.html:166
 msgid "Discover our latest platform enhancements and tools"
 msgstr "اكتشف أحدث التحسينات والأدوات في منصّتنا"
 
-#: .\main\templates\main\404.html:169
+#: main/templates/main/404.html:169
 msgid "Explore Features"
 msgstr "استكشاف المزايا"
 
-#: .\main\templates\main\404.html:184
+#: main/templates/main/404.html:184
 msgid "Tutorials"
 msgstr "الدروس والشروحات"
 
-#: .\main\templates\main\404.html:187
+#: main/templates/main/404.html:187
 msgid "Step-by-step guides to get the most from our solutions"
 msgstr "شروحات خطوة بخطوة للاستفادة القصوى من حلولنا"
 
-#: .\main\templates\main\404.html:190
+#: main/templates/main/404.html:190
 msgid "View Tutorials"
 msgstr "عرض الشروحات"
 
-#: .\main\templates\main\404.html:205
+#: main/templates/main/404.html:205
 msgid "Events"
 msgstr "الفعاليات"
 
-#: .\main\templates\main\404.html:207
+#: main/templates/main/404.html:207
 msgid "Join our webinars, workshops, and community events"
 msgstr "انضم إلى الندوات وورش العمل والفعاليات المجتمعية الخاصة بنا"
 
-#: .\main\templates\main\404.html:210
+#: main/templates/main/404.html:210
 msgid "See Events"
 msgstr "عرض الفعاليات"
 
-#: .\main\templates\main\about.html:4
+#: main/templates/main/about.html:4
 msgid "About Us - SITEX"
 msgstr "من نحن - SITEX"
 
-#: .\main\templates\main\about.html:13 .\main\templates\main\base.html:745
+#: main/templates/main/about.html:13 main/templates/main/base.html:746
 msgid "About SITEX"
 msgstr "عن SITEX"
 
-#: .\main\templates\main\about.html:16
-msgid ""
-"\n"
-"          We build modern software, websites, and digital solutions that "
-"help businesses grow—securely and efficiently.\n"
-"          "
-msgstr ""
-"\n"
-"          نحن نبني برمجيات حديثة ومواقع إلكترونية وحلولًا رقمية تساعد الشركات "
-"على النمو — بأمان وكفاءة.\n"
-"          "
+#: main/templates/main/about.html:16
+msgid "\n          We build modern software, websites, and digital solutions that help businesses grow—securely and efficiently.\n          "
+msgstr "\n          نحن نبني برمجيات حديثة ومواقع إلكترونية وحلولًا رقمية تساعد الشركات على النمو — بأمان وكفاءة.\n          "
 
-#: .\main\templates\main\about.html:30
+#: main/templates/main/about.html:30
 msgid "Our Story"
 msgstr "قصتنا"
 
-#: .\main\templates\main\about.html:34
-msgid ""
-"\n"
-"          SITEX started as a small team passionate about building clean, "
-"reliable software.\n"
-"          Over time, we evolved into a full-service technology group "
-"delivering websites, business systems,\n"
-"          e-commerce platforms, and integrations tailored to each client’s "
-"needs.\n"
-"          "
-msgstr ""
-"\n"
-"          بدأت SITEX كفريق صغير شغوف ببناء برمجيات نظيفة وموثوقة.\n"
-"          ومع الوقت تطوّرنا لنصبح مجموعة تقنية متكاملة تقدم مواقع إلكترونية "
-"وأنظمة أعمال\n"
-"          ومنصات تجارة إلكترونية وتكاملات مخصصة حسب احتياج كل عميل.\n"
-"          "
+#: main/templates/main/about.html:34
+msgid "\n          SITEX started as a small team passionate about building clean, reliable software.\n          Over time, we evolved into a full-service technology group delivering websites, business systems,\n          e-commerce platforms, and integrations tailored to each client’s needs.\n          "
+msgstr "\n          بدأت SITEX كفريق صغير شغوف ببناء برمجيات نظيفة وموثوقة.\n          ومع الوقت تطوّرنا لنصبح مجموعة تقنية متكاملة تقدم مواقع إلكترونية وأنظمة أعمال\n          ومنصات تجارة إلكترونية وتكاملات مخصصة حسب احتياج كل عميل.\n          "
 
-#: .\main\templates\main\about.html:43
-msgid ""
-"\n"
-"          Today, we partner with companies across different industries to "
-"modernize operations, improve customer\n"
-"          experiences, and launch digital products faster—using proven "
-"engineering practices, scalable architecture,\n"
-"          and modern UI/UX.\n"
-"          "
-msgstr ""
-"\n"
-"          اليوم نتعاون مع شركات في قطاعات مختلفة لتحديث العمليات وتحسين "
-"تجربة العملاء\n"
-"          وإطلاق منتجات رقمية بسرعة أكبر — بالاعتماد على ممارسات هندسية "
-"مثبتة وبنية قابلة للتوسع\n"
-"          وتجربة مستخدم/واجهة حديثة.\n"
-"          "
+#: main/templates/main/about.html:43
+msgid "\n          Today, we partner with companies across different industries to modernize operations, improve customer\n          experiences, and launch digital products faster—using proven engineering practices, scalable architecture,\n          and modern UI/UX.\n          "
+msgstr "\n          اليوم نتعاون مع شركات في قطاعات مختلفة لتحديث العمليات وتحسين تجربة العملاء\n          وإطلاق منتجات رقمية بسرعة أكبر — بالاعتماد على ممارسات هندسية مثبتة وبنية قابلة للتوسع\n          وتجربة مستخدم/واجهة حديثة.\n          "
 
-#: .\main\templates\main\about.html:53
+#: main/templates/main/about.html:53
 msgid "Years of Delivery"
 msgstr "سنوات من الإنجاز"
 
-#: .\main\templates\main\about.html:57
+#: main/templates/main/about.html:57
 msgid "Projects Completed"
 msgstr "المشاريع المكتملة"
 
-#: .\main\templates\main\about.html:61
+#: main/templates/main/about.html:61
 msgid "Active Clients"
 msgstr "عملاء نشطون"
 
-#: .\main\templates\main\about.html:70
+#: main/templates/main/about.html:70
 msgid "Software Development"
 msgstr "تطوير البرمجيات"
 
-#: .\main\templates\main\about.html:88
+#: main/templates/main/about.html:88
 msgid "Our Mission"
 msgstr "مهمّتنا"
 
-#: .\main\templates\main\about.html:92
-msgid ""
-"\n"
-"            To deliver secure, high-quality digital solutions that solve "
-"real business problems—through modern engineering,\n"
-"            thoughtful design, and reliable support.\n"
-"            "
-msgstr ""
-"\n"
-"            تقديم حلول رقمية آمنة وعالية الجودة تُعالج مشاكل الأعمال الواقعية "
-"— عبر هندسة حديثة،\n"
-"            وتصميم مدروس، ودعم موثوق.\n"
-"            "
+#: main/templates/main/about.html:92
+msgid "\n            To deliver secure, high-quality digital solutions that solve real business problems—through modern engineering,\n            thoughtful design, and reliable support.\n            "
+msgstr "\n            تقديم حلول رقمية آمنة وعالية الجودة تُعالج مشاكل الأعمال الواقعية — عبر هندسة حديثة،\n            وتصميم مدروس، ودعم موثوق.\n            "
 
-#: .\main\templates\main\about.html:100
+#: main/templates/main/about.html:100
 msgid "Modern websites & landing pages"
 msgstr "مواقع حديثة وصفحات هبوط"
 
-#: .\main\templates\main\about.html:104
+#: main/templates/main/about.html:104
 msgid "Business systems & automation"
 msgstr "أنظمة أعمال وأتمتة"
 
-#: .\main\templates\main\about.html:108
+#: main/templates/main/about.html:108
 msgid "Reliable maintenance & technical support"
 msgstr "صيانة ودعم تقني موثوق"
 
-#: .\main\templates\main\about.html:119
+#: main/templates/main/about.html:119
 msgid "Our Vision"
 msgstr "رؤيتنا"
 
-#: .\main\templates\main\about.html:123
-msgid ""
-"\n"
-"            To be a trusted technology partner in the region—known for "
-"innovation, craftsmanship, and building products that scale.\n"
-"            "
-msgstr ""
-"\n"
-"            أن نكون شريكًا تقنيًا موثوقًا في المنطقة — معروفين بالابتكار "
-"والإتقان وبناء منتجات قابلة للتوسع.\n"
-"            "
+#: main/templates/main/about.html:123
+msgid "\n            To be a trusted technology partner in the region—known for innovation, craftsmanship, and building products that scale.\n            "
+msgstr "\n            أن نكون شريكًا تقنيًا موثوقًا في المنطقة — معروفين بالابتكار والإتقان وبناء منتجات قابلة للتوسع.\n            "
 
-#: .\main\templates\main\about.html:130
+#: main/templates/main/about.html:130
 msgid "High engineering standards"
 msgstr "معايير هندسية عالية"
 
-#: .\main\templates\main\about.html:134
+#: main/templates/main/about.html:134
 msgid "Client-first delivery mindset"
 msgstr "نهج تسليم يضع العميل أولًا"
 
-#: .\main\templates\main\about.html:138
+#: main/templates/main/about.html:138
 msgid "Scalable, future-ready solutions"
 msgstr "حلول قابلة للتوسع وجاهزة للمستقبل"
 
-#: .\main\templates\main\about.html:151
+#: main/templates/main/about.html:151
 msgid "Our Values"
 msgstr "قيمنا"
 
-#: .\main\templates\main\about.html:154
-msgid ""
-"\n"
-"        The principles that shape how we build, collaborate, and deliver.\n"
-"        "
-msgstr ""
-"\n"
-"        المبادئ التي تُشكّل طريقة عملنا في البناء والتعاون والتسليم.\n"
-"        "
+#: main/templates/main/about.html:154
+msgid "\n        The principles that shape how we build, collaborate, and deliver.\n        "
+msgstr "\n        المبادئ التي تُشكّل طريقة عملنا في البناء والتعاون والتسليم.\n        "
 
-#: .\main\templates\main\about.html:164
+#: main/templates/main/about.html:164
 msgid "Security & Reliability"
 msgstr "الأمان والموثوقية"
 
-#: .\main\templates\main\about.html:167
-msgid ""
-"\n"
-"            We design with security in mind and build systems that stay "
-"stable under real-world usage.\n"
-"            "
-msgstr ""
-"\n"
-"            نصمّم مع وضع الأمان في الاعتبار ونبني أنظمة تبقى مستقرة في "
-"الاستخدام الحقيقي.\n"
-"            "
+#: main/templates/main/about.html:167
+msgid "\n            We design with security in mind and build systems that stay stable under real-world usage.\n            "
+msgstr "\n            نصمّم مع وضع الأمان في الاعتبار ونبني أنظمة تبقى مستقرة في الاستخدام الحقيقي.\n            "
 
-#: .\main\templates\main\about.html:177
+#: main/templates/main/about.html:177
 msgid "Quality Craftsmanship"
 msgstr "جودة وإتقان"
 
-#: .\main\templates\main\about.html:180
-msgid ""
-"\n"
-"            Clean code, good architecture, and great UI/UX—because details "
-"matter.\n"
-"            "
-msgstr ""
-"\n"
-"            كود نظيف وبنية جيدة وتجربة مستخدم ممتازة — لأن التفاصيل تصنع "
-"الفرق.\n"
-"            "
+#: main/templates/main/about.html:180
+msgid "\n            Clean code, good architecture, and great UI/UX—because details matter.\n            "
+msgstr "\n            كود نظيف وبنية جيدة وتجربة مستخدم ممتازة — لأن التفاصيل تصنع الفرق.\n            "
 
-#: .\main\templates\main\about.html:190
+#: main/templates/main/about.html:190
 msgid "Partnership"
 msgstr "الشراكة"
 
-#: .\main\templates\main\about.html:193
-msgid ""
-"\n"
-"            We work closely with our clients, communicate clearly, and "
-"deliver with transparency.\n"
-"            "
-msgstr ""
-"\n"
-"            نعمل عن قرب مع عملائنا، ونتواصل بوضوح، ونُسلّم بشفافية.\n"
-"            "
+#: main/templates/main/about.html:193
+msgid "\n            We work closely with our clients, communicate clearly, and deliver with transparency.\n            "
+msgstr "\n            نعمل عن قرب مع عملائنا، ونتواصل بوضوح، ونُسلّم بشفافية.\n            "
 
-#: .\main\templates\main\about.html:208
+#: main/templates/main/about.html:208
 msgid "Build With SITEX"
 msgstr "ابنِ مشروعك مع SITEX"
 
-#: .\main\templates\main\about.html:211
-msgid ""
-"\n"
-"          Whether you need a modern website, a business system, or a "
-"complete digital platform—SITEX is ready to help you launch and scale.\n"
-"          "
-msgstr ""
-"\n"
-"          سواء كنت تحتاج موقعًا حديثًا أو نظام أعمال أو منصة رقمية متكاملة — "
-"SITEX جاهزة لمساعدتك على الإطلاق والتوسع.\n"
-"          "
+#: main/templates/main/about.html:211
+msgid "\n          Whether you need a modern website, a business system, or a complete digital platform—SITEX is ready to help you launch and scale.\n          "
+msgstr "\n          سواء كنت تحتاج موقعًا حديثًا أو نظام أعمال أو منصة رقمية متكاملة — SITEX جاهزة لمساعدتك على الإطلاق والتوسع.\n          "
 
-#: .\main\templates\main\about.html:220
+#: main/templates/main/about.html:220
+#: main/templates/main/website-calculator.html:213
 msgid "Request a Consultation"
 msgstr "اطلب استشارة"
 
-#: .\main\templates\main\base.html:16
-msgid "Heavy Duty Parts Hub"
-msgstr "مركز قطع الغيار الثقيلة"
+#: main/templates/main/base.html:15
+#| msgid "About SITEX"
+msgid "SITEX"
+msgstr "SITEX"
 
-#: .\main\templates\main\base.html:736
+#: main/templates/main/base.html:737
 msgid "Home"
 msgstr "الرئيسية"
 
-#: .\main\templates\main\base.html:754 .\main\templates\main\categories.html:9
-#: .\main\templates\main\home.html:387
+#: main/templates/main/base.html:755 main/templates/main/categories.html:10
+#: main/templates/main/home.html:387
 msgid "Our Services"
 msgstr "خدماتنا"
 
-#: .\main\templates\main\base.html:763 .\main\templates\main\clients.html:12
+#: main/templates/main/base.html:764 main/templates/main/clients.html:12
 msgid "Our Clients"
 msgstr "عملاؤنا"
 
-#: .\main\templates\main\base.html:772
+#: main/templates/main/base.html:773
 msgid "Contact Us"
 msgstr "تواصل معنا"
 
-#: .\main\templates\main\base.html:825
+#: main/templates/main/base.html:826
 msgid "Dashboard"
 msgstr "لوحة التحكم"
 
-#: .\main\templates\main\base.html:832
+#: main/templates/main/base.html:833
 msgid "Logout"
 msgstr "تسجيل الخروج"
 
-#: .\main\templates\main\base.html:836
+#: main/templates/main/base.html:837
 msgid "Login"
 msgstr "تسجيل الدخول"
 
-#: .\main\templates\main\base.html:839
+#: main/templates/main/base.html:840
 msgid "Register"
 msgstr "إنشاء حساب"
 
-#: .\main\templates\main\base.html:850
+#: main/templates/main/base.html:851
 msgid "Login to Dashboard"
 msgstr "تسجيل الدخول إلى لوحة التحكم"
 
-#: .\main\templates\main\base.html:898
+#: main/templates/main/base.html:899
 msgid "Company"
 msgstr "الشركة"
 
-#: .\main\templates\main\base.html:930
-#: .\main\templates\main\dashboard.html:492
-#: .\main\templates\main\dashboard8.html:339
+#: main/templates/main/base.html:931 main/templates/main/dashboard.html:492
+#: main/templates/main/dashboard8.html:339
+#: main/templates/main/website-calculator.html:469
 msgid "Products"
 msgstr "المنتجات"
 
-#: .\main\templates\main\base.html:940
+#: main/templates/main/base.html:941
 msgid "Contact"
 msgstr "تواصل"
 
-#: .\main\templates\main\base.html:946
+#: main/templates/main/base.html:947
 msgid "not set"
 msgstr "غير محدد"
 
-#: .\main\templates\main\base.html:966
-msgid "Top Brands"
-msgstr "أفضل العلامات التجارية"
+#: main/templates/main/base.html:967
+#| msgid "Technologies"
+msgid "Top Technologies"
+msgstr "أهم التقنيات"
 
-#: .\main\templates\main\base.html:978
+#: main/templates/main/base.html:979
 msgid "All rights reserved."
 msgstr "جميع الحقوق محفوظة."
 
-#: .\main\templates\main\base.html:983
+#: main/templates/main/base.html:984
 msgid "Privacy"
 msgstr "الخصوصية"
 
-#: .\main\templates\main\base.html:984
+#: main/templates/main/base.html:985
 msgid "Terms"
 msgstr "الشروط"
 
-#: .\main\templates\main\base.html:985 .\main\templates\main\home.html:288
+#: main/templates/main/base.html:986 main/templates/main/home.html:288
+#: main/templates/main/website-calculator.html:509
 msgid "Support"
 msgstr "الدعم"
 
-#: .\main\templates\main\base.html:1184
+#: main/templates/main/base.html:1185
 msgid "No brands available."
 msgstr "لا توجد علامات تجارية متاحة."
 
-#: .\main\templates\main\base.html:1219
+#: main/templates/main/base.html:1220
 msgid "Failed to load brands. Please try again later."
 msgstr "فشل في تحميل العلامات التجارية. يرجى المحاولة لاحقًا."
 
-#: .\main\templates\main\categories.html:12
+#: main/templates/main/categories.html:3
+#| msgid "Categories"
+msgid "Categories - SITEX"
+msgstr "التصنيفات - SITEX"
+
+#: main/templates/main/categories.html:13
 msgid "Explore SITEX services — websites, systems, integrations, and more."
 msgstr "استكشف خدمات SITEX — مواقع، أنظمة، تكاملات، وأكثر."
 
-#: .\main\templates\main\categories.html:31
+#: main/templates/main/categories.html:35
 msgid "Search services..."
 msgstr "ابحث عن الخدمات..."
 
-#: .\main\templates\main\categories.html:69
-#: .\main\templates\main\products.html:44
+#: main/templates/main/categories.html:81 main/templates/main/products.html:44
 msgid "No image"
 msgstr "لا توجد صورة"
 
-#: .\main\templates\main\categories.html:92
+#: main/templates/main/categories.html:104
 msgid "Explore this category to discover SITEX solutions and related services."
 msgstr "استكشف هذا التصنيف لاكتشاف حلول SITEX والخدمات المرتبطة."
 
-#: .\main\templates\main\categories.html:103
+#: main/templates/main/categories.html:115
 msgid "No Categories Available"
 msgstr "لا توجد تصنيفات متاحة"
 
-#: .\main\templates\main\categories.html:104
+#: main/templates/main/categories.html:116
 msgid "Please check back later."
 msgstr "يرجى العودة لاحقًا."
 
-#: .\main\templates\main\clients.html:4
+#: main/templates/main/clients.html:4
 msgid "Our Clients - SITEX"
 msgstr "عملاؤنا - SITEX"
 
-#: .\main\templates\main\clients.html:15
-msgid ""
-"\n"
-"          We partner with organizations to build websites, systems, and "
-"digital products that deliver real results.\n"
-"          "
-msgstr ""
-"\n"
-"          نتعاون مع الجهات والمؤسسات لبناء مواقع وأنظمة ومنتجات رقمية تحقق "
-"نتائج حقيقية.\n"
-"          "
+#: main/templates/main/clients.html:15
+msgid "\n          We partner with organizations to build websites, systems, and digital products that deliver real results.\n          "
+msgstr "\n          نتعاون مع الجهات والمؤسسات لبناء مواقع وأنظمة ومنتجات رقمية تحقق نتائج حقيقية.\n          "
 
-#: .\main\templates\main\clients.html:31
-msgid ""
-"\n"
-"          At SITEX, we value long-term partnerships. We collaborate closely "
-"with clients, understand their workflows,\n"
-"          and deliver solutions that are secure, scalable, and easy to use.\n"
-"          "
-msgstr ""
-"\n"
-"          في SITEX نُقدّر الشراكات طويلة المدى. نتعاون عن قرب مع العملاء، نفهم "
-"سير عملهم،\n"
-"          ونقدم حلولًا آمنة وقابلة للتوسع وسهلة الاستخدام.\n"
-"          "
+#: main/templates/main/clients.html:31
+msgid "\n          At SITEX, we value long-term partnerships. We collaborate closely with clients, understand their workflows,\n          and deliver solutions that are secure, scalable, and easy to use.\n          "
+msgstr "\n          في SITEX نُقدّر الشراكات طويلة المدى. نتعاون عن قرب مع العملاء، نفهم سير عملهم،\n          ونقدم حلولًا آمنة وقابلة للتوسع وسهلة الاستخدام.\n          "
 
-#: .\main\templates\main\clients.html:51
+#: main/templates/main/clients.html:51
 msgid "Financial Institutions"
 msgstr "المؤسسات المالية"
 
-#: .\main\templates\main\clients.html:53
+#: main/templates/main/clients.html:53
 msgid "Secure integrations & compliance-ready systems"
 msgstr "تكاملات آمنة وأنظمة جاهزة للامتثال"
 
-#: .\main\templates\main\clients.html:58
-msgid ""
-"\n"
-"              \"SITEX delivered reliable integrations and improved our "
-"operational workflow with clear documentation and support.\"\n"
-"              "
-msgstr ""
-"\n"
-"              \"قدّمت SITEX تكاملات موثوقة وحسّنت سير العمل التشغيلي لدينا عبر "
-"توثيق واضح ودعم مستمر.\" \n"
-"              "
+#: main/templates/main/clients.html:58
+msgid "\n              \"SITEX delivered reliable integrations and improved our operational workflow with clear documentation and support.\"\n              "
+msgstr "\n              \"قدّمت SITEX تكاملات موثوقة وحسّنت سير العمل التشغيلي لدينا عبر توثيق واضح ودعم مستمر.\" \n              "
 
-#: .\main\templates\main\clients.html:65
+#: main/templates/main/clients.html:65
 msgid "Banking"
 msgstr "المصارف"
 
-#: .\main\templates\main\clients.html:77
+#: main/templates/main/clients.html:77
 msgid "Retail & E-commerce"
 msgstr "البيع بالتجزئة والتجارة الإلكترونية"
 
-#: .\main\templates\main\clients.html:79
+#: main/templates/main/clients.html:79
 msgid "Online stores, catalogs, and order automation"
 msgstr "متاجر إلكترونية وكتالوجات وأتمتة الطلبات"
 
-#: .\main\templates\main\clients.html:84
-msgid ""
-"\n"
-"              \"Their web platform helped us sell faster and manage products "
-"and orders with ease.\"\n"
-"              "
-msgstr ""
-"\n"
-"              \"ساعدتنا منصتهم على البيع بسرعة وإدارة المنتجات والطلبات "
-"بسهولة.\" \n"
-"              "
+#: main/templates/main/clients.html:84
+msgid "\n              \"Their web platform helped us sell faster and manage products and orders with ease.\"\n              "
+msgstr "\n              \"ساعدتنا منصتهم على البيع بسرعة وإدارة المنتجات والطلبات بسهولة.\" \n              "
 
-#: .\main\templates\main\clients.html:91
+#: main/templates/main/clients.html:91
 msgid "Commerce"
 msgstr "التجارة"
 
-#: .\main\templates\main\clients.html:103
+#: main/templates/main/clients.html:103
 msgid "Industrial & Logistics"
 msgstr "الصناعة واللوجستيات"
 
-#: .\main\templates\main\clients.html:105
+#: main/templates/main/clients.html:105
 msgid "Inventory, invoices, dashboards, and reporting"
 msgstr "مخزون وفواتير ولوحات تحكم وتقارير"
 
-#: .\main\templates\main\clients.html:110
-msgid ""
-"\n"
-"              \"We gained better visibility over operations through SITEX "
-"dashboards and automated reports.\"\n"
-"              "
-msgstr ""
-"\n"
-"              \"حصلنا على رؤية أفضل للعمليات من خلال لوحات SITEX والتقارير "
-"المؤتمتة.\" \n"
-"              "
+#: main/templates/main/clients.html:110
+msgid "\n              \"We gained better visibility over operations through SITEX dashboards and automated reports.\"\n              "
+msgstr "\n              \"حصلنا على رؤية أفضل للعمليات من خلال لوحات SITEX والتقارير المؤتمتة.\" \n              "
 
-#: .\main\templates\main\clients.html:117
+#: main/templates/main/clients.html:117
 msgid "Operations"
 msgstr "العمليات"
 
-#: .\main\templates\main\clients.html:129
+#: main/templates/main/clients.html:129
 msgid "Education & Training"
 msgstr "التعليم والتدريب"
 
-#: .\main\templates\main\clients.html:131
+#: main/templates/main/clients.html:131
 msgid "Portals, content systems, and LMS customization"
 msgstr "بوابات وأنظمة محتوى وتخصيص أنظمة إدارة التعلم"
 
-#: .\main\templates\main\clients.html:136
-msgid ""
-"\n"
-"              \"SITEX created a clean portal experience for our users with "
-"high performance and uptime.\"\n"
-"              "
-msgstr ""
-"\n"
-"              \"قدّمت SITEX تجربة بوابة مميزة لمستخدمينا بأداء عالي وتوفر "
-"ممتاز.\" \n"
-"              "
+#: main/templates/main/clients.html:136
+msgid "\n              \"SITEX created a clean portal experience for our users with high performance and uptime.\"\n              "
+msgstr "\n              \"قدّمت SITEX تجربة بوابة مميزة لمستخدمينا بأداء عالي وتوفر ممتاز.\" \n              "
 
-#: .\main\templates\main\clients.html:143
+#: main/templates/main/clients.html:143
 msgid "Education"
 msgstr "التعليم"
 
-#: .\main\templates\main\clients.html:155
+#: main/templates/main/clients.html:155
 msgid "Governance & Compliance"
 msgstr "الحوكمة والامتثال"
 
-#: .\main\templates\main\clients.html:157
+#: main/templates/main/clients.html:157
 msgid "Audit-friendly workflows and role-based access"
 msgstr "سير عمل مناسب للتدقيق وصلاحيات حسب الأدوار"
 
-#: .\main\templates\main\clients.html:162
-msgid ""
-"\n"
-"              \"They implemented secure access, logging, and workflows "
-"aligned with compliance requirements.\"\n"
-"              "
-msgstr ""
-"\n"
-"              \"نفّذوا وصولًا آمنًا وسجلات تتبع وسير عمل متوافقًا مع متطلبات "
-"الامتثال.\" \n"
-"              "
+#: main/templates/main/clients.html:162
+msgid "\n              \"They implemented secure access, logging, and workflows aligned with compliance requirements.\"\n              "
+msgstr "\n              \"نفّذوا وصولًا آمنًا وسجلات تتبع وسير عمل متوافقًا مع متطلبات الامتثال.\" \n              "
 
-#: .\main\templates\main\clients.html:169
+#: main/templates/main/clients.html:169
 msgid "Compliance"
 msgstr "الامتثال"
 
-#: .\main\templates\main\clients.html:181
+#: main/templates/main/clients.html:181
 msgid "Startups & SMEs"
 msgstr "الشركات الناشئة والمتوسطة"
 
-#: .\main\templates\main\clients.html:183
+#: main/templates/main/clients.html:183
 msgid "MVPs, landing pages, and custom web apps"
 msgstr "نماذج أولية (MVP) وصفحات هبوط وتطبيقات ويب مخصصة"
 
-#: .\main\templates\main\clients.html:188
-msgid ""
-"\n"
-"              \"SITEX helped us launch quickly with a modern UI and a "
-"scalable backend.\"\n"
-"              "
-msgstr ""
-"\n"
-"              \"ساعدتنا SITEX على الإطلاق بسرعة بواجهة حديثة وخلفية قابلة "
-"للتوسع.\" \n"
-"              "
+#: main/templates/main/clients.html:188
+msgid "\n              \"SITEX helped us launch quickly with a modern UI and a scalable backend.\"\n              "
+msgstr "\n              \"ساعدتنا SITEX على الإطلاق بسرعة بواجهة حديثة وخلفية قابلة للتوسع.\" \n              "
 
-#: .\main\templates\main\clients.html:195
+#: main/templates/main/clients.html:195
 msgid "Software"
 msgstr "البرمجيات"
 
-#: .\main\templates\main\clients.html:208
+#: main/templates/main/clients.html:208
 msgid "Selected Projects"
 msgstr "مشاريع مختارة"
 
-#: .\main\templates\main\clients.html:211
-msgid ""
-"\n"
-"        A snapshot of solutions we delivered—websites, dashboards, "
-"integrations, and internal systems.\n"
-"        "
-msgstr ""
-"\n"
-"        لمحة عن الحلول التي قدمناها — مواقع، لوحات تحكم، تكاملات، وأنظمة "
-"داخلية.\n"
-"        "
+#: main/templates/main/clients.html:211
+msgid "\n        A snapshot of solutions we delivered—websites, dashboards, integrations, and internal systems.\n        "
+msgstr "\n        لمحة عن الحلول التي قدمناها — مواقع، لوحات تحكم، تكاملات، وأنظمة داخلية.\n        "
 
-#: .\main\templates\main\clients.html:248
-#: .\main\templates\main\dashboard.html:732
-#: .\main\templates\main\dashboard8.html:648
+#: main/templates/main/clients.html:248 main/templates/main/dashboard.html:732
+#: main/templates/main/dashboard8.html:648
 msgid "View"
 msgstr "عرض"
 
-#: .\main\templates\main\clients.html:252
+#: main/templates/main/clients.html:252
 msgid "Private"
 msgstr "خاص"
 
-#: .\main\templates\main\clients.html:269
+#: main/templates/main/clients.html:269
 msgid "A SITEX delivered solution tailored to client needs."
 msgstr "حل من تنفيذ SITEX مُصمم حسب احتياج العميل."
 
-#: .\main\templates\main\clients.html:296
+#: main/templates/main/clients.html:296
 msgid "Projects will appear here"
 msgstr "ستظهر المشاريع هنا"
 
-#: .\main\templates\main\clients.html:298
-msgid ""
-"Add your projects in the admin panel and pass them to this template as "
-"'projects'."
+#: main/templates/main/clients.html:298
+msgid "Add your projects in the admin panel and pass them to this template as 'projects'."
 msgstr "أضف مشاريعك من لوحة الإدارة ثم مررها إلى هذا القالب باسم 'projects'."
 
-#: .\main\templates\main\clients.html:318
+#: main/templates/main/clients.html:318
 msgid "Client Retention"
 msgstr "الاحتفاظ بالعملاء"
 
-#: .\main\templates\main\clients.html:322
+#: main/templates/main/clients.html:322
 msgid "Projects Delivered"
 msgstr "المشاريع المُسلّمة"
 
-#: .\main\templates\main\clients.html:326
+#: main/templates/main/clients.html:326
 msgid "Technical Support"
 msgstr "الدعم الفني"
 
-#: .\main\templates\main\clients.html:330
+#: main/templates/main/clients.html:330
 msgid "Satisfaction"
 msgstr "الرضا"
 
-#: .\main\templates\main\clients.html:342
+#: main/templates/main/clients.html:342
 msgid "Ready to Build Your Next Project?"
 msgstr "جاهز لبناء مشروعك القادم؟"
 
-#: .\main\templates\main\clients.html:346
-msgid ""
-"\n"
-"          Tell us what you need—website, system, integration, or automation—"
-"and we’ll propose the best solution.\n"
-"          "
-msgstr ""
-"\n"
-"          أخبرنا بما تحتاجه — موقع، نظام، تكامل، أو أتمتة — وسنقترح أفضل "
-"حل.\n"
-"          "
+#: main/templates/main/clients.html:346
+msgid "\n          Tell us what you need—website, system, integration, or automation—and we’ll propose the best solution.\n          "
+msgstr "\n          أخبرنا بما تحتاجه — موقع، نظام، تكامل، أو أتمتة — وسنقترح أفضل حل.\n          "
 
-#: .\main\templates\main\clients.html:356
+#: main/templates/main/clients.html:356
 msgid "Start Your Project"
 msgstr "ابدأ مشروعك"
 
-#: .\main\templates\main\clients.html:363 .\main\templates\main\home.html:78
+#: main/templates/main/clients.html:363 main/templates/main/home.html:78
 msgid "Explore Services"
 msgstr "استكشف الخدمات"
 
-#: .\main\templates\main\contact.html:3
+#: main/templates/main/contact.html:3
 msgid "Contact Us - AWFERLK Solutions"
 msgstr "اتصل بنا - اوفرلك للحلول التقنية"
 
-#: .\main\templates\main\contact.html:11
+#: main/templates/main/contact.html:11
 msgid "Get In Touch"
 msgstr "تواصل معنا"
 
-#: .\main\templates\main\contact.html:14
-msgid ""
-"\n"
-"          We'd love to hear from you. Send us a message and we'll respond as "
-"soon as possible.\n"
-"          "
-msgstr ""
-"\n"
-"          يسعدنا سماعك. أرسل لنا رسالة وسنقوم بالرد عليك في أقرب وقت ممكن.\n"
-"          "
+#: main/templates/main/contact.html:14
+msgid "\n          We'd love to hear from you. Send us a message and we'll respond as soon as possible.\n          "
+msgstr "\n          يسعدنا سماعك. أرسل لنا رسالة وسنقوم بالرد عليك في أقرب وقت ممكن.\n          "
 
-#: .\main\templates\main\contact.html:33
+#: main/templates/main/contact.html:33
 msgid "Send Us a Message"
 msgstr "أرسل لنا رسالة"
 
-#: .\main\templates\main\contact.html:50
-#: .\main\templates\main\contact.html:146
-#: .\main\templates\main\dashboard.html:1665
-#: .\main\templates\main\dashboard.html:1667
-#: .\main\templates\main\dashboard.html:1931
-#: .\main\templates\main\dashboard.html:1933
-#: .\main\templates\main\dashboard8.html:1374
-#: .\main\templates\main\dashboard8.html:1376
-#: .\main\templates\main\dashboard8.html:1511
-#: .\main\templates\main\dashboard8.html:1513
+#: main/templates/main/contact.html:50 main/templates/main/contact.html:146
+#: main/templates/main/dashboard.html:1665
+#: main/templates/main/dashboard.html:1667
+#: main/templates/main/dashboard.html:1931
+#: main/templates/main/dashboard.html:1933
+#: main/templates/main/dashboard8.html:1374
+#: main/templates/main/dashboard8.html:1376
+#: main/templates/main/dashboard8.html:1511
+#: main/templates/main/dashboard8.html:1513
 msgid "Email Address"
 msgstr "عنوان البريد الإلكتروني"
 
-#: .\main\templates\main\contact.html:61
+#: main/templates/main/contact.html:61
 msgid "your.email@example.com"
 msgstr "your.email@example.com"
 
-#: .\main\templates\main\contact.html:69
+#: main/templates/main/contact.html:69
 msgid "Your Message"
 msgstr "رسالتك"
 
-#: .\main\templates\main\contact.html:82
+#: main/templates/main/contact.html:82
 msgid "Tell us how we can help you..."
 msgstr "أخبرنا كيف يمكننا مساعدتك..."
 
-#: .\main\templates\main\contact.html:95
+#: main/templates/main/contact.html:95
 msgid "Send Message"
 msgstr "إرسال الرسالة"
 
-#: .\main\templates\main\contact.html:107
+#: main/templates/main/contact.html:107
 msgid "Contact Information"
 msgstr "معلومات الاتصال"
 
-#: .\main\templates\main\contact.html:118
+#: main/templates/main/contact.html:118
 msgid "Our Headquarters"
 msgstr "مقرّنا الرئيسي"
 
-#: .\main\templates\main\contact.html:120
+#: main/templates/main/contact.html:120
 msgid "Loading address from primary branch..."
 msgstr "جاري تحميل العنوان من الفرع الرئيسي..."
 
-#: .\main\templates\main\contact.html:132
-#: .\main\templates\main\dashboard.html:1652
-#: .\main\templates\main\dashboard.html:1654
-#: .\main\templates\main\dashboard.html:1918
-#: .\main\templates\main\dashboard.html:1920
-#: .\main\templates\main\dashboard8.html:1362
-#: .\main\templates\main\dashboard8.html:1364
-#: .\main\templates\main\dashboard8.html:1499
-#: .\main\templates\main\dashboard8.html:1501
-#: .\main\templates\main\products.html:127
+#: main/templates/main/contact.html:132 main/templates/main/dashboard.html:1652
+#: main/templates/main/dashboard.html:1654
+#: main/templates/main/dashboard.html:1918
+#: main/templates/main/dashboard.html:1920
+#: main/templates/main/dashboard8.html:1362
+#: main/templates/main/dashboard8.html:1364
+#: main/templates/main/dashboard8.html:1499
+#: main/templates/main/dashboard8.html:1501
+#: main/templates/main/products.html:127
 msgid "Phone Number"
 msgstr "رقم الهاتف"
 
-#: .\main\templates\main\contact.html:134
+#: main/templates/main/contact.html:134
 msgid "Loading phone number..."
 msgstr "جاري تحميل رقم الهاتف..."
 
-#: .\main\templates\main\contact.html:148
+#: main/templates/main/contact.html:148
 msgid "Loading email address..."
 msgstr "جاري تحميل البريد الإلكتروني..."
 
-#: .\main\templates\main\contact.html:160
+#: main/templates/main/contact.html:160
 msgid "Business Hours"
 msgstr "ساعات العمل"
 
-#: .\main\templates\main\contact.html:162
+#: main/templates/main/contact.html:162
 msgid "Loading business hours..."
 msgstr "جاري تحميل ساعات العمل..."
 
-#: .\main\templates\main\contact.html:171
+#: main/templates/main/contact.html:171
 msgid "Follow Us"
 msgstr "تابعنا"
 
-#: .\main\templates\main\contact.html:214
+#: main/templates/main/contact.html:214
 msgid "Our Branches"
 msgstr "فروعنا"
 
-#: .\main\templates\main\contact.html:216
+#: main/templates/main/contact.html:216
 msgid "Visit us at any of our locations worldwide"
 msgstr "قم بزيارتنا في أي من فروعنا حول العالم"
 
-#: .\main\templates\main\contact.html:224
+#: main/templates/main/contact.html:224
 msgid "Loading branches..."
 msgstr "جاري تحميل الفروع..."
 
-#: .\main\templates\main\contact.html:246
-#: .\main\templates\main\dashboard.html:115
-#: .\main\templates\main\dashboard.html:219
-#: .\main\templates\main\dashboard.html:355
-#: .\main\templates\main\dashboard.html:779
-#: .\main\templates\main\dashboard.html:2986
-#: .\main\templates\main\dashboard.html:3078
-#: .\main\templates\main\dashboard8.html:115
-#: .\main\templates\main\dashboard8.html:211
-#: .\main\templates\main\dashboard8.html:695
+#: main/templates/main/contact.html:246 main/templates/main/dashboard.html:115
+#: main/templates/main/dashboard.html:219
+#: main/templates/main/dashboard.html:355
+#: main/templates/main/dashboard.html:779
+#: main/templates/main/dashboard.html:2986
+#: main/templates/main/dashboard.html:3078
+#: main/templates/main/dashboard8.html:115
+#: main/templates/main/dashboard8.html:211
+#: main/templates/main/dashboard8.html:695
 msgid "Name"
 msgstr "الاسم"
 
-#: .\main\templates\main\contact.html:250
-#: .\main\templates\main\dashboard.html:780
-#: .\main\templates\main\dashboard.html:1677
-#: .\main\templates\main\dashboard.html:1681
-#: .\main\templates\main\dashboard.html:1943
-#: .\main\templates\main\dashboard.html:1947
-#: .\main\templates\main\dashboard8.html:547
-#: .\main\templates\main\dashboard8.html:696
-#: .\main\templates\main\dashboard8.html:1385
-#: .\main\templates\main\dashboard8.html:1389
-#: .\main\templates\main\dashboard8.html:1522
-#: .\main\templates\main\dashboard8.html:1526
+#: main/templates/main/contact.html:250 main/templates/main/dashboard.html:780
+#: main/templates/main/dashboard.html:1677
+#: main/templates/main/dashboard.html:1681
+#: main/templates/main/dashboard.html:1943
+#: main/templates/main/dashboard.html:1947
+#: main/templates/main/dashboard8.html:547
+#: main/templates/main/dashboard8.html:696
+#: main/templates/main/dashboard8.html:1385
+#: main/templates/main/dashboard8.html:1389
+#: main/templates/main/dashboard8.html:1522
+#: main/templates/main/dashboard8.html:1526
 msgid "Address"
 msgstr "العنوان"
 
-#: .\main\templates\main\contact.html:254
-#: .\main\templates\main\dashboard.html:357
-#: .\main\templates\main\dashboard8.html:213
+#: main/templates/main/contact.html:254 main/templates/main/dashboard.html:357
+#: main/templates/main/dashboard8.html:213
 msgid "Phone"
 msgstr "الهاتف"
 
-#: .\main\templates\main\contact.html:258
+#: main/templates/main/contact.html:258
 msgid "Hours"
 msgstr "ساعات العمل"
 
-#: .\main\templates\main\contact.html:262
-#: .\main\templates\main\dashboard.html:697
-#: .\main\templates\main\dashboard8.html:613
+#: main/templates/main/contact.html:262 main/templates/main/dashboard.html:697
+#: main/templates/main/dashboard8.html:613
+#: main/templates/main/website-calculator.html:462
 msgid "Email"
 msgstr "البريد الإلكتروني"
 
-#: .\main\templates\main\contact.html:266
-#: .\main\templates\main\dashboard.html:781
-#: .\main\templates\main\dashboard8.html:697
+#: main/templates/main/contact.html:266 main/templates/main/dashboard.html:781
+#: main/templates/main/dashboard8.html:697
 msgid "Coordinates"
 msgstr "الإحداثيات"
 
-#: .\main\templates\main\contact.html:299
+#: main/templates/main/contact.html:299
 msgid "Address not set"
 msgstr "لم يتم تحديد العنوان"
 
-#: .\main\templates\main\contact.html:305
+#: main/templates/main/contact.html:305
 msgid "Phone number not set"
 msgstr "لم يتم تحديد رقم الهاتف"
 
-#: .\main\templates\main\contact.html:311
+#: main/templates/main/contact.html:311
 msgid "Email not set"
 msgstr "لم يتم تحديد البريد الإلكتروني"
 
-#: .\main\templates\main\contact.html:334
+#: main/templates/main/contact.html:334
 msgid "Business hours not set"
 msgstr "لم يتم تحديد ساعات العمل"
 
-#: .\main\templates\main\contact.html:378
+#: main/templates/main/contact.html:378
 msgid "No branches available"
 msgstr "لا توجد فروع متاحة"
 
-#: .\main\templates\main\contact.html:381
+#: main/templates/main/contact.html:381
 msgid "Check back later for branch information."
 msgstr "يرجى العودة لاحقًا للاطلاع على معلومات الفروع."
 
-#: .\main\templates\main\contact.html:449
+#: main/templates/main/contact.html:449
 msgid "No valid branch locations"
 msgstr "لا توجد مواقع صحيحة للفروع"
 
-#: .\main\templates\main\contact.html:452
+#: main/templates/main/contact.html:452
 msgid "Please check branch coordinate data."
 msgstr "يرجى التحقق من بيانات إحداثيات الفروع."
 
-#: .\main\templates\main\contact.html:487
+#: main/templates/main/contact.html:487
 msgid "Details"
 msgstr "التفاصيل"
 
-#: .\main\templates\main\contact.html:505
+#: main/templates/main/contact.html:505
 msgid "Error loading branches"
 msgstr "حدث خطأ أثناء تحميل الفروع"
 
-#: .\main\templates\main\contact.html:508
+#: main/templates/main/contact.html:508
 msgid "Please try refreshing the page."
 msgstr "يرجى محاولة تحديث الصفحة."
 
-#: .\main\templates\main\contact.html:676
+#: main/templates/main/contact.html:676
 msgid "Sending..."
 msgstr "جاري الإرسال..."
 
-#: .\main\templates\main\dashboard.html:3
-#: .\main\templates\main\dashboard8.html:3
+#: main/templates/main/dashboard.html:3 main/templates/main/dashboard8.html:3
 msgid "Admin Dashboard - AWFERLK Solutions"
 msgstr "لوحة التحكم الإدارية - اوفرلك للحلول التقنية"
 
-#: .\main\templates\main\dashboard.html:13
-#: .\main\templates\main\dashboard8.html:13
+#: main/templates/main/dashboard.html:13 main/templates/main/dashboard8.html:13
 msgid "Admin Dashboard"
 msgstr "لوحة التحكم الإدارية"
 
-#: .\main\templates\main\dashboard.html:16
-#: .\main\templates\main\dashboard8.html:16
+#: main/templates/main/dashboard.html:16 main/templates/main/dashboard8.html:16
 msgid "Manage products, inquiries, messages, and branches"
 msgstr "إدارة المنتجات والاستفسارات والرسائل والفروع"
 
-#: .\main\templates\main\dashboard.html:27
-#: .\main\templates\main\dashboard.html:500
-#: .\main\templates\main\dashboard.html:1368
-#: .\main\templates\main\dashboard8.html:27
-#: .\main\templates\main\dashboard8.html:347
-#: .\main\templates\main\dashboard8.html:1079
+#: main/templates/main/dashboard.html:27 main/templates/main/dashboard.html:500
+#: main/templates/main/dashboard.html:1368
+#: main/templates/main/dashboard8.html:27
+#: main/templates/main/dashboard8.html:347
+#: main/templates/main/dashboard8.html:1079
 msgid "Add Product"
 msgstr "إضافة منتج"
 
-#: .\main\templates\main\dashboard.html:35
-#: .\main\templates\main\dashboard.html:771
-#: .\main\templates\main\dashboard.html:1862
-#: .\main\templates\main\dashboard8.html:35
-#: .\main\templates\main\dashboard8.html:687
-#: .\main\templates\main\dashboard8.html:1446
+#: main/templates/main/dashboard.html:35 main/templates/main/dashboard.html:771
+#: main/templates/main/dashboard.html:1862
+#: main/templates/main/dashboard8.html:35
+#: main/templates/main/dashboard8.html:687
+#: main/templates/main/dashboard8.html:1446
 msgid "Add Branch"
 msgstr "إضافة فرع"
 
-#: .\main\templates\main\dashboard.html:51
-#: .\main\templates\main\dashboard8.html:51
+#: main/templates/main/dashboard.html:51 main/templates/main/dashboard8.html:51
 msgid "Total Products"
 msgstr "إجمالي المنتجات"
 
-#: .\main\templates\main\dashboard.html:62
-#: .\main\templates\main\dashboard8.html:62
-#: .\main\templates\main\dashboard8.html:536
+#: main/templates/main/dashboard.html:62 main/templates/main/dashboard8.html:62
+#: main/templates/main/dashboard8.html:536
 msgid "Product Inquiries"
 msgstr "استفسارات المنتجات"
 
-#: .\main\templates\main\dashboard.html:73
-#: .\main\templates\main\dashboard.html:689
-#: .\main\templates\main\dashboard8.html:73
-#: .\main\templates\main\dashboard8.html:605
+#: main/templates/main/dashboard.html:73 main/templates/main/dashboard.html:689
+#: main/templates/main/dashboard8.html:73
+#: main/templates/main/dashboard8.html:605
 msgid "Messages"
 msgstr "الرسائل"
 
-#: .\main\templates\main\dashboard.html:84
-#: .\main\templates\main\dashboard.html:763
-#: .\main\templates\main\dashboard8.html:84
-#: .\main\templates\main\dashboard8.html:679
+#: main/templates/main/dashboard.html:84 main/templates/main/dashboard.html:763
+#: main/templates/main/dashboard8.html:84
+#: main/templates/main/dashboard8.html:679
 msgid "Branches"
 msgstr "الفروع"
 
-#: .\main\templates\main\dashboard.html:97
-#: .\main\templates\main\dashboard8.html:97
-#: .\main\templates\main\shop.html:1046 .\main\templates\main\shop.html:1147
-msgid "Categories"
-msgstr "التصنيفات"
+#: main/templates/main/dashboard.html:97
+#| msgid "Service"
+msgid "Services"
+msgstr "الخدمات"
 
-#: .\main\templates\main\dashboard.html:105
-#: .\main\templates\main\dashboard.html:2153
-#: .\main\templates\main\dashboard.html:2223
-#: .\main\templates\main\dashboard8.html:105
-#: .\main\templates\main\dashboard8.html:1603
-#: .\main\templates\main\dashboard8.html:1673
-msgid "Add Category"
-msgstr "إضافة تصنيف"
+#: main/templates/main/dashboard.html:105
+#| msgid "Service"
+msgid "Add Service"
+msgstr "إضافة خدمة"
 
-#: .\main\templates\main\dashboard.html:114
-#: .\main\templates\main\dashboard.html:218
-#: .\main\templates\main\dashboard.html:509
-#: .\main\templates\main\dashboard.html:619
-#: .\main\templates\main\dashboard.html:1035
-#: .\main\templates\main\dashboard.html:3014
-#: .\main\templates\main\dashboard.html:3106
-#: .\main\templates\main\dashboard8.html:114
-#: .\main\templates\main\dashboard8.html:356
-#: .\main\templates\main\dashboard8.html:466
+#: main/templates/main/dashboard.html:114
+#: main/templates/main/dashboard.html:218
+#: main/templates/main/dashboard.html:509
+#: main/templates/main/dashboard.html:619
+#: main/templates/main/dashboard.html:1035
+#: main/templates/main/dashboard.html:3014
+#: main/templates/main/dashboard.html:3106
+#: main/templates/main/dashboard8.html:114
+#: main/templates/main/dashboard8.html:356
+#: main/templates/main/dashboard8.html:466
 msgid "Image"
 msgstr "الصورة"
 
-#: .\main\templates\main\dashboard.html:116
-#: .\main\templates\main\dashboard.html:220
-#: .\main\templates\main\dashboard.html:1026
-#: .\main\templates\main\dashboard.html:1226
-#: .\main\templates\main\dashboard.html:1231
-#: .\main\templates\main\dashboard.html:1458
-#: .\main\templates\main\dashboard.html:1463
-#: .\main\templates\main\dashboard.html:2185
-#: .\main\templates\main\dashboard.html:2189
-#: .\main\templates\main\dashboard.html:2277
-#: .\main\templates\main\dashboard.html:2281
-#: .\main\templates\main\dashboard.html:3002
-#: .\main\templates\main\dashboard.html:3094
-#: .\main\templates\main\dashboard8.html:116
-#: .\main\templates\main\dashboard8.html:937
-#: .\main\templates\main\dashboard8.html:942
-#: .\main\templates\main\dashboard8.html:1169
-#: .\main\templates\main\dashboard8.html:1174
-#: .\main\templates\main\dashboard8.html:1635
-#: .\main\templates\main\dashboard8.html:1639
-#: .\main\templates\main\dashboard8.html:1727
-#: .\main\templates\main\dashboard8.html:1731
+#: main/templates/main/dashboard.html:116
+#: main/templates/main/dashboard.html:220
+#: main/templates/main/dashboard.html:1026
+#: main/templates/main/dashboard.html:1226
+#: main/templates/main/dashboard.html:1231
+#: main/templates/main/dashboard.html:1458
+#: main/templates/main/dashboard.html:1463
+#: main/templates/main/dashboard.html:2185
+#: main/templates/main/dashboard.html:2189
+#: main/templates/main/dashboard.html:2277
+#: main/templates/main/dashboard.html:2281
+#: main/templates/main/dashboard.html:3002
+#: main/templates/main/dashboard.html:3094
+#: main/templates/main/dashboard8.html:116
+#: main/templates/main/dashboard8.html:937
+#: main/templates/main/dashboard8.html:942
+#: main/templates/main/dashboard8.html:1169
+#: main/templates/main/dashboard8.html:1174
+#: main/templates/main/dashboard8.html:1635
+#: main/templates/main/dashboard8.html:1639
+#: main/templates/main/dashboard8.html:1727
+#: main/templates/main/dashboard8.html:1731
 msgid "Description"
 msgstr "الوصف"
 
-#: .\main\templates\main\dashboard.html:117
-#: .\main\templates\main\dashboard.html:221
-#: .\main\templates\main\dashboard.html:513
-#: .\main\templates\main\dashboard.html:622
-#: .\main\templates\main\dashboard.html:700
-#: .\main\templates\main\dashboard.html:783
-#: .\main\templates\main\dashboard.html:885
-#: .\main\templates\main\dashboard8.html:117
-#: .\main\templates\main\dashboard8.html:360
-#: .\main\templates\main\dashboard8.html:469
-#: .\main\templates\main\dashboard8.html:616
-#: .\main\templates\main\dashboard8.html:699
-#: .\main\templates\main\dashboard8.html:801
+#: main/templates/main/dashboard.html:117
+#: main/templates/main/dashboard.html:221
+#: main/templates/main/dashboard.html:513
+#: main/templates/main/dashboard.html:622
+#: main/templates/main/dashboard.html:700
+#: main/templates/main/dashboard.html:783
+#: main/templates/main/dashboard.html:885
+#: main/templates/main/dashboard8.html:117
+#: main/templates/main/dashboard8.html:360
+#: main/templates/main/dashboard8.html:469
+#: main/templates/main/dashboard8.html:616
+#: main/templates/main/dashboard8.html:699
+#: main/templates/main/dashboard8.html:801
 msgid "Actions"
 msgstr "الإجراءات"
 
-#: .\main\templates\main\dashboard.html:155
-#: .\main\templates\main\dashboard.html:259
-#: .\main\templates\main\dashboard.html:564
-#: .\main\templates\main\dashboard.html:829
-#: .\main\templates\main\dashboard.html:906
-#: .\main\templates\main\dashboard8.html:155
-#: .\main\templates\main\dashboard8.html:411
-#: .\main\templates\main\dashboard8.html:745
-#: .\main\templates\main\dashboard8.html:822
+#: main/templates/main/dashboard.html:155
+#: main/templates/main/dashboard.html:259
+#: main/templates/main/dashboard.html:564
+#: main/templates/main/dashboard.html:829
+#: main/templates/main/dashboard.html:906
+#: main/templates/main/dashboard8.html:155
+#: main/templates/main/dashboard8.html:411
+#: main/templates/main/dashboard8.html:745
+#: main/templates/main/dashboard8.html:822
 msgid "Edit"
 msgstr "تعديل"
 
-#: .\main\templates\main\dashboard.html:170
-#: .\main\templates\main\dashboard.html:274
-#: .\main\templates\main\dashboard.html:572
-#: .\main\templates\main\dashboard.html:836
-#: .\main\templates\main\dashboard.html:915
-#: .\main\templates\main\dashboard.html:1137
-#: .\main\templates\main\dashboard8.html:170
-#: .\main\templates\main\dashboard8.html:419
-#: .\main\templates\main\dashboard8.html:752
-#: .\main\templates\main\dashboard8.html:831
+#: main/templates/main/dashboard.html:170
+#: main/templates/main/dashboard.html:274
+#: main/templates/main/dashboard.html:572
+#: main/templates/main/dashboard.html:836
+#: main/templates/main/dashboard.html:915
+#: main/templates/main/dashboard.html:1137
+#: main/templates/main/dashboard8.html:170
+#: main/templates/main/dashboard8.html:419
+#: main/templates/main/dashboard8.html:752
+#: main/templates/main/dashboard8.html:831
 msgid "Delete"
 msgstr "حذف"
 
-#: .\main\templates\main\dashboard.html:183
-#: .\main\templates\main\dashboard8.html:183
+#: main/templates/main/dashboard.html:183
+#: main/templates/main/dashboard8.html:183
 msgid "No categories added yet"
 msgstr "لم يتم إضافة أي تصنيفات بعد"
 
-#: .\main\templates\main\dashboard.html:201
-msgid "Brands"
-msgstr "العلامات التجارية"
+#: main/templates/main/dashboard.html:201 main/templates/main/home.html:413
+msgid "Technologies"
+msgstr "التقنيات"
 
-#: .\main\templates\main\dashboard.html:209
-#: .\main\templates\main\dashboard.html:2967
-#: .\main\templates\main\dashboard.html:3039
-msgid "Add Brand"
-msgstr "إضافة علامة تجارية"
+#: main/templates/main/dashboard.html:209
+#| msgid "Technologies"
+msgid "Add Technology"
+msgstr "إضافة تقنية"
 
-#: .\main\templates\main\dashboard.html:286
+#: main/templates/main/dashboard.html:286
 msgid "No brands added yet"
 msgstr "لم يتم إضافة أي علامات تجارية بعد"
 
-#: .\main\templates\main\dashboard.html:308
+#: main/templates/main/dashboard.html:308
 msgid "Projects"
 msgstr "المشاريع"
 
-#: .\main\templates\main\dashboard.html:319
-#: .\main\templates\main\dashboard.html:944
+#: main/templates/main/dashboard.html:319
+#: main/templates/main/dashboard.html:944
 msgid "Add Project"
 msgstr "إضافة مشروع"
 
-#: .\main\templates\main\dashboard.html:326
-msgid ""
-"Manage SITEX projects (create, edit, delete) and showcase them to clients."
+#: main/templates/main/dashboard.html:326
+msgid "Manage SITEX projects (create, edit, delete) and showcase them to clients."
 msgstr "إدارة مشاريع SITEX (إضافة، تعديل، حذف) وعرضها للعملاء."
 
-#: .\main\templates\main\dashboard.html:345
-#: .\main\templates\main\dashboard8.html:201
+#: main/templates/main/dashboard.html:345
+#: main/templates/main/dashboard8.html:201
 msgid "Invoices"
 msgstr "الفواتير"
 
-#: .\main\templates\main\dashboard.html:354
-#: .\main\templates\main\dashboard8.html:210
+#: main/templates/main/dashboard.html:354
+#: main/templates/main/dashboard8.html:210
 msgid "Invoice ID"
 msgstr "رقم الفاتورة"
 
-#: .\main\templates\main\dashboard.html:356
-#: .\main\templates\main\dashboard8.html:212
+#: main/templates/main/dashboard.html:356
+#: main/templates/main/dashboard8.html:212
 msgid "City / Address"
 msgstr "المدينة / العنوان"
 
-#: .\main\templates\main\dashboard.html:358
-#: .\main\templates\main\dashboard.html:412
-#: .\main\templates\main\dashboard8.html:214
-#: .\main\templates\main\dashboard8.html:262
+#: main/templates/main/dashboard.html:358
+#: main/templates/main/dashboard.html:412
+#: main/templates/main/dashboard8.html:214
+#: main/templates/main/dashboard8.html:262
+#: main/templates/main/website-calculator.html:106
+#: main/templates/main/website-calculator.html:267
+#: main/templates/main/website-calculator.html:427
 msgid "Subtotal"
 msgstr "الإجمالي الفرعي"
 
-#: .\main\templates\main\dashboard.html:359
-#: .\main\templates\main\dashboard.html:884
-#: .\main\templates\main\dashboard.html:2373
-#: .\main\templates\main\dashboard.html:2444
-#: .\main\templates\main\dashboard8.html:215
-#: .\main\templates\main\dashboard8.html:800
-#: .\main\templates\main\dashboard8.html:1823
-#: .\main\templates\main\dashboard8.html:1894
+#: main/templates/main/dashboard.html:359
+#: main/templates/main/dashboard.html:884
+#: main/templates/main/dashboard.html:2373
+#: main/templates/main/dashboard.html:2444
+#: main/templates/main/dashboard8.html:215
+#: main/templates/main/dashboard8.html:800
+#: main/templates/main/dashboard8.html:1823
+#: main/templates/main/dashboard8.html:1894
 msgid "Delivery Fee"
 msgstr "رسوم التوصيل"
 
-#: .\main\templates\main\dashboard.html:360
-#: .\main\templates\main\dashboard8.html:216
+#: main/templates/main/dashboard.html:360
+#: main/templates/main/dashboard8.html:216
+#: main/templates/main/website-calculator.html:127
+#: main/templates/main/website-calculator.html:181
+#: main/templates/main/website-calculator.html:258
+#: main/templates/main/website-calculator.html:271
+#: main/templates/main/website-calculator.html:426
 msgid "Total"
 msgstr "الإجمالي"
 
-#: .\main\templates\main\dashboard.html:361
-#: .\main\templates\main\dashboard8.html:217
+#: main/templates/main/dashboard.html:361
+#: main/templates/main/dashboard8.html:217
+#: main/templates/main/website-calculator.html:428
 msgid "Items"
 msgstr "العناصر"
 
-#: .\main\templates\main\dashboard.html:389
-#: .\main\templates\main\dashboard8.html:245
+#: main/templates/main/dashboard.html:389
+#: main/templates/main/dashboard8.html:245
 msgid "View Items"
 msgstr "عرض العناصر"
 
-#: .\main\templates\main\dashboard.html:395
+#: main/templates/main/dashboard.html:395
 msgid "Print"
 msgstr "طباعة"
 
-#: .\main\templates\main\dashboard.html:406
-#: .\main\templates\main\dashboard.html:508
-#: .\main\templates\main\dashboard8.html:256
-#: .\main\templates\main\dashboard8.html:355
-#: .\main\templates\main\dashboard8.html:545
+#: main/templates/main/dashboard.html:406
+#: main/templates/main/dashboard.html:508
+#: main/templates/main/dashboard8.html:256
+#: main/templates/main/dashboard8.html:355
+#: main/templates/main/dashboard8.html:545
 msgid "Product"
 msgstr "المنتج"
 
-#: .\main\templates\main\dashboard.html:407
-#: .\main\templates\main\dashboard8.html:257
+#: main/templates/main/dashboard.html:407
+#: main/templates/main/dashboard8.html:257
 msgid "Product ID"
 msgstr "معرّف المنتج"
 
-#: .\main\templates\main\dashboard.html:408
-#: .\main\templates\main\dashboard8.html:258
-#: .\main\templates\main\dashboard8.html:546
-#: .\main\templates\main\products.html:85
+#: main/templates/main/dashboard.html:408
+#: main/templates/main/dashboard8.html:258
+#: main/templates/main/dashboard8.html:546 main/templates/main/products.html:85
 msgid "Quantity"
 msgstr "الكمية"
 
-#: .\main\templates\main\dashboard.html:409
-#: .\main\templates\main\dashboard8.html:259
+#: main/templates/main/dashboard.html:409
+#: main/templates/main/dashboard8.html:259
 msgid "Price (Original)"
 msgstr "السعر (الأصلي)"
 
-#: .\main\templates\main\dashboard.html:410
-#: .\main\templates\main\dashboard.html:512
-#: .\main\templates\main\dashboard.html:1214
-#: .\main\templates\main\dashboard.html:1446
-#: .\main\templates\main\dashboard8.html:260
-#: .\main\templates\main\dashboard8.html:359
-#: .\main\templates\main\dashboard8.html:925
-#: .\main\templates\main\dashboard8.html:1157
+#: main/templates/main/dashboard.html:410
+#: main/templates/main/dashboard.html:512
+#: main/templates/main/dashboard.html:1214
+#: main/templates/main/dashboard.html:1446
+#: main/templates/main/dashboard8.html:260
+#: main/templates/main/dashboard8.html:359
+#: main/templates/main/dashboard8.html:925
+#: main/templates/main/dashboard8.html:1157
 #, python-format
 msgid "Discount (%%)"
 msgstr "الخصم (%%)"
 
-#: .\main\templates\main\dashboard.html:411
-#: .\main\templates\main\dashboard8.html:261
+#: main/templates/main/dashboard.html:411
+#: main/templates/main/dashboard8.html:261
 msgid "Price After Discount"
 msgstr "السعر بعد الخصم"
 
-#: .\main\templates\main\dashboard.html:448
-#: .\main\templates\main\dashboard8.html:295
+#: main/templates/main/dashboard.html:448
+#: main/templates/main/dashboard8.html:295
 msgid "No items in this invoice."
 msgstr "لا توجد عناصر في هذه الفاتورة."
 
-#: .\main\templates\main\dashboard.html:455
-#: .\main\templates\main\dashboard8.html:302
+#: main/templates/main/dashboard.html:455
+#: main/templates/main/dashboard8.html:302
 msgid "Delivery price"
 msgstr "سعر التوصيل"
 
-#: .\main\templates\main\dashboard.html:474
-#: .\main\templates\main\dashboard8.html:321
+#: main/templates/main/dashboard.html:474
+#: main/templates/main/dashboard8.html:321
 msgid "No invoices created yet"
 msgstr "لم يتم إنشاء أي فواتير بعد"
 
-#: .\main\templates\main\dashboard.html:510
-#: .\main\templates\main\dashboard8.html:357
-#: .\main\templates\main\products.html:66
+#: main/templates/main/dashboard.html:510
+#: main/templates/main/dashboard8.html:357 main/templates/main/products.html:66
 msgid "Available"
 msgstr "متوفر"
 
-#: .\main\templates\main\dashboard.html:511
-#: .\main\templates\main\dashboard.html:1192
-#: .\main\templates\main\dashboard.html:1424
-#: .\main\templates\main\dashboard8.html:358
-#: .\main\templates\main\dashboard8.html:903
-#: .\main\templates\main\dashboard8.html:1135
+#: main/templates/main/dashboard.html:511
+#: main/templates/main/dashboard.html:1192
+#: main/templates/main/dashboard.html:1424
+#: main/templates/main/dashboard8.html:358
+#: main/templates/main/dashboard8.html:903
+#: main/templates/main/dashboard8.html:1135
 msgid "Price"
 msgstr "السعر"
 
-#: .\main\templates\main\dashboard.html:585
-#: .\main\templates\main\dashboard8.html:432
+#: main/templates/main/dashboard.html:585
+#: main/templates/main/dashboard8.html:432
 msgid "No products available"
 msgstr "لا توجد منتجات متاحة"
 
-#: .\main\templates\main\dashboard.html:601
-#: .\main\templates\main\dashboard8.html:448
+#: main/templates/main/dashboard.html:601
+#: main/templates/main/dashboard8.html:448
 msgid "Banners"
 msgstr "البنرات"
 
-#: .\main\templates\main\dashboard.html:609
-#: .\main\templates\main\dashboard8.html:456
+#: main/templates/main/dashboard.html:609
+#: main/templates/main/dashboard8.html:456
 msgid "Add Banner"
 msgstr "إضافة بنر"
 
-#: .\main\templates\main\dashboard.html:618
-#: .\main\templates\main\dashboard.html:961
-#: .\main\templates\main\dashboard8.html:465
+#: main/templates/main/dashboard.html:618
+#: main/templates/main/dashboard.html:961
+#: main/templates/main/dashboard8.html:465
 msgid "Title"
 msgstr "العنوان"
 
-#: .\main\templates\main\dashboard.html:620
-#: .\main\templates\main\dashboard8.html:467
+#: main/templates/main/dashboard.html:620
+#: main/templates/main/dashboard8.html:467
 msgid "Order"
 msgstr "الترتيب"
 
-#: .\main\templates\main\dashboard.html:621
-#: .\main\templates\main\dashboard8.html:468
+#: main/templates/main/dashboard.html:621
+#: main/templates/main/dashboard8.html:468
 msgid "Active"
 msgstr "مفعّل"
 
-#: .\main\templates\main\dashboard.html:673
-#: .\main\templates\main\dashboard8.html:520
+#: main/templates/main/dashboard.html:673
+#: main/templates/main/dashboard8.html:520
 msgid "No banners available"
 msgstr "لا توجد بنرات متاحة"
 
-#: .\main\templates\main\dashboard.html:698
-#: .\main\templates\main\dashboard8.html:614
+#: main/templates/main/dashboard.html:698
+#: main/templates/main/dashboard8.html:614
 msgid "Message"
 msgstr "الرسالة"
 
-#: .\main\templates\main\dashboard.html:699
-#: .\main\templates\main\dashboard8.html:548
-#: .\main\templates\main\dashboard8.html:615
+#: main/templates/main/dashboard.html:699
+#: main/templates/main/dashboard8.html:548
+#: main/templates/main/dashboard8.html:615
+#: main/templates/main/website-calculator.html:238
+#: main/templates/main/website-calculator.html:431
 msgid "Date"
 msgstr "التاريخ"
 
-#: .\main\templates\main\dashboard.html:746
-#: .\main\templates\main\dashboard8.html:662
+#: main/templates/main/dashboard.html:746
+#: main/templates/main/dashboard8.html:662
 msgid "No messages yet"
 msgstr "لا توجد رسائل بعد"
 
-#: .\main\templates\main\dashboard.html:782
-#: .\main\templates\main\dashboard8.html:698
+#: main/templates/main/dashboard.html:782
+#: main/templates/main/dashboard8.html:698
 msgid "Primary"
 msgstr "أساسي"
 
-#: .\main\templates\main\dashboard.html:809
-#: .\main\templates\main\dashboard.html:814
-#: .\main\templates\main\dashboard8.html:725
-#: .\main\templates\main\dashboard8.html:730
+#: main/templates/main/dashboard.html:809
+#: main/templates/main/dashboard.html:814
+#: main/templates/main/dashboard8.html:725
+#: main/templates/main/dashboard8.html:730
 msgid "Not Set"
 msgstr "غير محدد"
 
-#: .\main\templates\main\dashboard.html:820
-#: .\main\templates\main\dashboard8.html:736
+#: main/templates/main/dashboard.html:820
+#: main/templates/main/dashboard8.html:736
+#: main/templates/main/website-calculator.html:422
 msgid "Yes"
 msgstr "نعم"
 
-#: .\main\templates\main\dashboard.html:822
-#: .\main\templates\main\dashboard8.html:738
+#: main/templates/main/dashboard.html:822
+#: main/templates/main/dashboard8.html:738
 msgid "No"
 msgstr "لا"
 
-#: .\main\templates\main\dashboard.html:849
-#: .\main\templates\main\dashboard8.html:765
+#: main/templates/main/dashboard.html:849
+#: main/templates/main/dashboard8.html:765
 msgid "No branches added yet"
 msgstr "لم يتم إضافة أي فروع بعد"
 
-#: .\main\templates\main\dashboard.html:866
-#: .\main\templates\main\dashboard8.html:782
+#: main/templates/main/dashboard.html:866
+#: main/templates/main/dashboard8.html:782
 msgid "Cities"
 msgstr "المدن"
 
-#: .\main\templates\main\dashboard.html:874
-#: .\main\templates\main\dashboard.html:2393
-#: .\main\templates\main\dashboard8.html:790
-#: .\main\templates\main\dashboard8.html:1843
+#: main/templates/main/dashboard.html:874
+#: main/templates/main/dashboard.html:2393
+#: main/templates/main/dashboard8.html:790
+#: main/templates/main/dashboard8.html:1843
 msgid "Add City"
 msgstr "إضافة مدينة"
 
-#: .\main\templates\main\dashboard.html:883
-#: .\main\templates\main\dashboard.html:2360
-#: .\main\templates\main\dashboard.html:2363
-#: .\main\templates\main\dashboard.html:2431
-#: .\main\templates\main\dashboard.html:2434
-#: .\main\templates\main\dashboard8.html:799
-#: .\main\templates\main\dashboard8.html:1810
-#: .\main\templates\main\dashboard8.html:1813
-#: .\main\templates\main\dashboard8.html:1881
-#: .\main\templates\main\dashboard8.html:1884
+#: main/templates/main/dashboard.html:883
+#: main/templates/main/dashboard.html:2360
+#: main/templates/main/dashboard.html:2363
+#: main/templates/main/dashboard.html:2431
+#: main/templates/main/dashboard.html:2434
+#: main/templates/main/dashboard8.html:799
+#: main/templates/main/dashboard8.html:1810
+#: main/templates/main/dashboard8.html:1813
+#: main/templates/main/dashboard8.html:1881
+#: main/templates/main/dashboard8.html:1884
 msgid "City Name"
 msgstr "اسم المدينة"
 
-#: .\main\templates\main\dashboard.html:927
-#: .\main\templates\main\dashboard8.html:843
+#: main/templates/main/dashboard.html:927
+#: main/templates/main/dashboard8.html:843
 msgid "No cities added yet"
 msgstr "لم يتم إضافة أي مدن بعد"
 
-#: .\main\templates\main\dashboard.html:969
+#: main/templates/main/dashboard.html:969
 msgid "Year"
 msgstr "السنة"
 
-#: .\main\templates\main\dashboard.html:980
+#: main/templates/main/dashboard.html:980
+#: main/templates/main/website-calculator.html:51
+#: main/templates/main/website-calculator.html:239
 msgid "Project Type"
 msgstr "نوع المشروع"
 
-#: .\main\templates\main\dashboard.html:988
+#: main/templates/main/dashboard.html:988
 msgid "Industry"
 msgstr "القطاع"
 
-#: .\main\templates\main\dashboard.html:996
+#: main/templates/main/dashboard.html:996
 msgid "Sort Order"
 msgstr "ترتيب العرض"
 
-#: .\main\templates\main\dashboard.html:1007
+#: main/templates/main/dashboard.html:1007
 msgid "Tech Stack"
 msgstr "التقنيات المستخدمة"
 
-#: .\main\templates\main\dashboard.html:1016
+#: main/templates/main/dashboard.html:1016
 msgid "Project URL"
 msgstr "رابط المشروع"
 
-#: .\main\templates\main\dashboard.html:1056
+#: main/templates/main/dashboard.html:1056
 msgid "Featured"
 msgstr "مميز"
 
-#: .\main\templates\main\dashboard.html:1070
+#: main/templates/main/dashboard.html:1070
 msgid "Public"
 msgstr "عام"
 
-#: .\main\templates\main\dashboard.html:1085
-#: .\main\templates\main\dashboard.html:1130
-#: .\main\templates\main\dashboard.html:1364
-#: .\main\templates\main\dashboard.html:1594
-#: .\main\templates\main\dashboard.html:1858
-#: .\main\templates\main\dashboard.html:2129
-#: .\main\templates\main\dashboard.html:2219
-#: .\main\templates\main\dashboard.html:2318
-#: .\main\templates\main\dashboard.html:2389
-#: .\main\templates\main\dashboard.html:2459
-#: .\main\templates\main\dashboard.html:2944
-#: .\main\templates\main\dashboard.html:3035
-#: .\main\templates\main\dashboard.html:3137
-#: .\main\templates\main\dashboard8.html:1075
-#: .\main\templates\main\dashboard8.html:1305
-#: .\main\templates\main\dashboard8.html:1442
-#: .\main\templates\main\dashboard8.html:1579
-#: .\main\templates\main\dashboard8.html:1669
-#: .\main\templates\main\dashboard8.html:1768
-#: .\main\templates\main\dashboard8.html:1839
-#: .\main\templates\main\dashboard8.html:1909
-#: .\main\templates\main\dashboard8.html:2274
-#: .\main\templates\main\products.html:158
+#: main/templates/main/dashboard.html:1085
+#: main/templates/main/dashboard.html:1130
+#: main/templates/main/dashboard.html:1364
+#: main/templates/main/dashboard.html:1594
+#: main/templates/main/dashboard.html:1858
+#: main/templates/main/dashboard.html:2129
+#: main/templates/main/dashboard.html:2219
+#: main/templates/main/dashboard.html:2318
+#: main/templates/main/dashboard.html:2389
+#: main/templates/main/dashboard.html:2459
+#: main/templates/main/dashboard.html:2944
+#: main/templates/main/dashboard.html:3035
+#: main/templates/main/dashboard.html:3137
+#: main/templates/main/dashboard8.html:1075
+#: main/templates/main/dashboard8.html:1305
+#: main/templates/main/dashboard8.html:1442
+#: main/templates/main/dashboard8.html:1579
+#: main/templates/main/dashboard8.html:1669
+#: main/templates/main/dashboard8.html:1768
+#: main/templates/main/dashboard8.html:1839
+#: main/templates/main/dashboard8.html:1909
+#: main/templates/main/dashboard8.html:2274
+#: main/templates/main/products.html:158
 msgid "Cancel"
 msgstr "إلغاء"
 
-#: .\main\templates\main\dashboard.html:1092
+#: main/templates/main/dashboard.html:1092
 msgid "Save"
 msgstr "حفظ"
 
-#: .\main\templates\main\dashboard.html:1110
+#: main/templates/main/dashboard.html:1110
 msgid "Delete Project"
 msgstr "حذف المشروع"
 
-#: .\main\templates\main\dashboard.html:1120
+#: main/templates/main/dashboard.html:1120
 msgid "Are you sure you want to delete this project?"
 msgstr "هل أنت متأكد أنك تريد حذف هذا المشروع؟"
 
-#: .\main\templates\main\dashboard.html:1156
-#: .\main\templates\main\dashboard8.html:867
+#: main/templates/main/dashboard.html:1156
+#: main/templates/main/dashboard8.html:867
 msgid "Add New Product"
 msgstr "إضافة منتج جديد"
 
-#: .\main\templates\main\dashboard.html:1177
-#: .\main\templates\main\dashboard.html:1180
-#: .\main\templates\main\dashboard.html:1409
-#: .\main\templates\main\dashboard.html:1412
-#: .\main\templates\main\dashboard8.html:888
-#: .\main\templates\main\dashboard8.html:891
-#: .\main\templates\main\dashboard8.html:1120
-#: .\main\templates\main\dashboard8.html:1123
+#: main/templates/main/dashboard.html:1177
+#: main/templates/main/dashboard.html:1180
+#: main/templates/main/dashboard.html:1409
+#: main/templates/main/dashboard.html:1412
+#: main/templates/main/dashboard8.html:888
+#: main/templates/main/dashboard8.html:891
+#: main/templates/main/dashboard8.html:1120
+#: main/templates/main/dashboard8.html:1123
 msgid "Product Name"
 msgstr "اسم المنتج"
 
-#: .\main\templates\main\dashboard.html:1196
-#: .\main\templates\main\dashboard.html:1428
+#: main/templates/main/dashboard.html:1196
+#: main/templates/main/dashboard.html:1428
 msgid "Price (د.ل)"
 msgstr "السعر (د.ل)"
 
-#: .\main\templates\main\dashboard.html:1208
-#: .\main\templates\main\dashboard.html:1440
-#: .\main\templates\main\dashboard8.html:919
-#: .\main\templates\main\dashboard8.html:1151
+#: main/templates/main/dashboard.html:1208
+#: main/templates/main/dashboard.html:1440
+#: main/templates/main/dashboard8.html:919
+#: main/templates/main/dashboard8.html:1151
 #, python-format
 msgid "Discount %%"
 msgstr "الخصم %%"
 
-#: .\main\templates\main\dashboard.html:1244
-#: .\main\templates\main\dashboard.html:1248
-#: .\main\templates\main\dashboard.html:1476
-#: .\main\templates\main\dashboard.html:1480
-#: .\main\templates\main\dashboard8.html:955
-#: .\main\templates\main\dashboard8.html:959
-#: .\main\templates\main\dashboard8.html:1187
-#: .\main\templates\main\dashboard8.html:1191
+#: main/templates/main/dashboard.html:1244
+#: main/templates/main/dashboard.html:1248
+#: main/templates/main/dashboard.html:1476
+#: main/templates/main/dashboard.html:1480
+#: main/templates/main/dashboard8.html:955
+#: main/templates/main/dashboard8.html:959
+#: main/templates/main/dashboard8.html:1187
+#: main/templates/main/dashboard8.html:1191
 msgid "Quantity Available"
 msgstr "الكمية المتاحة"
 
-#: .\main\templates\main\dashboard.html:1262
-#: .\main\templates\main\dashboard.html:1494
-#: .\main\templates\main\dashboard8.html:973
-#: .\main\templates\main\dashboard8.html:1205
+#: main/templates/main/dashboard.html:1262
+#: main/templates/main/dashboard.html:1494
+#: main/templates/main/dashboard8.html:973
+#: main/templates/main/dashboard8.html:1205
 msgid "Select Category"
 msgstr "اختر التصنيف"
 
-#: .\main\templates\main\dashboard.html:1267
-#: .\main\templates\main\dashboard.html:1499
-#: .\main\templates\main\dashboard8.html:978
-#: .\main\templates\main\dashboard8.html:1210
+#: main/templates/main/dashboard.html:1267
+#: main/templates/main/dashboard.html:1499
+#: main/templates/main/dashboard8.html:978
+#: main/templates/main/dashboard8.html:1210
+#: main/templates/main/website-calculator.html:169
+#: main/templates/main/website-calculator.html:254
 msgid "Category"
 msgstr "التصنيف"
 
-#: .\main\templates\main\dashboard.html:1282
-#: .\main\templates\main\dashboard.html:1513
-#: .\main\templates\main\dashboard8.html:993
-#: .\main\templates\main\dashboard8.html:1224
+#: main/templates/main/dashboard.html:1282
+#: main/templates/main/dashboard.html:1513
+#: main/templates/main/dashboard8.html:993
+#: main/templates/main/dashboard8.html:1224
 msgid "Show Price"
 msgstr "إظهار السعر"
 
-#: .\main\templates\main\dashboard.html:1296
-#: .\main\templates\main\dashboard.html:1526
-#: .\main\templates\main\dashboard8.html:1007
-#: .\main\templates\main\dashboard8.html:1237
+#: main/templates/main/dashboard.html:1296
+#: main/templates/main/dashboard.html:1526
+#: main/templates/main/dashboard8.html:1007
+#: main/templates/main/dashboard8.html:1237
 msgid "Show Quantity"
 msgstr "إظهار الكمية"
 
-#: .\main\templates\main\dashboard.html:1310
-#: .\main\templates\main\dashboard.html:1539
-#: .\main\templates\main\dashboard8.html:1021
-#: .\main\templates\main\dashboard8.html:1250
+#: main/templates/main/dashboard.html:1310
+#: main/templates/main/dashboard.html:1539
+#: main/templates/main/dashboard8.html:1021
+#: main/templates/main/dashboard8.html:1250
 msgid "Place Orders"
 msgstr "تسجيل الطلبات"
 
-#: .\main\templates\main\dashboard.html:1319
-#: .\main\templates\main\dashboard.html:1549
-#: .\main\templates\main\dashboard8.html:1030
-#: .\main\templates\main\dashboard8.html:1260
+#: main/templates/main/dashboard.html:1319
+#: main/templates/main/dashboard.html:1549
+#: main/templates/main/dashboard8.html:1030
+#: main/templates/main/dashboard8.html:1260
 msgid "Product Images"
 msgstr "صور المنتج"
 
-#: .\main\templates\main\dashboard.html:1340
-#: .\main\templates\main\dashboard8.html:1051
+#: main/templates/main/dashboard.html:1340
+#: main/templates/main/dashboard8.html:1051
 msgid "Product Video"
 msgstr "فيديو المنتج"
 
-#: .\main\templates\main\dashboard.html:1350
-#: .\main\templates\main\dashboard8.html:1061
+#: main/templates/main/dashboard.html:1350
+#: main/templates/main/dashboard8.html:1061
 msgid "Optional - Upload a product video"
 msgstr "اختياري - ارفع فيديو للمنتج"
 
-#: .\main\templates\main\dashboard.html:1388
-#: .\main\templates\main\dashboard8.html:1099
+#: main/templates/main/dashboard.html:1388
+#: main/templates/main/dashboard8.html:1099
 msgid "Edit Product"
 msgstr "تعديل المنتج"
 
-#: .\main\templates\main\dashboard.html:1580
-#: .\main\templates\main\dashboard8.html:1291
+#: main/templates/main/dashboard.html:1580
+#: main/templates/main/dashboard8.html:1291
 msgid "Existing gallery images"
 msgstr "صور المعرض الحالية"
 
-#: .\main\templates\main\dashboard.html:1598
-#: .\main\templates\main\dashboard8.html:1309
+#: main/templates/main/dashboard.html:1598
+#: main/templates/main/dashboard8.html:1309
 msgid "Update Product"
 msgstr "تحديث المنتج"
 
-#: .\main\templates\main\dashboard.html:1618
-#: .\main\templates\main\dashboard8.html:1329
+#: main/templates/main/dashboard.html:1618
+#: main/templates/main/dashboard8.html:1329
 msgid "Add New Branch"
 msgstr "إضافة فرع جديد"
 
-#: .\main\templates\main\dashboard.html:1638
-#: .\main\templates\main\dashboard.html:1641
-#: .\main\templates\main\dashboard.html:1904
-#: .\main\templates\main\dashboard.html:1907
-#: .\main\templates\main\dashboard8.html:1349
-#: .\main\templates\main\dashboard8.html:1352
-#: .\main\templates\main\dashboard8.html:1486
-#: .\main\templates\main\dashboard8.html:1489
+#: main/templates/main/dashboard.html:1638
+#: main/templates/main/dashboard.html:1641
+#: main/templates/main/dashboard.html:1904
+#: main/templates/main/dashboard.html:1907
+#: main/templates/main/dashboard8.html:1349
+#: main/templates/main/dashboard8.html:1352
+#: main/templates/main/dashboard8.html:1486
+#: main/templates/main/dashboard8.html:1489
 msgid "Branch Name"
 msgstr "اسم الفرع"
 
-#: .\main\templates\main\dashboard.html:1699
-#: .\main\templates\main\dashboard.html:1702
-#: .\main\templates\main\dashboard.html:1966
-#: .\main\templates\main\dashboard.html:1969
-#: .\main\templates\main\dashboard8.html:1401
-#: .\main\templates\main\dashboard8.html:1403
-#: .\main\templates\main\dashboard8.html:1538
-#: .\main\templates\main\dashboard8.html:1540
+#: main/templates/main/dashboard.html:1699
+#: main/templates/main/dashboard.html:1702
+#: main/templates/main/dashboard.html:1966
+#: main/templates/main/dashboard.html:1969
+#: main/templates/main/dashboard8.html:1401
+#: main/templates/main/dashboard8.html:1403
+#: main/templates/main/dashboard8.html:1538
+#: main/templates/main/dashboard8.html:1540
 msgid "Latitude"
 msgstr "خط العرض"
 
-#: .\main\templates\main\dashboard.html:1714
-#: .\main\templates\main\dashboard.html:1717
-#: .\main\templates\main\dashboard.html:1981
-#: .\main\templates\main\dashboard.html:1984
-#: .\main\templates\main\dashboard8.html:1415
-#: .\main\templates\main\dashboard8.html:1417
-#: .\main\templates\main\dashboard8.html:1552
-#: .\main\templates\main\dashboard8.html:1554
+#: main/templates/main/dashboard.html:1714
+#: main/templates/main/dashboard.html:1717
+#: main/templates/main/dashboard.html:1981
+#: main/templates/main/dashboard.html:1984
+#: main/templates/main/dashboard8.html:1415
+#: main/templates/main/dashboard8.html:1417
+#: main/templates/main/dashboard8.html:1552
+#: main/templates/main/dashboard8.html:1554
 msgid "Longitude"
 msgstr "خط الطول"
 
-#: .\main\templates\main\dashboard.html:1729
-#: .\main\templates\main\dashboard.html:1732
-#: .\main\templates\main\dashboard.html:1996
-#: .\main\templates\main\dashboard.html:1999
+#: main/templates/main/dashboard.html:1729
+#: main/templates/main/dashboard.html:1732
+#: main/templates/main/dashboard.html:1996
+#: main/templates/main/dashboard.html:1999
 msgid "Opening Hours"
 msgstr "ساعات الفتح"
 
-#: .\main\templates\main\dashboard.html:1744
-#: .\main\templates\main\dashboard.html:1747
-#: .\main\templates\main\dashboard.html:2011
-#: .\main\templates\main\dashboard.html:2014
+#: main/templates/main/dashboard.html:1744
+#: main/templates/main/dashboard.html:1747
+#: main/templates/main/dashboard.html:2011
+#: main/templates/main/dashboard.html:2014
 msgid "Closing Hours"
 msgstr "ساعات الإغلاق"
 
-#: .\main\templates\main\dashboard.html:1759
-#: .\main\templates\main\dashboard.html:1761
-#: .\main\templates\main\dashboard.html:2026
-#: .\main\templates\main\dashboard.html:2028
+#: main/templates/main/dashboard.html:1759
+#: main/templates/main/dashboard.html:1761
+#: main/templates/main/dashboard.html:2026
+#: main/templates/main/dashboard.html:2028
 msgid "Day From"
 msgstr "اليوم من"
 
-#: .\main\templates\main\dashboard.html:1772
-#: .\main\templates\main\dashboard.html:1774
-#: .\main\templates\main\dashboard.html:2039
-#: .\main\templates\main\dashboard.html:2041
+#: main/templates/main/dashboard.html:1772
+#: main/templates/main/dashboard.html:1774
+#: main/templates/main/dashboard.html:2039
+#: main/templates/main/dashboard.html:2041
 msgid "Day To"
 msgstr "اليوم إلى"
 
-#: .\main\templates\main\dashboard.html:1785
-#: .\main\templates\main\dashboard.html:1788
-#: .\main\templates\main\dashboard.html:2053
-#: .\main\templates\main\dashboard.html:2056
+#: main/templates/main/dashboard.html:1785
+#: main/templates/main/dashboard.html:1788
+#: main/templates/main/dashboard.html:2053
+#: main/templates/main/dashboard.html:2056
 msgid "Facebook Link"
 msgstr "رابط فيسبوك"
 
-#: .\main\templates\main\dashboard.html:1800
-#: .\main\templates\main\dashboard.html:1803
-#: .\main\templates\main\dashboard.html:2068
-#: .\main\templates\main\dashboard.html:2071
+#: main/templates/main/dashboard.html:1800
+#: main/templates/main/dashboard.html:1803
+#: main/templates/main/dashboard.html:2068
+#: main/templates/main/dashboard.html:2071
 msgid "Instagram Link"
 msgstr "رابط إنستغرام"
 
-#: .\main\templates\main\dashboard.html:1815
-#: .\main\templates\main\dashboard.html:1817
-#: .\main\templates\main\dashboard.html:2083
-#: .\main\templates\main\dashboard.html:2086
+#: main/templates/main/dashboard.html:1815
+#: main/templates/main/dashboard.html:1817
+#: main/templates/main/dashboard.html:2083
+#: main/templates/main/dashboard.html:2086
 msgid "Twitter Link"
 msgstr "رابط تويتر (X)"
 
-#: .\main\templates\main\dashboard.html:1828
-#: .\main\templates\main\dashboard.html:1831
-#: .\main\templates\main\dashboard.html:2098
-#: .\main\templates\main\dashboard.html:2101
+#: main/templates/main/dashboard.html:1828
+#: main/templates/main/dashboard.html:1831
+#: main/templates/main/dashboard.html:2098
+#: main/templates/main/dashboard.html:2101
 msgid "LinkedIn Link"
 msgstr "رابط لينكدإن"
 
-#: .\main\templates\main\dashboard.html:1845
-#: .\main\templates\main\dashboard.html:2116
-#: .\main\templates\main\dashboard8.html:1429
-#: .\main\templates\main\dashboard8.html:1566
+#: main/templates/main/dashboard.html:1845
+#: main/templates/main/dashboard.html:2116
+#: main/templates/main/dashboard8.html:1429
+#: main/templates/main/dashboard8.html:1566
 msgid "Primary Branch"
 msgstr "الفرع الرئيسي"
 
-#: .\main\templates\main\dashboard.html:1883
-#: .\main\templates\main\dashboard8.html:1466
+#: main/templates/main/dashboard.html:1883
+#: main/templates/main/dashboard8.html:1466
 msgid "Edit Branch"
 msgstr "تعديل الفرع"
 
-#: .\main\templates\main\dashboard.html:2133
-#: .\main\templates\main\dashboard8.html:1583
+#: main/templates/main/dashboard.html:2133
+#: main/templates/main/dashboard8.html:1583
 msgid "Update Branch"
 msgstr "تحديث الفرع"
 
-#: .\main\templates\main\dashboard.html:2173
-#: .\main\templates\main\dashboard.html:2176
-#: .\main\templates\main\dashboard.html:2263
-#: .\main\templates\main\dashboard.html:2267
-#: .\main\templates\main\dashboard8.html:1623
-#: .\main\templates\main\dashboard8.html:1626
-#: .\main\templates\main\dashboard8.html:1713
-#: .\main\templates\main\dashboard8.html:1717
+#: main/templates/main/dashboard.html:2153
+#: main/templates/main/dashboard.html:2223
+#: main/templates/main/dashboard8.html:105
+#: main/templates/main/dashboard8.html:1603
+#: main/templates/main/dashboard8.html:1673
+msgid "Add Category"
+msgstr "إضافة تصنيف"
+
+#: main/templates/main/dashboard.html:2173
+#: main/templates/main/dashboard.html:2176
+#: main/templates/main/dashboard.html:2263
+#: main/templates/main/dashboard.html:2267
+#: main/templates/main/dashboard8.html:1623
+#: main/templates/main/dashboard8.html:1626
+#: main/templates/main/dashboard8.html:1713
+#: main/templates/main/dashboard8.html:1717
 msgid "Category Name"
 msgstr "اسم التصنيف"
 
-#: .\main\templates\main\dashboard.html:2196
-#: .\main\templates\main\dashboard.html:2288
-#: .\main\templates\main\dashboard8.html:1646
-#: .\main\templates\main\dashboard8.html:1738
+#: main/templates/main/dashboard.html:2196
+#: main/templates/main/dashboard.html:2288
+#: main/templates/main/dashboard8.html:1646
+#: main/templates/main/dashboard8.html:1738
 msgid "Category Image"
 msgstr "صورة التصنيف"
 
-#: .\main\templates\main\dashboard.html:2206
-#: .\main\templates\main\dashboard8.html:1656
+#: main/templates/main/dashboard.html:2206
+#: main/templates/main/dashboard8.html:1656
 msgid "Optional - Upload a category image"
 msgstr "اختياري - ارفع صورة للتصنيف"
 
-#: .\main\templates\main\dashboard.html:2243
-#: .\main\templates\main\dashboard8.html:1693
+#: main/templates/main/dashboard.html:2243
+#: main/templates/main/dashboard8.html:1693
 msgid "Edit Category"
 msgstr "تعديل التصنيف"
 
-#: .\main\templates\main\dashboard.html:2298
-#: .\main\templates\main\dashboard.html:3116
-#: .\main\templates\main\dashboard8.html:1748
+#: main/templates/main/dashboard.html:2298
+#: main/templates/main/dashboard.html:3116
+#: main/templates/main/dashboard8.html:1748
 msgid "Optional - Leave empty to keep current image"
 msgstr "اختياري - اتركه فارغًا للاحتفاظ بالصورة الحالية"
 
-#: .\main\templates\main\dashboard.html:2322
-#: .\main\templates\main\dashboard8.html:1772
+#: main/templates/main/dashboard.html:2322
+#: main/templates/main/dashboard8.html:1772
 msgid "Update Category"
 msgstr "تحديث التصنيف"
 
-#: .\main\templates\main\dashboard.html:2342
-#: .\main\templates\main\dashboard8.html:1792
+#: main/templates/main/dashboard.html:2342
+#: main/templates/main/dashboard8.html:1792
 msgid "Add New City"
 msgstr "إضافة مدينة جديدة"
 
-#: .\main\templates\main\dashboard.html:2378
-#: .\main\templates\main\dashboard.html:2448
+#: main/templates/main/dashboard.html:2378
+#: main/templates/main/dashboard.html:2448
 msgid "Delivery Fee (د.ل)"
 msgstr "رسوم التوصيل (د.ل)"
 
-#: .\main\templates\main\dashboard.html:2413
-#: .\main\templates\main\dashboard8.html:1863
+#: main/templates/main/dashboard.html:2413
+#: main/templates/main/dashboard8.html:1863
 msgid "Edit City"
 msgstr "تعديل المدينة"
 
-#: .\main\templates\main\dashboard.html:2463
-#: .\main\templates\main\dashboard8.html:1913
+#: main/templates/main/dashboard.html:2463
+#: main/templates/main/dashboard8.html:1913
 msgid "Update City"
 msgstr "تحديث المدينة"
 
-#: .\main\templates\main\dashboard.html:2483
-#: .\main\templates\main\dashboard8.html:1933
+#: main/templates/main/dashboard.html:2483
+#: main/templates/main/dashboard8.html:1933
 msgid "Message Details"
 msgstr "تفاصيل الرسالة"
 
-#: .\main\templates\main\dashboard.html:2494
-#: .\main\templates\main\dashboard8.html:1944
+#: main/templates/main/dashboard.html:2494
+#: main/templates/main/dashboard8.html:1944
 msgid "From:"
 msgstr "من:"
 
-#: .\main\templates\main\dashboard.html:2498
-#: .\main\templates\main\dashboard8.html:1948
+#: main/templates/main/dashboard.html:2498
+#: main/templates/main/dashboard8.html:1948
 msgid "Message:"
 msgstr "الرسالة:"
 
-#: .\main\templates\main\dashboard.html:2512
-#: .\main\templates\main\dashboard8.html:1962
+#: main/templates/main/dashboard.html:2512
+#: main/templates/main/dashboard8.html:1962
 msgid "Close"
 msgstr "إغلاق"
 
-#: .\main\templates\main\dashboard.html:2924
-#: .\main\templates\main\dashboard8.html:2254
+#: main/templates/main/dashboard.html:2924
+#: main/templates/main/dashboard8.html:2254
 msgid "Confirm Action"
 msgstr "تأكيد الإجراء"
 
-#: .\main\templates\main\dashboard.html:2935
-#: .\main\templates\main\dashboard8.html:2265
+#: main/templates/main/dashboard.html:2935
+#: main/templates/main/dashboard8.html:2265
 msgid "Are you sure you want to perform this action?"
 msgstr "هل أنت متأكد أنك تريد تنفيذ هذا الإجراء؟"
 
-#: .\main\templates\main\dashboard.html:2948
-#: .\main\templates\main\dashboard8.html:2278
+#: main/templates/main/dashboard.html:2948
+#: main/templates/main/dashboard8.html:2278
 msgid "Confirm"
 msgstr "تأكيد"
 
-#: .\main\templates\main\dashboard.html:2996
-#: .\main\templates\main\dashboard.html:3088
+#: main/templates/main/dashboard.html:2967
+#: main/templates/main/dashboard.html:3039
+msgid "Add Brand"
+msgstr "إضافة علامة تجارية"
+
+#: main/templates/main/dashboard.html:2996
+#: main/templates/main/dashboard.html:3088
 msgid "Please enter a brand name."
 msgstr "يرجى إدخال اسم العلامة التجارية."
 
-#: .\main\templates\main\dashboard.html:3024
+#: main/templates/main/dashboard.html:3024
 msgid "Optional - Upload a brand image"
 msgstr "اختياري - ارفع صورة للعلامة التجارية"
 
-#: .\main\templates\main\dashboard.html:3059
+#: main/templates/main/dashboard.html:3059
 msgid "Edit Brand"
 msgstr "تعديل العلامة التجارية"
 
-#: .\main\templates\main\dashboard.html:3141
+#: main/templates/main/dashboard.html:3141
 msgid "Update Brand"
 msgstr "تحديث العلامة التجارية"
 
-#: .\main\templates\main\dashboard8.html:544
+#: main/templates/main/dashboard8.html:97 main/templates/main/shop.html:1046
+#: main/templates/main/shop.html:1147
+msgid "Categories"
+msgstr "التصنيفات"
+
+#: main/templates/main/dashboard8.html:544
 msgid "User"
 msgstr "المستخدم"
 
-#: .\main\templates\main\dashboard8.html:549
+#: main/templates/main/dashboard8.html:549
 msgid "Status"
 msgstr "الحالة"
 
-#: .\main\templates\main\dashboard8.html:583
+#: main/templates/main/dashboard8.html:583
 msgid "Pending"
 msgstr "قيد الانتظار"
 
-#: .\main\templates\main\dashboard8.html:590
+#: main/templates/main/dashboard8.html:590
 msgid "No inquiries yet"
 msgstr "لا توجد استفسارات بعد"
 
-#: .\main\templates\main\dashboard8.html:907
-#: .\main\templates\main\dashboard8.html:1139
+#: main/templates/main/dashboard8.html:907
+#: main/templates/main/dashboard8.html:1139
 msgid "Price ($)"
 msgstr "السعر ($)"
 
-#: .\main\templates\main\dashboard8.html:1828
-#: .\main\templates\main\dashboard8.html:1898
+#: main/templates/main/dashboard8.html:1828
+#: main/templates/main/dashboard8.html:1898
 msgid "Delivery Fee ($)"
 msgstr "رسوم التوصيل ($)"
 
-#: .\main\templates\main\home.html:4
+#: main/templates/main/home.html:4
 msgid "Home - SITEX"
 msgstr "الرئيسية - SITEX"
 
-#: .\main\templates\main\home.html:35
+#: main/templates/main/home.html:35
 msgid "Previous"
 msgstr "السابق"
 
-#: .\main\templates\main\home.html:48
+#: main/templates/main/home.html:48
 msgid "Next"
 msgstr "التالي"
 
-#: .\main\templates\main\home.html:61
+#: main/templates/main/home.html:61
 msgid "SITEX Software Group"
 msgstr "مجموعة SITEX البرمجية"
 
-#: .\main\templates\main\home.html:65
+#: main/templates/main/home.html:65
 msgid "Build Modern Software, Websites & Digital Platforms"
 msgstr "نبني برمجيات ومواقع ومنصات رقمية حديثة"
 
-#: .\main\templates\main\home.html:69
-msgid ""
-" We design and develop high-performance websites,\n"
-"          business systems, and scalable cloud-ready solutions — with clean "
-"UI,\n"
-"          secure architecture, and measurable results. "
-msgstr ""
-" نقوم بتصميم وتطوير مواقع عالية الأداء،\n"
-"          وأنظمة أعمال، وحلول قابلة للتوسع وجاهزة للسحابة — بواجهة نظيفة،\n"
-"          وبنية آمنة، ونتائج قابلة للقياس. "
+#: main/templates/main/home.html:69
+msgid " We design and develop high-performance websites,\n          business systems, and scalable cloud-ready solutions — with clean UI,\n          secure architecture, and measurable results. "
+msgstr " نقوم بتصميم وتطوير مواقع عالية الأداء،\n          وأنظمة أعمال، وحلول قابلة للتوسع وجاهزة للسحابة — بواجهة نظيفة،\n          وبنية آمنة، ونتائج قابلة للقياس. "
 
-#: .\main\templates\main\home.html:85
+#: main/templates/main/home.html:85
 msgid "Request a Quote"
 msgstr "اطلب عرض سعر"
 
-#: .\main\templates\main\home.html:98
+#: main/templates/main/home.html:98
 msgid "Delivery & Iteration"
 msgstr "التسليم والتحسين المستمر"
 
-#: .\main\templates\main\home.html:112
+#: main/templates/main/home.html:112
 msgid "Best Practices"
 msgstr "أفضل الممارسات"
 
-#: .\main\templates\main\home.html:142
+#: main/templates/main/home.html:142
 msgid "Performance & Trust"
 msgstr "الأداء والثقة"
 
-#: .\main\templates\main\home.html:146
+#: main/templates/main/home.html:146
 msgid "Delivering Digital Excellence"
 msgstr "نقدّم تميزًا رقميًا"
 
-#: .\main\templates\main\home.html:150
-msgid ""
-" From corporate websites to internal systems, we focus\n"
-"        on speed, stability, and a modern user experience — built for real\n"
-"        business impact. "
-msgstr ""
-" من مواقع الشركات إلى الأنظمة الداخلية، نركز\n"
-"        على السرعة والاستقرار وتجربة مستخدم حديثة — مبنية لتحقيق\n"
-"        أثر حقيقي على الأعمال. "
+#: main/templates/main/home.html:150
+msgid " From corporate websites to internal systems, we focus\n        on speed, stability, and a modern user experience — built for real\n        business impact. "
+msgstr " من مواقع الشركات إلى الأنظمة الداخلية، نركز\n        على السرعة والاستقرار وتجربة مستخدم حديثة — مبنية لتحقيق\n        أثر حقيقي على الأعمال. "
 
-#: .\main\templates\main\home.html:167
+#: main/templates/main/home.html:167
 msgid "Client Satisfaction"
 msgstr "رضا العملاء"
 
-#: .\main\templates\main\home.html:170
+#: main/templates/main/home.html:170
 msgid "Based on delivery & support feedback"
 msgstr "بناءً على تقييمات التسليم والدعم"
 
-#: .\main\templates\main\home.html:197
+#: main/templates/main/home.html:197
 msgid "Uptime"
 msgstr "زمن التشغيل"
 
-#: .\main\templates\main\home.html:199
+#: main/templates/main/home.html:199
 msgid "Monitoring & stable deployments"
 msgstr "مراقبة ونشر مستقر"
 
-#: .\main\templates\main\home.html:227
+#: main/templates/main/home.html:227
 msgid "Quality Standards"
 msgstr "معايير الجودة"
 
-#: .\main\templates\main\home.html:230
+#: main/templates/main/home.html:230
 msgid "Code reviews & testing discipline"
 msgstr "مراجعة الكود وانضباط الاختبارات"
 
-#: .\main\templates\main\home.html:258
+#: main/templates/main/home.html:258
 msgid "Returning Clients"
 msgstr "عملاء متكررون"
 
-#: .\main\templates\main\home.html:260
+#: main/templates/main/home.html:260
 msgid "Long-term partnerships"
 msgstr "شراكات طويلة المدى"
 
-#: .\main\templates\main\home.html:290
+#: main/templates/main/home.html:290
 msgid "Fast response & clear communication"
 msgstr "استجابة سريعة وتواصل واضح"
 
-#: .\main\templates\main\home.html:307
+#: main/templates/main/home.html:307
 msgid "Fast Launch"
 msgstr "إطلاق سريع"
 
-#: .\main\templates\main\home.html:309
+#: main/templates/main/home.html:309
 msgid "For MVP & landing websites"
 msgstr "للنماذج الأولية وصفحات الهبوط"
 
-#: .\main\templates\main\home.html:327
+#: main/templates/main/home.html:327
 msgid "Security Checks"
 msgstr "فحوصات الأمان"
 
-#: .\main\templates\main\home.html:330
+#: main/templates/main/home.html:330
 msgid "Hardening & best practices"
 msgstr "تعزيز الأمان وأفضل الممارسات"
 
-#: .\main\templates\main\home.html:346
+#: main/templates/main/home.html:346
 msgid "Clean Git Workflow"
 msgstr "سير عمل Git منظم"
 
-#: .\main\templates\main\home.html:352
+#: main/templates/main/home.html:352
 msgid "Secure by Design"
 msgstr "آمن منذ التصميم"
 
-#: .\main\templates\main\home.html:358
+#: main/templates/main/home.html:358
 msgid "Cloud-Ready Deployments"
 msgstr "نشر جاهز للسحابة"
 
-#: .\main\templates\main\home.html:390
+#: main/templates/main/home.html:390
 msgid "What We Build"
 msgstr "ماذا نقدم"
 
-#: .\main\templates\main\home.html:394
-msgid ""
-" Websites, systems, and digital products — engineered\n"
-"        for performance, scalability, and a great user experience.\n"
-"        "
-msgstr ""
-" مواقع وأنظمة ومنتجات رقمية — مُهندسة\n"
-"        للأداء وقابلية التوسع وتجربة مستخدم ممتازة.\n"
-"        "
+#: main/templates/main/home.html:394
+msgid " Websites, systems, and digital products — engineered\n        for performance, scalability, and a great user experience.\n        "
+msgstr " مواقع وأنظمة ومنتجات رقمية — مُهندسة\n        للأداء وقابلية التوسع وتجربة مستخدم ممتازة.\n        "
 
-#: .\main\templates\main\home.html:413
-msgid "Technologies"
-msgstr "التقنيات"
-
-#: .\main\templates\main\home.html:416
+#: main/templates/main/home.html:416
 msgid "Modern Stack, Reliable Delivery"
 msgstr "تقنيات حديثة وتسليم موثوق"
 
-#: .\main\templates\main\home.html:419
-msgid ""
-" We use trusted technologies and proven engineering\n"
-"        practices to ship stable products faster. "
-msgstr ""
-" نستخدم تقنيات موثوقة وممارسات هندسية\n"
-"        مثبتة لتسليم منتجات مستقرة بشكل أسرع. "
+#: main/templates/main/home.html:419
+msgid " We use trusted technologies and proven engineering\n        practices to ship stable products faster. "
+msgstr " نستخدم تقنيات موثوقة وممارسات هندسية\n        مثبتة لتسليم منتجات مستقرة بشكل أسرع. "
 
-#: .\main\templates\main\home.html:437
+#: main/templates/main/home.html:437
 msgid "Featured Work"
 msgstr "أعمال مميزة"
 
-#: .\main\templates\main\home.html:440
+#: main/templates/main/home.html:440
 msgid "Projects & Case Studies"
 msgstr "المشاريع ودراسات الحالة"
 
-#: .\main\templates\main\home.html:443
-msgid ""
-" A selection of websites and systems delivered with care\n"
-"        — UI, backend, integrations, and deployment. "
-msgstr ""
-" مجموعة مختارة من المواقع والأنظمة التي تم تسليمها بعناية\n"
-"        — واجهات، خلفية، تكاملات، ونشر. "
+#: main/templates/main/home.html:443
+msgid " A selection of websites and systems delivered with care\n        — UI, backend, integrations, and deployment. "
+msgstr " مجموعة مختارة من المواقع والأنظمة التي تم تسليمها بعناية\n        — واجهات، خلفية، تكاملات، ونشر. "
 
-#: .\main\templates\main\home.html:457
+#: main/templates/main/home.html:457
 msgid "View All Services"
 msgstr "عرض جميع الخدمات"
 
-#: .\main\templates\main\home.html:843
+#: main/templates/main/home.html:843
 msgid "Websites & Systems that Perform"
 msgstr "مواقع وأنظمة تعمل بكفاءة"
 
-#: .\main\templates\main\home.html:845
+#: main/templates/main/home.html:845
 msgid "Modern UI, secure backend, reliable deployment"
 msgstr "واجهة حديثة، خلفية آمنة، ونشر موثوق"
 
-#: .\main\templates\main\home.html:888
+#: main/templates/main/home.html:888
 msgid "No services available."
 msgstr "لا توجد خدمات متاحة."
 
-#: .\main\templates\main\home.html:898
+#: main/templates/main/home.html:898
 msgid "Service"
 msgstr "الخدمة"
 
-#: .\main\templates\main\home.html:922
+#: main/templates/main/home.html:922
 msgid "Details available on request."
 msgstr "التفاصيل متاحة عند الطلب."
 
-#: .\main\templates\main\home.html:955
+#: main/templates/main/home.html:955
 msgid "No technologies available."
 msgstr "لا توجد تقنيات متاحة."
 
-#: .\main\templates\main\home.html:998
+#: main/templates/main/home.html:998
 msgid "No featured work available."
 msgstr "لا توجد أعمال مميزة متاحة."
 
-#: .\main\templates\main\home.html:1008
+#: main/templates/main/home.html:1008
 msgid "Project"
 msgstr "المشروع"
 
-#: .\main\templates\main\home.html:1038
+#: main/templates/main/home.html:1038
 msgid "Project details available."
 msgstr "تفاصيل المشروع متاحة."
 
-#: .\main\templates\main\home.html:1061
+#: main/templates/main/home.html:1061
 msgid "Failed to load content. Please try again later."
 msgstr "فشل تحميل المحتوى. يرجى المحاولة لاحقًا."
 
-#: .\main\templates\main\home2.html:659
+#: main/templates/main/home2.html:659
 msgid "Search for products, categories, brands..."
 msgstr "ابحث عن المنتجات والتصنيفات والعلامات التجارية..."
 
-#: .\main\templates\main\home2.html:663
+#: main/templates/main/home2.html:663
 msgid "Search"
 msgstr "بحث"
 
-#: .\main\templates\main\home2.html:672
+#: main/templates/main/home2.html:672
 msgid "Shop By Category"
 msgstr "تسوق حسب التصنيف"
 
-#: .\main\templates\main\home2.html:674
+#: main/templates/main/home2.html:674
 msgid "Browse our wide range of categories"
 msgstr "تصفّح مجموعتنا الواسعة من التصنيفات"
 
-#: .\main\templates\main\home2.html:687
+#: main/templates/main/home2.html:687
 msgid "Featured Products"
 msgstr "منتجات مميزة"
 
-#: .\main\templates\main\home2.html:689
+#: main/templates/main/home2.html:689
 msgid "Discover our most popular items"
 msgstr "اكتشف أكثر منتجاتنا طلبًا"
 
-#: .\main\templates\main\home2.html:697
+#: main/templates/main/home2.html:697
 msgid "View All Products"
 msgstr "عرض جميع المنتجات"
 
-#: .\main\templates\main\home2.html:708
+#: main/templates/main/home2.html:708
 msgid "New Arrivals"
 msgstr "وصل حديثًا"
 
-#: .\main\templates\main\home2.html:709
+#: main/templates/main/home2.html:709
 msgid "Fresh picks just for you"
 msgstr "اختيارات جديدة خصيصًا لك"
 
-#: .\main\templates\main\login.html:3
+#: main/templates/main/login.html:3
 msgid "Login - AWFERLK Solutions"
 msgstr "تسجيل الدخول - اوفرلك للحلول التقنية"
 
-#: .\main\templates\main\login.html:15
+#: main/templates/main/login.html:15
 msgid "Welcome Back"
 msgstr "مرحبًا بعودتك"
 
-#: .\main\templates\main\login.html:17
+#: main/templates/main/login.html:17
 msgid "Sign in to your account to continue"
 msgstr "سجّل الدخول إلى حسابك للمتابعة"
 
-#: .\main\templates\main\login.html:37
+#: main/templates/main/login.html:37
 msgid "Username"
 msgstr "اسم المستخدم"
 
-#: .\main\templates\main\login.html:49
+#: main/templates/main/login.html:49
 msgid "Enter your username"
 msgstr "أدخل اسم المستخدم"
 
-#: .\main\templates\main\login.html:57
+#: main/templates/main/login.html:57
 msgid "Password"
 msgstr "كلمة المرور"
 
-#: .\main\templates\main\login.html:69
+#: main/templates/main/login.html:69
 msgid "Enter your password"
 msgstr "أدخل كلمة المرور"
 
-#: .\main\templates\main\login.html:86
+#: main/templates/main/login.html:86
 msgid "Remember me"
 msgstr "تذكرني"
 
-#: .\main\templates\main\login.html:90
+#: main/templates/main/login.html:90
 msgid "Forgot password?"
 msgstr "نسيت كلمة المرور؟"
 
-#: .\main\templates\main\login.html:101
+#: main/templates/main/login.html:101
 msgid "Sign In"
 msgstr "تسجيل الدخول"
 
-#: .\main\templates\main\login.html:114
+#: main/templates/main/login.html:114
 msgid "Don't have an account?"
 msgstr "ليس لديك حساب؟"
 
-#: .\main\templates\main\login.html:116
+#: main/templates/main/login.html:116
 msgid "Contact administrator"
 msgstr "تواصل مع المسؤول"
 
-#: .\main\templates\main\login.html:128
+#: main/templates/main/login.html:128
 msgid "Your login information is securely encrypted"
 msgstr "معلومات تسجيل الدخول مشفّرة بشكل آمن"
 
-#: .\main\templates\main\login.html:160
+#: main/templates/main/login.html:160
 msgid "Signing in..."
 msgstr "جاري تسجيل الدخول..."
 
-#: .\main\templates\main\product_detail.html:573
+#: main/templates/main/product_detail.html:573
 msgid "Your browser does not support the video tag."
 msgstr "متصفحك لا يدعم عرض الفيديو."
 
-#: .\main\templates\main\product_detail.html:595
+#: main/templates/main/product_detail.html:595
 msgid "Video Available"
 msgstr "يتوفر فيديو"
 
-#: .\main\templates\main\product_detail.html:638
+#: main/templates/main/product_detail.html:638
 #, python-format
 msgid "%(product.name)s extra image"
 msgstr "صورة إضافية لـ %(product.name)s"
 
-#: .\main\templates\main\product_detail.html:669
-#: .\main\templates\main\shop.html:1690
+#: main/templates/main/product_detail.html:669
+#: main/templates/main/shop.html:1690
 msgid "Uncategorized"
 msgstr "غير مصنف"
 
-#: .\main\templates\main\product_detail.html:685
-#: .\main\templates\main\product_detail.html:775
-#: .\main\templates\main\shop.html:1587
+#: main/templates/main/product_detail.html:685
+#: main/templates/main/product_detail.html:775
+#: main/templates/main/shop.html:1587
 msgid "Price on request"
 msgstr "السعر عند الطلب"
 
-#: .\main\templates\main\product_detail.html:700
+#: main/templates/main/product_detail.html:700
 #, python-format
 msgid "%(product.quantity_available)s items available"
 msgstr "متوفر %(product.quantity_available)s قطعة"
 
-#: .\main\templates\main\product_detail.html:702
-#: .\main\templates\main\shop.html:1618
+#: main/templates/main/product_detail.html:702
+#: main/templates/main/shop.html:1618
 msgid "Out of stock"
 msgstr "غير متوفر"
 
-#: .\main\templates\main\product_detail.html:705
+#: main/templates/main/product_detail.html:705
 msgid "Stock information not available"
 msgstr "معلومات المخزون غير متاحة"
 
-#: .\main\templates\main\product_detail.html:721
+#: main/templates/main/product_detail.html:721
 msgid "Fast shipping"
 msgstr "شحن سريع"
 
-#: .\main\templates\main\product_detail.html:725
+#: main/templates/main/product_detail.html:725
 msgid "2 days return policy"
 msgstr "سياسة إرجاع خلال يومين"
 
-#: .\main\templates\main\product_detail.html:729
+#: main/templates/main/product_detail.html:729
 msgid "High quality"
 msgstr "جودة عالية"
 
-#: .\main\templates\main\product_detail.html:738
+#: main/templates/main/product_detail.html:738
 msgid "Similar Products"
 msgstr "منتجات مشابهة"
 
-#: .\main\templates\main\product_detail.html:787
+#: main/templates/main/product_detail.html:787
 msgid "Product added to cart!"
 msgstr "تمت إضافة المنتج إلى السلة!"
 
-#: .\main\templates\main\product_detail.html:907
-#: .\main\templates\main\shop.html:1661 .\main\templates\main\shop.html:1829
+#: main/templates/main/product_detail.html:907
+#: main/templates/main/shop.html:1661 main/templates/main/shop.html:1829
 msgid "Add to Cart"
 msgstr "إضافة إلى السلة"
 
-#: .\main\templates\main\product_detail.html:907
-#: .\main\templates\main\shop.html:1600 .\main\templates\main\shop.html:1662
-#: .\main\templates\main\shop.html:1830
+#: main/templates/main/product_detail.html:907
+#: main/templates/main/shop.html:1600 main/templates/main/shop.html:1662
+#: main/templates/main/shop.html:1830
 msgid "Cannot Order"
 msgstr "لا يمكن الطلب"
 
-#: .\main\templates\main\product_detail.html:934
+#: main/templates/main/product_detail.html:934
 msgid "This product cannot be ordered"
 msgstr "لا يمكن طلب هذا المنتج"
 
-#: .\main\templates\main\product_detail.html:968
+#: main/templates/main/product_detail.html:968
 msgid "Added!"
 msgstr "تمت الإضافة!"
 
-#: .\main\templates\main\product_detail.html:1116
+#: main/templates/main/product_detail.html:1116
 msgid "Saved!"
 msgstr "تم الحفظ!"
 
-#: .\main\templates\main\product_detail.html:1125
+#: main/templates/main/product_detail.html:1125
 msgid "Added to wishlist"
 msgstr "تمت الإضافة إلى المفضلة"
 
-#: .\main\templates\main\product_detail.html:1129
+#: main/templates/main/product_detail.html:1129
 msgid "Already in wishlist"
 msgstr "موجود بالفعل في المفضلة"
 
-#: .\main\templates\main\products.html:4
+#: main/templates/main/products.html:4
 msgid "Our Products - AWFERLK Solutions"
 msgstr "منتجاتنا - اوفرلك للحلول التقنية"
 
-#: .\main\templates\main\products.html:13
+#: main/templates/main/products.html:13
 msgid "Our Products"
 msgstr "منتجاتنا"
 
-#: .\main\templates\main\products.html:15
+#: main/templates/main/products.html:15
 msgid "Discover our comprehensive suite of technology solutions"
 msgstr "اكتشف مجموعتنا المتكاملة من الحلول التقنية"
 
-#: .\main\templates\main\products.html:53
+#: main/templates/main/products.html:53
 msgid "Place Inquiry"
 msgstr "إرسال استفسار"
 
-#: .\main\templates\main\products.html:69
+#: main/templates/main/products.html:69
 msgid "Custom"
 msgstr "مخصص"
 
-#: .\main\templates\main\products.html:99
+#: main/templates/main/products.html:99
 msgid "Delivery Address"
 msgstr "عنوان التوصيل"
 
-#: .\main\templates\main\products.html:106
+#: main/templates/main/products.html:106
 msgid "Enter complete delivery address"
 msgstr "أدخل عنوان التوصيل بالكامل"
 
-#: .\main\templates\main\products.html:114
+#: main/templates/main/products.html:114
 msgid "City"
 msgstr "المدينة"
 
-#: .\main\templates\main\products.html:141
+#: main/templates/main/products.html:141
 msgid "Pick Location on Map"
 msgstr "اختر الموقع من الخريطة"
 
-#: .\main\templates\main\products.html:151
+#: main/templates/main/products.html:151
 msgid "Submit Inquiry"
 msgstr "إرسال الاستفسار"
 
-#: .\main\templates\main\products.html:172
+#: main/templates/main/products.html:172
 msgid "No Products Available"
 msgstr "لا توجد منتجات متاحة"
 
-#: .\main\templates\main\products.html:174
+#: main/templates/main/products.html:174
 msgid "Check back later for our latest offerings."
 msgstr "يرجى العودة لاحقًا للاطلاع على أحدث عروضنا."
 
-#: .\main\templates\main\products.html:266
+#: main/templates/main/products.html:266
 msgid "Processing..."
 msgstr "جاري المعالجة..."
 
-#: .\main\templates\main\products.html:284
+#: main/templates/main/products.html:284
 msgid "Inquiry Submitted Successfully!"
 msgstr "تم إرسال الاستفسار بنجاح!"
 
-#: .\main\templates\main\products.html:285
+#: main/templates/main/products.html:285
 msgid "We'll contact you shortly."
 msgstr "سنتواصل معك قريبًا."
 
-#: .\main\templates\main\products.html:287
+#: main/templates/main/products.html:287
 msgid "Submit Another"
 msgstr "إرسال استفسار آخر"
 
-#: .\main\templates\main\products.html:308
+#: main/templates/main/products.html:308
 msgid "An error occurred while submitting your inquiry."
 msgstr "حدث خطأ أثناء إرسال الاستفسار."
 
-#: .\main\templates\main\shop.html:6
+#: main/templates/main/shop.html:6
 msgid "Shop - Browse Products"
 msgstr "المتجر - تصفح المنتجات"
 
-#: .\main\templates\main\shop.html:1062 .\main\templates\main\shop.html:1163
+#: main/templates/main/shop.html:1062 main/templates/main/shop.html:1163
 msgid "Price Range"
 msgstr "نطاق السعر"
 
-#: .\main\templates\main\shop.html:1068 .\main\templates\main\shop.html:1169
+#: main/templates/main/shop.html:1068 main/templates/main/shop.html:1169
 msgid "From"
 msgstr "من"
 
-#: .\main\templates\main\shop.html:1070 .\main\templates\main\shop.html:1171
+#: main/templates/main/shop.html:1070 main/templates/main/shop.html:1171
 msgid "To"
 msgstr "إلى"
 
-#: .\main\templates\main\shop.html:1088 .\main\templates\main\shop.html:1189
+#: main/templates/main/shop.html:1088 main/templates/main/shop.html:1189
 msgid "Availability"
 msgstr "التوفر"
 
-#: .\main\templates\main\shop.html:1099 .\main\templates\main\shop.html:1200
+#: main/templates/main/shop.html:1099 main/templates/main/shop.html:1200
 msgid "In Stock Only"
 msgstr "المتوفر فقط"
 
-#: .\main\templates\main\shop.html:1110 .\main\templates\main\shop.html:1551
+#: main/templates/main/shop.html:1110 main/templates/main/shop.html:1551
 msgid "Clear Filters"
 msgstr "مسح الفلاتر"
 
-#: .\main\templates\main\shop.html:1134
+#: main/templates/main/shop.html:1134
 msgid "Filters"
 msgstr "الفلاتر"
 
-#: .\main\templates\main\shop.html:1208
+#: main/templates/main/shop.html:1208
 msgid "Clear All"
 msgstr "مسح الكل"
 
-#: .\main\templates\main\shop.html:1214
+#: main/templates/main/shop.html:1214
 msgid "Apply Filters"
 msgstr "تطبيق الفلاتر"
 
-#: .\main\templates\main\shop.html:1222
+#: main/templates/main/shop.html:1222
 msgid "Sort By"
 msgstr "ترتيب حسب"
 
-#: .\main\templates\main\shop.html:1240
+#: main/templates/main/shop.html:1240
 msgid "Newest First"
 msgstr "الأحدث أولًا"
 
-#: .\main\templates\main\shop.html:1250
+#: main/templates/main/shop.html:1250
 msgid "Price: Low to High"
 msgstr "السعر: من الأقل للأعلى"
 
-#: .\main\templates\main\shop.html:1260
+#: main/templates/main/shop.html:1260
 msgid "Price: High to Low"
 msgstr "السعر: من الأعلى للأقل"
 
-#: .\main\templates\main\shop.html:1270
+#: main/templates/main/shop.html:1270
 msgid "Name A-Z"
 msgstr "الاسم من A إلى Z"
 
-#: .\main\templates\main\shop.html:1280
+#: main/templates/main/shop.html:1280
 msgid "Most Popular"
 msgstr "الأكثر شيوعًا"
 
-#: .\main\templates\main\shop.html:1288
+#: main/templates/main/shop.html:1288
 msgid "Done"
 msgstr "تم"
 
-#: .\main\templates\main\shop.html:1518
+#: main/templates/main/shop.html:1518
 msgid "All"
 msgstr "الكل"
 
-#: .\main\templates\main\shop.html:1548
+#: main/templates/main/shop.html:1548
 msgid "No products found"
 msgstr "لم يتم العثور على منتجات"
 
-#: .\main\templates\main\shop.html:1549
+#: main/templates/main/shop.html:1549
 msgid "Try adjusting your filters or search terms"
 msgstr "جرّب تعديل الفلاتر أو كلمات البحث"
 
-#: .\main\templates\main\shop.html:1598
+#: main/templates/main/shop.html:1598
 msgid "in stock"
 msgstr "متوفر"
 
-#: .\main\templates\main\shop.html:1599
+#: main/templates/main/shop.html:1599
 msgid "In stock"
 msgstr "متوفر"
 
-#: .\main\templates\main\shop.html:1610
+#: main/templates/main/shop.html:1610
 msgid "New"
 msgstr "جديد"
 
-#: .\main\templates\main\shop.html:1614
+#: main/templates/main/shop.html:1614
 msgid "Video"
 msgstr "فيديو"
+
+#: main/templates/main/sitex-invoice.html:5
+msgid "فاتورة - SITEX"
+msgstr "فاتورة - SITEX"
+
+#: main/templates/main/sitex-invoice.html:18
+msgid "إنشاء فاتورة"
+msgstr "إنشاء فاتورة"
+
+#: main/templates/main/sitex-invoice.html:21
+msgid "املأ البيانات واختر الخدمات لإنشاء فاتورة احترافية"
+msgstr "املأ البيانات واختر الخدمات لإنشاء فاتورة احترافية"
+
+#: main/templates/main/sitex-invoice.html:27
+msgid "حفظ كمسودة"
+msgstr "حفظ كمسودة"
+
+#: main/templates/main/sitex-invoice.html:31
+msgid "طباعة / حفظ PDF"
+msgstr "طباعة / حفظ PDF"
+
+#: main/templates/main/sitex-invoice.html:47
+msgid "المعلومات الأساسية"
+msgstr "المعلومات الأساسية"
+
+#: main/templates/main/sitex-invoice.html:52
+#: main/templates/main/sitex-invoice.html:360
+msgid "رقم الفاتورة"
+msgstr "رقم الفاتورة"
+
+#: main/templates/main/sitex-invoice.html:62
+#: main/templates/main/sitex-invoice.html:362
+msgid "تاريخ الفاتورة"
+msgstr "تاريخ الفاتورة"
+
+#: main/templates/main/sitex-invoice.html:79
+msgid "معلومات العميل"
+msgstr "معلومات العميل"
+
+#: main/templates/main/sitex-invoice.html:84
+#: main/templates/main/sitex-invoice.html:89
+msgid "اسم العميل"
+msgstr "اسم العميل"
+
+#: main/templates/main/sitex-invoice.html:94
+msgid "اسم الشركة"
+msgstr "اسم الشركة"
+
+#: main/templates/main/sitex-invoice.html:99
+msgid "الشركة / الجهة"
+msgstr "الشركة / الجهة"
+
+#: main/templates/main/sitex-invoice.html:104
+msgid "البريد الإلكتروني"
+msgstr "البريد الإلكتروني"
+
+#: main/templates/main/sitex-invoice.html:114
+msgid "رقم الهاتف"
+msgstr "رقم الهاتف"
+
+#: main/templates/main/sitex-invoice.html:131
+#: main/templates/main/sitex-invoice.html:384
+msgid "معلومات المشروع"
+msgstr "معلومات المشروع"
+
+#: main/templates/main/sitex-invoice.html:136
+#: main/templates/main/sitex-invoice.html:364
+msgid "نوع المشروع"
+msgstr "نوع المشروع"
+
+#: main/templates/main/sitex-invoice.html:142
+msgid "اختر نوع المشروع"
+msgstr "اختر نوع المشروع"
+
+#: main/templates/main/sitex-invoice.html:143
+#: main/templates/main/sitex-invoice.html:259
+msgid "موقع ويب"
+msgstr "موقع ويب"
+
+#: main/templates/main/sitex-invoice.html:144
+#: main/templates/main/sitex-invoice.html:263
+msgid "متجر إلكتروني"
+msgstr "متجر إلكتروني"
+
+#: main/templates/main/sitex-invoice.html:145
+msgid "نظام إدارة"
+msgstr "نظام إدارة"
+
+#: main/templates/main/sitex-invoice.html:146
+msgid "تطبيق جوال"
+msgstr "تطبيق جوال"
+
+#: main/templates/main/sitex-invoice.html:147
+msgid "تصميم جرافيك"
+msgstr "تصميم جرافيك"
+
+#: main/templates/main/sitex-invoice.html:153
+#: main/templates/main/sitex-invoice.html:158
+msgid "اسم المشروع"
+msgstr "اسم المشروع"
+
+#: main/templates/main/sitex-invoice.html:163
+msgid "ملاحظات المشروع"
+msgstr "ملاحظات المشروع"
+
+#: main/templates/main/sitex-invoice.html:164
+msgid "أضف أي ملاحظات أو تفاصيل إضافية..."
+msgstr "أضف أي ملاحظات أو تفاصيل إضافية..."
+
+#: main/templates/main/sitex-invoice.html:178
+msgid "إجمالي الفاتورة"
+msgstr "إجمالي الفاتورة"
+
+#: main/templates/main/sitex-invoice.html:186
+#: main/templates/main/sitex-invoice.html:409
+msgid "الإجمالي الفرعي"
+msgstr "الإجمالي الفرعي"
+
+#: main/templates/main/sitex-invoice.html:198
+msgid "خصم (د.ل)"
+msgstr "خصم (د.ل)"
+
+#: main/templates/main/sitex-invoice.html:206
+msgid "ضريبة (د.ل)"
+msgstr "ضريبة (د.ل)"
+
+#: main/templates/main/sitex-invoice.html:218
+#: main/templates/main/sitex-invoice.html:415
+msgid "الإجمالي النهائي"
+msgstr "الإجمالي النهائي"
+
+#: main/templates/main/sitex-invoice.html:227
+#: main/templates/main/sitex-invoice.html:421
+msgid "بيانات الدفع"
+msgstr "بيانات الدفع"
+
+#: main/templates/main/sitex-invoice.html:228
+msgid "مثال: تحويل مصرفي / نقدي / بيانات الحساب..."
+msgstr "مثال: تحويل مصرفي / نقدي / بيانات الحساب..."
+
+#: main/templates/main/sitex-invoice.html:235
+msgid "نسخ ملخص الفاتورة"
+msgstr "نسخ ملخص الفاتورة"
+
+#: main/templates/main/sitex-invoice.html:239
+msgid "إرسال بالبريد الإلكتروني"
+msgstr "إرسال بالبريد الإلكتروني"
+
+#: main/templates/main/sitex-invoice.html:251
+msgid "قوالب سريعة"
+msgstr "قوالب سريعة"
+
+#: main/templates/main/sitex-invoice.html:254
+msgid "اختر قالبًا لملء الخدمات تلقائيًا"
+msgstr "اختر قالبًا لملء الخدمات تلقائيًا"
+
+#: main/templates/main/sitex-invoice.html:267
+msgid "صيانة"
+msgstr "صيانة"
+
+#: main/templates/main/sitex-invoice.html:271
+msgid "مخصص"
+msgstr "مخصص"
+
+#: main/templates/main/sitex-invoice.html:286
+msgid "الخدمات والبنود"
+msgstr "الخدمات والبنود"
+
+#: main/templates/main/sitex-invoice.html:288
+msgid "أضف وعدّل الخدمات المطلوبة"
+msgstr "أضف وعدّل الخدمات المطلوبة"
+
+#: main/templates/main/sitex-invoice.html:293
+msgid "إضافة بند"
+msgstr "إضافة بند"
+
+#: main/templates/main/sitex-invoice.html:297
+msgid "حذف الكل"
+msgstr "حذف الكل"
+
+#: main/templates/main/sitex-invoice.html:308
+#: main/templates/main/sitex-invoice.html:397
+msgid "الخدمة / الوصف"
+msgstr "الخدمة / الوصف"
+
+#: main/templates/main/sitex-invoice.html:311
+#: main/templates/main/sitex-invoice.html:398
+msgid "الكمية"
+msgstr "الكمية"
+
+#: main/templates/main/sitex-invoice.html:314
+#: main/templates/main/sitex-invoice.html:399
+msgid "سعر الوحدة"
+msgstr "سعر الوحدة"
+
+#: main/templates/main/sitex-invoice.html:317
+#: main/templates/main/sitex-invoice.html:400
+msgid "الإجمالي"
+msgstr "الإجمالي"
+
+#: main/templates/main/sitex-invoice.html:330
+msgid "إجمالي البنود:"
+msgstr "إجمالي البنود:"
+
+#: main/templates/main/sitex-invoice.html:333
+msgid "سيتم تحديث الإجمالي تلقائيًا"
+msgstr "سيتم تحديث الإجمالي تلقائيًا"
+
+#: main/templates/main/sitex-invoice.html:350
+msgid "حلول البرمجيات وتقنية المعلومات"
+msgstr "حلول البرمجيات وتقنية المعلومات"
+
+#: main/templates/main/sitex-invoice.html:351
+msgid "طرابلس - ليبيا"
+msgstr "طرابلس - ليبيا"
+
+#: main/templates/main/sitex-invoice.html:355
+msgid "فاتورة"
+msgstr "فاتورة"
+
+#: main/templates/main/sitex-invoice.html:366
+msgid "العملة"
+msgstr "العملة"
+
+#: main/templates/main/sitex-invoice.html:373
+msgid "فاتورة إلى"
+msgstr "فاتورة إلى"
+
+#: main/templates/main/sitex-invoice.html:411
+msgid "خصم"
+msgstr "خصم"
+
+#: main/templates/main/sitex-invoice.html:413
+msgid "ضريبة"
+msgstr "ضريبة"
+
+#: main/templates/main/sitex-invoice.html:429
+msgid "تم إصدار هذه الفاتورة إلكترونيًا ولا تتطلب توقيعًا."
+msgstr "تم إصدار هذه الفاتورة إلكترونيًا ولا تتطلب توقيعًا."
+
+#: main/templates/main/sitex-invoice.html:431
+msgid "شكرًا لاختياركم SITEX."
+msgstr "شكرًا لاختياركم SITEX."
+
+#: main/templates/main/sitex-invoice.html:544
+msgid "لا توجد بنود مضافة"
+msgstr "لا توجد بنود مضافة"
+
+#: main/templates/main/sitex-invoice.html:545
+msgid "انقر على 'إضافة بند' لبدء الفاتورة"
+msgstr "انقر على 'إضافة بند' لبدء الفاتورة"
+
+#: main/templates/main/sitex-invoice.html:564
+msgid "اسم الخدمة / الوصف"
+msgstr "اسم الخدمة / الوصف"
+
+#: main/templates/main/sitex-invoice.html:567
+msgid "ملاحظات إضافية (اختياري)"
+msgstr "ملاحظات إضافية (اختياري)"
+
+#: main/templates/main/sitex-invoice.html:604
+msgid "حذف"
+msgstr "حذف"
+
+#: main/templates/main/sitex-invoice.html:701
+msgid "لا توجد بنود"
+msgstr "لا توجد بنود"
+
+#: main/templates/main/sitex-invoice.html:716
+msgid "هل أنت متأكد من حذف جميع البنود؟"
+msgstr "هل أنت متأكد من حذف جميع البنود؟"
+
+#: main/templates/main/sitex-invoice.html:782
+msgid "هل أنت متأكد من حذف هذا البند؟"
+msgstr "هل أنت متأكد من حذف هذا البند؟"
+
+#: main/templates/main/website-calculator.html:5
+msgid "Pricing Calculator - SITEX"
+msgstr "حاسبة التسعير - SITEX"
+
+#: main/templates/main/website-calculator.html:16
+msgid "Project Pricing Calculator"
+msgstr "حاسبة تسعير المشروع"
+
+#: main/templates/main/website-calculator.html:19
+msgid "\n          Select the services you need and get an estimated price instantly—clear, flexible, and tailored to your project.\n          "
+msgstr "\n          اختر الخدمات التي تحتاجها واحصل على تقدير فوري للسعر — واضح ومرن ومناسب لمشروعك.\n          "
+
+#: main/templates/main/website-calculator.html:37
+#| msgid "Client Retention"
+msgid "Client & Project Details"
+msgstr "تفاصيل العميل والمشروع"
+
+#: main/templates/main/website-calculator.html:41
+#| msgid "City Name"
+msgid "Client Name"
+msgstr "اسم العميل"
+
+#: main/templates/main/website-calculator.html:42
+#| msgid "Company"
+msgid "Company / Person"
+msgstr "الشركة / الشخص"
+
+#: main/templates/main/website-calculator.html:46
+msgid "Quote Date"
+msgstr "تاريخ العرض"
+
+#: main/templates/main/website-calculator.html:53
+msgid "Website"
+msgstr "موقع ويب"
+
+#: main/templates/main/website-calculator.html:54
+#: main/templates/main/website-calculator.html:486
+#| msgid "Commerce"
+msgid "E-commerce"
+msgstr "التجارة الإلكترونية"
+
+#: main/templates/main/website-calculator.html:55
+#| msgid "Business Hours"
+msgid "Business System"
+msgstr "نظام أعمال"
+
+#: main/templates/main/website-calculator.html:56
+msgid "Landing Page"
+msgstr "صفحة هبوط"
+
+#: main/templates/main/website-calculator.html:61
+#: main/templates/main/website-calculator.html:240
+msgid "Currency"
+msgstr "العملة"
+
+#: main/templates/main/website-calculator.html:66
+#: main/templates/main/website-calculator.html:433
+msgid "Notes"
+msgstr "ملاحظات"
+
+#: main/templates/main/website-calculator.html:67
+msgid "Any special notes, requirements, references..."
+msgstr "أي ملاحظات أو متطلبات خاصة أو مراجع..."
+
+#: main/templates/main/website-calculator.html:73
+msgid "Reset to Default"
+msgstr "إعادة الضبط للوضع الافتراضي"
+
+#: main/templates/main/website-calculator.html:78
+msgid "Print Quote (PDF)"
+msgstr "طباعة العرض (PDF)"
+
+#: main/templates/main/website-calculator.html:84
+msgid "\n            This is an estimate. Final pricing may vary based on scope, timeline, integrations, and content readiness.\n            "
+msgstr "\n            هذا تقدير مبدئي. قد يختلف السعر النهائي حسب نطاق العمل والجدول الزمني والتكاملات وجاهزية المحتوى.\n            "
+
+#: main/templates/main/website-calculator.html:96
+msgid "Summary"
+msgstr "الملخص"
+
+#: main/templates/main/website-calculator.html:99
+msgid "\n              Your selected items and totals will appear here.\n              "
+msgstr "\n              ستظهر هنا العناصر التي اخترتها والإجماليات.\n              "
+
+#: main/templates/main/website-calculator.html:111
+msgid "Discount (LYD)"
+msgstr "تخفيض (د.ل)"
+
+#: main/templates/main/website-calculator.html:118
+msgid "Tax (LYD)"
+msgstr "الضريبة (د.ل)"
+
+#: main/templates/main/website-calculator.html:133
+msgid "Copy Quote Summary"
+msgstr "نسخ ملخص العرض"
+
+#: main/templates/main/website-calculator.html:138
+#| msgid "Selected Projects"
+msgid "Selected Items"
+msgstr "العناصر المختارة"
+
+#: main/templates/main/website-calculator.html:140
+#: main/templates/main/website-calculator.html:434
+#| msgid "No cities added yet"
+msgid "No items selected yet."
+msgstr "لم يتم اختيار أي عناصر بعد."
+
+#: main/templates/main/website-calculator.html:155
+#| msgid "Explore Services"
+msgid "Choose Services"
+msgstr "اختر الخدمات"
+
+#: main/templates/main/website-calculator.html:158
+msgid "\n        Pick what you need. Adjust quantities when applicable. The estimate updates instantly.\n        "
+msgstr "\n        اختر ما تحتاجه، وعدّل الكميات عند الحاجة. يتم تحديث التقدير فورًا.\n        "
+
+#: main/templates/main/website-calculator.html:170
+msgid "Service / Feature"
+msgstr "الخدمات / المميزات"
+
+#: main/templates/main/website-calculator.html:171
+msgid "Include"
+msgstr "تضمين"
+
+#: main/templates/main/website-calculator.html:172
+#: main/templates/main/website-calculator.html:256
+#: main/templates/main/website-calculator.html:424
+#: main/templates/main/website-calculator.html:440
+msgid "Qty"
+msgstr "الكمية"
+
+#: main/templates/main/website-calculator.html:173
+#: main/templates/main/website-calculator.html:441
+msgid "Unit Price (LYD)"
+msgstr "سعر الوحدة (د.ل)"
+
+#: main/templates/main/website-calculator.html:174
+msgid "Line Total (LYD)"
+msgstr "إجمالي البند (د.ل)"
+
+#: main/templates/main/website-calculator.html:190
+msgid "\n      You can customize the dataset from your Excel file later. For now, the list is pre-filled and editable in code.\n      "
+msgstr "\n      يمكنك تخصيص البيانات من ملف Excel لاحقًا. حاليًا القائمة مُعبأة مسبقًا ويمكن تعديلها من الكود.\n      "
+
+#: main/templates/main/website-calculator.html:204
+msgid "Need a Precise Quote?"
+msgstr "تحتاج عرض سعر دقيق؟"
+
+#: main/templates/main/website-calculator.html:207
+msgid "\n          Share your requirements and we'll send a detailed proposal with timeline, deliverables, and exact pricing.\n          "
+msgstr "\n          شاركنا متطلباتك وسنرسل لك عرضًا مفصلًا يتضمن الجدول الزمني والمخرجات والسعر النهائي.\n          "
+
+#: main/templates/main/website-calculator.html:229
+msgid "Software & IT Solutions"
+msgstr "حلول البرمجيات وتقنية المعلومات"
+
+#: main/templates/main/website-calculator.html:229
+msgid "Tripoli - Libya"
+msgstr "طرابلس - ليبيا"
+
+#: main/templates/main/website-calculator.html:235
+msgid "QUOTE / ESTIMATE"
+msgstr "عرض سعر / تقدير"
+
+#: main/templates/main/website-calculator.html:237
+#: main/templates/main/website-calculator.html:432
+#| msgid "Our Clients"
+msgid "Client"
+msgstr "العميل"
+
+#: main/templates/main/website-calculator.html:246
+#| msgid "Projects"
+msgid "Project Notes"
+msgstr "ملاحظات المشروع"
+
+#: main/templates/main/website-calculator.html:255
+#| msgid "Items"
+msgid "Item"
+msgstr "البند"
+
+#: main/templates/main/website-calculator.html:257
+#: main/templates/main/website-calculator.html:425
+msgid "Unit"
+msgstr "الوحدة"
+
+#: main/templates/main/website-calculator.html:275
+msgid "This document is an estimate. Final pricing may change based on scope and timeline."
+msgstr "هذا المستند تقديري. قد يتغير السعر النهائي حسب نطاق العمل والجدول الزمني."
+
+#: main/templates/main/website-calculator.html:282
+msgid "Thank you for choosing SITEX."
+msgstr "شكرًا لاختياركم SITEX."
+
+#: main/templates/main/website-calculator.html:283
+msgid "This quote is generated electronically and does not require a signature."
+msgstr "تم إنشاء هذا العرض إلكترونيًا ولا يتطلب توقيعًا."
+
+#: main/templates/main/website-calculator.html:429
+msgid "Line"
+msgstr "البند"
+
+#: main/templates/main/website-calculator.html:430
+msgid "Type"
+msgstr "النوع"
+
+#: main/templates/main/website-calculator.html:435
+#| msgid "No items in this invoice."
+msgid "No items selected."
+msgstr "لا توجد عناصر مختارة."
+
+#: main/templates/main/website-calculator.html:436
+msgid "Quote summary copied ✅"
+msgstr "تم نسخ ملخص العرض ✅"
+
+#: main/templates/main/website-calculator.html:437
+msgid "Copy the text:"
+msgstr "انسخ النص:"
+
+#: main/templates/main/website-calculator.html:447
+#: main/templates/main/website-calculator.html:460
+msgid "Infrastructure"
+msgstr "البنية التحتية"
+
+#: main/templates/main/website-calculator.html:448
+msgid "Server / Hosting"
+msgstr "الخادم / الاستضافة"
+
+#: main/templates/main/website-calculator.html:454
+msgid "3 months"
+msgstr "3 أشهر"
+
+#: main/templates/main/website-calculator.html:455
+msgid "6 months"
+msgstr "6 أشهر"
+
+#: main/templates/main/website-calculator.html:456
+msgid "1 year"
+msgstr "سنة واحدة"
+
+#: main/templates/main/website-calculator.html:460
+msgid "Domain registration (1 year)"
+msgstr "تسجيل النطاق (سنة واحدة)"
+
+#: main/templates/main/website-calculator.html:461
+#: main/templates/main/website-calculator.html:510
+#| msgid "Security Checks"
+msgid "Security"
+msgstr "الأمان"
+
+#: main/templates/main/website-calculator.html:461
+msgid "SSL Certificate"
+msgstr "شهادة SSL"
+
+#: main/templates/main/website-calculator.html:462
+msgid "Official email setup (info@...)"
+msgstr "إعداد بريد رسمي (info@...)"
+
+#: main/templates/main/website-calculator.html:464
+msgid "Design"
+msgstr "التصميم"
+
+#: main/templates/main/website-calculator.html:464
+msgid "Custom modern responsive design"
+msgstr "تصميم حديث متجاوب مخصص"
+
+#: main/templates/main/website-calculator.html:465
+#: main/templates/main/website-calculator.html:466
+#| msgid "Messages"
+msgid "Pages"
+msgstr "الصفحات"
+
+#: main/templates/main/website-calculator.html:465
+msgid "Up to 5 pages (Home/About/Services/Contact)"
+msgstr "حتى 5 صفحات (الرئيسية/من نحن/الخدمات/تواصل)"
+
+#: main/templates/main/website-calculator.html:466
+msgid "Extra page"
+msgstr "صفحة إضافية"
+
+#: main/templates/main/website-calculator.html:470
+#| msgid "Product Name"
+msgid "Products module"
+msgstr "وحدة المنتجات"
+
+#: main/templates/main/website-calculator.html:476
+#| msgid "Our Products"
+msgid "up to 10 products"
+msgstr "حتى 10 منتجات"
+
+#: main/templates/main/website-calculator.html:477
+#| msgid "Our Products"
+msgid "up to 50 products"
+msgstr "حتى 50 منتج"
+
+#: main/templates/main/website-calculator.html:478
+msgid "Unlimited + advanced details"
+msgstr "غير محدود + تفاصيل متقدمة"
+
+#: main/templates/main/website-calculator.html:482
+#: main/templates/main/website-calculator.html:483
+#: main/templates/main/website-calculator.html:484
+msgid "Forms"
+msgstr "النماذج"
+
+#: main/templates/main/website-calculator.html:482
+#| msgid "Contact Information"
+msgid "Contact form"
+msgstr "نموذج تواصل"
+
+#: main/templates/main/website-calculator.html:483
+msgid "Quotation form"
+msgstr "نموذج طلب عرض سعر"
+
+#: main/templates/main/website-calculator.html:484
+#| msgid "Custom"
+msgid "Custom form"
+msgstr "نموذج مخصص"
+
+#: main/templates/main/website-calculator.html:486
+msgid "Basic e-commerce setup"
+msgstr "إعداد متجر إلكتروني أساسي"
+
+#: main/templates/main/website-calculator.html:488
+msgid "Social Media"
+msgstr "وسائل التواصل الاجتماعي"
+
+#: main/templates/main/website-calculator.html:488
+msgid "Social media integration"
+msgstr "ربط وسائل التواصل الاجتماعي"
+
+#: main/templates/main/website-calculator.html:489
+msgid "Maps"
+msgstr "الخرائط"
+
+#: main/templates/main/website-calculator.html:489
+msgid "Google Maps integration"
+msgstr "دمج خرائط Google"
+
+#: main/templates/main/website-calculator.html:490
+msgid "WhatsApp"
+msgstr "واتساب"
+
+#: main/templates/main/website-calculator.html:490
+msgid "WhatsApp notifications development"
+msgstr "تطوير إشعارات واتساب"
+
+#: main/templates/main/website-calculator.html:492
+msgid "Languages"
+msgstr "اللغات"
+
+#: main/templates/main/website-calculator.html:492
+msgid "Multi-language (Arabic + English)"
+msgstr "تعدد اللغات (العربية + الإنجليزية)"
+
+#: main/templates/main/website-calculator.html:493
+msgid "Themes"
+msgstr "الثيمات"
+
+#: main/templates/main/website-calculator.html:493
+msgid "Dark Mode Theme"
+msgstr "ثيم الوضع الليلي"
+
+#: main/templates/main/website-calculator.html:494
+msgid "Analytics"
+msgstr "التحليلات"
+
+#: main/templates/main/website-calculator.html:494
+msgid "Google Analytics + basic dashboard"
+msgstr "Google Analytics + لوحة تحكم بسيطة"
+
+#: main/templates/main/website-calculator.html:497
+msgid "SEO"
+msgstr "تحسين محركات البحث"
+
+#: main/templates/main/website-calculator.html:498
+msgid "SEO Setup"
+msgstr "إعداد SEO"
+
+#: main/templates/main/website-calculator.html:504
+msgid "Basic SEO setup"
+msgstr "إعداد SEO أساسي"
+
+#: main/templates/main/website-calculator.html:505
+msgid "Advanced SEO (strategy + technical SEO)"
+msgstr "SEO متقدم (استراتيجية + SEO تقني)"
+
+#: main/templates/main/website-calculator.html:509
+msgid "Maintenance & support (monthly)"
+msgstr "الصيانة والدعم (شهريًا)"
+
+#: main/templates/main/website-calculator.html:510
+msgid "Security monitoring & hardening (monthly)"
+msgstr "مراقبة الأمان وتعزيز الحماية (شهريًا)"
+
+#: main/templates/main/website-calculator.html:826
+msgid "SITEX Quote"
+msgstr "عرض سعر SITEX"
+
+msgid "Custom Project Pricing Calculator"
+msgstr "حاسبة تسعير المشاريع المخصصة"

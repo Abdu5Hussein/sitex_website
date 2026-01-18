@@ -1,0 +1,50 @@
+{% extends "merchant_base.html" %}
+
+{% block title %}Transactions{% endblock %}
+
+{% block content %}
+<h2>Transactions</h2>
+
+<div style="background:#fff; padding:20px; border-radius:10px; box-shadow:0 3px 6px rgba(0,0,0,0.1)">
+    {% if transactions %}
+        <table style="width:100%; border-collapse:collapse;">
+            <thead>
+                <tr style="text-align:left; border-bottom:1px solid #ccc;">
+                    <th>ID</th>
+                    <th>Date</th>
+                    <th>Amount (LYD)</th>
+                    <th>Status</th>
+                    <th>Payment Link</th>
+                    <th>Gateway Ref</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for tx in transactions %}
+                <tr style="border-bottom:1px solid #eee;">
+                    <td>#{{ tx.id }}</td>
+                    <td>{{ tx.created_at|date:"Y-m-d H:i" }}</td>
+                    <td>{{ tx.amount }}</td>
+                    <td>
+                        {% if tx.status == "paid" %}
+                            <span style="color:green; font-weight:bold;">Paid</span>
+                        {% else %}
+                            <span style="color:red;">{{ tx.status|capfirst }}</span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if tx.payment_link %}
+                            {{ tx.payment_link.title }}
+                        {% else %}
+                            -
+                        {% endif %}
+                    </td>
+                    <td>{{ tx.gateway_reference }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No transactions found.</p>
+    {% endif %}
+</div>
+{% endblock %}

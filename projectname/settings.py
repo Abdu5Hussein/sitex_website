@@ -29,7 +29,7 @@ WEBSITE_DESCRIPTION_AR = "سايتكس لحلول البرمجيات"
 SECRET_KEY = 'django-insecure-@v&qxtrk1@372)1wolmf_85_8(04t*azx!9v%+7wpydywlp)d5'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 handler404 = 'main.views.t404_view'
 
 
@@ -57,6 +57,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'main',
     'rest_framework',
+    'WA_provider',
 
 
 ]
@@ -70,6 +71,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'WA_provider.middleware.OnboardingMiddleware',
+
 
 ]
 

@@ -2,12 +2,28 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.utils.text import slugify
 from decimal import Decimal
+from django.utils.timezone import now
+from django.utils import timezone
+import random
+import string
+
+def generate_unique_slug(model_class, name):
+    base_slug = slugify(name)
+    slug = base_slug
+    while model_class.objects.filter(slug=slug).exists():
+        # Add random 4-digit suffix
+        suffix = ''.join(random.choices(string.digits, k=4))
+        slug = f"{base_slug}-{suffix}"
+    return slug
 
 # Custom User
 class User(AbstractUser):
     is_admin = models.BooleanField(default=False)
     is_guest = models.BooleanField(default=True)
-
+    is_company_user = models.BooleanField(default=False)
+    is_wa_provider_user = models.BooleanField(default=False)
+    is_client = models.BooleanField(default=False)
+    is_marchent = models.BooleanField(default=False)
     # Fix reverse accessor clashes
     groups = models.ManyToManyField(
         'auth.Group',
@@ -231,3 +247,377 @@ class Project(models.Model):
         if not self.slug:
             self.slug = self.title
         super().save(*args, **kwargs)
+
+class ApiClient(models.Model):
+    user = models.OneToOneField(
+        User,
+        on_delete=models.CASCADE,
+        related_name="api_client",
+        null=True,       # temporary
+        blank=True       # optional
+    )
+    name = models.CharField(max_length=150)
+    company = models.CharField(max_length=150, blank=True)
+    email = models.EmailField(blank=True)
+    phone = models.CharField(max_length=20, blank=True)
+    api_key = models.CharField(max_length=64, unique=True)
+    is_active = models.BooleanField(default=True)
+
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.name
+
+class WhatsAppLog(models.Model):
+    client = models.ForeignKey(ApiClient, on_delete=models.CASCADE)
+    phone = models.CharField(max_length=20)
+    message = models.TextField()
+    status = models.CharField(max_length=20)
+    provider_id = models.CharField(max_length=100, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+class MessagePackage(models.Model):
+    name = models.CharField(max_length=100, verbose_name="Package Name")
+    message_count = models.PositiveIntegerField(verbose_name="Number of Messages")
+    price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name="Price (USD)")
+    description = models.TextField(blank=True, null=True, verbose_name="Description")  # optional
+    duration_days = models.PositiveIntegerField(default=30, verbose_name="Validity (Days)")
+    is_active = models.BooleanField(default=True, verbose_name="Active Package")
+    plan_code = models.CharField(max_length=50, null=True, blank=True, verbose_name="Plan Code")
+
+    # Safe for existing rows
+    created_at = models.DateTimeField(verbose_name="Created At", default=timezone.now)
+    updated_at = models.DateTimeField(auto_now=True, verbose_name="Updated At")
+
+    class Meta:
+        verbose_name = "Message Package"
+        verbose_name_plural = "Message Packages"
+
+    def __str__(self):
+        return f"{self.name} ({self.message_count} msgs) - ${self.price}"
+
+class ClientMessageBalance(models.Model):
+    client = models.OneToOneField(ApiClient, on_delete=models.CASCADE)
+
+    total_messages = models.PositiveIntegerField(default=0)
+    used_messages = models.PositiveIntegerField(default=0)
+
+    updated_at = models.DateTimeField(auto_now=True)
+
+    @property
+    def remaining_messages(self):
+        return self.total_messages - self.used_messages
+
+    def __str__(self):
+        return f"{self.client.name} Balance"
+
+class MessagePurchase(models.Model):
+    client = models.ForeignKey(ApiClient, on_delete=models.CASCADE)
+    package = models.ForeignKey(MessagePackage, on_delete=models.PROTECT)
+
+    messages_added = models.PositiveIntegerField()
+    price_paid = models.DecimalField(max_digits=10, decimal_places=2)
+
+    purchased_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.client} bought {self.messages_added}"
+
+
+class WhatsAppMessage(models.Model):
+    STATUS_CHOICES = (
+        ("queued", "Queued"),
+        ("sent", "Sent"),
+        ("failed", "Failed"),
+        ("delivered", "Delivered"),
+    )
+
+    MESSAGE_TYPE = (
+        ("otp", "OTP"),
+        ("text", "Text"),
+        ("template", "Template"),
+    )
+
+    client = models.ForeignKey(ApiClient, on_delete=models.CASCADE)
+
+    phone = models.CharField(max_length=20)
+    message_type = models.CharField(max_length=20, choices=MESSAGE_TYPE)
+    content = models.TextField()
+
+    provider_message_id = models.CharField(max_length=150, blank=True)
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default="queued")
+
+    cost = models.DecimalField(max_digits=6, decimal_places=4, default=0)
+
+    created_at = models.DateTimeField(auto_now_add=True)
+
+
+class ApiUsage(models.Model):
+    client = models.ForeignKey(ApiClient, on_delete=models.CASCADE)
+    date = models.DateField()
+
+    total_messages_sent = models.PositiveIntegerField(default=0)
+
+class Merchant(models.Model):
+    STATUS_CHOICES = (
+        ("draft", "Draft"),
+        ("pending", "Pending Review"),
+        ("active", "Active"),
+        ("suspended", "Suspended"),
+    )
+
+    owner = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        related_name="owned_merchants"
+    )
+    onboarding_step = models.CharField(
+        max_length=50,
+        default='basic_info',
+        choices=(
+            ('basic_info', 'Basic Information'),
+            ('verification', 'Verification'),
+            ('bank_details', 'Bank Details'),
+            ('subscription', 'Subscription Plan'),
+            ('completed', 'Completed')
+        )
+    )
+        # Document verification fields
+    id_document = models.FileField(
+        upload_to='merchant/documents/id/',
+        null=True,
+        blank=True
+    )
+    business_license = models.FileField(
+        upload_to='merchant/documents/license/',
+        null=True,
+        blank=True
+    )
+    id_verified = models.BooleanField(default=False)
+    business_verified = models.BooleanField(default=False)
+    name = models.CharField(max_length=200)
+    slug = models.SlugField(unique=True, blank=True)
+
+    phone = models.CharField(max_length=20)
+    email = models.EmailField(blank=True, null=True)
+
+    city = models.CharField(max_length=100, blank=True)
+    address = models.TextField(blank=True)
+
+    # Settlement info
+    lypay_number = models.CharField(max_length=20, blank=True, null=True)
+    bank_iban = models.CharField(max_length=50, blank=True, null=True)
+
+    status = models.CharField(
+        max_length=20,
+        choices=STATUS_CHOICES,
+        default="pending"
+    )
+
+    balance_available = models.DecimalField(
+        max_digits=14,
+        decimal_places=2,
+        default=0
+    )
+
+    balance_on_hold = models.DecimalField(
+        max_digits=14,
+        decimal_places=2,
+        default=0
+    )
+
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def save(self, *args, **kwargs):
+            if not self.slug:
+                self.slug = generate_unique_slug(Merchant, self.name)
+            super().save(*args, **kwargs)
+
+    def __str__(self):
+        return self.name
+
+class PaymentLink(models.Model):
+    merchant = models.ForeignKey(
+        Merchant,
+        on_delete=models.CASCADE,
+        related_name="payment_links"
+    )
+
+    title = models.CharField(max_length=200)
+    amount = models.DecimalField(max_digits=10, decimal_places=2)
+    invoice = models.ForeignKey(
+            "MerchantInvoice",
+            on_delete=models.SET_NULL,
+            null=True,
+            blank=True,
+            related_name="payment_links"
+        )
+    reference = models.CharField(max_length=100, unique=True)
+    is_active = models.BooleanField(default=True)
+
+    expires_at = models.DateTimeField(blank=True, null=True)
+
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.title} - {self.amount}"
+
+class Transaction(models.Model):
+    STATUS_CHOICES = (
+        ("initiated", "Initiated"),
+        ("paid", "Paid"),
+        ("failed", "Failed"),
+        ("refunded", "Refunded"),
+    )
+
+    merchant = models.ForeignKey(
+        Merchant,
+        on_delete=models.CASCADE,
+        related_name="transactions"
+    )
+
+    payment_link = models.ForeignKey(
+        PaymentLink,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True
+    )
+
+    amount = models.DecimalField(max_digits=10, decimal_places=2)
+
+    plutu_fee = models.DecimalField(
+        max_digits=8,
+        decimal_places=2,
+        default=0
+    )
+
+    platform_fee = models.DecimalField(
+        max_digits=8,
+        decimal_places=2,
+        default=0
+    )
+
+    net_amount = models.DecimalField(
+        max_digits=10,
+        decimal_places=2
+    )
+
+    status = models.CharField(
+        max_length=20,
+        choices=STATUS_CHOICES,
+        default="initiated"
+    )
+
+    gateway_reference = models.CharField(
+        max_length=150,
+        blank=True,
+        null=True
+    )
+
+    created_at = models.DateTimeField(auto_now_add=True)
+    metadata = models.JSONField(default=dict, blank=True)
+
+class MerchantInvoice(models.Model):
+    merchant = models.ForeignKey(
+        Merchant,
+        on_delete=models.CASCADE,
+        related_name="invoices"
+    )
+
+    invoice_number = models.CharField(max_length=50, unique=True)
+    description = models.TextField(blank=True)
+
+    total_amount = models.DecimalField(max_digits=12, decimal_places=2)
+
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.invoice_number
+
+
+class MerchantInvoiceItem(models.Model):
+    invoice = models.ForeignKey(
+        MerchantInvoice,
+        on_delete=models.CASCADE,
+        related_name="items"
+    )
+
+    description = models.CharField(max_length=255)
+    quantity = models.PositiveIntegerField(default=1)
+    unit_price = models.DecimalField(max_digits=10, decimal_places=2)
+
+    @property
+    def subtotal(self):
+        return self.quantity * self.unit_price
+
+
+class Payout(models.Model):
+    STATUS_CHOICES = (
+        ("pending", "Pending"),
+        ("processing", "Processing"),
+        ("completed", "Completed"),
+        ("failed", "Failed"),
+    )
+
+    merchant = models.ForeignKey(
+        Merchant,
+        on_delete=models.CASCADE,
+        related_name="payouts"
+    )
+
+    amount = models.DecimalField(max_digits=10, decimal_places=2)
+
+    method = models.CharField(
+        max_length=20,
+        choices=(("lypay", "LyPay"), ("bank", "Bank"))
+    )
+
+    reference = models.CharField(max_length=150, blank=True, null=True)
+
+    status = models.CharField(
+        max_length=20,
+        choices=STATUS_CHOICES,
+        default="pending"
+    )
+
+    processed_at = models.DateTimeField(blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+class AuditLog(models.Model):
+    actor = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+    action = models.CharField(max_length=255)
+    data = models.JSONField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+class MerchantPackage(models.Model):
+    name = models.CharField(max_length=100)
+    monthly_price = models.DecimalField(max_digits=8, decimal_places=2)
+
+    transaction_fee_percent = models.DecimalField(
+        max_digits=4, decimal_places=2,
+        help_text="Platform fee percentage"
+    )
+
+    max_payment_links = models.PositiveIntegerField(default=10)
+
+    is_active = models.BooleanField(default=True)
+
+    def __str__(self):
+        return self.name
+
+class MerchantSubscription(models.Model):
+    merchant = models.OneToOneField(
+        Merchant,
+        on_delete=models.CASCADE,
+        related_name="subscription"
+    )
+
+    package = models.ForeignKey(
+        MerchantPackage,
+        on_delete=models.PROTECT
+    )
+
+    started_at = models.DateTimeField(auto_now_add=True)
+    expires_at = models.DateTimeField()
+
+    is_active = models.BooleanField(default=True)

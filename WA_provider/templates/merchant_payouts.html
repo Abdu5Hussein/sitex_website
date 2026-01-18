@@ -1,0 +1,65 @@
+{% extends "merchant_base.html" %}
+
+{% block title %}Payouts{% endblock %}
+
+{% block content %}
+<h2>Payouts</h2>
+
+<!-- Request Payout Form -->
+<div style="background:#fff; padding:20px; margin-bottom:30px; border-radius:10px; box-shadow:0 3px 6px rgba(0,0,0,0.1)">
+    <h3>Request Payout</h3>
+    {% if error %}
+        <p style="color:red">{{ error }}</p>
+    {% endif %}
+    <form method="post">
+        {% csrf_token %}
+        <div>
+            <label>Amount (Available: {{ merchant.balance_available }} LYD):</label>
+            <input type="number" name="amount" step="0.01" max="{{ merchant.balance_available }}" required>
+        </div>
+        <div>
+            <label>Method:</label>
+            <select name="method">
+                <option value="lypay">LyPay</option>
+                <option value="bank">Bank</option>
+            </select>
+        </div>
+        <div>
+            <label>Reference (optional):</label>
+            <input type="text" name="reference" placeholder="Transaction reference or note">
+        </div>
+        <button type="submit" style="margin-top:10px;">Request Payout</button>
+    </form>
+</div>
+
+<!-- Existing Payouts Table -->
+<div style="background:#fff; padding:20px; border-radius:10px; box-shadow:0 3px 6px rgba(0,0,0,0.1)">
+    <h3>Existing Payouts</h3>
+    {% if payouts %}
+    <table style="width:100%; border-collapse:collapse;">
+        <thead>
+            <tr style="text-align:left; border-bottom:1px solid #ccc;">
+                <th>Amount (LYD)</th>
+                <th>Method</th>
+                <th>Reference</th>
+                <th>Status</th>
+                <th>Processed At</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for payout in payouts %}
+            <tr style="border-bottom:1px solid #eee;">
+                <td>{{ payout.amount }}</td>
+                <td>{{ payout.get_method_display }}</td>
+                <td>{{ payout.reference|default:"-" }}</td>
+                <td>{{ payout.status }}</td>
+                <td>{% if payout.processed_at %}{{ payout.processed_at|date:"Y-m-d H:i" }}{% else %}-{% endif %}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+        <p>No payouts yet.</p>
+    {% endif %}
+</div>
+{% endblock %}

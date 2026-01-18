@@ -1,0 +1,77 @@
+{% extends "main/base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Checkout" %}{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-6">
+
+      <div class="modern-card p-4 p-sm-5">
+
+        <!-- Header -->
+        <div class="text-center mb-4">
+          <div class="login-icon mb-3">
+            <i class="fas fa-shopping-cart fa-2x"></i>
+          </div>
+          <h3 class="fw-bold">{% trans "Checkout" %}</h3>
+          <p class="text-muted">
+            {% trans "Review your package before completing the purchase" %}
+          </p>
+        </div>
+
+        <!-- Messages -->
+        {% if messages %}
+          {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">
+              {{ message }}
+            </div>
+          {% endfor %}
+        {% endif %}
+
+        <!-- Package Summary -->
+        <div class="card border-0 shadow-sm mb-4">
+          <div class="card-body">
+            <h5 class="fw-semibold mb-3">
+              <i class="fas fa-box me-2 text-primary"></i>
+              {{ package.name }}
+            </h5>
+
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item d-flex justify-content-between">
+                <span>{% trans "Messages Included" %}</span>
+                <strong>{{ package.message_count }}</strong>
+              </li>
+
+              <li class="list-group-item d-flex justify-content-between">
+                <span>{% trans "Price" %}</span>
+                <strong>{{ package.price }} LYD</strong>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Checkout Form -->
+        <form method="POST">
+          {% csrf_token %}
+
+          <div class="d-grid gap-2">
+            <button type="submit" class="btn btn-primary-modern btn-lg">
+              <i class="fas fa-credit-card me-2"></i>
+              {% trans "Confirm & Pay" %}
+            </button>
+
+            <a href="{% url 'WA_provider:choose_package' %}" class="btn btn-outline-secondary">
+              <i class="fas fa-arrow-left me-2"></i>
+              {% trans "Change Package" %}
+            </a>
+          </div>
+        </form>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+{% endblock %}

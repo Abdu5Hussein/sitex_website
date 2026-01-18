@@ -1,0 +1,83 @@
+{% extends 'main/base.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "Choose Package - AWFERLK Solutions" %}{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-10">
+
+            <div class="modern-card p-4 p-sm-5">
+                <div class="text-center mb-4">
+                    <h2 class="fw-bold">{% trans "Choose Your Package" %}</h2>
+                    <p class="text-muted">{% trans "Select a message package to continue." %}</p>
+                </div>
+
+                {% if messages %}
+                    {% for msg in messages %}
+                        <div class="alert alert-{{ msg.tags|default:'danger' }}">{{ msg }}</div>
+                    {% endfor %}
+                {% endif %}
+
+                <form method="POST" action="{% url 'WA_provider:choose_package' %}">
+                    {% csrf_token %}
+
+                    <div class="row g-4">
+                        {% for package in packages %}
+                        <div class="col-md-6">
+                            <div class="card h-100 border-2 p-3 text-center package-card">
+                                <input type="radio" class="btn-check" name="package_id" id="package{{ package.id }}" value="{{ package.id }}" autocomplete="off" required>
+                                
+                                <label class="btn w-100 h-100 d-flex flex-column justify-content-center align-items-center package-label" for="package{{ package.id }}">
+                                    <h5 class="fw-bold">{{ package.name }}</h5>
+                                    <p class="mb-1">{% trans "Messages" %}: {{ package.message_count }}</p>
+                                    <p class="mb-1">{% trans "Price" %}: <span class="text-success fw-semibold">{{ package.price }} LYD</span></p>
+                                    <p class="mb-1">{% trans "Validity" %}: {{ package.duration_days }} {% trans "days" %}</p>
+                                    {% if package.description %}
+                                        <p class="text-muted small">{{ package.description }}</p>
+                                    {% endif %}
+                                </label>
+                            </div>
+                        </div>
+                        {% empty %}
+                        <div class="col-12">
+                            <div class="alert alert-warning text-center">
+                                {% trans "No active packages available. Please check back later." %}
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+
+                    <div class="d-grid mt-4">
+                        <button type="submit" class="btn btn-success btn-lg">{% trans "Proceed to Checkout" %}</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.package-card {
+    border-radius: 16px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+}
+.package-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0, 123, 255, 0.15);
+}
+.btn-check:checked + .package-label {
+    border: 2px solid #0d6efd;
+    background-color: rgba(13, 110, 253, 0.05);
+}
+.package-label {
+    border-radius: 16px;
+    padding: 20px;
+    user-select: none;
+    transition: all 0.2s;
+}
+</style>
+{% endblock %}

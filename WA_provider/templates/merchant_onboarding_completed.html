@@ -1,0 +1,54 @@
+<!-- templates/merchant/onboarding_completed.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Onboarding Completed</title>
+    <style>
+        .completed-container {
+            max-width: 600px;
+            margin: 50px auto;
+            text-align: center;
+            padding: 40px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+        .checkmark {
+            width: 80px;
+            height: 80px;
+            background: #4CAF50;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 30px;
+            color: white;
+            font-size: 40px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="completed-container">
+        <div class="checkmark">✓</div>
+        <h2>Onboarding Completed!</h2>
+        <p>Thank you for completing the merchant onboarding process.</p>
+        <p><strong>Your account is now pending review.</strong></p>
+        <p>Our team will review your application and verify your documents. 
+           You will receive an email notification once your account is activated.</p>
+        <p>This usually takes 1-2 business days.</p>
+        
+        <div style="margin-top: 30px;">
+            <a href="{% url 'dashboard' %}" class="btn">Go to Dashboard</a>
+        </div>
+    </div>
+</body>
+</html>

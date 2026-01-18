@@ -1,0 +1,14 @@
+{% extends "merchant_base.html" %}
+
+{% block title %}Delete Payment Link{% endblock %}
+
+{% block content %}
+<h2>Delete Payment Link</h2>
+<p>Are you sure you want to delete "{{ link.title }}"?</p>
+
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">Yes, Delete</button>
+    <a href="{% url 'WA_provider:payment_links' %}">Cancel</a>
+</form>
+{% endblock %}

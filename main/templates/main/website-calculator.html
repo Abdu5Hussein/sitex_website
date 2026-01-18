@@ -5,12 +5,17 @@
 {% trans "Pricing Calculator - SITEX" %}
 {% endblock %}
 
+
 {% block content %}
 <!-- =========================
   PAGE HEADER
 ========================= -->
-<section class="py-5 bg-primary text-white mt-5">
-  <div class="container">
+<section class="py-5 bg-gradient-primary text-white mt-5 position-relative overflow-hidden">
+  <div class="position-absolute top-0 start-0 w-100 h-100">
+    <div class="position-absolute top-0 start-0 w-100 h-100 bg-primary opacity-90"></div>
+    <div class="position-absolute top-0 start-0 w-100 h-100" style="background: linear-gradient(45deg, rgba(255,255,255,0.1) 25%, transparent 25%, transparent 50%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0.1) 75%, transparent 75%, transparent); background-size: 50px 50px;"></div>
+  </div>
+  <div class="container position-relative">
     <div class="row">
       <div class="col-lg-8 mx-auto text-center" data-aos="fade-up">
         <h1 class="display-4 fw-bold mb-3">{% trans "Project Pricing Calculator" %}</h1>
@@ -26,6 +31,105 @@
 </section>
 
 <!-- =========================
+  PLAN SELECTION
+========================= -->
+<section class="py-5 bg-light">
+  <div class="container">
+    <div class="text-center mb-5" data-aos="fade-up">
+      <h2 class="display-5 fw-bold mb-3">{% trans "Choose Your Plan" %}</h2>
+      <p class="lead text-muted">
+        {% trans "Start with a pre-configured plan or build your own custom solution" %}
+      </p>
+    </div>
+
+    <div class="row g-4 justify-content-center" data-aos="fade-up">
+      <div class="col-lg-3 col-md-6">
+        <div class="plan-card h-100" data-plan="basic">
+          <div class="plan-header">
+            <h4 class="plan-title">{% trans "Basic" %}</h4>
+            <div class="plan-price">{% trans "Starting from" %} <span class="text-primary">1,280</span> LYD</div>
+          </div>
+          <div class="plan-features">
+            <div class="feature-item">✓ {% trans "Up to 10 products" %}</div>
+            <div class="feature-item">✓ {% trans "5 pages included" %}</div>
+            <div class="feature-item">✓ {% trans "Basic SEO" %}</div>
+            <div class="feature-item">✓ {% trans "SSL Certificate" %}</div>
+            <div class="feature-item">✓ {% trans "Contact form" %}</div>
+          </div>
+          <button class="btn btn-outline-primary w-100 plan-select-btn">
+            {% trans "Select Basic Plan" %}
+          </button>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-md-6">
+        <div class="plan-card h-100 featured" data-plan="standard">
+          <div class="plan-badge">{% trans "Most Popular" %}</div>
+          <div class="plan-header">
+            <h4 class="plan-title">{% trans "Standard" %}</h4>
+            <div class="plan-price">{% trans "Starting from" %} <span class="text-primary">1,850</span> LYD</div>
+          </div>
+          <div class="plan-features">
+            <div class="feature-item">✓ {% trans "Up to 50 products" %}</div>
+            <div class="feature-item">✓ {% trans "Certification pages" %}</div>
+            <div class="feature-item">✓ {% trans "Export markets page" %}</div>
+            <div class="feature-item">✓ {% trans "Google Maps integration" %}</div>
+            <div class="feature-item">✓ {% trans "Medium SEO" %}</div>
+          </div>
+          <button class="btn btn-primary w-100 plan-select-btn">
+            {% trans "Select Standard Plan" %}
+          </button>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-md-6">
+        <div class="plan-card h-100" data-plan="professional">
+          <div class="plan-header">
+            <h4 class="plan-title">{% trans "Professional" %}</h4>
+            <div class="plan-price">{% trans "Starting from" %} <span class="text-primary">2,650</span> LYD</div>
+          </div>
+          <div class="plan-features">
+            <div class="feature-item">✓ {% trans "Unlimited products" %}</div>
+            <div class="feature-item">✓ {% trans "Multi-language support" %}</div>
+            <div class="feature-item">✓ {% trans "RFQ form" %}</div>
+            <div class="feature-item">✓ {% trans "Private blog & recipes" %}</div>
+            <div class="feature-item">✓ {% trans "Advanced SEO" %}</div>
+          </div>
+          <button class="btn btn-outline-primary w-100 plan-select-btn">
+            {% trans "Select Professional Plan" %}
+          </button>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-md-6">
+        <div class="plan-card h-100" data-plan="premium">
+          <div class="plan-header">
+            <h4 class="plan-title">{% trans "Premium" %}</h4>
+            <div class="plan-price">{% trans "Starting from" %} <span class="text-primary">4,200</span> LYD</div>
+          </div>
+          <div class="plan-features">
+            <div class="feature-item">✓ {% trans "POS system integration" %}</div>
+            <div class="feature-item">✓ {% trans "CRM system" %}</div>
+            <div class="feature-item">✓ {% trans "Live chat integration" %}</div>
+            <div class="feature-item">✓ {% trans "Comprehensive SEO" %}</div>
+            <div class="feature-item">✓ {% trans "Full analytics dashboard" %}</div>
+          </div>
+          <button class="btn btn-outline-primary w-100 plan-select-btn">
+            {% trans "Select Premium Plan" %}
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center mt-4">
+      <button class="btn btn-link text-decoration-none" id="customPlanBtn">
+        <i class="fas fa-sliders me-2"></i>{% trans "Or build custom solution" %}
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- =========================
   CLIENT INFO
 ========================= -->
 <section class="py-5">
@@ -33,23 +137,23 @@
     <div class="row g-4 align-items-stretch">
       <!-- Left -->
       <div class="col-lg-7" data-aos="fade-right">
-        <div class="modern-card h-100 p-4">
+        <div class="modern-card h-100 p-4 shadow-sm">
           <h2 class="fw-bold mb-4">{% trans "Client & Project Details" %}</h2>
 
           <div class="row g-3">
             <div class="col-md-6">
-              <label class="form-label">{% trans "Client Name" %}</label>
-              <input id="qcClientName" type="text" class="form-control" placeholder="{% trans 'Company / Person' %}" />
+              <label class="form-label fw-semibold">{% trans "Client Name" %}</label>
+              <input id="qcClientName" type="text" class="form-control form-control-lg" placeholder="{% trans 'Company / Person' %}" />
             </div>
 
             <div class="col-md-6">
-              <label class="form-label">{% trans "Quote Date" %}</label>
-              <input id="qcQuoteDate" type="date" class="form-control" />
+              <label class="form-label fw-semibold">{% trans "Quote Date" %}</label>
+              <input id="qcQuoteDate" type="date" class="form-control form-control-lg" />
             </div>
 
             <div class="col-md-6">
-              <label class="form-label">{% trans "Project Type" %}</label>
-              <select id="qcProjectType" class="form-select">
+              <label class="form-label fw-semibold">{% trans "Project Type" %}</label>
+              <select id="qcProjectType" class="form-select form-select-lg">
                 <option value="website">{% trans "Website" %}</option>
                 <option value="ecommerce">{% trans "E-commerce" %}</option>
                 <option value="system">{% trans "Business System" %}</option>
@@ -58,40 +162,41 @@
             </div>
 
             <div class="col-md-6">
-              <label class="form-label">{% trans "Currency" %}</label>
-              <input class="form-control" value="LYD" readonly />
+              <label class="form-label fw-semibold">{% trans "Currency" %}</label>
+              <input class="form-control form-control-lg" value="LYD" readonly />
             </div>
 
             <div class="col-12">
-              <label class="form-label">{% trans "Notes" %}</label>
+              <label class="form-label fw-semibold">{% trans "Notes" %}</label>
               <textarea id="qcNotes" class="form-control" rows="4" placeholder="{% trans 'Any special notes, requirements, references...' %}"></textarea>
             </div>
           </div>
 
-          <div class="d-flex gap-2 flex-wrap mt-3">
-            <button type="button" class="btn btn-outline-secondary" id="qcResetBtn">
+          <div class="d-flex gap-2 flex-wrap mt-4">
+            <button type="button" class="btn btn-outline-secondary btn-lg" id="qcResetBtn">
               <i class="fas fa-rotate-left me-2"></i>{% trans "Reset to Default" %}
             </button>
 
             <!-- ✅ Print Quote (NOT whole page) -->
-            <button type="button" class="btn btn-primary" id="qcPrintBtn">
+            <button type="button" class="btn btn-primary btn-lg" id="qcPrintBtn">
               <i class="fas fa-print me-2"></i>{% trans "Print Quote (PDF)" %}
             </button>
           </div>
 
-          <p class="text-muted small mt-3 mb-0">
+          <div class="alert alert-info mt-4 mb-0">
+            <i class="fas fa-info-circle me-2"></i>
             <!-- prettier-ignore -->
             {% blocktrans %}
             This is an estimate. Final pricing may vary based on scope, timeline, integrations, and content readiness.
             {% endblocktrans %}
-          </p>
+          </div>
         </div>
       </div>
 
       <!-- Right -->
       <div class="col-lg-5" data-aos="fade-left">
-        <div class="modern-card h-100 p-4">
-          <div class="text-center mb-3">
+        <div class="modern-card h-100 p-4 shadow-sm sticky-top" style="top: 2rem;">
+          <div class="text-center mb-4">
             <i class="fas fa-calculator fa-3x text-primary mb-3"></i>
             <h3 class="fw-bold mb-1">{% trans "Summary" %}</h3>
             <p class="text-muted mb-0">
@@ -102,41 +207,36 @@
             </p>
           </div>
 
-          <div class="d-flex justify-content-between mb-2">
+          <div class="d-flex justify-content-between align-items-center mb-3 p-3 bg-light rounded">
             <div class="text-muted">{% trans "Subtotal" %}</div>
-            <div class="fw-bold"><span id="qcSubtotal">0</span> LYD</div>
+            <div class="fw-bold fs-5"><span id="qcSubtotal">0</span> LYD</div>
           </div>
 
-          <div class="row g-2 align-items-center mb-2">
-            <div class="col-6 text-muted">{% trans "Discount (LYD)" %}</div>
+          <div class="row g-3 mb-3">
             <div class="col-6">
+              <label class="form-label text-muted">{% trans "Discount (LYD)" %}</label>
               <input id="qcDiscount" type="number" min="0" step="1" class="form-control" value="0" disabled />
             </div>
-          </div>
-
-          <div class="row g-2 align-items-center mb-3">
-            <div class="col-6 text-muted">{% trans "Tax (LYD)" %}</div>
             <div class="col-6">
+              <label class="form-label text-muted">{% trans "Tax (LYD)" %}</label>
               <input id="qcTax" type="number" min="0" step="1" class="form-control" value="0" disabled />
             </div>
           </div>
 
-          <hr />
-
-          <div class="d-flex justify-content-between align-items-center">
-            <div class="h6 mb-0">{% trans "Total" %}</div>
+          <div class="d-flex justify-content-between align-items-center p-3 bg-primary bg-opacity-10 rounded border border-primary">
+            <div class="h5 mb-0 fw-bold">{% trans "Total" %}</div>
             <div class="h4 mb-0 fw-bold text-primary"><span id="qcTotal">0</span> LYD</div>
           </div>
 
-          <div class="d-grid gap-2 mt-3">
-            <button type="button" class="btn btn-outline-primary" id="qcCopyBtn">
+          <div class="d-grid gap-2 mt-4">
+            <button type="button" class="btn btn-outline-primary btn-lg" id="qcCopyBtn">
               <i class="fas fa-copy me-2"></i>{% trans "Copy Quote Summary" %}
             </button>
           </div>
 
-          <div class="mt-3">
-            <h6 class="fw-bold mb-2">{% trans "Selected Items" %}</h6>
-            <div id="qcSelectedList" class="small text-muted" style="max-height: 210px; overflow:auto;">
+          <div class="mt-4">
+            <h6 class="fw-bold mb-3">{% trans "Selected Items" %}</h6>
+            <div id="qcSelectedList" class="small text-muted" style="max-height: 250px; overflow-y: auto;">
               {% trans "No items selected yet." %}
             </div>
           </div>
@@ -161,7 +261,7 @@
       </p>
     </div>
 
-    <div class="modern-card p-0 overflow-hidden" data-aos="fade-up">
+    <div class="modern-card p-0 overflow-hidden shadow-sm" data-aos="fade-up">
       <div class="table-responsive">
         <table class="table align-middle mb-0">
           <thead class="table-light">
@@ -177,8 +277,8 @@
           <tbody id="qcFeaturesBody"></tbody>
         </table>
 
-        <div class="p-3 d-flex justify-content-end align-items-center gap-2 border-top">
-          <p class="px-2 m-0">{% trans "Total" %}</p>
+        <div class="p-3 d-flex justify-content-end align-items-center gap-2 border-top bg-light">
+          <p class="px-2 m-0 fw-semibold">{% trans "Total" %}</p>
           <input type="text" id="table-total" class="form-control text-end fw-bold rounded" value="0 LYD" readonly style="max-width: 150px;" />
         </div>
       </div>
@@ -197,7 +297,7 @@
 <!-- =========================
   CTA
 ========================= -->
-<section class="py-5 section-cta text-center">
+<section class="py-5 section-cta text-center bg-gradient-primary text-white">
   <div class="container">
     <div class="row">
       <div class="col-lg-8 mx-auto" data-aos="zoom-in">
@@ -208,7 +308,7 @@
           Share your requirements and we'll send a detailed proposal with timeline, deliverables, and exact pricing.
           {% endblocktrans %}
         </p>
-        <a href="{% url 'contact' %}" class="btn btn-primary-modern btn-lg btn-modern">
+        <a href="{% url 'contact' %}" class="btn btn-light btn-lg btn-modern">
           <i class="fas fa-paper-plane me-2"></i>
           {% trans "Request a Consultation" %}
         </a>
@@ -290,28 +390,158 @@
   STYLES
 ========================= -->
 <style>
-  .container { max-width: 1300px !important; }
-
-  .qc-pill{
-    font-size: 0.75rem; padding: 0.25rem 0.6rem; border-radius: 999px;
-    background: rgba(13,110,253,0.08); color:#0d6efd; display:inline-block; white-space:nowrap;
+  /* Enhanced Plan Cards */
+  .plan-card {
+    background: #fff;
+    border: 2px solid #e9ecef;
+    border-radius: 16px;
+    padding: 2rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    position: relative;
+    cursor: pointer;
   }
-  .qc-num{ font-variant-numeric: tabular-nums; }
-  .qc-ltr{ direction:ltr; text-align:left; }
-  #qcSelectedList .item{
-    padding: 0.45rem 0.6rem; border-radius: 12px; background: rgba(0,0,0,0.03); margin-bottom:0.5rem;
+
+  .plan-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
   }
-  .qc-subline{ margin-top:0.35rem; padding-top:0.35rem; border-top:1px dashed rgba(0,0,0,0.12); }
-  .qc-radio-wrap{ display:flex; flex-wrap:wrap; gap:14px; margin-top:0.35rem; }
 
-  /* ✅ Print area hidden on screen */
-  .qc-print-area { display: none; }
+  .plan-card.featured {
+    border-color: #0d6efd;
+    background: linear-gradient(135deg, #f8f9ff 0%, #e7f1ff 100%);
+  }
 
-  /* =====================================================
-     PRINT ONLY THE QUOTE AREA
-  ===================================================== */
+  .plan-badge {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #0d6efd;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
+
+  .plan-header {
+    margin-bottom: 1.5rem;
+  }
+
+  .plan-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+
+  .plan-price {
+    color: #6c757d;
+    font-size: 0.9rem;
+  }
+
+  .plan-price span {
+    font-size: 1.5rem;
+    font-weight: 700;
+  }
+
+  .plan-features {
+    margin-bottom: 2rem;
+    text-align: left;
+  }
+
+  .feature-item {
+    padding: 0.5rem 0;
+    font-size: 0.9rem;
+    color: #495057;
+  }
+
+  .plan-select-btn {
+    font-weight: 600;
+    padding: 0.75rem;
+  }
+
+  /* Enhanced Modern Card */
+  .modern-card {
+    background: #fff;
+    border-radius: 16px;
+    border: 1px solid #e9ecef;
+    transition: all 0.3s ease;
+  }
+
+  .modern-card:hover {
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08) !important;
+  }
+
+  /* Enhanced Table */
+  .table {
+    font-size: 0.9rem;
+  }
+
+  .table th {
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 0.8rem;
+    padding: 1rem 0.75rem;
+    background: #f8f9fa;
+    border-bottom: 2px solid #dee2e6;
+  }
+
+  .table td {
+    padding: 1rem 0.75rem;
+    vertical-align: middle;
+  }
+
+  .table tbody tr {
+    transition: all 0.2s ease;
+  }
+
+  .table tbody tr:hover {
+    background-color: #f8f9fa;
+  }
+
+  /* Enhanced Form Controls */
+  .form-control, .form-select {
+    border-radius: 8px;
+    border: 1px solid #ced4da;
+    transition: all 0.2s ease;
+  }
+
+  .form-control:focus, .form-select:focus {
+    border-color: #0d6efd;
+    box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+  }
+
+  /* Enhanced Buttons */
+  .btn {
+    border-radius: 8px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+  }
+
+  .btn-lg {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+  }
+
+  .btn-primary-modern {
+    background: linear-gradient(135deg, #0d6efd 0%, #0b5ed7 100%);
+    border: none;
+    color: white;
+  }
+
+  .btn-primary-modern:hover {
+    background: linear-gradient(135deg, #0b5ed7 0%, #0a58ca 100%);
+    transform: translateY(-1px);
+  }
+
+  /* Enhanced Print Styles */
   @media print {
-    @page { size: A4; margin: 10mm; }
+    @page { 
+      size: A4; 
+      margin: 15mm;
+    }
 
     /* hide everything */
     body * { visibility: hidden !important; }
@@ -327,157 +557,534 @@
     }
 
     /* never print buttons/cta */
-    .btn, .section-cta { display: none !important; }
+    .btn, .section-cta, .plan-card, #customPlanBtn { display: none !important; }
 
-    html, body { height: auto !important; overflow: visible !important; background: #fff !important; }
+    html, body { 
+      height: auto !important; 
+      overflow: visible !important; 
+      background: #fff !important; 
+      font-size: 12px;
+    }
+
+    /* Enhanced print card */
+    .qc-print-card {
+      background: #fff;
+      border: 1px solid #000;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: none;
+    }
+
+    .qc-print-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      align-items: flex-start;
+      border-bottom: 2px solid #000;
+      padding-bottom: 15px;
+      margin-bottom: 15px;
+    }
+
+    .qc-logo {
+      font-weight: 800;
+      font-size: 24px;
+      letter-spacing: 1px;
+    }
+
+    .qc-brand-sub {
+      font-size: 11px;
+      color: #666;
+      line-height: 1.3;
+    }
+
+    .qc-quote-title {
+      font-weight: 800;
+      font-size: 16px;
+      text-align: right;
+      color: #000;
+    }
+
+    .qc-meta-grid {
+      margin-top: 8px;
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 4px 8px;
+      font-size: 11px;
+    }
+
+    .qc-meta-grid .k {
+      color: #666;
+    }
+
+    .qc-meta-grid .v {
+      font-weight: 600;
+    }
+
+    .qc-print-notes {
+      background: #f8f9fa;
+      border: 1px solid #dee2e6;
+      border-radius: 6px;
+      padding: 12px;
+      margin-bottom: 15px;
+    }
+
+    .qc-print-notes .ttl {
+      font-weight: 700;
+      font-size: 12px;
+      margin-bottom: 6px;
+    }
+
+    .qc-print-notes .txt {
+      font-size: 11px;
+      color: #333;
+      white-space: pre-wrap;
+    }
+
+    .qc-print-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 11px;
+    }
+
+    .qc-print-table th {
+      text-align: left;
+      padding: 8px 6px;
+      background: #f8f9fa;
+      border: 1px solid #dee2e6;
+      font-weight: 700;
+      font-size: 10px;
+    }
+
+    .qc-print-table td {
+      padding: 6px;
+      border: 1px solid #dee2e6;
+      vertical-align: top;
+    }
+
+    .qc-print-table .num {
+      font-variant-numeric: tabular-nums;
+    }
+
+    .qc-print-table .muted {
+      color: #666;
+      font-size: 9px;
+      margin-top: 2px;
+    }
+
+    .qc-print-totals {
+      margin-top: 15px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      align-items: flex-end;
+    }
+
+    .qc-print-totals .row {
+      width: 250px;
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      font-size: 11px;
+    }
+
+    .qc-print-totals .k {
+      color: #666;
+    }
+
+    .qc-print-totals .v {
+      font-weight: 700;
+    }
+
+    .qc-print-totals .v.big {
+      font-size: 14px;
+      font-weight: 900;
+    }
+
+    .qc-print-totals .hint {
+      width: 400px;
+      font-size: 9px;
+      color: #666;
+      text-align: right;
+      margin-top: 6px;
+    }
+
+    .qc-print-foot {
+      margin-top: 20px;
+    }
+
+    .qc-print-foot .line {
+      height: 1px;
+      background: #000;
+      margin-bottom: 8px;
+    }
+
+    .qc-print-foot .small {
+      font-size: 9px;
+      color: #666;
+      text-align: center;
+    }
   }
 
-  /* ====== PRINT CARD DESIGN ====== */
-  .qc-print-card{
-    background:#fff;
-    border: 1px solid rgba(0,0,0,0.08);
-    border-radius: 14px;
-    padding: 18px 18px;
-  }
-  .qc-print-head{
-    display:flex; justify-content:space-between; gap:16px; align-items:flex-start;
-    border-bottom: 1px solid rgba(0,0,0,0.08);
-    padding-bottom: 12px; margin-bottom: 12px;
-  }
-  .qc-logo{ font-weight:800; font-size: 26px; letter-spacing: 1px; }
-  .qc-brand-sub{ font-size: 12px; color: rgba(0,0,0,0.6); line-height: 1.35; }
-  .qc-quote-title{ font-weight:800; font-size: 14px; text-align: end; }
-  .qc-meta-grid{
-    margin-top: 8px;
-    display:grid;
-    grid-template-columns: 90px 1fr;
-    gap: 6px 10px;
-    font-size: 12px;
-  }
-  .qc-meta-grid .k{ color: rgba(0,0,0,0.55); }
-  .qc-meta-grid .v{ font-weight: 600; }
+  /* Existing styles with enhancements */
+  .container { max-width: 1300px !important; }
 
-  .qc-print-notes{
-    background: rgba(0,0,0,0.03);
-    border: 1px solid rgba(0,0,0,0.06);
-    border-radius: 12px;
-    padding: 10px 12px;
-    margin-bottom: 12px;
+  .qc-pill{
+    font-size: 0.75rem; 
+    padding: 0.35rem 0.8rem; 
+    border-radius: 999px;
+    background: rgba(13,110,253,0.08); 
+    color:#0d6efd; 
+    display:inline-block; 
+    white-space:nowrap;
+    font-weight: 500;
   }
-  .qc-print-notes .ttl{ font-weight: 700; font-size: 12px; margin-bottom: 6px; }
-  .qc-print-notes .txt{ font-size: 12px; color: rgba(0,0,0,0.7); white-space: pre-wrap; }
-
-  .qc-print-table{
-    width:100%;
-    border-collapse: collapse;
-    font-size: 12px;
+  
+  .qc-num{ font-variant-numeric: tabular-nums; }
+  .qc-ltr{ direction:ltr; text-align:left; }
+  
+  #qcSelectedList .item{
+    padding: 0.6rem 0.8rem; 
+    border-radius: 12px; 
+    background: rgba(0,0,0,0.03); 
+    margin-bottom:0.5rem;
+    border-left: 3px solid #0d6efd;
   }
-  .qc-print-table th{
-    text-align: start;
-    padding: 10px 8px;
-    background: rgba(0,0,0,0.04);
-    border: 1px solid rgba(0,0,0,0.08);
-    font-weight: 800;
+  
+  .qc-subline{ 
+    margin-top:0.5rem; 
+    padding-top:0.5rem; 
+    border-top:1px dashed rgba(0,0,0,0.12); 
   }
-  .qc-print-table td{
-    padding: 9px 8px;
-    border: 1px solid rgba(0,0,0,0.08);
-    vertical-align: top;
-  }
-  .qc-print-table .num{ font-variant-numeric: tabular-nums; }
-  .qc-print-table .muted{ color: rgba(0,0,0,0.55); font-size: 11px; margin-top: 3px; }
-
-  .qc-print-totals{
-    margin-top: 12px;
-    display:flex; flex-direction:column; gap:6px;
-    align-items:flex-end;
-  }
-  .qc-print-totals .row{
-    width: 320px;
-    display:flex; justify-content:space-between; gap:10px;
-    font-size: 12px;
-  }
-  .qc-print-totals .k{ color: rgba(0,0,0,0.6); }
-  .qc-print-totals .v{ font-weight: 700; }
-  .qc-print-totals .v.big{ font-size: 16px; font-weight: 900; }
-  .qc-print-totals .hint{
-    width: 520px;
-    font-size: 11px;
-    color: rgba(0,0,0,0.55);
-    text-align: end;
-    margin-top: 6px;
+  
+  .qc-radio-wrap{ 
+    display:flex; 
+    flex-wrap:wrap; 
+    gap:12px; 
+    margin-top:0.5rem; 
   }
 
-  .qc-print-foot{ margin-top: 14px; }
-  .qc-print-foot .line{ height: 1px; background: rgba(0,0,0,0.1); margin-bottom: 8px; }
-  .qc-print-foot .small{ font-size: 11px; color: rgba(0,0,0,0.6); text-align: center; }
+  /* ✅ Print area hidden on screen */
+  .qc-print-area { display: none; }
+
+  /* Enhanced sticky summary */
+  .sticky-top {
+    position: sticky;
+    top: 2rem;
+    z-index: 1020;
+  }
+
+  /* Animation enhancements */
+  [data-aos] {
+    transition-delay: 0.1s;
+  }
+
+  /* Responsive enhancements */
+  @media (max-width: 768px) {
+    .plan-card {
+      margin-bottom: 1rem;
+    }
+    
+    .table-responsive {
+      font-size: 0.85rem;
+    }
+    
+    .qc-print-totals .row {
+      width: 100%;
+    }
+    
+    .qc-print-totals .hint {
+      width: 100%;
+    }
+  }
 </style>
 
 <!-- =========================
   SCRIPT
 ========================= -->
 <script>
-  // ========= Dataset =========
-  const QC_FEATURES = [
-    {
-      category: "Infrastructure",
-      name: "Server / Hosting",
-      type: "period_price",
-      defaultWanted: true,
-      defaultQty: 1,
-      mandatory: true,
-      periods: [
-        { key: "3m", label: "3 months", price: 150, default: true },
-        { key: "6m", label: "6 months", price: 250 },
-        { key: "1y", label: "1 year",  price: 400 },
-      ],
-    },
+  // ========= UI Text (translated via Django template) =========
+  const QC_T = {
+    yes: "{% trans 'Yes' %}",
+    lyd: "LYD",
+    qty: "{% trans 'Qty' %}",
+    unit: "{% trans 'Unit' %}",
+    total: "{% trans 'Total' %}",
+    subtotal: "{% trans 'Subtotal' %}",
+    items: "{% trans 'Items' %}",
+    line: "{% trans 'Line' %}",
+    type: "{% trans 'Type' %}",
+    date: "{% trans 'Date' %}",
+    client: "{% trans 'Client' %}",
+    notes: "{% trans 'Notes' %}",
+    noItemsSelectedYet: "{% trans 'No items selected yet.' %}",
+    noItemsSelected: "{% trans 'No items selected.' %}",
+    quoteSummaryCopied: "{% trans 'Quote summary copied ✅' %}",
+    copyTheText: "{% trans 'Copy the text:' %}",
 
-    { category: "Infrastructure", name: "Domain registration (1 year)", unit: 30, defaultWanted: true, defaultQty: 1, mandatory: true },
-    { category: "Security", name: "SSL Certificate", unit: 0, defaultWanted: true, defaultQty: 1, mandatory: true },
-    { category: "Email", name: "Official email setup (info@...)", unit: 50, defaultWanted: true, defaultQty: 1, mandatory: false },
+    // Labels used inside the selected list cards
+    selectedListQtyLabel: "{% trans 'Qty' %}",
+    selectedListUnitLabel: "{% trans 'Unit Price (LYD)' %}",
+  };
 
-    { category: "Design", name: "Custom modern responsive design", unit: 400, defaultWanted: true, defaultQty: 1, mandatory: false },
-    { category: "Pages", name: "Up to 5 pages (Home/About/Services/Contact)", unit: 250, defaultWanted: true, defaultQty: 1, mandatory: true },
-    { category: "Pages", name: "Extra page", unit: 50, defaultWanted: false, defaultQty: 1, mandatory: false },
+  // ========= Enhanced Plan Selection =========
+  function initPlanSelection() {
+    const planCards = document.querySelectorAll('.plan-card');
+    const customBtn = document.getElementById('customPlanBtn');
+    
+    planCards.forEach(card => {
+      card.addEventListener('click', function() {
+        const plan = this.dataset.plan;
+        
+        // Remove active state from all cards
+        planCards.forEach(c => c.classList.remove('active', 'border-primary'));
+        
+        // Add active state to selected card
+        this.classList.add('active', 'border-primary');
+        
+        // Apply the plan
+        qcApplyPlan(plan);
+        
+        // Scroll to services section
+        document.querySelector('.section-alt').scrollIntoView({ 
+          behavior: 'smooth',
+          block: 'start'
+        });
+      });
+    });
+    
+    customBtn.addEventListener('click', function() {
+      // Remove active state from all cards
+      planCards.forEach(c => c.classList.remove('active', 'border-primary'));
+      
+      // Scroll to services section
+      document.querySelector('.section-alt').scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      });
+    });
+  }
 
-    {
-      category: "Products",
-      name: "Products module",
-      type: "options_price",
-      defaultWanted: true,
-      defaultQty: 1,
-      mandatory: false,
-      options: [
-        { key: "10", label: "up to 10 products", price: 50, default: true },
-        { key: "50", label: "up to 50 products", price: 70 },
-        { key: "unlimited", label: "Unlimited + advanced details", price: 100 },
-      ],
-    },
+  // ========= Dataset (all user-facing text translated) =========
+const QC_FEATURES = [
 
-    { category: "Forms", name: "Contact form", unit: 50, defaultWanted: true, defaultQty: 1, mandatory: true },
-    { category: "Forms", name: "Quotation form", unit: 80, defaultWanted: false, defaultQty: 1, mandatory: false },
-    { category: "Forms", name: "Custom form", unit: 100, defaultWanted: false, defaultQty: 1, mandatory: false },
+  // ================= Infrastructure =================
+  {
+    category: "{% trans 'Infrastructure' %}",
+    name: "{% trans 'Server / Hosting' %}",
+    type: "period_price",
+    defaultWanted: true,
+    defaultQty: 1,
+    mandatory: true,
+    periods: [
+      { key: "3m", label: "{% trans '3 months' %}", price: 150, default: true },
+      { key: "6m", label: "{% trans '6 months' %}", price: 250 },
+      { key: "1y", label: "{% trans '1 year' %}", price: 400 },
+    ],
+  },
 
-    { category: "E-commerce", name: "Basic e-commerce setup", unit: 300, defaultWanted: false, defaultQty: 1, mandatory: false },
+  {
+    category: "{% trans 'Infrastructure' %}",
+    name: "{% trans 'Hosting level' %}",
+    type: "options_price",
+    defaultWanted: true,
+    defaultQty: 1,
+    mandatory: true,
+    options: [
+      { key: "standard", label: "{% trans 'Standard hosting' %}", price: 0, default: true },
+      { key: "powerful", label: "{% trans 'Powerful hosting' %}", price: 300 },
+    ],
+  },
 
-    { category: "Social Media", name: "Social media integration", unit: 100, defaultWanted: false, defaultQty: 1, mandatory: false },
-    { category: "Maps", name: "Google Maps integration", unit: 120, defaultWanted: false, defaultQty: 1, mandatory: false },
-    { category: "WhatsApp", name: "WhatsApp notifications development", unit: 100, defaultWanted: false, defaultQty: 1, mandatory: false },
+  { category: "{% trans 'Infrastructure' %}", name: "{% trans 'Domain registration (1 year)' %}", unit: 30, defaultWanted: true, defaultQty: 1, mandatory: true },
 
-    { category: "Languages", name: "Multi-language (Arabic + English)", unit: 150, defaultWanted: true, defaultQty: 1, mandatory: false },
-    { category: "Themes", name: "Dark Mode Theme", unit: 100, defaultWanted: true, defaultQty: 1, mandatory: false },
-    { category: "Analytics", name: "Google Analytics + basic dashboard", unit: 200, defaultWanted: true, defaultQty: 1, mandatory: false },
+  // ================= Security =================
+  { category: "{% trans 'Security' %}", name: "{% trans 'SSL Certificate' %}", unit: 0, defaultWanted: true, defaultQty: 1, mandatory: true },
+  { category: "{% trans 'Security' %}", name: "{% trans 'Security monitoring & hardening (monthly)' %}", unit: 150, defaultWanted: false, defaultQty: 3, mandatory: false },
 
-    { category: "SEO", name: "Basic SEO setup", unit: 200, defaultWanted: false, defaultQty: 1, mandatory: false },
-    { category: "SEO", name: "Advanced SEO (strategy + technical SEO)", unit: 800, defaultWanted: false, defaultQty: 1, mandatory: false },
+  // ================= Email =================
+  { category: "{% trans 'Email' %}", name: "{% trans 'Official email setup (info@...)' %}", unit: 50, defaultWanted: true, defaultQty: 1, mandatory: false },
 
-    { category: "Support", name: "Maintenance & support (monthly)", unit: 200, defaultWanted: false, defaultQty: 3, mandatory: false },
-    { category: "Security", name: "Security monitoring & hardening (monthly)", unit: 150, defaultWanted: false, defaultQty: 3, mandatory: false },
-  ];
+  // ================= Design =================
+  { category: "{% trans 'Design' %}", name: "{% trans 'Custom modern responsive design' %}", unit: 400, defaultWanted: true, defaultQty: 1, mandatory: true },
+  { category: "{% trans 'Media' %}", name: "{% trans 'Professional image optimization' %}", unit: 150, defaultWanted: false, defaultQty: 1, mandatory: false },
+
+  // ================= CMS =================
+  { category: "{% trans 'CMS' %}", name: "{% trans 'Content Management System (CMS)' %}", unit: 200, defaultWanted: true, defaultQty: 1, mandatory: true },
+  { category: "{% trans 'CMS' %}", name: "{% trans 'Easy content editing & updates' %}", unit: 0, defaultWanted: true, defaultQty: 1, mandatory: false },
+
+  // ================= Pages =================
+  { category: "{% trans 'Pages' %}", name: "{% trans 'Up to 5 pages (Home/About/Services/Contact)' %}", unit: 250, defaultWanted: true, defaultQty: 1, mandatory: true },
+  { category: "{% trans 'Pages' %}", name: "{% trans 'Extra page' %}", unit: 50, defaultWanted: false, defaultQty: 1, mandatory: false },
+
+  // ================= Products =================
+  {
+    category: "{% trans 'Products' %}",
+    name: "{% trans 'Products module' %}",
+    type: "options_price",
+    defaultWanted: true,
+    defaultQty: 1,
+    mandatory: false,
+    options: [
+      { key: "10", label: "{% trans 'Up to 10 products' %}", price: 50, default: true },
+      { key: "50", label: "{% trans 'Up to 50 products' %}", price: 70 },
+      { key: "unlimited", label: "{% trans 'Unlimited products + advanced details' %}", price: 100 },
+    ],
+  },
+
+  // ================= Forms =================
+  { category: "{% trans 'Forms' %}", name: "{% trans 'Contact form' %}", unit: 50, defaultWanted: true, defaultQty: 1, mandatory: true },
+  { category: "{% trans 'Forms' %}", name: "{% trans 'Quotation (RFQ) form' %}", unit: 80, defaultWanted: false, defaultQty: 1, mandatory: false },
+  { category: "{% trans 'Forms' %}", name: "{% trans 'Custom form' %}", unit: 100, defaultWanted: false, defaultQty: 1, mandatory: false },
+
+  // ================= Content =================
+  { category: "{% trans 'Content' %}", name: "{% trans 'Blog system' %}", unit: 150, defaultWanted: false, defaultQty: 1, mandatory: false },
+  { category: "{% trans 'Content' %}", name: "{% trans 'Private news blog' %}", unit: 200, defaultWanted: false, defaultQty: 1, mandatory: false },
+  { category: "{% trans 'Content' %}", name: "{% trans 'Recipes section' %}", unit: 150, defaultWanted: false, defaultQty: 1, mandatory: false },
+
+  // ================= Media =================
+  { category: "{% trans 'Media' %}", name: "{% trans 'PDF catalog download' %}", unit: 120, defaultWanted: false, defaultQty: 1, mandatory: false },
+
+  // ================= Business =================
+  { category: "{% trans 'Business' %}", name: "{% trans 'Export markets page' %}", unit: 120, defaultWanted: false, defaultQty: 1, mandatory: false },
+  { category: "{% trans 'Business' %}", name: "{% trans 'Customers page' %}", unit: 100, defaultWanted: false, defaultQty: 1, mandatory: false },
+  { category: "{% trans 'Business' %}", name: "{% trans 'Branches page' %}", unit: 120, defaultWanted: false, defaultQty: 1, mandatory: false },
+
+  // ================= Compliance =================
+  { category: "{% trans 'Compliance' %}", name: "{% trans 'Certification pages (HACCP / HSQ / Halal)' %}", unit: 180, defaultWanted: false, defaultQty: 1, mandatory: false },
+
+  // ================= Communication =================
+  { category: "{% trans 'Communication' %}", name: "{% trans 'Live chat integration' %}", unit: 200, defaultWanted: false, defaultQty: 1, mandatory: false },
+  { category: "{% trans 'WhatsApp' %}", name: "{% trans 'WhatsApp notifications system' %}", unit: 100, defaultWanted: false, defaultQty: 1, mandatory: false },
+  { category: "{% trans 'Notifications' %}", name: "{% trans 'Website notification system' %}", unit: 250, defaultWanted: false, defaultQty: 1, mandatory: false },
+
+  // ================= Integrations =================
+  { category: "{% trans 'Maps' %}", name: "{% trans 'Google Maps integration' %}", unit: 120, defaultWanted: false, defaultQty: 1, mandatory: false },
+  { category: "{% trans 'Social Media' %}", name: "{% trans 'Social media integration' %}", unit: 100, defaultWanted: false, defaultQty: 1, mandatory: false },
+
+  // ================= Business Systems =================
+  { category: "{% trans 'Business Systems' %}", name: "{% trans 'Customer management (CRM basic)' %}", unit: 200, defaultWanted: false, defaultQty: 1, mandatory: false },
+  { category: "{% trans 'Business Systems' %}", name: "{% trans 'POS system integration' %}", unit: 800, defaultWanted: false, defaultQty: 1, mandatory: false },
+
+  // ================= Languages & UI =================
+  { category: "{% trans 'Languages' %}", name: "{% trans 'Multi-language (Arabic + English)' %}", unit: 150, defaultWanted: true, defaultQty: 1, mandatory: false },
+  { category: "{% trans 'Themes' %}", name: "{% trans 'Dark Mode Theme' %}", unit: 100, defaultWanted: true, defaultQty: 1, mandatory: false },
+
+  // ================= Analytics =================
+  { category: "{% trans 'Analytics' %}", name: "{% trans 'Analytics dashboard (Google Analytics)' %}", unit: 500, defaultWanted: true, defaultQty: 1, mandatory: false },
+
+  // ================= SEO =================
+  {
+    category: "{% trans 'SEO' %}",
+    name: "{% trans 'SEO level' %}",
+    type: "options_price",
+    defaultWanted: true,
+    defaultQty: 1,
+    mandatory: true,
+    options: [
+      { key: "basic", label: "{% trans 'Basic SEO' %}", price: 0, default: true },
+      { key: "medium", label: "{% trans 'Medium SEO' %}", price: 300 },
+      { key: "advanced", label: "{% trans 'Advanced SEO' %}", price: 600 },
+      { key: "full", label: "{% trans 'Comprehensive SEO' %}", price: 900 },
+    ],
+  },
+
+  // ================= Support =================
+  { category: "{% trans 'Support' %}", name: "{% trans 'Maintenance & support (monthly)' %}", unit: 200, defaultWanted: false, defaultQty: 3, mandatory: false },
+
+];
+const QC_PLANS = {
+  basic: {
+    name: "Basic Plan",
+    items: {
+      "Server / Hosting": { wanted: true, period: "3m" },
+      "Hosting level": { wanted: true, option: "standard" },
+      "Domain registration (1 year)": { wanted: true, qty: 1 },
+      "SSL Certificate": { wanted: true },
+      "Custom modern responsive design": { wanted: true },
+      "Content Management System (CMS)": { wanted: true },
+      "Up to 5 pages (Home/About/Services/Contact)": { wanted: true },
+      "Products module": { wanted: true, option: "10" },
+      "Contact form": { wanted: true },
+      "SEO level": { wanted: true, option: "basic" },
+    }
+  },
+
+  standard: {
+    name: "Standard Plan",
+    items: {
+      "Products module": { wanted: true, option: "50" },
+      "Certification pages (HACCP / HSQ / Halal)": { wanted: true },
+      "Export markets page": { wanted: true },
+      "Google Maps integration": { wanted: true },
+      "PDF catalog download": { wanted: true },
+      "SEO level": { wanted: true, option: "medium" },
+    }
+  },
+
+  professional: {
+    name: "Professional Plan",
+    items: {
+      "Products module": { wanted: true, option: "unlimited" },
+      "Multi-language (Arabic + English)": { wanted: true },
+      "Quotation (RFQ) form": { wanted: true },
+      "Private news blog": { wanted: true },
+      "Recipes section": { wanted: true },
+      "Professional image optimization": { wanted: true },
+      "Customers page": { wanted: true },
+      "Website notification system": { wanted: true },
+      "SEO level": { wanted: true, option: "advanced" },
+    }
+  },
+
+  premium: {
+    name: "Premium Plan",
+    items: {
+      "POS system integration": { wanted: true },
+      "Customer management (CRM basic)": { wanted: true },
+      "Live chat integration": { wanted: true },
+      "SEO level": { wanted: true, option: "full" },
+    }
+  }
+};
+
 
   // ========= Utilities =========
   const qcFmt = (n) => (Number(n || 0)).toLocaleString("en-US", { maximumFractionDigits: 2 });
+function qcApplyPlan(planKey) {
+  const plan = QC_PLANS[planKey];
+  if (!plan) return;
+
+  const tbody = document.getElementById("qcFeaturesBody");
+
+  [...tbody.querySelectorAll("tr")].forEach((tr) => {
+    const idx = Number(tr.dataset.idx);
+    const item = QC_FEATURES[idx];
+    const cfg = plan.items[item.name];
+
+    const wantedEl = tr.querySelector(".qc-wanted");
+    const qtyEl = tr.querySelector(".qc-qty");
+
+    if (!cfg) return;
+
+    // enable
+    wantedEl.checked = true;
+    qtyEl.value = cfg.qty || qtyEl.value || 1;
+    qtyEl.disabled = false;
+
+    // options / periods
+    if (cfg.option) {
+      const opt = tr.querySelector(`.qc-option[value="${cfg.option}"]`);
+      if (opt) opt.checked = true;
+    }
+
+    if (cfg.period) {
+      const per = tr.querySelector(`.qc-period[value="${cfg.period}"]`);
+      if (per) per.checked = true;
+    }
+  });
+
+  qcRecalc();
+}
 
   function qcTodayISO(){
     const d=new Date();
@@ -557,7 +1164,7 @@
                     ${p.default ? "checked" : ""}
                   />
                   <label class="form-check-label" for="${rid}">
-                    ${p.label} <span class="text-muted qc-num">(${qcFmt(p.price)} LYD)</span>
+                    ${p.label} <span class="text-muted qc-num">(${qcFmt(p.price)} ${QC_T.lyd})</span>
                   </label>
                 </div>
               `;
@@ -584,7 +1191,7 @@
                     ${o.default ? "checked" : ""}
                   />
                   <label class="form-check-label" for="${rid}">
-                    ${o.label} <span class="text-muted qc-num">(${qcFmt(o.price)} LYD)</span>
+                    ${o.label} <span class="text-muted qc-num">(${qcFmt(o.price)} ${QC_T.lyd})</span>
                   </label>
                 </div>
               `;
@@ -609,8 +1216,8 @@
 
         <td class="text-center">
           <div class="form-check d-inline-flex align-items-center gap-2 m-0">
-            <input class="form-check-input qc-wanted" type="checkbox" id="qc_w_${idx}">
-            <label class="form-check-label small" for="qc_w_${idx}">{% trans "Yes" %}</label>
+            <input class="form-check-input qc-wanted mx-1" type="checkbox" id="qc_w_${idx}">
+            <label class="form-check-label small" for="qc_w_${idx}">${QC_T.yes}</label>
           </div>
         </td>
 
@@ -721,11 +1328,11 @@
 
     document.getElementById("qcSubtotal").textContent = qcFmt(subtotal);
     document.getElementById("qcTotal").textContent = qcFmt(total);
-    document.getElementById("table-total").value = qcFmt(total) + " LYD";
+    document.getElementById("table-total").value = qcFmt(total) + " " + QC_T.lyd;
 
     const list=document.getElementById("qcSelectedList");
     if (!selectedItems.length){
-      list.textContent = "{% trans 'No items selected yet.' %}";
+      list.textContent = QC_T.noItemsSelectedYet;
       return;
     }
 
@@ -734,12 +1341,12 @@
         <div class="d-flex justify-content-between gap-2">
           <div>
             <div class="fw-semibold">${x.name}</div>
-            <div class="text-muted">${x.category} • Qty: <span class="qc-num">${qcFmt(x.qty)}</span></div>
+            <div class="text-muted">${x.category} • ${QC_T.selectedListQtyLabel}: <span class="qc-num">${qcFmt(x.qty)}</span></div>
           </div>
-          <div class="fw-bold qc-num qc-ltr">${qcFmt(x.line)} LYD</div>
+          <div class="fw-bold qc-num qc-ltr">${qcFmt(x.line)} ${QC_T.lyd}</div>
         </div>
         <div class="small text-muted mt-1">
-          Unit: <span class="qc-num">${qcFmt(x.unit)}</span> LYD
+          ${QC_T.selectedListUnitLabel}: <span class="qc-num">${qcFmt(x.unit)}</span> ${QC_T.lyd}
         </div>
       </div>
     `).join("");
@@ -759,7 +1366,7 @@
   async function qcCopySummary(){
     const clientName=(document.getElementById("qcClientName").value||"").trim() || "—";
     const quoteDate=document.getElementById("qcQuoteDate").value || "—";
-    const projectType=document.getElementById("qcProjectType").value || "—";
+    const projectTypeText=document.getElementById("qcProjectType").selectedOptions?.[0]?.textContent || document.getElementById("qcProjectType").value || "—";
     const notes=(document.getElementById("qcNotes").value||"").trim();
 
     const subtotal=document.getElementById("qcSubtotal").textContent;
@@ -785,28 +1392,28 @@
         if (o) extra=` (${o.label})`;
       }
 
-      return `- ${item.category} | ${item.name}${extra} | Qty: ${qty} | Unit: ${qcFmt(unit)} | Line: ${qcFmt(line)} LYD`;
+      return `- ${item.category} | ${item.name}${extra} | ${QC_T.qty}: ${qty} | ${QC_T.unit}: ${qcFmt(unit)} | ${QC_T.line}: ${qcFmt(line)} ${QC_T.lyd}`;
     }).filter(Boolean).join("\n");
 
     const text =
-`SITEX Quote (LYD)
-Client: ${clientName}
-Date: ${quoteDate}
-Type: ${projectType}
+`{% trans "SITEX Quote" %} (${QC_T.lyd})
+${QC_T.client}: ${clientName}
+${QC_T.date}: ${quoteDate}
+${QC_T.type}: ${projectTypeText}
 
-Items:
+${QC_T.items}:
 ${lines || "—"}
 
-Subtotal: ${subtotal} LYD
-TOTAL: ${total} LYD
-${notes ? "\nNotes:\n" + notes : ""}
+${QC_T.subtotal}: ${subtotal} ${QC_T.lyd}
+${QC_T.total}: ${total} ${QC_T.lyd}
+${notes ? "\n" + QC_T.notes + ":\n" + notes : ""}
 `;
 
     try {
       await navigator.clipboard.writeText(text);
-      alert("{% trans 'Quote summary copied ✅' %}");
+      alert(QC_T.quoteSummaryCopied);
     } catch (e) {
-      prompt("{% trans 'Copy the text:' %}", text);
+      prompt(QC_T.copyTheText, text);
     }
   }
 
@@ -864,7 +1471,7 @@ ${notes ? "\nNotes:\n" + notes : ""}
     document.getElementById("pItems").innerHTML = rows || `
       <tr>
         <td colspan="5" style="text-align:center; padding:14px; color:rgba(0,0,0,0.6)">
-          {% trans "No items selected." %}
+          ${QC_T.noItemsSelected}
         </td>
       </tr>
     `;
@@ -908,14 +1515,31 @@ ${notes ? "\nNotes:\n" + notes : ""}
     });
   }
 
-  document.addEventListener("DOMContentLoaded", ()=>{
-    const dateEl=document.getElementById("qcQuoteDate");
-    if (dateEl && !dateEl.value) dateEl.value = qcTodayISO();
+ document.addEventListener("DOMContentLoaded", () => {
+  const dateEl = document.getElementById("qcQuoteDate");
+  const params = new URLSearchParams(window.location.search);
+  const plan = params.get("plan")?.toLowerCase(); // lowercase to match keys
 
-    qcRender();
-    qcBind();
-    qcRecalc();
-  });
+  if (dateEl && !dateEl.value) dateEl.value = qcTodayISO();
+
+  qcRender();   // render table rows first
+  qcBind();     // bind events
+  qcRecalc();   // recalc totals
+
+  // Initialize plan selection
+  initPlanSelection();
+
+  if (plan) {
+    qcApplyPlan(plan); // apply plan after rows exist
+    
+    // Highlight the selected plan card
+    const selectedCard = document.querySelector(`[data-plan="${plan}"]`);
+    if (selectedCard) {
+      selectedCard.classList.add('active', 'border-primary');
+    }
+  }
+});
+
 </script>
 
 {% endblock %}

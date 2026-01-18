@@ -1,0 +1,778 @@
+<!-- templates/merchant/analytics.html -->
+{% extends "merchant_base.html" %}
+{% load static %}
+
+{% block title %}Analytics - {{ merchant.name }}{% endblock %}
+
+{% block extra_css %}
+<style>
+    /* Enhanced CSS */
+    .card {
+        border: none;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        border-radius: 12px;
+        overflow: hidden;
+    }
+    
+    .card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 16px rgba(0,0,0,0.12);
+    }
+    
+    .card-title {
+        color: #2c3e50;
+        font-weight: 700;
+        font-size: 1.1rem;
+    }
+    
+    .card-subtitle {
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        font-weight: 600;
+    }
+    
+    .metric-value {
+        font-size: 1.8rem;
+        font-weight: 700;
+        line-height: 1.2;
+    }
+    
+    .trend-up {
+        color: #10b981;
+        font-weight: 600;
+    }
+    
+    .trend-down {
+        color: #ef4444;
+        font-weight: 600;
+    }
+    
+    .period-selector .btn {
+        border-radius: 20px;
+        padding: 6px 16px;
+        font-weight: 500;
+    }
+    
+    .stat-card {
+        padding: 1.5rem;
+    }
+    
+    .stat-card-icon {
+        width: 50px;
+        height: 50px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 1rem;
+    }
+    
+    .stat-card-icon.revenue {
+        background: rgba(16, 185, 129, 0.1);
+        color: #10b981;
+    }
+    
+    .stat-card-icon.transactions {
+        background: rgba(59, 130, 246, 0.1);
+        color: #3b82f6;
+    }
+    
+    .stat-card-icon.avg {
+        background: rgba(168, 85, 247, 0.1);
+        color: #a855f7;
+    }
+    
+    .stat-card-icon.conversion {
+        background: rgba(245, 158, 11, 0.1);
+        color: #f59e0b;
+    }
+    
+    .badge {
+        font-weight: 500;
+        padding: 4px 10px;
+        border-radius: 20px;
+        font-size: 0.75rem;
+    }
+    
+    .chart-container {
+        position: relative;
+        height: 350px;
+        width: 100%;
+    }
+    
+    .table th {
+        border-top: none;
+        font-weight: 600;
+        color: #6b7280;
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+    
+    .table td {
+        vertical-align: middle;
+        padding: 1rem 0.75rem;
+    }
+    
+    .table-hover tbody tr:hover {
+        background-color: rgba(0,0,0,0.02);
+    }
+    
+    .progress {
+        height: 8px;
+        background-color: #e5e7eb;
+        border-radius: 4px;
+        overflow: hidden;
+    }
+    
+    .progress-bar {
+        border-radius: 4px;
+    }
+    
+    .alert-info {
+        background: rgba(59, 130, 246, 0.1);
+        border: none;
+        border-left: 4px solid #3b82f6;
+        color: #1e40af;
+        border-radius: 8px;
+    }
+    
+    .today-highlight {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border-radius: 12px;
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .empty-state {
+        text-align: center;
+        padding: 3rem 1rem;
+    }
+    
+    .empty-state-icon {
+        font-size: 3rem;
+        color: #9ca3af;
+        margin-bottom: 1rem;
+    }
+    
+    .status-badge {
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 0.75rem;
+        font-weight: 600;
+    }
+    
+    .status-paid { background: #d1fae5; color: #065f46; }
+    .status-failed { background: #fee2e2; color: #991b1b; }
+    .status-refunded { background: #fef3c7; color: #92400e; }
+    .status-initiated { background: #dbeafe; color: #1e40af; }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid px-4">
+    <!-- Header -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h1 class="h3 mb-1 text-gray-800">Analytics Dashboard</h1>
+            <p class="text-muted mb-0">Track your payment performance and revenue</p>
+        </div>
+        <div class="period-selector btn-group">
+            <a href="?period=7d" class="btn btn-outline-primary {% if period == '7d' %}active{% endif %}">
+                7D
+            </a>
+            <a href="?period=30d" class="btn btn-outline-primary {% if period == '30d' %}active{% endif %}">
+                30D
+            </a>
+            <a href="?period=90d" class="btn btn-outline-primary {% if period == '90d' %}active{% endif %}">
+                90D
+            </a>
+            <a href="?period=year" class="btn btn-outline-primary {% if period == 'year' %}active{% endif %}">
+                1Y
+            </a>
+        </div>
+    </div>
+
+    <!-- Period Info -->
+    <div class="alert alert-info d-flex align-items-center mb-4">
+        <i class="fas fa-calendar-alt me-2"></i>
+        <div>
+            Showing analytics for: <strong>{{ period_name }}</strong> 
+            ({{ start_date }} to {{ end_date }})
+        </div>
+    </div>
+
+    <!-- Today's Performance -->
+
+
+    <!-- Key Metrics -->
+    <div class="row mb-4">
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card stat-card h-100">
+                <div class="card-body">
+                    <div class="stat-card-icon revenue">
+                        <i class="fas fa-chart-line fa-2x"></i>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-end">
+                        <div>
+                            <h6 class="card-subtitle text-muted mb-2">Total Revenue</h6>
+                            <h3 class="metric-value">${{ total_revenue|floatformat:2 }}</h3>
+                        </div>
+                        {% if revenue_change != 0 %}
+                            <span class="{% if revenue_change > 0 %}trend-up{% else %}trend-down{% endif %}">
+                                <i class="fas fa-arrow-{% if revenue_change > 0 %}up{% else %}down{% endif %}"></i>
+                                {{ revenue_change|floatformat:1 }}%
+                            </span>
+                        {% endif %}
+                    </div>
+                    <p class="card-text text-muted small mt-2 mb-0">
+                        Net: ${{ net_revenue|floatformat:2 }} after ${{ total_fees|floatformat:2 }} fees
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card stat-card h-100">
+                <div class="card-body">
+                    <div class="stat-card-icon transactions">
+                        <i class="fas fa-exchange-alt fa-2x"></i>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-end">
+                        <div>
+                            <h6 class="card-subtitle text-muted mb-2">Transactions</h6>
+                            <h3 class="metric-value">{{ transaction_count }}</h3>
+                        </div>
+                        {% if transaction_change != 0 %}
+                            <span class="{% if transaction_change > 0 %}trend-up{% else %}trend-down{% endif %}">
+                                <i class="fas fa-arrow-{% if transaction_change > 0 %}up{% else %}down{% endif %}"></i>
+                                {{ transaction_change|floatformat:1 }}%
+                            </span>
+                        {% endif %}
+                    </div>
+                    <p class="card-text text-muted small mt-2 mb-0">
+                        Avg: ${{ avg_transaction|floatformat:2 }} per transaction
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card stat-card h-100">
+                <div class="card-body">
+                    <div class="stat-card-icon avg">
+                        <i class="fas fa-dollar-sign fa-2x"></i>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-end">
+                        <div>
+                            <h6 class="card-subtitle text-muted mb-2">Avg. Transaction</h6>
+                            <h3 class="metric-value">${{ avg_transaction|floatformat:2 }}</h3>
+                        </div>
+                    </div>
+                    <p class="card-text text-muted small mt-2 mb-0">
+                        Total {{ transaction_count }} successful payments
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card stat-card h-100">
+                <div class="card-body">
+                    <div class="stat-card-icon conversion">
+                        <i class="fas fa-percentage fa-2x"></i>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-end">
+                        <div>
+                            <h6 class="card-subtitle text-muted mb-2">Conversion Rate</h6>
+                            <h3 class="metric-value">{{ conversion_rate }}%</h3>
+                        </div>
+                    </div>
+                    <p class="card-text text-muted small mt-2 mb-0">
+                        {{ transaction_count }} of {{ total_all_transactions }} transactions
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Revenue Chart -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="card-title mb-0">Revenue & Transaction Trends</h5>
+                    <div class="dropdown">
+                        <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" 
+                                id="chartOptions" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-cog"></i>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="chartOptions">
+                            <li><a class="dropdown-item" href="#" onclick="toggleChartSeries(0)">Toggle Revenue</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="toggleChartSeries(1)">Toggle Transactions</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="chart-container">
+                        <canvas id="revenueChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Two Columns: Top Links and Status Breakdown -->
+    <div class="row mb-4">
+        <!-- Top Performing Links -->
+        <div class="col-lg-6 mb-4">
+            <div class="card h-100">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="card-title mb-0">Top Performing Payment Links</h5>
+                    <span class="badge bg-primary">{{ top_links|length }}</span>
+                </div>
+                <div class="card-body">
+                    {% if top_links %}
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Title</th>
+                                        <th class="text-end">Amount</th>
+                                        <th class="text-end">Transactions</th>
+                                        <th class="text-end">Revenue</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for link in top_links %}
+                                        <tr>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <div class="flex-shrink-0 me-2">
+                                                        <i class="fas fa-link text-primary"></i>
+                                                    </div>
+                                                    <div class="flex-grow-1">
+                                                        <a href="{% url 'WA_provider:edit_payment_link' link.id %}" 
+                                                           class="text-decoration-none text-dark fw-medium">
+                                                            {{ link.title|truncatechars:25 }}
+                                                        </a>
+                                                        {% if link.last_transaction %}
+                                                            <div class="text-muted small">
+                                                                Last: {{ link.last_transaction|date:"M d" }}
+                                                            </div>
+                                                        {% endif %}
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="text-end fw-medium">${{ link.amount|floatformat:2 }}</td>
+                                            <td class="text-end">
+                                                <span class="badge bg-primary">
+                                                    {{ link.paid_count|default:0 }}
+                                                </span>
+                                            </td>
+                                            <td class="text-end fw-bold text-success">
+                                                ${{ link.total_revenue|default:0|floatformat:2 }}
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="text-center mt-2">
+                            <a href="{% url 'WA_provider:payment_links' %}" class="btn btn-sm btn-outline-primary">
+                                <i class="fas fa-external-link-alt me-1"></i>
+                                View All Links
+                            </a>
+                        </div>
+                    {% else %}
+                        <div class="empty-state">
+                            <div class="empty-state-icon">
+                                <i class="fas fa-chart-bar"></i>
+                            </div>
+                            <h5 class="text-muted">No payment link data</h5>
+                            <p class="text-muted mb-3">Create your first payment link to see analytics</p>
+                            <a href="{% url 'WA_provider:create_payment_link' %}" class="btn btn-primary">
+                                <i class="fas fa-plus me-1"></i>
+                                Create Payment Link
+                            </a>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Transaction Status Breakdown -->
+        <div class="col-lg-6 mb-4">
+            <div class="card h-100">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="card-title mb-0">Transaction Status Breakdown</h5>
+                    <span class="badge bg-info">{{ total_all_transactions }} total</span>
+                </div>
+                <div class="card-body">
+                    {% if status_breakdown %}
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Status</th>
+                                        <th class="text-end">Count</th>
+                                        <th class="text-end">Amount</th>
+                                        <th class="text-end">%</th>
+                                        <th style="width: 150px;">Distribution</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for status in status_breakdown %}
+                                        <tr>
+                                            <td>
+                                                <span class="status-badge status-{{ status.status }}">
+                                                    {{ status.status|title }}
+                                                </span>
+                                            </td>
+                                            <td class="text-end fw-medium">{{ status.count }}</td>
+                                            <td class="text-end">${{ status.total_amount|floatformat:2 }}</td>
+                                            <td class="text-end fw-bold">{{ status.percentage }}%</td>
+                                            <td>
+                                                <div class="progress">
+                                                    <div class="progress-bar 
+                                                        {% if status.status == 'paid' %}bg-success
+                                                        {% elif status.status == 'failed' %}bg-danger
+                                                        {% elif status.status == 'refunded' %}bg-warning
+                                                        {% else %}bg-info{% endif %}"
+                                                        role="progressbar" 
+                                                        style="width: {{ status.percentage }}%"
+                                                        aria-valuenow="{{ status.percentage }}" 
+                                                        aria-valuemin="0" 
+                                                        aria-valuemax="100">
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="text-center mt-2">
+                            <a href="{% url 'WA_provider:transaction_list' %}" class="btn btn-sm btn-outline-info">
+                                <i class="fas fa-external-link-alt me-1"></i>
+                                View All Transactions
+                            </a>
+                        </div>
+                    {% else %}
+                        <div class="empty-state">
+                            <div class="empty-state-icon">
+                                <i class="fas fa-exchange-alt"></i>
+                            </div>
+                            <h5 class="text-muted">No transaction data</h5>
+                            <p class="text-muted">Transactions will appear here once you start receiving payments</p>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Payment Link Performance -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="card-title mb-0">Payment Link Performance Metrics</h5>
+                    <span class="badge bg-success">Best Performers</span>
+                </div>
+                <div class="card-body">
+                    {% if payment_link_stats %}
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Payment Link</th>
+                                        <th class="text-center">Successful</th>
+                                        <th class="text-center">Failed</th>
+                                        <th class="text-center">Refunded</th>
+                                        <th>Conversion Rate</th>
+                                        <th class="text-end">Performance</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for link in payment_link_stats %}
+                                        <tr>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <div class="flex-shrink-0 me-2">
+                                                        <i class="fas fa-external-link-alt text-primary"></i>
+                                                    </div>
+                                                    <div class="flex-grow-1">
+                                                        <a href="{% url 'WA_provider:edit_payment_link' link.id %}" 
+                                                           class="text-decoration-none text-dark fw-medium">
+                                                            {{ link.title|truncatechars:30 }}
+                                                        </a>
+                                                        <div class="text-muted small">
+                                                            ${{ link.amount|floatformat:2 }} • 
+                                                            {{ link.total_transactions }} total attempts
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="text-center">
+                                                <span class="badge bg-success">{{ link.total_paid|default:0 }}</span>
+                                            </td>
+                                            <td class="text-center">
+                                                <span class="badge bg-danger">{{ link.total_failed|default:0 }}</span>
+                                            </td>
+                                            <td class="text-center">
+                                                <span class="badge bg-warning">{{ link.total_refunded|default:0 }}</span>
+                                            </td>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <div class="flex-grow-1 me-2">
+                                                        <div class="progress" style="height: 8px;">
+                                                            <div class="progress-bar bg-success" 
+                                                                 role="progressbar" 
+                                                                 style="width: {{ link.conversion_rate|default:0 }}%"
+                                                                 aria-valuenow="{{ link.conversion_rate|default:0 }}" 
+                                                                 aria-valuemin="0" 
+                                                                 aria-valuemax="100">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="flex-shrink-0 fw-bold" style="min-width: 50px;">
+                                                        {{ link.conversion_rate|default:0|floatformat:1 }}%
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="text-end">
+                                                {% if link.conversion_rate >= 80 %}
+                                                    <span class="badge bg-success">Excellent</span>
+                                                {% elif link.conversion_rate >= 50 %}
+                                                    <span class="badge bg-primary">Good</span>
+                                                {% elif link.conversion_rate >= 20 %}
+                                                    <span class="badge bg-warning">Fair</span>
+                                                {% else %}
+                                                    <span class="badge bg-danger">Poor</span>
+                                                {% endif %}
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    {% else %}
+                        <div class="empty-state">
+                            <div class="empty-state-icon">
+                                <i class="fas fa-link"></i>
+                            </div>
+                            <h5 class="text-muted">No performance data yet</h5>
+                            <p class="text-muted">Conversion rates will appear after multiple payment attempts</p>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Export & Actions -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body text-center">
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-outline-primary" onclick="exportAnalytics()">
+                            <i class="fas fa-download me-2"></i>
+                            Export Data
+                        </button>
+                        <button type="button" class="btn btn-outline-secondary" onclick="printAnalytics()">
+                            <i class="fas fa-print me-2"></i>
+                            Print Report
+                        </button>
+                        <a href="{% url 'WA_provider:merchant_dashboard' %}" class="btn btn-outline-success">
+                            <i class="fas fa-tachometer-alt me-2"></i>
+                            Back to Dashboard
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
+<script>
+    // Revenue Chart
+    const dailyData = {{ daily_data_json|safe }};
+    let chartVisible = [true, true]; // [revenue, transactions]
+    
+    const ctx = document.getElementById('revenueChart').getContext('2d');
+    const revenueChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: dailyData.map(item => item.day_label),
+            datasets: [
+                {
+                    label: 'Revenue ($)',
+                    data: dailyData.map(item => item.revenue),
+                    borderColor: 'rgb(16, 185, 129)',
+                    backgroundColor: 'rgba(16, 185, 129, 0.1)',
+                    borderWidth: 2,
+                    tension: 0.3,
+                    fill: true,
+                    yAxisID: 'y',
+                    pointRadius: 3,
+                    pointHoverRadius: 5,
+                    hidden: !chartVisible[0]
+                },
+                {
+                    label: 'Transactions',
+                    data: dailyData.map(item => item.count),
+                    borderColor: 'rgb(59, 130, 246)',
+                    backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                    borderWidth: 2,
+                    tension: 0.3,
+                    fill: true,
+                    yAxisID: 'y1',
+                    pointRadius: 3,
+                    pointHoverRadius: 5,
+                    hidden: !chartVisible[1]
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            interaction: {
+                mode: 'index',
+                intersect: false,
+            },
+            plugins: {
+                legend: {
+                    position: 'top',
+                    labels: {
+                        padding: 20,
+                        usePointStyle: true,
+                    }
+                },
+                tooltip: {
+                    backgroundColor: 'rgba(0, 0, 0, 0.7)',
+                    padding: 12,
+                    titleFont: { size: 14 },
+                    bodyFont: { size: 13 },
+                    callbacks: {
+                        label: function(context) {
+                            let label = context.dataset.label || '';
+                            if (label) {
+                                label += ': ';
+                            }
+                            if (context.datasetIndex === 0) {
+                                label += '$' + context.parsed.y.toFixed(2);
+                            } else {
+                                label += context.parsed.y + ' transactions';
+                            }
+                            return label;
+                        }
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    grid: {
+                        display: false
+                    },
+                    ticks: {
+                        maxRotation: 45,
+                        minRotation: 45
+                    }
+                },
+                y: {
+                    type: 'linear',
+                    display: chartVisible[0],
+                    position: 'left',
+                    title: {
+                        display: true,
+                        text: 'Revenue ($)',
+                        color: 'rgb(16, 185, 129)'
+                    },
+                    grid: {
+                        color: 'rgba(0, 0, 0, 0.05)'
+                    }
+                },
+                y1: {
+                    type: 'linear',
+                    display: chartVisible[1],
+                    position: 'right',
+                    title: {
+                        display: true,
+                        text: 'Transaction Count',
+                        color: 'rgb(59, 130, 246)'
+                    },
+                    grid: {
+                        drawOnChartArea: false,
+                    },
+                }
+            }
+        }
+    });
+    
+    // Toggle chart series
+    function toggleChartSeries(index) {
+        chartVisible[index] = !chartVisible[index];
+        revenueChart.data.datasets[index].hidden = !chartVisible[index];
+        revenueChart.options.scales[ index === 0 ? 'y' : 'y1' ].display = chartVisible[index];
+        revenueChart.update();
+    }
+    
+    // Export analytics
+    function exportAnalytics() {
+        const data = {
+            period: "{{ period_name }}",
+            date_range: "{{ start_date }} to {{ end_date }}",
+            total_revenue: "{{ total_revenue|floatformat:2 }}",
+            net_revenue: "{{ net_revenue|floatformat:2 }}",
+            transaction_count: "{{ transaction_count }}",
+            conversion_rate: "{{ conversion_rate }}%",
+            today_revenue: "{{ today_revenue|floatformat:2 }}",
+            today_count: "{{ today_count }}",
+            export_date: new Date().toISOString().split('T')[0]
+        };
+        
+        const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `analytics-{{ merchant.slug }}-{{ period }}-${new Date().toISOString().split('T')[0]}.json`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+    }
+    
+    // Print analytics
+    function printAnalytics() {
+        window.print();
+    }
+    
+    // Auto-refresh analytics every 2 minutes if tab is active
+    let lastRefresh = Date.now();
+    const refreshInterval = 120000; // 2 minutes
+    
+    function refreshIfNeeded() {
+        if (Date.now() - lastRefresh > refreshInterval && !document.hidden) {
+            window.location.reload();
+        }
+    }
+    
+    document.addEventListener('visibilitychange', function() {
+        if (!document.hidden) {
+            refreshIfNeeded();
+        }
+    });
+    
+    // Initial setup for refresh
+    setInterval(refreshIfNeeded, 30000); // Check every 30 seconds
+</script>
+{% endblock %}

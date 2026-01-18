@@ -1,0 +1,587 @@
+{% extends 'main/base.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "Register - AWFERLK Solutions" %}{% endblock %}
+
+{% block content %}
+
+<style>
+/* Modern phone input styling - completely self-contained */
+.phone-input-container {
+    position: relative;
+    display: flex;
+    border-radius: 12px;
+    border: 2px solid rgba(0,0,0,0.08);
+    background: rgba(255,255,255,0.8);
+    transition: all 0.3s ease;
+    overflow: hidden;
+    margin-bottom: 1rem;
+}
+
+.phone-input-container:focus-within {
+    border-color: rgba(0, 123, 255, 0.5);
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    background: white;
+    transform: translateY(-1px);
+}
+
+.country-selector {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 14px 16px;
+    background: rgba(0, 123, 255, 0.1);
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 80px;
+    font-weight: 500;
+    user-select: none;
+}
+
+.country-selector:hover {
+    background: rgba(0, 123, 255, 0.2);
+}
+
+.country-flag {
+    font-size: 18px;
+    margin-right: 8px;
+    line-height: 1;
+}
+
+.country-code {
+    color: #495057;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.dropdown-arrow {
+    margin-left: 6px;
+    font-size: 10px;
+    color: #6c757d;
+    transition: transform 0.3s ease;
+}
+
+.dropdown-arrow.open {
+    transform: rotate(180deg);
+}
+
+.country-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+    border: 1px solid rgba(0,0,0,0.08);
+    max-height: 300px;
+    overflow-y: auto;
+    z-index: 1000;
+    display: none;
+    animation: dropdownFadeIn 0.2s ease-out;
+    margin-top: 4px;
+}
+
+.country-dropdown.show {
+    display: block;
+}
+
+.country-search {
+    padding: 12px;
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+    position: sticky;
+    top: 0;
+    background: white;
+    z-index: 1;
+}
+
+.search-input {
+    width: 100%;
+    padding: 10px 14px;
+    border: 2px solid rgba(0,0,0,0.08);
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.3s ease;
+    font-family: inherit;
+}
+
+.search-input:focus {
+    border-color: rgba(0, 123, 255, 0.5);
+}
+
+.country-list {
+    padding: 4px 0;
+}
+
+.country-option {
+    display: flex;
+    align-items: center;
+    padding: 12px 16px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    border-radius: 8px;
+    margin: 2px 8px;
+}
+
+.country-option:hover {
+    background-color: rgba(0, 123, 255, 0.1);
+}
+
+.country-option.selected {
+    background-color: rgba(0, 123, 255, 0.15);
+}
+
+.country-name {
+    margin-left: 12px;
+    font-weight: 500;
+    color: #2c3e50;
+    flex: 1;
+    font-size: 14px;
+}
+
+.country-dial-code {
+    color: #6c757d;
+    font-size: 13px;
+    font-weight: 400;
+}
+
+.phone-number-input {
+    flex: 1;
+    border: none;
+    outline: none;
+    padding: 14px 16px;
+    font-size: 16px;
+    background: transparent;
+    font-family: inherit;
+}
+
+.phone-number-input::placeholder {
+    color: #adb5bd;
+}
+
+/* Modern form styling */
+.modern-card {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+    border: 1px solid rgba(0,0,0,0.04);
+    backdrop-filter: blur(10px);
+}
+
+.form-control {
+    border-radius: 12px !important;
+    border: 2px solid rgba(0,0,0,0.08) !important;
+    padding: 14px 16px !important;
+    font-size: 16px !important;
+    transition: all 0.3s ease !important;
+    background: rgba(255,255,255,0.8) !important;
+}
+
+.form-control:focus {
+    border-color: rgba(0, 123, 255, 0.5) !important;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25) !important;
+    background: white !important;
+    transform: translateY(-1px);
+}
+
+.form-label {
+    font-weight: 600 !important;
+    color: #2c3e50 !important;
+    margin-bottom: 8px !important;
+    font-size: 14px !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.5px !important;
+}
+
+.btn-success {
+    border-radius: 12px !important;
+    padding: 14px 24px !important;
+    font-weight: 600 !important;
+    font-size: 16px !important;
+    background: linear-gradient(135deg, #28a745, #20c997) !important;
+    border: none !important;
+    transition: all 0.3s ease !important;
+    box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3) !important;
+}
+
+.btn-success:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 8px 25px rgba(40, 167, 69, 0.4) !important;
+}
+
+.btn-success:active {
+    transform: translateY(0) !important;
+}
+
+/* Error styling */
+.is-invalid {
+    border-color: #dc3545 !important;
+}
+
+.invalid-feedback {
+    color: #dc3545;
+    font-size: 13px;
+    margin-top: 6px;
+    display: block;
+}
+
+@keyframes dropdownFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 576px) {
+    .modern-card {
+        margin: 0 10px;
+        border-radius: 16px;
+    }
+    
+    .country-dropdown {
+        max-height: 250px;
+    }
+    
+    .country-selector {
+        min-width: 70px;
+        padding: 12px 14px;
+    }
+    
+    .country-code {
+        font-size: 13px;
+    }
+}
+
+/* Scrollbar styling */
+.country-dropdown::-webkit-scrollbar {
+    width: 6px;
+}
+
+.country-dropdown::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 3px;
+}
+
+.country-dropdown::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 3px;
+}
+
+.country-dropdown::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}
+</style>
+
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-6 col-md-8">
+      <div class="modern-card p-4 p-sm-5">
+
+        <!-- Header -->
+        <div class="text-center mb-4">
+          <h2 class="fw-bold">{% trans "Create Your Account" %}</h2>
+          <p class="text-muted">{% trans "Register to create your user and API client." %}</p>
+        </div>
+
+        <!-- Register Form -->
+        <form method="POST" action="{% url 'WA_provider:register_user' %}" id="registerForm">
+          {% csrf_token %}
+
+          {% if messages %}
+            {% for msg in messages %}
+              <div class="alert alert-{{ msg.tags|default:'danger' }}">{{ msg }}</div>
+            {% endfor %}
+          {% endif %}
+
+          <div class="mb-3">
+            <label class="form-label">{% trans "Full Name" %}</label>
+            <input type="text" class="form-control" name="full_name" required>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">{% trans "Email" %}</label>
+            <input type="email" class="form-control" name="email" required>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">{% trans "Username" %}</label>
+            <input type="text" class="form-control" name="username" required>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">{% trans "Password" %}</label>
+            <input type="password" class="form-control" name="password" required>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">{% trans "Company (optional)" %}</label>
+            <input type="text" class="form-control" name="company">
+          </div>
+
+          <!-- Custom Phone Input - No External Dependencies -->
+          <div class="mb-4">
+            <label class="form-label">{% trans "Phone Number" %}</label>
+            <div class="phone-input-container">
+              <div class="country-selector" id="countrySelector">
+                <span class="country-flag" id="selectedFlag">🇱🇾</span>
+                <span class="country-code" id="selectedCode">+218</span>
+                <span class="dropdown-arrow">▼</span>
+              </div>
+              <input type="tel" class="phone-number-input" id="phoneNumber" name="phone" 
+                     placeholder="{% trans 'Enter your phone number' %}" required>
+            </div>
+            <div class="country-dropdown" id="countryDropdown">
+              <div class="country-search">
+                <input type="text" class="search-input" id="countrySearch" 
+                       placeholder="{% trans 'Search country...' %}">
+              </div>
+              <div class="country-list" id="countryList"></div>
+            </div>
+          </div>
+
+          <div class="d-grid mb-3">
+            <button type="submit" class="btn btn-success btn-lg">
+              {% trans "Register & Create API Client" %}
+            </button>
+          </div>
+        </form>
+
+        <!-- Already have account -->
+        <div class="text-center mt-3">
+          <p class="text-muted mb-0">
+            {% trans "Already have an account?" %}
+            <a href="/login/" class="text-primary fw-semibold">{% trans "Login" %}</a>
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// Country data with flags and dial codes - Self-contained
+const countries = [
+    { code: 'ly', name: 'Libya', dialCode: '+218', flag: '🇱🇾' },
+    { code: 'eg', name: 'Egypt', dialCode: '+20', flag: '🇪🇬' },
+    { code: 'tn', name: 'Tunisia', dialCode: '+216', flag: '🇹🇳' },
+    { code: 'dz', name: 'Algeria', dialCode: '+213', flag: '🇩🇿' },
+    { code: 'sa', name: 'Saudi Arabia', dialCode: '+966', flag: '🇸🇦' },
+    { code: 'kw', name: 'Kuwait', dialCode: '+965', flag: '🇰🇼' },
+    { code: 'qa', name: 'Qatar', dialCode: '+974', flag: '🇶🇦' },
+    { code: 'bh', name: 'Bahrain', dialCode: '+973', flag: '🇧🇭' },
+    { code: 'ae', name: 'UAE', dialCode: '+971', flag: '🇦🇪' },
+    { code: 'om', name: 'Oman', dialCode: '+968', flag: '🇴🇲' },
+    { code: 'jo', name: 'Jordan', dialCode: '+962', flag: '🇯🇴' },
+    { code: 'lb', name: 'Lebanon', dialCode: '+961', flag: '🇱🇧' },
+    { code: 'sy', name: 'Syria', dialCode: '+963', flag: '🇸🇾' },
+    { code: 'iq', name: 'Iraq', dialCode: '+964', flag: '🇮🇶' },
+    { code: 'ma', name: 'Morocco', dialCode: '+212', flag: '🇲🇦' },
+    { code: 'sd', name: 'Sudan', dialCode: '+249', flag: '🇸🇩' },
+    { code: 'us', name: 'United States', dialCode: '+1', flag: '🇺🇸' },
+    { code: 'gb', name: 'United Kingdom', dialCode: '+44', flag: '🇬🇧' },
+    { code: 'ca', name: 'Canada', dialCode: '+1', flag: '🇨🇦' },
+    { code: 'au', name: 'Australia', dialCode: '+61', flag: '🇦🇺' },
+    { code: 'de', name: 'Germany', dialCode: '+49', flag: '🇩🇪' },
+    { code: 'fr', name: 'France', dialCode: '+33', flag: '🇫🇷' },
+    { code: 'it', name: 'Italy', dialCode: '+39', flag: '🇮🇹' },
+    { code: 'es', name: 'Spain', dialCode: '+34', flag: '🇪🇸' },
+    { code: 'jp', name: 'Japan', dialCode: '+81', flag: '🇯🇵' },
+    { code: 'cn', name: 'China', dialCode: '+86', flag: '🇨🇳' },
+    { code: 'in', name: 'India', dialCode: '+91', flag: '🇮🇳' },
+    { code: 'pk', name: 'Pakistan', dialCode: '+92', flag: '🇵🇰' },
+    { code: 'bd', name: 'Bangladesh', dialCode: '+880', flag: '🇧🇩' },
+    { code: 'tr', name: 'Turkey', dialCode: '+90', flag: '🇹🇷' },
+    { code: 'ir', name: 'Iran', dialCode: '+98', flag: '🇮🇷' }
+];
+
+// Initialize phone input
+document.addEventListener('DOMContentLoaded', function() {
+    const countrySelector = document.getElementById('countrySelector');
+    const countryDropdown = document.getElementById('countryDropdown');
+    const selectedFlag = document.getElementById('selectedFlag');
+    const selectedCode = document.getElementById('selectedCode');
+    const dropdownArrow = document.querySelector('.dropdown-arrow');
+    const countrySearch = document.getElementById('countrySearch');
+    const countryList = document.getElementById('countryList');
+    const phoneNumber = document.getElementById('phoneNumber');
+    const form = document.getElementById('registerForm');
+
+    let selectedCountry = countries[0]; // Default to Libya
+
+    // Render country list
+    function renderCountryList(searchTerm = '') {
+        const filteredCountries = countries.filter(country => 
+            country.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            country.dialCode.includes(searchTerm)
+        );
+
+        countryList.innerHTML = filteredCountries.map(country => `
+            <div class="country-option ${country.code === selectedCountry.code ? 'selected' : ''}" 
+                 data-country="${country.code}">
+                <span class="country-flag">${country.flag}</span>
+                <span class="country-name">${country.name}</span>
+                <span class="country-dial-code">${country.dialCode}</span>
+            </div>
+        `).join('');
+    }
+
+    // Toggle dropdown
+    countrySelector.addEventListener('click', function(e) {
+        e.stopPropagation();
+        const isOpen = countryDropdown.classList.contains('show');
+        
+        if (isOpen) {
+            closeDropdown();
+        } else {
+            openDropdown();
+        }
+    });
+
+    function openDropdown() {
+        countryDropdown.classList.add('show');
+        dropdownArrow.classList.add('open');
+        countrySearch.focus();
+        renderCountryList();
+    }
+
+    function closeDropdown() {
+        countryDropdown.classList.remove('show');
+        dropdownArrow.classList.remove('open');
+        countrySearch.value = '';
+    }
+
+    // Country selection
+    countryList.addEventListener('click', function(e) {
+        const option = e.target.closest('.country-option');
+        if (option) {
+            const countryCode = option.dataset.country;
+            selectedCountry = countries.find(c => c.code === countryCode);
+            
+            selectedFlag.textContent = selectedCountry.flag;
+            selectedCode.textContent = selectedCountry.dialCode;
+            
+            closeDropdown();
+            phoneNumber.focus();
+        }
+    });
+
+    // Search functionality
+    countrySearch.addEventListener('input', function() {
+        renderCountryList(this.value);
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function(e) {
+        if (!countrySelector.contains(e.target) && !countryDropdown.contains(e.target)) {
+            closeDropdown();
+        }
+    });
+
+    // Form submission
+    form.addEventListener('submit', function(e) {
+    const phoneValue = phoneNumber.value.trim();
+
+    if (!phoneValue) {
+        e.preventDefault();
+        showError('{% trans "Please enter your phone number" %}');
+        return;
+    }
+
+    // Validate phone number (basic validation)
+    const phoneRegex = /^[0-9\s\-\(\)\+]+$/;
+    if (!phoneRegex.test(phoneValue)) {
+        e.preventDefault();
+        showError('{% trans "Please enter a valid phone number" %}');
+        return;
+    }
+
+    // Create full international number
+    const fullPhoneNumber = selectedCountry.dialCode + phoneValue.replace(/^0+/, '');
+    
+    // Set the full phone number in the input (before submission)
+    phoneNumber.value = fullPhoneNumber;
+
+    // Add hidden field for country code if not exists
+    let countryCodeInput = form.querySelector('input[name="country_code"]');
+    if (!countryCodeInput) {
+        countryCodeInput = document.createElement('input');
+        countryCodeInput.type = 'hidden';
+        countryCodeInput.name = 'country_code';
+        form.appendChild(countryCodeInput);
+    }
+    countryCodeInput.value = selectedCountry.code;
+
+    // **Do not call form.submit()** — just let the form continue naturally
+});
+
+
+    function showError(message) {
+        // Remove existing error
+        const existingError = form.querySelector('.phone-error');
+        if (existingError) {
+            existingError.remove();
+        }
+        
+        // Add new error
+        const errorDiv = document.createElement('div');
+        errorDiv.className = 'invalid-feedback phone-error d-block';
+        errorDiv.textContent = message;
+        phoneNumber.parentNode.parentNode.appendChild(errorDiv);
+        
+        phoneNumber.classList.add('is-invalid');
+        phoneNumber.focus();
+    }
+
+    // Remove error on input
+    phoneNumber.addEventListener('input', function() {
+        this.classList.remove('is-invalid');
+        const errorDiv = form.querySelector('.phone-error');
+        if (errorDiv) {
+            errorDiv.remove();
+        }
+    });
+
+    // Keyboard navigation
+    let currentFocus = -1;
+    
+    countrySearch.addEventListener('keydown', function(e) {
+        const options = countryList.querySelectorAll('.country-option');
+        
+        if (e.key === 'ArrowDown') {
+            e.preventDefault();
+            currentFocus = (currentFocus + 1) % options.length;
+            setActiveOption(options);
+        } else if (e.key === 'ArrowUp') {
+            e.preventDefault();
+            currentFocus = currentFocus <= 0 ? options.length - 1 : currentFocus - 1;
+            setActiveOption(options);
+        } else if (e.key === 'Enter') {
+            e.preventDefault();
+            if (currentFocus >= 0 && options[currentFocus]) {
+                options[currentFocus].click();
+            }
+        } else if (e.key === 'Escape') {
+            closeDropdown();
+        }
+    });
+
+    function setActiveOption(options) {
+        options.forEach((option, index) => {
+            option.style.backgroundColor = index === currentFocus ? 'rgba(0, 123, 255, 0.1)' : '';
+        });
+    }
+
+    // Initialize
+    renderCountryList();
+});
+</script>
+
+{% endblock %}

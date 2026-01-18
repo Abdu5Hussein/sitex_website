@@ -1,0 +1,136 @@
+{% extends "merchant_base.html" %}
+
+{% block title %}Payment Links{% endblock %}
+
+{% block content %}
+<h2>Payment Links</h2>
+
+<!-- Create New Link Form -->
+<div style="background:#fff; padding:20px; margin-bottom:30px; border-radius:10px; box-shadow:0 3px 6px rgba(0,0,0,0.1)">
+    <h3>Create New Link</h3>
+    <form method="post">
+        {% csrf_token %}
+        <div>
+            <label>Title:</label>
+            <input type="text" name="title" required placeholder="Payment for product/service">
+        </div>
+        <div>
+            <label>Amount (LYD):</label>
+            <input type="number" name="amount" step="0.01" min="0" required>
+        </div>
+        <div>
+            <label>Attach to Invoice (optional):</label>
+            <select name="invoice">
+                <option value="">-- None --</option>
+                {% for inv in invoices %}
+                    <option value="{{ inv.id }}">
+                        Invoice #{{ inv.invoice_number }} - {{ inv.total_amount }} LYD
+                    </option>
+                {% endfor %}
+            </select>
+        </div>
+        <div>
+            <label>Expires At (optional):</label>
+            <input type="date" name="expires_at">
+        </div>
+        <button type="submit" style="margin-top:10px;">Create Link</button>
+    </form>
+</div>
+
+<!-- Existing Links Table -->
+<div style="background:#fff; padding:20px; border-radius:10px; box-shadow:0 3px 6px rgba(0,0,0,0.1)">
+    <h3>Existing Links</h3>
+
+    {% if links %}
+    <table style="width:100%; border-collapse:collapse;">
+        <thead>
+            <tr style="text-align:left; border-bottom:1px solid #ccc;">
+                <th>Title</th>
+                <th>Amount (LYD)</th>
+                <th>Reference</th>
+                <th>Invoice</th>
+                <th>Status</th>
+                <th>Expires At</th>
+                <th>Link</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for link in links %}
+            <tr style="border-bottom:1px solid #eee;">
+                <td>{{ link.title }}</td>
+                <td>{{ link.amount }}</td>
+                <td>{{ link.reference }}</td>
+                <td>
+                    {% if link.invoice %}
+                        #{{ link.invoice.invoice_number }}
+                    {% else %}
+                        -
+                    {% endif %}
+                </td>
+                <td>{{ link.is_active|yesno:"Active,Inactive" }}</td>
+                <td>
+                    {% if link.expires_at %}
+                        {{ link.expires_at|date:"Y-m-d" }}
+                    {% else %}
+                        -
+                    {% endif %}
+                </td>
+
+                <!-- LINK + COPY ICON -->
+                <td style="display:flex; align-items:center; gap:8px;">
+                    <a href="{{ link.full_url }}"
+                       target="_blank"
+                       style="
+                            max-width:220px;
+                            overflow:hidden;
+                            text-overflow:ellipsis;
+                            white-space:nowrap;
+                       ">
+                        {{ link.full_url }}
+                    </a>
+
+                    <button
+                        type="button"
+                        onclick="copyToClipboard('{{ link.full_url }}', this)"
+                        title="Copy link"
+                        style="
+                            border:none;
+                            background:#f1f1f1;
+                            cursor:pointer;
+                            padding:4px 6px;
+                            border-radius:5px;
+                            font-size:14px;
+                        ">
+                        📋
+                    </button>
+                </td>
+
+                <td>
+                    <a href="/merchant/payment-links/edit/{{ link.id }}/">Edit</a> |
+                    <a href="/merchant/payment-links/delete/{{ link.id }}/">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+        <p>No payment links created yet.</p>
+    {% endif %}
+</div>
+
+<!-- COPY TO CLIPBOARD SCRIPT -->
+<script>
+function copyToClipboard(text, btn) {
+    navigator.clipboard.writeText(text).then(() => {
+        btn.innerHTML = "✔";
+        setTimeout(() => {
+            btn.innerHTML = "📋";
+        }, 1500);
+    }).catch(() => {
+        alert("Failed to copy link");
+    });
+}
+</script>
+
+{% endblock %}

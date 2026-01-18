@@ -1,6 +1,9 @@
-{% extends 'main/base.html' %} {% load static i18n %}
+{% extends 'main/base.html' %}
+{% load static i18n %}
 <!-- prettier-ignore -->
- {% block title %}{% trans "Categories - SITEX" %}{% endblock %} {% block content %}
+{% block title %}{% trans "Categories - SITEX" %}{% endblock %}
+
+{% block content %}
 
 <!-- Page Header -->
 <section class="py-5 bg-primary text-white mt-5">
@@ -20,71 +23,254 @@
 <!-- Categories Grid -->
 <section class="py-5">
   <div class="container">
-    <!-- Optional: Search -->
-    <div class="row mb-4">
-      <div class="col-lg-6 mx-auto" data-aos="fade-up">
-        <div class="modern-card p-3">
-          <div class="d-flex align-items-center gap-2">
-            <i class="fas fa-magnifying-glass text-muted"></i>
-            <input
-              id="catSearch"
-              class="form-control form-control-modern border-0"
-              placeholder="{% trans 'Search services...' %}"
-              type="text"
-              autocomplete="off"
-            />
+    <!-- Website Pricing Plans Section (Replaces the image) -->
+    <div class="row mb-5" data-aos="fade-up">
+      <div class="col-12 text-center mb-4">
+        <h2 class="fw-bold mb-3">{% trans "Website Services Pricing" %}</h2>
+        <p class="text-muted mb-0">
+          {% trans "We offer flexible pricing plans that suit your needs, whether you're starting your project or expanding." %}
+        </p>
+        <p class="text-muted">{% trans "Choose the plan that suits you." %}</p>
+      </div>
+
+      <!-- Basic CMS Plan -->
+      <div class="col-lg-3 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
+        <div class="card pricing-card h-100 border-0 shadow-sm">
+          <div class="card-header bg-secondary bg-gradient text-center py-4 border-0">
+            <h5 class="fw-bold mb-1">{% trans "Basic Plan" %}</h5>
+            <!--<h6 class="text-primary fw-bold mb-0">{% trans "Basic Plan" %}</h6>-->
+          </div>
+          <div class="card-body p-4">
+            <div class="text-center mb-4">
+              <span class="display-6 fw-bold text-dark">1180</span>
+              <span class="h6 text-muted"> {% trans "LYD" %}</span>
+            </div>
+            <ul class="list-unstyled mb-4">
+              <li class="mb-2"><i class="fas fa-check-circle text-success me-2 small"></i><small>{% trans "Complete website on CMS" %}</small></li>
+              <li class="mb-2"><i class="fas fa-check-circle text-success me-2 small"></i><small>{% trans "Easy modification and updating" %}</small></li>
+              <li class="mb-2"><i class="fas fa-check-circle text-success me-2 small"></i><small>{% trans "Storage up to 10 products" %}</small></li>
+              <li class="mb-2"><i class="fas fa-check-circle text-success me-2 small"></i><small>{% trans "Mobile-responsive design" %}</small></li>
+              <li class="mb-2"><i class="fas fa-check-circle text-success me-2 small"></i><small>{% trans "Basic SEO optimization" %}</small></li>
+              <li class="mb-2"><i class="fas fa-check-circle text-success me-2 small"></i><small>{% trans "SSL certificate and website security" %}</small></li>
+            </ul>
+          </div>
+          <div class="card-footer bg-transparent border-0 text-center pb-4 pt-0">
+            <button
+              class="btn btn-outline-primary btn-sm choose-plan-btn"
+              data-plan="basic">
+              {% trans "Choose Plan" %}
+            </button>
           </div>
         </div>
+      </div>
 
+      <!-- Standard CMS Plan -->
+      <div class="col-lg-3 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="150">
+        <div class="card pricing-card h-100 border-0 shadow-sm position-relative popular-plan">
+          <div class="popular-badge">{% trans "Popular" %}</div>
+          <div class="card-header bg-primary bg-gradient text-white text-center py-4 border-0">
+            <h5 class="fw-bold mb-1">{% trans "Standard Plan" %}</h5>
+            <!--<h6 class="fw-bold mb-0">{% trans "Standard Plan" %}</h6>-->
+          </div>
+          <div class="card-body p-4">
+            <div class="text-center mb-4">
+              <span class="display-6 fw-bold text-dark">1900</span>
+              <span class="h6 text-muted"> {% trans "LYD" %}</span>
+            </div>
+            <ul class="list-unstyled mb-4">
+              <li class="mb-2"><i class="fas fa-check-circle text-success me-2 small"></i><small>{% trans "All basic plan features" %}</small></li>
+              <li class="mb-2"><i class="fas fa-check-circle text-success me-2 small"></i><small>{% trans "Management up to 50 products" %}</small></li>
+              <li class="mb-2"><i class="fas fa-check-circle text-success me-2 small"></i><small>{% trans "HACCP - HSQ - Halal pages" %}</small></li>
+              <li class="mb-2"><i class="fas fa-check-circle text-success me-2 small"></i><small>{% trans "Export markets page" %}</small></li>
+              <li class="mb-2"><i class="fas fa-check-circle text-success me-2 small"></i><small>{% trans "Integrated contact form" %}</small></li>
+              <li class="mb-2"><i class="fas fa-check-circle text-success me-2 small"></i><small>{% trans "Google Maps integration" %}</small></li>
+              <li class="mb-2"><i class="fas fa-check-circle text-success me-2 small"></i><small>{% trans "PDF catalog download" %}</small></li>
+              <li class="mb-2"><i class="fas fa-check-circle text-success me-2 small"></i><small>{% trans "Medium SEO design" %}</small></li>
+            </ul>
+          </div>
+          <div class="card-footer bg-transparent border-0 text-center pb-4 pt-0">
+            <button
+              class="btn btn-outline-primary btn-sm choose-plan-btn"
+              data-plan="Standard">
+              {% trans "Choose Plan" %}
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Professional CMS Plan -->
+      <div class="col-lg-3 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="200">
+        <div class="card pricing-card h-100 border-0 shadow-sm">
+          <div class="card-header bg-semi-golden bg-gradient text-center py-4 border-0">
+            <h5 class="fw-bold mb-1">{% trans "Professional Plan" %}</h5>
+            <!-- <h6 class="text-primary fw-bold mb-0">{% trans "Professional Plan" %}</h6> -->
+          </div>
+          <div class="card-body p-4">
+            <div class="text-center mb-4">
+              <span class="display-6 fw-bold text-dark">1550</span>
+              <span class="h6 text-muted"> {% trans "LYD" %}</span>
+            </div>
+            <ul class="list-unstyled mb-4">
+              <li class="mb-2"><i class="fas fa-check-circle text-success me-2 small"></i><small>{% trans "All standard plan features" %}</small></li>
+              <li class="mb-2"><i class="fas fa-check-circle text-success me-2 small"></i><small>{% trans "Multilingual (Arabic/English)" %}</small></li>
+              <li class="mb-2"><i class="fas fa-check-circle text-success me-2 small"></i><small>{% trans "Unlimited products" %}</small></li>
+              <li class="mb-2"><i class="fas fa-check-circle text-success me-2 small"></i><small>{% trans "Request for Quote form" %}</small></li>
+              <li class="mb-2"><i class="fas fa-check-circle text-success me-2 small"></i><small>{% trans "Private news blog" %}</small></li>
+              <li class="mb-2"><i class="fas fa-check-circle text-success me-2 small"></i><small>{% trans "Blog and recipes" %}</small></li>
+              <li class="mb-2"><i class="fas fa-check-circle text-success me-2 small"></i><small>{% trans "Professional image preview" %}</small></li>
+              <li class="mb-2"><i class="fas fa-check-circle text-success me-2 small"></i><small>{% trans "Customers page" %}</small></li>
+              <li class="mb-2"><i class="fas fa-check-circle text-success me-2 small"></i><small>{% trans "Notification system" %}</small></li>
+              <li class="mb-2"><i class="fas fa-check-circle text-success me-2 small"></i><small>{% trans "Advanced SEO" %}</small></li>
+            </ul>
+          </div>
+          <div class="card-footer bg-transparent border-0 text-center pb-4 pt-0">
+            <button
+              class="btn btn-outline-primary btn-sm choose-plan-btn"
+              data-plan="Professional">
+              {% trans "Choose Plan" %}
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Premium Export Suite CMS Plan -->
+      <div class="col-lg-3 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="250">
+        <div class="card pricing-card h-100 border-0 shadow-sm position-relative premium-plan">
+          <div class="premium-badge">{% trans "Premium" %}</div>
+          <div class="card-header bg-golden bg-gradient text-white text-center py-4 border-0">
+            <h5 class="fw-bold mb-1">{% trans "Premium Plan" %}</h5>
+            <!--<h6 class="fw-bold mb-0">{% trans "Premium Plan" %}</h6>-->
+          </div>
+          <div class="card-body p-4">
+            <div class="text-center mb-4">
+              <span class="display-6 fw-bold text-dark">2000</span>
+              <span class="h6 text-muted"> {% trans "LYD" %}</span>
+            </div>
+            <ul class="list-unstyled mb-4">
+              <li class="mb-2"><i class="fas fa-check-circle text-success me-2 small"></i><small>{% trans "All professional features" %}</small></li>
+              <li class="mb-2"><i class="fas fa-check-circle text-success me-2 small"></i><small>{% trans "Advanced search" %}</small></li>
+              <li class="mb-2"><i class="fas fa-check-circle text-success me-2 small"></i><small>{% trans "Integrated POS system" %}</small></li>
+              <li class="mb-2"><i class="fas fa-check-circle text-success me-2 small"></i><small>{% trans "Customer management" %}</small></li>
+              <li class="mb-2"><i class="fas fa-check-circle text-success me-2 small"></i><small>{% trans "Live Chat" %}</small></li>
+              <li class="mb-2"><i class="fas fa-check-circle text-success me-2 small"></i><small>{% trans "Branches page" %}</small></li>
+              <li class="mb-2"><i class="fas fa-check-circle text-success me-2 small"></i><small>{% trans "Export support" %}</small></li>
+              <li class="mb-2"><i class="fas fa-check-circle text-success me-2 small"></i><small>{% trans "Professional interface" %}</small></li>
+              <li class="mb-2"><i class="fas fa-check-circle text-success me-2 small"></i><small>{% trans "Comprehensive SEO" %}</small></li>
+              <li class="mb-2"><i class="fas fa-check-circle text-success me-2 small"></i><small>{% trans "Analytics dashboard" %}</small></li>
+              <li class="mb-2"><i class="fas fa-check-circle text-success me-2 small"></i><small>{% trans "Powerful hosting" %}</small></li>
+              <li class="mb-2"><i class="fas fa-check-circle text-success me-2 small"></i><small>{% trans "Continuous security" %}</small></li>
+            </ul>
+          </div>
+          <div class="card-footer bg-transparent border-0 text-center pb-4 pt-0">
+            <button
+              class="btn btn-outline-primary btn-sm choose-plan-btn"
+              data-plan="Premium">
+              {% trans "Choose Plan" %}
+            </button>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="row mb-4 h-auto">
-      <div class="text-center mt-3 " data-aos="fade-up" data-aos-delay="100">
-          <a href="/website-calculator/" class="text-decoration-none">
-            <button class="btn btn-primary btn-sm mt-2 w-100 bg-primary p-4 rounded">Project Price Calculator</button>
-          </a>
-        </div>
+
+    <!-- Custom Calculator Button -->
+    <div class="row mb-5 h-auto">
+      <div class="text-center" data-aos="fade-up" data-aos-delay="300">
+        <a href="/website-calculator/" class="text-decoration-none">
+          <button class="btn btn-primary btn-lg w-100 p-3 rounded">{% trans "Custom Project Pricing Calculator" %}</button>
+        </a>
+      </div>
     </div>
 
+    <!-- Search Section -->
+
+
+    <!-- WhatsApp Packages Section -->
+    <section class="py-5">
+      <div class="container">
+        <div class="row mb-5 text-center" data-aos="fade-up">
+          <div class="col-12 mb-4">
+            <h2 class="fw-bold mb-3">{% trans "WhatsApp Service Packages" %}</h2>
+            <p class="text-muted">{% trans "Choose the package that suits your messaging needs." %}</p>
+          </div>
+
+          {% for package in wa_packages %}
+          <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="{{ forloop.counter0|add:'1' }}00">
+            <div class="card pricing-card h-100 border-0 shadow-sm {% if package.plan_code == 'premium' %}position-relative premium-plan{% endif %}">
+              {% if package.plan_code == 'standard' %}
+              <div class="popular-badge">{% trans "Popular" %}</div>
+              {% elif package.plan_code == 'premium' %}
+              <div class="premium-badge">{% trans "Premium" %}</div>
+              {% endif %}
+
+              <div class="card-header {% if package.plan_code == 'standard' %}bg-primary bg-gradient text-white{% elif package.plan_code == 'premium' %}bg-golden bg-gradient{% else %}bg-secondary bg-gradient{% endif %} text-center py-4 border-0">
+                <h5 class="fw-bold mb-1">{{ package.name }}</h5>
+                <h6 class="fw-bold mb-0">{% trans "Messages:" %} {{ package.messages }}</h6>
+              </div>
+
+              <div class="card-body p-4">
+                <div class="text-center mb-4">
+                  <span class="display-6 fw-bold text-dark">{{ package.price }}</span>
+                  <span class="h6 text-muted">LYD</span>
+                </div>
+                <ul class="list-unstyled mb-4">
+                  <li class="mb-2"><i class="fas fa-check-circle text-success me-2 small"></i><small>{% trans "All WhatsApp messages included" %}</small></li>
+                  <li class="mb-2"><i class="fas fa-check-circle text-success me-2 small"></i><small>{% trans "Access to API and dashboard" %}</small></li>
+                  <li class="mb-2"><i class="fas fa-check-circle text-success me-2 small"></i><small>{% trans "Total messages -" %} {{ package.messages }}</small></li>
+                  <li class="mb-2"><i class="fas fa-check-circle text-success me-2 small"></i><small>{% trans "24/7 support" %}</small></li>
+                </ul>
+              </div>
+
+              <div class="card-footer bg-transparent border-0 text-center pb-4 pt-0">
+                <form method="post" action="{% url 'WA_provider:choose_package' %}">
+                  {% csrf_token %}
+                  <input type="hidden" name="package_id" value="{{ package.plan_code }}">
+                  <button type="submit" class="btn btn-outline-primary btn-sm">
+                    {% trans "Choose Plan" %}
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+
+
+
+    <!-- Categories Grid -->
     <div class="row g-4" id="categoriesGrid">
+      <div class="col-12 mb-4 text-center" data-aos="fade-up">
+        <h2 class="fw-bold mb-3">{% trans "Other Services" %}</h2>
+        <p class="text-muted">{% trans "Explore our range of additional services." %}</p>
+      </div>
       {% for category in categories %}
       <div
         class="col-lg-4 col-md-6 category-item"
         data-name="{{ category.name|lower }}"
         data-aos="fade-up"
-        data-aos-delay="{{ forloop.counter0|add:100 }}"
+        data-aos-delay="{{ forloop.counter0|add:400 }}"
       >
         <div class="modern-card h-100 category-card">
           <a
             href="{% url 'products' %}?category={{ category.slug }}"
             class="text-decoration-none"
           >
+
+            {% if category.image %}
             <div class="category-image-container">
-              {% if category.image %}
               <img
                 src="{{ category.image.url }}"
                 class="category-image"
                 alt="{{ category.name }}"
                 loading="lazy"
               />
-              {% else %}
-              <div
-                class="category-fallback d-flex align-items-center justify-content-center"
-              >
-                <div class="text-center px-4">
-                  <div class="fallback-icon mb-3">
-                    <i class="fas fa-layer-group"></i>
-                  </div>
-                  <div class="text-muted small">{% trans "No image" %}</div>
-                </div>
-              </div>
-              {% endif %}
             </div>
+            {% endif %}
+
 
             <div class="p-4">
-              <div
-                class="d-flex align-items-start justify-content-between gap-3"
-              >
+              <div class="d-flex align-items-start justify-content-between gap-3">
                 <h5 class="fw-bold mb-2 category-title">{{ category.name }}</h5>
                 <span class="badge badge-primary-modern">
                   <i class="fas fa-code fa-sm"></i>
@@ -118,8 +304,10 @@
   </div>
 </section>
 
+
+
 <script>
-  // Simple client-side filter (optional)
+  // Simple client-side filter for categories
   document.addEventListener("DOMContentLoaded", () => {
     const input = document.getElementById("catSearch");
     const items = document.querySelectorAll(".category-item");
@@ -134,12 +322,135 @@
         el.style.display = name.includes(q) ? "" : "none";
       });
     });
+
+    // Plan selection for pricing cards
+    document.querySelectorAll(".choose-plan-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const plan = btn.dataset.plan;
+    window.location.href = `/website-calculator/?plan=${plan}`;
+  });
+});
   });
 </script>
 
 <style>
-  /* Similar style to your products page */
+  /* Modern Card Styling */
+  .modern-card {
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+  }
 
+  /* Form Control Modern */
+  .form-control-modern {
+    border-radius: 10px;
+    padding: 12px 15px;
+    background-color: #f8f9fa;
+    transition: all 0.3s;
+  }
+
+  .form-control-modern:focus {
+    background-color: white;
+    box-shadow: 0 0 0 3px rgba(44, 90, 160, 0.1);
+    border-color: rgba(44, 90, 160, 0.3);
+  }
+
+  /* Pricing Card Styling */
+  .pricing-card {
+    border-radius: 15px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    overflow: hidden;
+    height: 100%;
+  }
+
+  .pricing-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1) !important;
+  }
+
+  .pricing-card .card-header {
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+  }
+
+  .pricing-card ul {
+    margin-bottom: 1rem;
+  }
+
+  .pricing-card ul li {
+    padding-right: 5px;
+    font-size: 0.85rem;
+  }
+
+  .pricing-card ul li small {
+    font-size: 0.8rem;
+  }
+
+  /* Popular Plan Styling */
+  .popular-plan {
+    border: 2px solid #2c5aa0;
+  }
+
+  .popular-badge {
+    position: absolute;
+    top: 15px;
+    left: 0px;
+    background-color: #ff6b35;
+    color: white;
+    padding: 5px 15px;
+    border-radius: 0 5px 5px 0;
+    font-weight: bold;
+    font-size: 0.75rem;
+    z-index: 10;
+    box-shadow: 0 3px 10px rgba(255, 107, 53, 0.3);
+  }
+
+  /* Premium Plan Styling */
+  .premium-plan {
+    border: 2px solid #343a40;
+  }
+
+  .premium-badge {
+    position: absolute;
+    top: 15px;
+    left: 0px;
+    background-color: #403e34ff;
+    color: white;
+    padding: 5px 15px;
+    border-radius: 0 5px 5px 0;
+    font-weight: bold;
+    font-size: 0.75rem;
+    z-index: 10;
+    box-shadow: 0 3px 10px rgba(52, 58, 64, 0.3);
+  }
+
+  .bg-golden {
+    background-color: #e2c000ff !important;
+  }
+  .bg-golden.bg-gradient {
+    background: linear-gradient(45deg, #f3e200ff, #c4a000ff) !important;
+  }
+  .bg-semi-golden {
+    background-color: #a28900 !important;
+  }
+  .bg-semi-golden.bg-gradient {
+    background: linear-gradient(45deg, #c4a000, #7f6b00) !important;
+  }
+
+  /* RTL specific adjustments */
+  [dir="rtl"] .pricing-card ul li {
+    padding-right: 0;
+    padding-left: 5px;
+  }
+
+  [dir="rtl"] .popular-badge,
+  [dir="rtl"] .premium-badge {
+    left: auto;
+    right: -10px;
+  }
+
+  /* Category card styling */
   .category-image-container {
     position: relative;
     overflow: hidden;
@@ -177,23 +488,27 @@
     transform: scale(1.06);
   }
 
-  .category-overlay {
-    position: absolute;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.65);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    transition: opacity 0.25s ease;
-  }
-
-  .category-card:hover .category-overlay {
-    opacity: 1;
-  }
-
   .category-title {
     color: var(--text-color);
+  }
+
+  /* Responsive Adjustments */
+  @media (max-width: 768px) {
+    .pricing-card {
+      margin-bottom: 20px;
+    }
+
+    .popular-badge, .premium-badge {
+      left: 15px;
+      top: -10px;
+    }
+
+    [dir="rtl"] .popular-badge,
+    [dir="rtl"] .premium-badge {
+      right: 15px;
+      left: auto;
+      top: -10px;
+    }
   }
 </style>
 

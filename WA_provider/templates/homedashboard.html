@@ -1,0 +1,31 @@
+{% extends "main/base.html" %}
+{% block title %}Dashboard Selection{% endblock %}
+
+{% block content %}
+<div class="row g-4">
+
+  <div class="col-md-6">
+    <div class="card text-center p-4 shadow-sm">
+      <h3>Merchant Dashboard</h3>
+      <p>Manage your business and products.</p>
+
+      {% if can_merchant %}
+        <a href="{% url 'WA_provider:merchant_dashboard' %}" class="btn btn-primary mt-3">Enter Merchant Dashboard</a>
+      {% else %}
+        <a href="{{ merchant_register_url }}" class="btn btn-warning mt-3">Register as Merchant</a>
+      {% endif %}
+    </div>
+  </div>
+
+  {% if can_client %}
+  <div class="col-md-6">
+    <div class="card text-center p-4 shadow-sm">
+      <h3>WA Dashboard</h3>
+      <p>Manage your WhatsApp API and messages.</p>
+      <a href="{% url 'WA_provider:WA_dashboard' %}" class="btn btn-success mt-3">Enter WA Dashboard</a>
+    </div>
+  </div>
+  {% endif %}
+
+</div>
+{% endblock %}

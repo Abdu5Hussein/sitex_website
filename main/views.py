@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect , get_object_or_404
 from django.contrib.auth import authenticate, login, logout
-from .models import Product, Branch, Inquiry,Invoice, ContactMessage,Banner, Category, City, Project , brand
+from .models import Product, Branch, Inquiry,Invoice, ContactMessage,Banner, Category, City, Project , brand, MessagePackage
 from django.http import JsonResponse
 from django.views.decorators.http import require_GET
 
@@ -29,7 +29,22 @@ def website_calculator(request):
 
 def categories(request):
     categories = Category.objects.all()
-    return render(request, 'main/categories.html', {'categories': categories})
+
+    # wa_packages = [
+    #     {"name": "Basic WA Pack", "messages": 250, "price": 50, "plan_code": "basic"},
+    #     {"name": "Standard WA Pack", "messages": 650, "price": 100, "plan_code": "standard"},
+    #     {"name": "Premium WA Pack", "messages": 1000, "price": 150, "plan_code": "premium"},
+    # ]
+    wa_packages = [
+        {"name": pack.name, "messages": pack.message_count, "price": pack.price, "plan_code": pack.plan_code}
+        for pack in MessagePackage.objects.filter(is_active=True)
+    ]
+
+    return render(request, 'main/categories.html', {
+        'categories': categories,
+        'wa_packages': wa_packages
+    })
+
 
 def contact(request):
     if request.method == 'POST':
@@ -55,12 +70,30 @@ def clients(request):
 
 def login_view(request):
     if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
         user = authenticate(request, username=username, password=password)
-        if user is not None:
+
+        if user is not None and user.is_active:
             login(request, user)
-            return redirect('dashboard')
+
+            # Redirect based on user type
+            if user.is_admin:
+                return redirect('admin:index')  # default Django admin
+            elif user.is_client:
+                return redirect('WA_provider:dashboard')  # client dashboard
+            elif user.is_wa_provider_user:
+                return redirect('WA_provider:employee_dashboard')  # WA provider employee dashboard
+            elif user.is_company_user:
+                return redirect('company:dashboard')  # company dashboard
+            else:
+                messages.info(request, "Logged in, but no dashboard assigned.")
+                return redirect('/')
+
+        else:
+            messages.error(request, "Invalid username or password.")
+
     return render(request, 'main/login.html')
 
 def logout_view(request):

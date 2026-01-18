@@ -451,7 +451,7 @@
 
     <div class="text-center mt-5">
       <a
-        href="{% url 'products' %}"
+        href="{% url 'categories' %}"
         class="btn btn-industrial text-muted btn-lg px-5 border"
       >
         <i class="fas fa-eye mx-2"></i>{% trans "View All Services" %}
@@ -971,7 +971,7 @@
           `
           <div class="col-lg-3 col-md-4 col-6" data-aos="fade-up" data-aos-delay="${delay}">
             <div class="tech-card text-center p-4">
-              <div class="mb-3">
+              <div class="mb-3 d-flex align-items-center justify-content-center" style="height: 56px;">
                 ${
                   image
                     ? `<img src="${image}" alt="${name}" class="img-fluid" style="max-height:56px;width:auto;">`

@@ -1,0 +1,40 @@
+{% extends "merchant_base.html" %}
+
+{% block title %}Merchant Dashboard{% endblock %}
+
+{% block content %}
+<h2>Welcome, {{ merchant.name }}</h2>
+
+<!-- Balances -->
+<div class="balance">
+    <div>
+        <h3>Available Balance</h3>
+        <p>{{ merchant.balance_available }} LYD</p>
+    </div>
+    <div>
+        <h3>On Hold</h3>
+        <p>{{ merchant.balance_on_hold }} LYD</p>
+    </div>
+</div>
+
+<!-- Quick Stats -->
+<h3>Quick Stats</h3>
+<div class="stats">
+    <div>
+        <h4>Total Payment Links</h4>
+        <p>{{ merchant.payment_links.count }}</p>
+    </div>
+    <div>
+        <h4>Total Transactions</h4>
+        <p>{{ merchant.transactions.count }}</p>
+    </div>
+    <div>
+        <h4>Total Invoices</h4>
+        <p>{{ merchant.invoices.count }}</p>
+    </div>
+    <div>
+        <h4>Subscription Plan</h4>
+        <p>{{ merchant.subscription.package.name }}</p>
+    </div>
+</div>
+{% endblock %}

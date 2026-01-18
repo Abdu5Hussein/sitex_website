@@ -1,0 +1,66 @@
+{% extends "merchant_base.html" %}
+
+{% block title %}Subscription{% endblock %}
+
+{% block content %}
+<h2>Subscription Plan</h2>
+
+<div style="background:#fff; padding:20px; border-radius:10px; box-shadow:0 3px 6px rgba(0,0,0,0.1)">
+
+    {% if subscription %}
+        <!-- Display existing subscription -->
+        <h3>Your Current Subscription</h3>
+        <p><strong>Package Name:</strong> {{ subscription.package.name }}</p>
+        <p><strong>Monthly Price:</strong> {{ subscription.package.monthly_price }} LYD</p>
+        <p><strong>Transaction Fee:</strong> {{ subscription.package.transaction_fee_percent }}%</p>
+        <p><strong>Max Payment Links:</strong> {{ subscription.package.max_payment_links }}</p>
+        <p><strong>Status:</strong> {% if subscription.is_active %}Active{% else %}Inactive{% endif %}</p>
+        <p><strong>Started At:</strong> {{ subscription.started_at|date:"Y-m-d" }}</p>
+        <p><strong>Expires At:</strong> {{ subscription.expires_at|date:"Y-m-d" }}</p>
+
+    {% else %}
+        <!-- No subscription, show available packages -->
+        <p>No active subscription found.</p>
+        <h3>Available Packages</h3>
+        <div>
+            {% for package in packages %}
+            <div style="border:1px solid #ccc; padding:15px; margin-bottom:15px; border-radius:5px; background:#f9f9f9;">
+                <p><strong>{{ package.name }}</strong></p>
+                <p>Monthly Price: {{ package.monthly_price }} LYD</p>
+                <p>Transaction Fee: {{ package.transaction_fee_percent }}%</p>
+                <p>Max Payment Links: {{ package.max_payment_links }}</p>
+                <button onclick="subscribe({{ package.id }})" style="padding:8px 15px; border:none; border-radius:5px; background:#007bff; color:white; cursor:pointer;">
+                    Subscribe
+                </button>
+            </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+</div>
+
+<script>
+function subscribe(package_id) {
+    fetch("/api/subscribe/", {  // Call your external API
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "X-CSRFToken": "{{ csrf_token }}"
+        },
+        body: JSON.stringify({ package_id: package_id })
+    })
+    .then(res => res.json())
+    .then(data => {
+        alert(data.message);
+        if(data.success){
+            location.reload();
+        }
+    })
+    .catch(err => {
+        console.error(err);
+        alert("Something went wrong. Please try again.");
+    });
+}
+</script>
+
+{% endblock %}

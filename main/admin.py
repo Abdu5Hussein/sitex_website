@@ -1,25 +1,61 @@
 from django.contrib import admin
 from .models import (
     User,
+    Category,
+    brand,
     Product,
     Branch,
     Inquiry,
     ContactMessage,
-    Category,
     Invoice,
     InvoiceItem,
     Banner,
     images,
+    Project,
+    ApiClient,
+    WhatsAppLog,
+    MessagePackage,
+    ClientMessageBalance,
+    MessagePurchase,
+    WhatsAppMessage,
+    ApiUsage,
+    Merchant,
+    MerchantPackage,
+    MerchantSubscription,
+    PaymentLink,
+    Transaction,
+    Payout,
+    PaymentLink,
+    MerchantInvoice,
+    MerchantInvoiceItem,
+
 )
 
 # Register all models
 admin.site.register(User)
+admin.site.register(Category)
+admin.site.register(brand)
 admin.site.register(Product)
 admin.site.register(Branch)
 admin.site.register(Inquiry)
 admin.site.register(ContactMessage)
-admin.site.register(Category)
 admin.site.register(Invoice)
 admin.site.register(InvoiceItem)
 admin.site.register(Banner)
 admin.site.register(images)
+admin.site.register(Project)
+admin.site.register(ApiClient)
+admin.site.register(WhatsAppLog)
+admin.site.register(MessagePackage)
+admin.site.register(ClientMessageBalance)
+admin.site.register(MessagePurchase)
+admin.site.register(WhatsAppMessage)
+admin.site.register(ApiUsage)
+admin.site.register(Merchant)
+admin.site.register(MerchantPackage)
+admin.site.register(MerchantSubscription)
+admin.site.register(PaymentLink)
+admin.site.register(Transaction)
+admin.site.register(Payout)
+admin.site.register(MerchantInvoice)
+admin.site.register(MerchantInvoiceItem)

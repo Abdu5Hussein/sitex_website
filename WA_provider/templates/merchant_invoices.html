@@ -1,0 +1,44 @@
+{% extends "merchant_base.html" %}
+
+{% block title %}Invoices{% endblock %}
+
+{% block content %}
+<h2>Invoices</h2>
+
+<a href="{% url 'WA_provider:create_invoice' %}" style="display:inline-block; margin-bottom:20px; padding:10px 20px; background:#4CAF50; color:white; border-radius:5px; text-decoration:none;">
+    Create New Invoice
+</a>
+
+{% if invoices %}
+<table style="width:100%; border-collapse:collapse; background:#fff; padding:10px; border-radius:10px; box-shadow:0 3px 6px rgba(0,0,0,0.1);">
+    <thead>
+        <tr style="border-bottom:1px solid #ccc; text-align:left;">
+            <th>#</th>
+            <th>Invoice Number</th>
+            <th>Description</th>
+            <th>Total Amount (LYD)</th>
+            <th>Created At</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for inv in invoices %}
+        <tr style="border-bottom:1px solid #eee;">
+            <td>{{ forloop.counter }}</td>
+            <td>{{ inv.invoice_number }}</td>
+            <td>{{ inv.description|default:"-" }}</td>
+            <td>{{ inv.total_amount }}</td>
+            <td>{{ inv.created_at|date:"Y-m-d H:i" }}</td>
+            <td>
+                <a href="{% url 'WA_provider:edit_invoice' inv.id %}">Edit</a> |
+                <a href="{% url 'WA_provider:delete_invoice' inv.id %}">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>No invoices created yet.</p>
+{% endif %}
+
+{% endblock %}
